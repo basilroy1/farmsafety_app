@@ -5,8 +5,7 @@ class Quiz extends Component {
     return (
       <div>
         <h1>Lets see What you Learned</h1>
-        <img src={pictures} />
-        <span>sdsds</span>
+        <img src={pictures} alt="lol" />
       </div>
     );
   }
