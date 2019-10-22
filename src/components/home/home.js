@@ -10,22 +10,18 @@ import {
 } from "react-bootstrap";
 
 class Home extends Component {
-
-click =(e)=>{
-e.preventDefault();
-alert("clicked");
-
-}
+  click = e => {
+    e.preventDefault();
+    alert("clicked");
+  };
   render() {
     return (
-      <div>
-        <body>
-          <div>
-            <Button variant="primary" size="lg" block onClick={this.click}>
-              Farm safety guide
-            </Button>
-          </div>
-        </body>
+      <div id="background">
+        <div>
+          <Button variant="primary" size="lg" block onClick={this.click}>
+            Farm safety guide
+          </Button>
+        </div>
       </div>
     );
   }
