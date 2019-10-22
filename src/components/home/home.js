@@ -5,24 +5,17 @@ import {
   ButtonGroup,
   Badge,
   ButtonToolbar,
-  Spinner
+  Spinner,
+  Alert
 } from "react-bootstrap";
+
 class Home extends Component {
 
 click =(e)=>{
- console.log( <h3>logged in succesffuly</h3>);
+e.preventDefault();
+alert("clicked");
 
 }
-
-
-
-
-
-
-
-
-
-
   render() {
     return (
       <div>
