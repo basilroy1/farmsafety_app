@@ -16,7 +16,7 @@ class Home extends Component {
   };
   render() {
     return (
-      <div id="background">
+      <div className="background">
         <div>
           <Button variant="primary" size="lg" block onClick={this.click}>
             Farm safety guide
