@@ -71,7 +71,7 @@ class Quiz extends Component {
       <div className="lol">
         {this.state.questions}
         <br></br>
-        {this.state.options.map(({ questions, options, answers,key }) => (
+        {this.state.options.map(({ questions, options, answers }) => (
           <h4>{options}</h4>
         ))}
         {/*}
