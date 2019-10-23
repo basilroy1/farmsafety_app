@@ -7,7 +7,8 @@ import {
   Badge,
   ButtonToolbar,
   Spinner,
-  Alert
+  Alert,
+  Item
 } from "react-bootstrap";
 import Questions, { Quizdata } from "./questions";
 class Quiz extends Component {
@@ -33,16 +34,38 @@ class Quiz extends Component {
     this.loadQuiz();
   }
 
+  nextQuestion =()=>{
+    this.setState({
+     currentQuest: this.state.currentQuest +1
+    })
+    console.log(this.state.currentQuest);
+  }
+
+  checkAnswer=()=>{
+    if(this.state.answer===this.state.options){
+console.log('correct');
+    }
+  }
+
   render() {
+    //const item ='';
     return (
       <div className="lol">
         {this.state.questions}
-        <br></br>
+      <br></br>
 
-        {this.state.options.map(option, key => (
-          <p>key={this.state.option.id}</p>
+        {this.items = this.state.options.map((item, key) =>
+       <Button key={item.id}>{item.options} </Button>
+)}
+       {/* 
+        {this.state.options.map(option,key => (
+          <Button key={this.state.options.id} ></Button>
         ))}
-        {this.state.options}
+       
+
+        {this.state.options} */}
+        <br></br>
+        <Button onClick={this.checkAnswer}>CHECK</Button>
       </div>
     );
   }
