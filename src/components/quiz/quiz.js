@@ -16,7 +16,9 @@ class Quiz extends Component {
     super(props);
     this.state = {
       options: [],
-      currentQuest: 1
+      // answers: "",
+      //  questions: "",
+      currentQuest: 0
     };
   }
   loadQuiz = () => {
@@ -30,42 +32,68 @@ class Quiz extends Component {
       };
     });
   };
+
   componentDidMount() {
     this.loadQuiz();
   }
 
-  nextQuestion =()=>{
+  nextQuestion = e => {
+    e.preventDefault();
     this.setState({
-     currentQuest: this.state.currentQuest +1
-    })
+      currentQuest: this.state.currentQuest + 1
+    });
     console.log(this.state.currentQuest);
-  }
+  };
 
-  checkAnswer=()=>{
-    if(this.state.answer===this.state.options){
-console.log('correct');
+  componentDidUpdate(prevProps, prevState) {
+    const { currentQuest } = this.state;
+    if (this.state.currentQuest !== prevState.currentQuest) {
+      this.setState(() => {
+        return {
+          questions: Quizdata[currentQuest].question,
+          options: Quizdata[currentQuest].option,
+          answers: Quizdata[currentQuest].answer,
+          pictures: Quizdata[currentQuest].picture
+        };
+      });
     }
   }
 
+  checkAnswer = e => {
+    e.preventDefault();
+    if (this.state.answers !== this.state.options) {
+      console.log("correct");
+    }
+  };
+
   render() {
-    //const item ='';
     return (
       <div className="lol">
         {this.state.questions}
-      <br></br>
-
-        {this.items = this.state.options.map((item, key) =>
-       <Button key={item.id}>{item.options} </Button>
-)}
-       {/* 
+        <br></br>
+        {this.state.options.map(({ questions, options, answers,key }) => (
+          <h4>{options}</h4>
+        ))}
+        {/*}
+        {
+          ( this.state.options.map((item, key) => (
+            <p className="bigbutton" key={item.id}>
+              {item.options}
+            </p>
+            //console.log(items)
+          )))
+        }
+      */}
+        {/* 
         {this.state.options.map(option,key => (
           <Button key={this.state.options.id} ></Button>
         ))}
        
-
         {this.state.options} */}
         <br></br>
         <Button onClick={this.checkAnswer}>CHECK</Button>
+
+        <Button onClick={this.nextQuestion}>NEXT</Button>
       </div>
     );
   }
