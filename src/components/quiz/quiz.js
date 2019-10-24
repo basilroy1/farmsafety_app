@@ -8,7 +8,8 @@ import {
   ButtonToolbar,
   Spinner,
   Alert,
-  Item
+  Item,
+  DropdownButton
 } from "react-bootstrap";
 import Questions, { Quizdata } from "./questions";
 class Quiz extends Component {
@@ -16,9 +17,10 @@ class Quiz extends Component {
     super(props);
     this.state = {
       options: [],
-       answers: "",
-        questions: "",
-      currentQuest: 0
+      answers: "",
+      questions: "",
+      currentQuest: 0,
+      scores: 0
     };
   }
   loadQuiz = () => {
@@ -63,6 +65,11 @@ class Quiz extends Component {
     e.preventDefault();
     if (this.state.answers !== this.state.options) {
       console.log("correct");
+    
+      this.setState({
+        scores: this.state.scores+1
+      })
+      
     }
   };
 
@@ -73,8 +80,9 @@ class Quiz extends Component {
         {this.state.questions}
         <br></br>
         {this.state.options.map((item ) => 
-          <Button className="bigbutton">{item}</Button> /* maps the options on the page*/ 
+          <Button>{item}</Button> /* maps the options on the page*/ 
         )}
+        
         {/*}
         {
           ( this.state.options.map((item, key) => (
@@ -93,8 +101,10 @@ class Quiz extends Component {
         {this.state.options} */}
         <br></br>
         <Button onClick={this.checkAnswer}>CHECK</Button>
-
         <Button onClick={this.nextQuestion}>NEXT</Button>
+        <br>
+        </br>
+            {this.state.scores}
       </div>
     );
   }
