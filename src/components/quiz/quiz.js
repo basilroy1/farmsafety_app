@@ -16,8 +16,8 @@ class Quiz extends Component {
     super(props);
     this.state = {
       options: [],
-      // answers: "",
-      //  questions: "",
+       answers: "",
+        questions: "",
       currentQuest: 0
     };
   }
@@ -69,11 +69,12 @@ class Quiz extends Component {
   render() {
     return (
       <div className="lol">
+        <br></br>
         {this.state.questions}
         <br></br>
-        {this.state.options.map(({ questions, options, answers }) => (
-          <h4>{options}</h4>
-        ))}
+        {this.state.options.map((item ) => 
+          <Button className="bigbutton">{item}</Button> /* maps the options on the page*/ 
+        )}
         {/*}
         {
           ( this.state.options.map((item, key) => (
