@@ -9,13 +9,15 @@ import {
   Spinner,
   Alert,
   Item,
-  DropdownButton
+  DropdownButton,
+  Toast
 } from "react-bootstrap";
 import Questions, { Quizdata } from "./questions";
 class Quiz extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      userAns: null,
       options: [],
       answers: "",
       questions: "",
@@ -62,27 +64,31 @@ class Quiz extends Component {
   }
 
   checkAnswer = e => {
-    e.preventDefault();
-    if (this.state.answers !== this.state.options) {
+    //  e.preventDefault();
+    if (this.state.answers === this.state.currentAnswer) {
       console.log("correct");
-    
+
       this.setState({
-        scores: this.state.scores+1
-      })
-      
+        scores: this.state.scores + 1
+      });
     }
   };
 
   render() {
+    const userAns = this.state;
     return (
       <div className="lol">
         <br></br>
         {this.state.questions}
         <br></br>
-        {this.state.options.map((item ) => 
-          <Button>{item}</Button> /* maps the options on the page*/ 
+        {this.state.options.map(
+          item => (
+            <Toast className={"ui floating message option"} id="optionsData">
+              {item}
+            </Toast>
+          ) /* maps the options on the page*/
         )}
-        
+
         {/*}
         {
           ( this.state.options.map((item, key) => (
@@ -100,11 +106,18 @@ class Quiz extends Component {
        
         {this.state.options} */}
         <br></br>
-        <Button onClick={this.checkAnswer}>CHECK</Button>
+        <Button
+          className={userAns === this.state.option ? "chosen" : null}
+          onClick={this.checkAnswer(this.state.option)}
+        >
+          CHECK
+        </Button>
         <Button onClick={this.nextQuestion}>NEXT</Button>
-        <br>
-        </br>
-            {this.state.scores}
+        <br></br>
+        {this.state.scores}
+        {this.state.currentQuest === Quizdata.length - 1
+          ? "Quiz FINISHED"
+          : null}
       </div>
     );
   }
