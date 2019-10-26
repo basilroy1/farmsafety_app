@@ -63,11 +63,14 @@ class Quiz extends Component {
     }
   }
 
-  checkAnswer = e => {
+  checkAnswer = answer => {
     //  e.preventDefault();
     if (this.state.answers === this.state.currentAnswer) {
       console.log("correct");
 
+      this.setState({
+        userAns: answer
+      });
       this.setState({
         scores: this.state.scores + 1
       });
@@ -76,6 +79,7 @@ class Quiz extends Component {
 
   render() {
     const userAns = this.state;
+
     return (
       <div className="lol">
         <br></br>
@@ -83,40 +87,24 @@ class Quiz extends Component {
         <br></br>
         {this.state.options.map(
           item => (
-            <Toast className={"ui floating message option"} id="optionsData">
+            <Toast
+              id="optionsData"
+              className={userAns === this.state.options ? "selected" : null}
+              onClick={this.checkAnswer(this.state.options)}
+            >
               {item}
             </Toast>
           ) /* maps the options on the page*/
         )}
 
-        {/*}
-        {
-          ( this.state.options.map((item, key) => (
-            <p className="bigbutton" key={item.id}>
-              {item.options}
-            </p>
-            //console.log(items)
-          )))
-        }
-      */}
-        {/* 
-        {this.state.options.map(option,key => (
-          <Button key={this.state.options.id} ></Button>
-        ))}
-       
-        {this.state.options} */}
         <br></br>
-        <Button
-          className={userAns === this.state.option ? "chosen" : null}
-          onClick={this.checkAnswer(this.state.option)}
-        >
-          CHECK
-        </Button>
+        <Button onClick={this.checkAnswer(this.state.option)}>CHECK</Button>
+
         <Button onClick={this.nextQuestion}>NEXT</Button>
         <br></br>
         {this.state.scores}
         {this.state.currentQuest === Quizdata.length - 1
-          ? "Quiz FINISHED"
+          ? alert("Quiz FINISHED")
           : null}
       </div>
     );
