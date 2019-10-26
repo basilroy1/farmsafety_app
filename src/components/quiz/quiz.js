@@ -87,22 +87,21 @@ class Quiz extends Component {
         <br></br>
         {this.state.options.map(
           item => (
-            <Toast
+            <Button
               id="optionsData"
               className={userAns === this.state.options ? "selected" : null}
               onClick={this.checkAnswer(this.state.options)}
             >
               {item}
-            </Toast>
+            </Button>
           ) /* maps the options on the page*/
         )}
-
         <br></br>
         <Button onClick={this.checkAnswer(this.state.option)}>CHECK</Button>
-
         <Button onClick={this.nextQuestion}>NEXT</Button>
         <br></br>
         {this.state.scores}
+
         {this.state.currentQuest === Quizdata.length - 1
           ? alert("Quiz FINISHED")
           : null}
