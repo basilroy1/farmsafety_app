@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./quiz.css";
+import fire from "../../config/fire";
 //import pictures from "../pictures/health_hazard.jpg";
 import {
   Button,
