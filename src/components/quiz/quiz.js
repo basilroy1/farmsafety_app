@@ -36,6 +36,7 @@ class Quiz extends Component {
         pictures: Quizdata[currentQuest].picture
       };
     });
+    // console.log(this.state.options.option);
   };
 
   componentDidMount() {
@@ -47,7 +48,7 @@ class Quiz extends Component {
     this.setState({
       currentQuest: this.state.currentQuest + 1
     });
-    console.log(this.state.currentQuest);
+    //console.log(this.state.currentQuest);
   };
 
   componentDidUpdate(prevProps, prevState) {
@@ -66,7 +67,7 @@ class Quiz extends Component {
 
   checkAnswer = answer => {
     //  e.preventDefault();
-    if (this.state.answers === this.state.currentAnswer) {
+    if (this.state.answers === this.state.options) {
       console.log("correct");
 
       this.setState({
@@ -76,6 +77,7 @@ class Quiz extends Component {
         scores: this.state.scores + 1
       });
     }
+    //  console.log(this.state.options);
   };
 
   render() {
@@ -88,17 +90,19 @@ class Quiz extends Component {
         <br></br>
         {this.state.options.map(
           item => (
-            <Button
+            <Toast
               id="optionsData"
               className={userAns === this.state.options ? "selected" : null}
               onClick={this.checkAnswer(this.state.options)}
             >
               {item}
-            </Button>
+            </Toast>
           ) /* maps the options on the page*/
         )}
         <br></br>
-        <Button onClick={this.checkAnswer(this.state.option)}>CHECK</Button>
+        <Button onClick={this.checkAnswer(this.state.options.value)}>
+          CHECK
+        </Button>
         <Button onClick={this.nextQuestion}>NEXT</Button>
         <br></br>
         {this.state.scores}
