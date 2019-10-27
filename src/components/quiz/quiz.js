@@ -13,6 +13,7 @@ import {
   DropdownButton,
   Toast
 } from "react-bootstrap";
+
 import Questions, { Quizdata } from "./questions";
 class Quiz extends Component {
   constructor(props) {
@@ -48,6 +49,11 @@ class Quiz extends Component {
     this.setState({
       currentQuest: this.state.currentQuest + 1
     });
+    //if (userAns == answer) {
+    this.setState({
+      scores: this.state.scores + 1
+    });
+    //}
     //console.log(this.state.currentQuest);
   };
 
@@ -67,21 +73,16 @@ class Quiz extends Component {
 
   checkAnswer = answer => {
     //  e.preventDefault();
-    if (this.state.answers === this.state.options) {
-      console.log("correct");
 
-      this.setState({
-        userAns: answer
-      });
-      this.setState({
-        scores: this.state.scores + 1
-      });
-    }
+    this.setState({
+      userAns: answer
+    });
+
     //  console.log(this.state.options);
   };
 
   render() {
-    const userAns = this.state;
+    const { userAns, option } = this.state;
 
     return (
       <div className="lol">
@@ -90,19 +91,18 @@ class Quiz extends Component {
         <br></br>
         {this.state.options.map(
           item => (
-            <Toast
+            <p
               id="optionsData"
+              className="ui floating message options"
               className={userAns === this.state.options ? "selected" : null}
-              onClick={this.checkAnswer(this.state.options)}
+              onClick={() => this.checkAnswer(option)}
             >
               {item}
-            </Toast>
+            </p>
           ) /* maps the options on the page*/
         )}
         <br></br>
-        <Button onClick={this.checkAnswer(this.state.options.value)}>
-          CHECK
-        </Button>
+        <Button onClick={() => this.checkAnswer(option)}>CHECK</Button>
         <Button onClick={this.nextQuestion}>NEXT</Button>
         <br></br>
         {this.state.scores}
