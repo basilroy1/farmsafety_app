@@ -68,6 +68,7 @@ class Quiz extends Component {
           pictures: Quizdata[currentQuest].picture
         };
       });
+      console.log(this.state.options);
     }
   }
 
@@ -82,25 +83,31 @@ class Quiz extends Component {
   };
 
   render() {
-    const { userAns, option } = this.state;
+    const { userAns, option, questions, answers } = this.state;
 
     return (
       <div className="lol">
         <br></br>
         {this.state.questions}
         <br></br>
-        {this.state.options.map(
+        {/* {this.state.options.map(
           item => (
-            <p
+            <button
               id="optionsData"
               className="ui floating message options"
               className={userAns === this.state.options ? "selected" : null}
               onClick={() => this.checkAnswer(option)}
             >
               {item}
-            </p>
-          ) /* maps the options on the page*/
+            </button>
+          ) maps the options on the page
         )}
+          */}
+
+        {this.state.options.map((lol, i) => (
+          <p>{lol}</p>
+        ))}
+
         <br></br>
         <Button onClick={() => this.checkAnswer(option)}>CHECK</Button>
         <Button onClick={this.nextQuestion}>NEXT</Button>
