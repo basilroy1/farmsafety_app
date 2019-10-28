@@ -41,7 +41,7 @@ class Quiz extends Component {
   };
 
   componentDidMount() {
-    this.loadQuiz();
+    this.loadQuiz(); //loads quiz quiz data in
   }
 
   nextQuestion = e => {
