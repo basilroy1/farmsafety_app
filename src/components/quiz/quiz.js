@@ -1,18 +1,10 @@
 import React, { Component } from "react";
+import QuestionBox from "./questionBox";
 import "./quiz.css";
+import useState from "react";
 import fire from "../../config/fire";
 //import pictures from "../pictures/health_hazard.jpg";
-import {
-  Button,
-  ButtonGroup,
-  Badge,
-  ButtonToolbar,
-  Spinner,
-  Alert,
-  Item,
-  DropdownButton,
-  Toast
-} from "react-bootstrap";
+import { Button, ButtonGroup, Toast } from "react-bootstrap";
 
 import Questions, { Quizdata } from "./questions";
 class Quiz extends Component {
@@ -39,13 +31,16 @@ class Quiz extends Component {
     });
     // console.log(this.state.options.option);
   };
+  checkAns = (answer, options) => {
+    //  e.preventDefault();
 
-  componentDidMount() {
-    this.loadQuiz(); //loads quiz quiz data in
-  }
+    this.setState({
+      userAns: answer
+    });
+  };
 
   nextQuestion = e => {
-    e.preventDefault();
+    //  e.preventDefault();
     this.setState({
       currentQuest: this.state.currentQuest + 1
     });
@@ -57,33 +52,26 @@ class Quiz extends Component {
     //console.log(this.state.currentQuest);
   };
 
+  componentDidMount() {
+    this.loadQuiz(); //loads quiz quiz data in
+  }
+
   componentDidUpdate(prevProps, prevState) {
     const { currentQuest } = this.state;
     if (this.state.currentQuest !== prevState.currentQuest) {
-      this.setState(() => {
-        return {
-          questions: Quizdata[currentQuest].question,
-          options: Quizdata[currentQuest].option,
-          answers: Quizdata[currentQuest].answer,
-          pictures: Quizdata[currentQuest].picture
-        };
+      this.setState({
+        questions: Quizdata[currentQuest].question,
+        options: Quizdata[currentQuest].option,
+        answers: Quizdata[currentQuest].answer,
+        pictures: Quizdata[currentQuest].picture
       });
-      console.log(this.state.options);
+      //   console.log(this.state.options);
     }
   }
 
-  checkAnswer = answer => {
-    //  e.preventDefault();
-
-    this.setState({
-      userAns: answer
-    });
-
-    //  console.log(this.state.options);
-  };
-
   render() {
     const { userAns, option, questions, answers } = this.state;
+    // const [answer, setAnswer] = useState(option);
 
     return (
       <div className="lol">
@@ -104,15 +92,21 @@ class Quiz extends Component {
         )}
           */}
 
-        {this.state.options.map((lol, i) => (
-          <p>{lol}</p>
+        {this.state.options.map((lol, options, id) => (
+          <Button
+            key={id}
+            question={questions}
+            option={options}
+            answer={answers}
+            selected={answer => this.checkAns(answer, option)}
+          >
+            {lol}
+          </Button>
         ))}
-
         <br></br>
-        <Button onClick={() => this.checkAnswer(option)}>CHECK</Button>
+        <Button onClick={() => this.checkAns(option)}>CHECK</Button>
         <Button onClick={this.nextQuestion}>NEXT</Button>
         <br></br>
-        {this.state.scores}
 
         {this.state.currentQuest === Quizdata.length - 1
           ? alert("Quiz FINISHED")
@@ -122,3 +116,23 @@ class Quiz extends Component {
   }
 }
 export default Quiz;
+
+/*
+const QuestionBox = ({ question, option }) => {
+  const [answer, setAnswer] = useState(option);
+  return (
+    <div>
+      <div>{question}</div>
+      {answer.map((text, index) => (
+        <Button
+          key={index}
+          onClick={() => {
+            setAnswer([text]);
+          }}
+        >
+          {text}
+        </Button>
+      ))}
+    </div>
+  );
+  */

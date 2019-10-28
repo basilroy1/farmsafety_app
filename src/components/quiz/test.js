@@ -17,31 +17,50 @@ import {
 } from "react-bootstrap";
 
 import Questions, { Quizdata } from "./questions";
+import { thisExpression } from "@babel/types";
 class Test extends Component {
   state = {
     questionBank: [],
+    scores: 0,
+    response: 0,
     currentQuest: 0
   };
 
   loadQuiz = () => {
     const { currentQuest } = this.state;
-    this.setState(() => {
-      return {
-        questionBank: Quizdata
-      };
+    this.setState({
+      questionBank: Quizdata
+      //     questions: Quizdata[currentQuest].question,
+      //   options: Quizdata[currentQuest].option,
+      // answers: Quizdata[currentQuest].answer
     });
-    // console.log(this.state.options.option);
+  };
+  checkAns = (answer, option) => {
+    if (answer === option) {
+      this.setState({
+        scores: this.state.scores + 1
+      });
+    }
+    this.setState({
+      response: this.state.response + 1
+    });
   };
 
   componentDidMount() {
-    this.loadQuiz(); //loads quiz quiz data in
+    this.loadQuiz(); //loads  quiz data in
   }
   render() {
     return (
       <div>
         {this.state.questionBank.map(({ question, option, id, answer }) => (
-          <QuestionBox question={question} option={option} key={id} />
+          <QuestionBox
+            question={question}
+            option={option}
+            key={id}
+            selected={answer => this.checkAns(answer, option)}
+          />
         ))}
+        {this.state.scores}
       </div>
     );
   }

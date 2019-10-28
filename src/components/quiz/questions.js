@@ -1,5 +1,3 @@
-import pictures from "../pictures/health_hazard.jpg";
-
 export const Quizdata = [
   {
     id: 0,
