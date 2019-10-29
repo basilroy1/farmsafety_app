@@ -1,24 +1,21 @@
 import React, { Component } from "react";
 import QuestionBox from "./questionBox";
 import "./quiz.css";
-import useState from "react";
+//import useState from "react";
 import fire from "../../config/fire";
-import { Button, ButtonGroup, Toast } from "react-bootstrap";
+import { Button, ButtonGroup, Toast, ProgressBar } from "react-bootstrap";
 
 import Questions, { Quizdata } from "./questions";
 import { Label } from "semantic-ui-react";
 class Quiz extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      userAns: null,
-      options: [],
-      //  questions: "",
-      disabled: true,
-      currentQuest: 0,
-      scores: 0
-    };
-  }
+  state = {
+    userAns: this.state,
+    options: [],
+    disabled: true,
+    currentQuest: 0,
+    scores: 0
+  };
+
   loadQuiz = () => {
     const { currentQuest } = this.state;
     //  console.log(Quizdata[2].question);
@@ -30,7 +27,7 @@ class Quiz extends Component {
         pictures: Quizdata[currentQuest].picture
       };
     });
-    console.log(this.state.questions);
+    console.log(this.state.answer);
   };
 
   nextQuestion = e => {
@@ -80,6 +77,17 @@ class Quiz extends Component {
     }
   }
 
+  pushtoDB = () => {
+    var ref = fire.database().ref("data");
+    var newRef = ref.push();
+    newRef.set({
+      UserAnswer: this.state.userAns,
+      Question: this.state.questions //Send data to DB to track for analysis
+    });
+
+    console.log("Sent to Database");
+  };
+
   /*
   ANSWER = option => {
     const [answer, setAnswer] = useState(option);
@@ -103,6 +111,9 @@ class Quiz extends Component {
     return (
       <div className="lol">
         <br></br>
+        <div>
+          <ProgressBar animated now={this.state.scores * 10} />
+        </div>
         {this.state.questions}
         <br></br>
 
@@ -113,20 +124,18 @@ class Quiz extends Component {
             ${userAns === option ? "selected" : null}
            `}
             onClick={() => this.checkAns(option)}
-            // key={id}
-            //  question={questions}
-            // option={options}
-            // answer={answers}
-            // selected={answer => this.checkAns(answer, option)}
-            //  onClick={this.ANSWER}
           >
             {option}
           </Button>
         ))}
 
         <br></br>
-        <Button onClick={() => this.checkAns()}>CHECK</Button>
-        <Button onClick={this.nextQuestion}>NEXT</Button>
+        <Button onClick={this.pushtoDB} onClick={() => this.checkAns()}>
+          CHECK
+        </Button>
+        <Button onClick={this.nextQuestion} onClick={this.pushtoDB}>
+          NEXT
+        </Button>
         <br></br>
 
         {currentQuest === Quizdata.length - 1 ? alert("Quiz FINISHED") : null}
