@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { Button } from "react-bootstrap";
-const QuestionBox = ({ question, option }) => {
+const QuestionBox = ({ option }) => {
   const [answer, setAnswer] = useState(option);
   return (
     <div>
-      <div>{question}</div>
+      <div>{option}</div>
       {answer.map((text, index) => (
         <Button
           key={index}

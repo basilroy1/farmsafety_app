@@ -3,53 +3,63 @@ import QuestionBox from "./questionBox";
 import "./quiz.css";
 import useState from "react";
 import fire from "../../config/fire";
-//import pictures from "../pictures/health_hazard.jpg";
 import { Button, ButtonGroup, Toast } from "react-bootstrap";
 
 import Questions, { Quizdata } from "./questions";
+import { Label } from "semantic-ui-react";
 class Quiz extends Component {
   constructor(props) {
     super(props);
     this.state = {
       userAns: null,
       options: [],
-      answers: "",
-      questions: "",
+      //  questions: "",
+      disabled: true,
       currentQuest: 0,
       scores: 0
     };
   }
   loadQuiz = () => {
     const { currentQuest } = this.state;
+    //  console.log(Quizdata[2].question);
     this.setState(() => {
       return {
         questions: Quizdata[currentQuest].question,
-        options: Quizdata[currentQuest].option,
-        answers: Quizdata[currentQuest].answer,
+        options: Quizdata[currentQuest].options,
+        answer: Quizdata[currentQuest].answer,
         pictures: Quizdata[currentQuest].picture
       };
     });
-    // console.log(this.state.options.option);
-  };
-  checkAns = (answer, options) => {
-    //  e.preventDefault();
-
-    this.setState({
-      userAns: answer
-    });
+    console.log(this.state.questions);
   };
 
   nextQuestion = e => {
-    //  e.preventDefault();
+    // e.preventDefault();
+    const { userAns, score } = this.state;
+
     this.setState({
       currentQuest: this.state.currentQuest + 1
     });
-    //if (userAns == answer) {
+    // console.log(this.state.currentQuest);
+  };
+
+  checkAns = answer => {
+    const { userAns, scores } = this.state;
+
     this.setState({
-      scores: this.state.scores + 1
+      userAns: answer,
+      disabled: false
     });
-    //}
-    //console.log(this.state.currentQuest);
+    if (userAns === answer) {
+      console.log("correct");
+      this.setState({
+        scores: scores + 1
+      });
+    } else {
+      console.log("Wrong");
+    }
+    console.log(userAns);
+    //console.log(scores);
   };
 
   componentDidMount() {
@@ -60,70 +70,22 @@ class Quiz extends Component {
     const { currentQuest } = this.state;
     if (this.state.currentQuest !== prevState.currentQuest) {
       this.setState({
+        disabled: true,
         questions: Quizdata[currentQuest].question,
-        options: Quizdata[currentQuest].option,
-        answers: Quizdata[currentQuest].answer,
+        options: Quizdata[currentQuest].options,
+        answer: Quizdata[currentQuest].answer,
         pictures: Quizdata[currentQuest].picture
       });
-      //   console.log(this.state.options);
+      //console.log(this.state.questions);
     }
   }
 
-  render() {
-    const { userAns, option, questions, answers } = this.state;
-    // const [answer, setAnswer] = useState(option);
+  /*
+  ANSWER = option => {
+    const [answer, setAnswer] = useState(option);
 
-    return (
-      <div className="lol">
-        <br></br>
-        {this.state.questions}
-        <br></br>
-        {/* {this.state.options.map(
-          item => (
-            <button
-              id="optionsData"
-              className="ui floating message options"
-              className={userAns === this.state.options ? "selected" : null}
-              onClick={() => this.checkAnswer(option)}
-            >
-              {item}
-            </button>
-          ) maps the options on the page
-        )}
-          */}
-
-        {this.state.options.map((lol, options, id) => (
-          <Button
-            key={id}
-            question={questions}
-            option={options}
-            answer={answers}
-            selected={answer => this.checkAns(answer, option)}
-          >
-            {lol}
-          </Button>
-        ))}
-        <br></br>
-        <Button onClick={() => this.checkAns(option)}>CHECK</Button>
-        <Button onClick={this.nextQuestion}>NEXT</Button>
-        <br></br>
-
-        {this.state.currentQuest === Quizdata.length - 1
-          ? alert("Quiz FINISHED")
-          : null}
-      </div>
-    );
-  }
-}
-export default Quiz;
-
-/*
-const QuestionBox = ({ question, option }) => {
-  const [answer, setAnswer] = useState(option);
-  return (
-    <div>
-      <div>{question}</div>
-      {answer.map((text, index) => (
+    {
+      answer.map((text, index) => (
         <Button
           key={index}
           onClick={() => {
@@ -132,7 +94,45 @@ const QuestionBox = ({ question, option }) => {
         >
           {text}
         </Button>
-      ))}
-    </div>
-  );
-  */
+      ));
+    }
+  };
+*/
+  render() {
+    const { userAns, options, currentQuest } = this.state;
+    return (
+      <div className="lol">
+        <br></br>
+        {this.state.questions}
+        <br></br>
+
+        {options.map(option => (
+          <Button
+            key={option.id}
+            className={`ui floating message options
+            ${userAns === option ? "selected" : null}
+           `}
+            onClick={() => this.checkAns(option)}
+            // key={id}
+            //  question={questions}
+            // option={options}
+            // answer={answers}
+            // selected={answer => this.checkAns(answer, option)}
+            //  onClick={this.ANSWER}
+          >
+            {option}
+          </Button>
+        ))}
+
+        <br></br>
+        <Button onClick={() => this.checkAns()}>CHECK</Button>
+        <Button onClick={this.nextQuestion}>NEXT</Button>
+        <br></br>
+
+        {currentQuest === Quizdata.length - 1 ? alert("Quiz FINISHED") : null}
+        <span>Quiz score : {this.state.scores}</span>
+      </div>
+    );
+  }
+}
+export default Quiz;
