@@ -6,10 +6,10 @@ import fire from "../../config/fire";
 import { Button, ButtonGroup, Toast, ProgressBar } from "react-bootstrap";
 
 import Questions, { Quizdata } from "./questions";
-import { Label } from "semantic-ui-react";
+//import { Label } from "semantic-ui-react";
 class Quiz extends Component {
   state = {
-    userAns: this.state,
+    userAns: null,
     options: [],
     disabled: true,
     currentQuest: 0,
@@ -40,13 +40,14 @@ class Quiz extends Component {
     // console.log(this.state.currentQuest);
   };
 
-  checkAns = answer => {
-    const { userAns, scores } = this.state;
+  checkAns = userAns => {
+    const { answer, scores } = this.state;
 
     this.setState({
       userAns: answer,
       disabled: false
     });
+    console.log(userAns);
     if (userAns === answer) {
       console.log("correct");
       this.setState({
@@ -54,8 +55,9 @@ class Quiz extends Component {
       });
     } else {
       console.log("Wrong");
+      alert("Correct answer is" + answer);
     }
-    console.log(userAns);
+
     //console.log(scores);
   };
 
@@ -133,9 +135,7 @@ class Quiz extends Component {
         <Button onClick={this.pushtoDB} onClick={() => this.checkAns()}>
           CHECK
         </Button>
-        <Button onClick={this.nextQuestion} onClick={this.pushtoDB}>
-          NEXT
-        </Button>
+        <Button onClick={this.nextQuestion}>NEXT</Button>
         <br></br>
 
         {currentQuest === Quizdata.length - 1 ? alert("Quiz FINISHED") : null}
