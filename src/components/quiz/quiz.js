@@ -83,31 +83,14 @@ class Quiz extends Component {
     var ref = fire.database().ref("data");
     var newRef = ref.push();
     newRef.set({
-      UserAnswer: this.state.userAns,
-      Question: this.state.questions //Send data to DB to track for analysis
+      Question: this.state.questions, //Send data to DB to track for analysis
+      UserAnswer: this.state.userAns
+      // CorrectAnswer: this.state.answer
     });
 
     console.log("Sent to Database");
   };
 
-  /*
-  ANSWER = option => {
-    const [answer, setAnswer] = useState(option);
-
-    {
-      answer.map((text, index) => (
-        <Button
-          key={index}
-          onClick={() => {
-            setAnswer([text]);
-          }}
-        >
-          {text}
-        </Button>
-      ));
-    }
-  };
-*/
   render() {
     const { userAns, options, currentQuest } = this.state;
     return (
@@ -132,10 +115,9 @@ class Quiz extends Component {
         ))}
 
         <br></br>
-        <Button onClick={this.pushtoDB} onClick={() => this.checkAns()}>
-          CHECK
-        </Button>
+        <Button onClick={() => this.checkAns()}>CHECK</Button>
         <Button onClick={this.nextQuestion}>NEXT</Button>
+        <Button onClick={this.pushtoDB}>sent to DB</Button>
         <br></br>
 
         {currentQuest === Quizdata.length - 1 ? alert("Quiz FINISHED") : null}

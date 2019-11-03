@@ -5,6 +5,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Home from "./components/home/home";
 import Quiz from "./components/quiz/quiz";
 import Test from "./components/quiz/test";
+import Login from "./components/quiz/login";
 
 class App extends Component {
   render() {
@@ -13,6 +14,7 @@ class App extends Component {
         <div>
           <Quiz />
         </div>
+        <Login />
       </div>
     );
   }
