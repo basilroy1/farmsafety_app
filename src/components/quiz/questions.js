@@ -23,8 +23,8 @@ export const Quizdata = [
   {
     id: 4,
     question: "what should you do?",
-    options: ["dont enter", "nothing", "all fine"],
-    answer: "nothing",
+    options: ["dont enter", "nothing", "all fine", "1"],
+    answer: "1",
     picture: ""
   },
   {
