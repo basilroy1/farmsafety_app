@@ -32,7 +32,7 @@ class Quiz extends Component {
 
   nextQuestion = e => {
     // e.preventDefault();
-    const { userAns, score } = this.state;
+    //  const { userAns, score } = this.state;
 
     this.setState({
       currentQuest: this.state.currentQuest + 1
@@ -97,7 +97,7 @@ class Quiz extends Component {
       <div className="lol">
         <br></br>
         <div>
-          <ProgressBar animated now={this.state.scores * 10} />
+          <ProgressBar animated now={this.state.currentQuest * 10} />
         </div>
         {this.state.questions}
         <br></br>

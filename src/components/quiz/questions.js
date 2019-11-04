@@ -23,36 +23,36 @@ export const Quizdata = [
   {
     id: 4,
     question: "what should you do?",
-    options: ["dont enter", "nothing", "all fine", "1"],
-    answer: "1",
+    options: ["dont enter", "easy", "all fine", "1"],
+    answer: "easy",
     picture: ""
   },
   {
     id: 5,
     question: "what should you do?",
-    options: ["dont enter", "nothing", "all fine"],
-    answer: "nothing",
+    options: ["dont enter", "12", "all fine"],
+    answer: "12",
     picture: ""
   },
   {
     id: 6,
     question: "what should you do?",
-    options: ["dont enter", "nothing", "all fine"],
-    answer: "nothing",
+    options: ["dont enter", "43", "all fine"],
+    answer: "43",
     picture: ""
   },
   {
     id: 7,
     question: "what should you do?",
-    options: ["dont enter", "nothing", "all fine"],
-    answer: "nothing",
+    options: ["dont enter", "set", "all fine"],
+    answer: "set",
     picture: ""
   },
   {
     id: 8,
     question: "what should you do?",
-    options: ["dont enter", "nothing", "all fine"],
-    answer: "nothing",
+    options: ["dont enter", "lol", "all fine"],
+    answer: "lol",
     picture: ""
   },
   {
@@ -65,15 +65,15 @@ export const Quizdata = [
   {
     id: 10,
     question: "what should you do?",
-    options: ["dont enter", "nothing", "all fine"],
-    answer: "nothing",
+    options: ["dont enter", "yup", "all fine"],
+    answer: "yup",
     picture: ""
   },
   {
     id: 10,
     question: "what should you do?",
-    options: ["dont enter", "nothing", "all fine"],
-    answer: "nothing",
+    options: ["dont enter", "xd", "all fine"],
+    answer: "xd",
     picture: ""
   }
 ];
