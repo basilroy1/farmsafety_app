@@ -33,9 +33,15 @@ class Quiz extends Component {
   nextQuestion = e => {
     // e.preventDefault();
     //  const { userAns, score } = this.state;
-
+    if (this.state.userAns === null) {
+      alert("choose an option");
+      return;
+    }
     this.setState({
       currentQuest: this.state.currentQuest + 1
+    });
+    this.setState({
+      userAns: null
     });
     // console.log(this.state.currentQuest);
   };
@@ -55,7 +61,7 @@ class Quiz extends Component {
       });
     } else {
       console.log("Wrong");
-      alert("Correct answer is" + answer);
+      alert("Correct answer is " + answer);
     }
 
     //console.log(scores);
