@@ -32,7 +32,6 @@ class Quiz extends Component {
 
   nextQuestion = e => {
     // e.preventDefault();
-    //  const { userAns, score } = this.state;
     if (this.state.userAns === null) {
       alert("choose an option");
       return;
@@ -126,7 +125,7 @@ class Quiz extends Component {
         <Button onClick={this.pushtoDB}>sent to DB</Button>
         <br></br>
 
-        {currentQuest === Quizdata.length - 1 ? alert("Quiz FINISHED") : null}
+        {currentQuest === Quizdata.length ? alert("Quiz FINISHED") : null}
         <span>Quiz score : {this.state.scores}</span>
       </div>
     );
