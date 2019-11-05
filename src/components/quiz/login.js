@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import fire from "../../config/fire";
 import { Button, ButtonGroup, Toast, ProgressBar, Col } from "react-bootstrap";
-
+import "./login.css";
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -75,32 +75,44 @@ class Login extends Component {
 
   render() {
     return (
-      <form>
-        <div className="form-group">
-          <label htmlFor="emailInput">Email Address</label>
-          <input
-            type="email"
-            name="email"
-            placeholder="Enter Email Address"
-            className="form-control"
-          />
-          <br></br>
-        </div>
-        <div className="form-group">
-          <label htmlFor="passwordInput">Password</label>
-          <input
-            type="password"
-            name="password"
-            placeholder="Enter Password"
-            className="form-control"
-            as={Col}
-            md="6"
-          />
-          <br></br>
-        </div>
-        <Button onClick={this.login}>Login</Button>
-        <Button onClick={this.signUp}>Sign Up</Button>
-      </form>
+      <div className="formbackground">
+        <form>
+          <div className="form-group col-md-3">
+            <label htmlFor="emailInput">Email Address</label>
+            <input
+              type="email"
+              name="email"
+              placeholder="Enter Email Address"
+              className="form-control"
+            />
+            <br></br>
+          </div>
+          <div className="form-group col-md-3">
+            <label htmlFor="inputPassword" style={{ color: "#d8d8d8" }}>
+              Password
+            </label>
+            <input
+              type="password"
+              name="password"
+              placeholder="Enter Password"
+              className="form-control"
+            />
+            {this.state.password ? (
+              <span style={{ color: "red" }}>That's Good!</span>
+            ) : (
+              <span style={{ color: "#881d11" }}>.</span>
+            )}
+
+            <br></br>
+          </div>
+          <Button className="Loginbtn" onClick={this.login}>
+            Login
+          </Button>
+          <Button className="signupbtn" onClick={this.signUp}>
+            Sign Up
+          </Button>
+        </form>
+      </div>
     );
   }
 }
