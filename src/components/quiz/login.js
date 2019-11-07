@@ -89,7 +89,7 @@ class Login extends Component {
               {this.state.email ? (
                 <span style={{ color: "red" }}>That's Good!</span>
               ) : (
-                <span style={{ color: "yellow" }}>.</span>
+                <span style={{ color: "yellow" }}></span>
               )}
               <br></br>
             </div>
@@ -103,13 +103,12 @@ class Login extends Component {
                 placeholder="Enter Password"
                 className="form-control"
               />
-              {this.state.password ? (
-                <span style={{ color: "red" }}>That's Good!</span>
-              ) : (
-                <span style={{ color: "yellow" }}>.</span>
-              )}
 
-              <br></br>
+              {this.state.password ? (
+                <span style={{ color: "blue" }}>That's Good!</span>
+              ) : (
+                <span style={{ color: "#881d11" }}></span>
+              )}
             </div>
           </div>
 
