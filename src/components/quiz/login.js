@@ -75,9 +75,9 @@ class Login extends Component {
 
   render() {
     return (
-      <div className="formbackground">
+      <div>
         <form>
-          <div className="form-group col-md-3">
+          <div className="form-group col-md-8 ">
             <label htmlFor="emailInput">Email Address</label>
             <input
               type="email"
@@ -87,8 +87,8 @@ class Login extends Component {
             />
             <br></br>
           </div>
-          <div className="form-group col-md-3">
-            <label htmlFor="inputPassword" style={{ color: "#d8d8d8" }}>
+          <div className="form-group col-md-8">
+            <label htmlFor="inputPassword" style={{ color: "black" }}>
               Password
             </label>
             <input
@@ -100,11 +100,12 @@ class Login extends Component {
             {this.state.password ? (
               <span style={{ color: "red" }}>That's Good!</span>
             ) : (
-              <span style={{ color: "#881d11" }}>.</span>
+              <span style={{ color: "yellow" }}>.</span>
             )}
 
             <br></br>
           </div>
+
           <Button className="Loginbtn" onClick={this.login}>
             Login
           </Button>

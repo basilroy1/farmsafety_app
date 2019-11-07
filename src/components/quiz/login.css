@@ -1,12 +1,14 @@
 form {
-  background-color: yellowgreen;
-  margin-left: 100px;
-  margin-right: 100px;
+  background-color: rgb(235, 156, 169);
+  margin-left: 500px;
+  margin-right: 500px;
+  border-radius: 10px;
 }
 .signupbtn {
-  margin-right: 1;
-  margin-left: 100;
+  margin: 0 auto;
+  display: inline-block;
 }
+
 .Loginbtn {
   margin-right: 0;
   margin-left: 60;
