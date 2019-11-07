@@ -54,7 +54,7 @@ class Quiz extends Component {
     });
     console.log(userAns);
     if (userAns === answer) {
-      console.log("correct");
+      console.log("Correct");
       this.setState({
         scores: scores + 1
       });
@@ -102,7 +102,7 @@ class Quiz extends Component {
       <div className="lol">
         <br></br>
         <div>
-          <ProgressBar animated now={this.state.currentQuest * 10} />
+          <ProgressBar animated now={this.state.currentQuest * 9} />
         </div>
         {this.state.questions}
         <br></br>
@@ -121,8 +121,15 @@ class Quiz extends Component {
 
         <br></br>
         <Button onClick={() => this.checkAns()}>CHECK</Button>
-        <Button onClick={this.nextQuestion}>NEXT</Button>
-        <Button onClick={this.pushtoDB}>sent to DB</Button>
+        <Button
+          onClick={() => {
+            this.nextQuestion();
+            this.pushtoDB();
+          }}
+        >
+          NEXT
+        </Button>
+
         <br></br>
 
         {currentQuest === Quizdata.length ? alert("Quiz FINISHED") : null}
