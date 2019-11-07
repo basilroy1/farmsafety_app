@@ -77,33 +77,40 @@ class Login extends Component {
     return (
       <div>
         <form>
-          <div className="form-group col-md-8 ">
-            <label htmlFor="emailInput">Email Address</label>
-            <input
-              type="email"
-              name="email"
-              placeholder="Enter Email Address"
-              className="form-control"
-            />
-            <br></br>
-          </div>
-          <div className="form-group col-md-8">
-            <label htmlFor="inputPassword" style={{ color: "black" }}>
-              Password
-            </label>
-            <input
-              type="password"
-              name="password"
-              placeholder="Enter Password"
-              className="form-control"
-            />
-            {this.state.password ? (
-              <span style={{ color: "red" }}>That's Good!</span>
-            ) : (
-              <span style={{ color: "yellow" }}>.</span>
-            )}
+          <div className="emailpassdiv">
+            <div className="form-group col-md-8 ">
+              <label htmlFor="emailInput">Email Address</label>
+              <input
+                type="email"
+                name="email"
+                placeholder="Enter Email Address"
+                className="form-control"
+              />
+              {this.state.email ? (
+                <span style={{ color: "red" }}>That's Good!</span>
+              ) : (
+                <span style={{ color: "yellow" }}>.</span>
+              )}
+              <br></br>
+            </div>
+            <div className="form-group col-md-8">
+              <label htmlFor="inputPassword" style={{ color: "black" }}>
+                Password
+              </label>
+              <input
+                type="password"
+                name="password"
+                placeholder="Enter Password"
+                className="form-control"
+              />
+              {this.state.password ? (
+                <span style={{ color: "red" }}>That's Good!</span>
+              ) : (
+                <span style={{ color: "yellow" }}>.</span>
+              )}
 
-            <br></br>
+              <br></br>
+            </div>
           </div>
 
           <Button className="Loginbtn" onClick={this.login}>
