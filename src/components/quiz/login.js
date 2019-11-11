@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import fire from "../../config/fire";
-import { Button, ButtonGroup, Toast, ProgressBar, Col } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import "./login.css";
 class Login extends Component {
   constructor(props) {
@@ -13,6 +13,15 @@ class Login extends Component {
       viewPasswordResetModal: false
     };
   }
+  handleChange = e => {
+    const target = e.target;
+    const value = target.type === "checkbox" ? target.checked : target.value;
+    const name = target.name;
+
+    this.setState({
+      [name]: value
+    });
+  };
 
   login = e => {
     e.preventDefault();
@@ -37,7 +46,7 @@ class Login extends Component {
     const validEmail =
       this.state.email.endsWith("@gmail.com") ||
       this.state.email.endsWith("@mumail.ie");
-
+    // console.log(this.state.email);
     if (!validEmail) {
       alert("Please enter a valid Email address");
       return;
@@ -53,6 +62,12 @@ class Login extends Component {
       .catch(error => {
         console.log(error);
       });
+  };
+
+  logout = e => {
+    e.preventDefault();
+    fire.auth().signOut();
+    console.log("Logged out");
   };
 
   passwordReset = e => {
@@ -85,9 +100,12 @@ class Login extends Component {
                 name="email"
                 placeholder="Enter Email Address"
                 className="form-control"
+                value={this.state.email}
+                onChange={this.handleChange}
               />
+
               {this.state.email ? (
-                <span style={{ color: "red" }}>That's Good!</span>
+                <span style={{ color: "#0069CC" }}>That's Good!</span>
               ) : (
                 <span style={{ color: "yellow" }}></span>
               )}
@@ -102,10 +120,12 @@ class Login extends Component {
                 name="password"
                 placeholder="Enter Password"
                 className="form-control"
+                value={this.state.password}
+                onChange={this.handleChange}
               />
 
               {this.state.password ? (
-                <span style={{ color: "blue" }}>That's Good!</span>
+                <span style={{ color: "#0069CC" }}>That's Good!</span>
               ) : (
                 <span style={{ color: "#881d11" }}></span>
               )}
@@ -117,6 +137,9 @@ class Login extends Component {
           </Button>
           <Button className="signupbtn" onClick={this.signUp}>
             Sign Up
+          </Button>
+          <Button className="logout" onClick={this.logout}>
+            Logout
           </Button>
         </form>
       </div>

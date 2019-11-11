@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import QuestionBox from "./questionBox";
 import "./quiz.css";
+//import from "./login"
 //import useState from "react";
 import fire from "../../config/fire";
 import { Button, ButtonGroup, Toast, ProgressBar } from "react-bootstrap";
@@ -88,8 +89,11 @@ class Quiz extends Component {
     var ref = fire.database().ref("data");
     var newRef = ref.push();
     newRef.set({
+      ID: fire.auth().currentUser.uid,
+      UserEmail: fire.auth().currentUser.email,
       Question: this.state.questions, //Send data to DB to track for analysis
       UserAnswer: this.state.userAns
+
       // CorrectAnswer: this.state.answer
     });
 
