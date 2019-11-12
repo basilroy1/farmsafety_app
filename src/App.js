@@ -14,6 +14,7 @@ class App extends Component {
     this.state = {
       viewquiz: false,
       viewlogin: true
+      //email: ""
     };
   }
   changetoQuiz = () => {

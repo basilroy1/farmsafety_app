@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import fire from "../../config/fire";
-import { Button } from "react-bootstrap";
+import { Button, Alert } from "react-bootstrap";
 import "./login.css";
 class Login extends Component {
   constructor(props) {
@@ -10,6 +10,7 @@ class Login extends Component {
       email: "",
       password: "",
       clicked: "",
+      userName: "",
       viewPasswordResetModal: false
     };
   }
@@ -35,7 +36,7 @@ class Login extends Component {
         console.log("Log in");
       })
       .catch(error => {
-        alert("Please enter a valid email or password");
+        alert("Please enter a valid Maynooth email or password");
         console.log(error.message);
       });
   };
@@ -46,7 +47,7 @@ class Login extends Component {
     const validEmail =
       this.state.email.endsWith("@gmail.com") ||
       this.state.email.endsWith("@mumail.ie");
-    // console.log(this.state.email);
+
     if (!validEmail) {
       alert("Please enter a valid Email address");
       return;
@@ -87,12 +88,41 @@ class Login extends Component {
       .sendPasswordResetEmail(email)
       .then(alert("An email has been sent to you to reset your password"));
   };
-
+  extractUsername = email => {
+    var s = "";
+    for (var r in email) {
+      if (email.charAt(r) === "@") {
+        s += email.substring(0, r);
+      }
+    }
+    console.log(s);
+  };
   render() {
+    //  const ans = this.extractUsername(this.state.email);
     return (
       <div>
         <form>
           <div className="emailpassdiv">
+            <div className="form-group col-md-8">
+              <label htmlFor="inputUsername" style={{ color: "black" }}>
+                Username
+              </label>
+              <input
+                type="username"
+                name="userName"
+                placeholder="Enter Username"
+                className="form-control"
+                onChange={this.handleChange}
+                value={this.state.userName}
+              />
+
+              {this.state.userName ? (
+                <span style={{ color: "#0069CC" }}>That's Good!</span>
+              ) : (
+                <span style={{ color: "#881d11" }}></span>
+              )}
+            </div>
+
             <div className="form-group col-md-8 ">
               <label htmlFor="emailInput">Email Address</label>
               <input
@@ -141,6 +171,11 @@ class Login extends Component {
           <Button className="logout" onClick={this.logout}>
             Logout
           </Button>
+          <Button
+            onClick={() => {
+              this.extractUsername(this.state.email);
+            }}
+          ></Button>
         </form>
       </div>
     );

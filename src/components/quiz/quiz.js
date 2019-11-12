@@ -135,7 +135,7 @@ class Quiz extends Component {
         </Button>
 
         <br></br>
-
+        <h1>hi, {this.userName.value}</h1>
         {currentQuest === Quizdata.length ? alert("Quiz FINISHED") : null}
         <span>Quiz score : {this.state.scores}</span>
       </div>
