@@ -19,7 +19,8 @@ class App extends Component {
   }
   changetoQuiz = () => {
     this.setState({
-      viewquiz: !this.state.viewquiz
+      viewquiz: !this.state.viewquiz,
+      viewlogin: false
     });
   };
   render() {

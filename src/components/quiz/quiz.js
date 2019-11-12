@@ -7,6 +7,7 @@ import fire from "../../config/fire";
 import { Button, ButtonGroup, Toast, ProgressBar } from "react-bootstrap";
 
 import Questions, { Quizdata } from "./questions";
+import Login from "./login";
 //import { Label } from "semantic-ui-react";
 class Quiz extends Component {
   state = {
@@ -63,8 +64,6 @@ class Quiz extends Component {
       console.log("Wrong");
       alert("Correct answer is " + answer);
     }
-
-    //console.log(scores);
   };
 
   componentDidMount() {
@@ -81,9 +80,13 @@ class Quiz extends Component {
         answer: Quizdata[currentQuest].answer,
         pictures: Quizdata[currentQuest].picture
       });
-      //console.log(this.state.questions);
     }
   }
+  logout = e => {
+    e.preventDefault();
+    fire.auth().signOut();
+    console.log("Logged out");
+  };
 
   pushtoDB = () => {
     var ref = fire.database().ref("data");
@@ -91,12 +94,19 @@ class Quiz extends Component {
     newRef.set({
       ID: fire.auth().currentUser.uid,
       UserEmail: fire.auth().currentUser.email,
+      // Username: this.state.userName,
       Question: this.state.questions, //Send data to DB to track for analysis
       UserAnswer: this.state.userAns
-
-      // CorrectAnswer: this.state.answer
     });
+    console.log("Sent to Database");
+  };
 
+  pushtoDB2 = () => {
+    var ref = fire.database().ref("data");
+    var newRef = ref.push();
+    newRef.set({
+      Score: this.state.scores
+    });
     console.log("Sent to Database");
   };
 
@@ -135,9 +145,13 @@ class Quiz extends Component {
         </Button>
 
         <br></br>
-        <h1>hi, {this.userName.value}</h1>
-        {currentQuest === Quizdata.length ? alert("Quiz FINISHED") : null}
-        <span>Quiz score : {this.state.scores}</span>
+        <Button onClick={this.logout}>LogOut</Button>
+        {currentQuest === Quizdata.length - 1 ? (
+          <Button onClick={this.pushtoDB2}>Finish</Button>
+        ) : null}
+        <span>
+          Quiz score : {this.state.scores}/{Quizdata.length - 1}
+        </span>
       </div>
     );
   }

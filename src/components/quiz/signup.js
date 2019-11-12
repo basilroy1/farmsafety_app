@@ -24,28 +24,6 @@ class Login extends Component {
     });
   };
 
-  login = e => {
-    e.preventDefault();
-
-    // this.handleRememberMe(); // Function to toggle persistant login
-
-    fire
-      .auth()
-      .signInWithEmailAndPassword(this.state.email, this.state.password)
-      .then(u => {
-        console.log("Log in");
-      })
-      .catch(error => {
-        alert("Please enter a valid Maynooth email or password");
-        console.log(error.message);
-      });
-    this.setState({
-      email: "",
-      userName: "",
-      password: ""
-    });
-  };
-
   signUp = e => {
     e.preventDefault();
 
@@ -107,7 +85,7 @@ class Login extends Component {
                 style={{ color: "white", fontSize: 32, fontFamily: "Courier" }}
               >
                 {" "}
-                Sign In
+                Sign Up
               </h3>
               <div className="form-group col-md-9">
                 <label

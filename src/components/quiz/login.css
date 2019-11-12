@@ -1,19 +1,24 @@
 form {
-  background-color: rgb(235, 156, 169);
-  margin-left: 500px;
-  margin-right: 700px;
-  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.87);
+  margin-left: 600px;
+  margin-right: 600px;
+  margin-top: 200px;
+  border-radius: 30px;
   padding: 40px;
+  height: 500px;
+  width: 500px;
 }
+body {
+  background-image: url("http://getwallpapers.com/wallpaper/full/a/5/d/544750.jpg");
+}
+
 .signupbtn {
-  margin-left: 120px;
-  padding: 10px;
+  margin-left: 100px;
 }
 
 .Loginbtn {
-  margin-left: 130px;
-  padding: 10px;
+  margin-left: 110px;
 }
 .emailpassdiv {
-  margin-left: 100px;
+  margin-left: 110px;
 }
