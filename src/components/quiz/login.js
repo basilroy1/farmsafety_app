@@ -1,7 +1,10 @@
 import React, { Component } from "react";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import fire from "../../config/fire";
 import { Button, Alert } from "react-bootstrap";
 import "./login.css";
+import Signup from "./signup";
+
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -33,7 +36,7 @@ class Login extends Component {
       .auth()
       .signInWithEmailAndPassword(this.state.email, this.state.password)
       .then(u => {
-        console.log("Log in");
+        console.log("Logged in");
       })
       .catch(error => {
         alert("Please enter a valid Maynooth email or password");
@@ -99,16 +102,33 @@ class Login extends Component {
   render() {
     //  const ans = this.extractUsername(this.state.email);
     return (
-      <div>
-        <body>
+      <body>
+        <div>
           <form>
             <div className="emailpassdiv">
-              <h3
-                style={{ color: "white", fontSize: 32, fontFamily: "Courier" }}
-              >
-                {" "}
-                Sign In
-              </h3>
+              <Router>
+                <h3
+                  style={{
+                    color: "white",
+                    fontSize: 32,
+                    fontFamily: "Courier"
+                  }}
+                ></h3>
+
+                <h3
+                  style={{
+                    color: "white",
+                    fontSize: 32,
+                    fontFamily: "Courier"
+                  }}
+                >
+                  {" "}
+                  {/* <Link to="/Login">Login</Link>
+                  <Link to="/Signup">Signup</Link> */}
+                  <Route path="/Signup/" exact component={Signup} />
+                  <Route path="/Login/" exact component={Login} />
+                </h3>
+              </Router>
               <div className="form-group col-md-9">
                 <label
                   htmlFor="inputUsername"
@@ -173,31 +193,26 @@ class Login extends Component {
 
                 {this.state.password.length >= 6 ? (
                   <span style={{ color: "#00FF7F" }}>
-                    Minimum 6 charachters long
+                    Minimum 6 characters long
                   </span>
                 ) : (
                   <span style={{ color: "#FF0000" }}>
-                    Minumum 6 charachters long
+                    Minumum 6 characters long
                   </span>
                 )}
               </div>
             </div>
-
             <Button className="Loginbtn" onClick={this.login}>
               Login
             </Button>
-            <Button className="signupbtn" onClick={this.signUp}>
-              Sign Up
-            </Button>
-
             <Button
               onClick={() => {
                 this.extractUsername(this.state.email);
               }}
             ></Button>
           </form>
-        </body>
-      </div>
+        </div>
+      </body>
     );
   }
 }

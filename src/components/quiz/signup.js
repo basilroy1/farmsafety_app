@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import fire from "../../config/fire";
 import { Button, Alert } from "react-bootstrap";
+import Login from "./login";
 import "./login.css";
-class Login extends Component {
+class Signup extends Component {
   constructor(props) {
     super(props);
 
@@ -87,6 +88,7 @@ class Login extends Component {
                 {" "}
                 Sign Up
               </h3>
+
               <div className="form-group col-md-9">
                 <label
                   htmlFor="inputUsername"
@@ -151,19 +153,16 @@ class Login extends Component {
 
                 {this.state.password.length >= 6 ? (
                   <span style={{ color: "#00FF7F" }}>
-                    Minimum 6 charachters long
+                    Minimum 6 characters long
                   </span>
                 ) : (
                   <span style={{ color: "#FF0000" }}>
-                    Minumum 6 charachters long
+                    Minumum 6 characters long
                   </span>
                 )}
               </div>
             </div>
 
-            <Button className="Loginbtn" onClick={this.login}>
-              Login
-            </Button>
             <Button className="signupbtn" onClick={this.signUp}>
               Sign Up
             </Button>
@@ -179,4 +178,4 @@ class Login extends Component {
     );
   }
 }
-export default Login;
+export default Signup;

@@ -5,7 +5,7 @@ form {
   margin-top: 200px;
   border-radius: 30px;
   padding: 40px;
-  height: 500px;
+  height: 600px;
   width: 500px;
 }
 body {
@@ -21,4 +21,13 @@ body {
 }
 .emailpassdiv {
   margin-left: 110px;
+}
+
+a {
+  display: block;
+
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
 }
