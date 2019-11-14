@@ -78,17 +78,10 @@ class Signup extends Component {
   render() {
     //  const ans = this.extractUsername(this.state.email);
     return (
-      <div>
-        <body>
+      <body>
+        <div>
           <form>
             <div className="emailpassdiv">
-              <h3
-                style={{ color: "white", fontSize: 32, fontFamily: "Courier" }}
-              >
-                {" "}
-                Sign Up
-              </h3>
-
               <div className="form-group col-md-9">
                 <label
                   htmlFor="inputUsername"
@@ -162,19 +155,17 @@ class Signup extends Component {
                 )}
               </div>
             </div>
-
             <Button className="signupbtn" onClick={this.signUp}>
-              Sign Up
+              Signup
             </Button>
-
             <Button
               onClick={() => {
                 this.extractUsername(this.state.email);
               }}
             ></Button>
           </form>
-        </body>
-      </div>
+        </div>
+      </body>
     );
   }
 }

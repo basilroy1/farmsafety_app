@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
 import fire from "../../config/fire";
 import { Button, Alert } from "react-bootstrap";
 import "./login.css";
@@ -106,29 +106,14 @@ class Login extends Component {
         <div>
           <form>
             <div className="emailpassdiv">
-              <Router>
-                <h3
-                  style={{
-                    color: "white",
-                    fontSize: 32,
-                    fontFamily: "Courier"
-                  }}
-                ></h3>
+              <BrowserRouter>
+                <Link to="/login">Login</Link>
+                <Link to="/signup">Signup</Link>
 
-                <h3
-                  style={{
-                    color: "white",
-                    fontSize: 32,
-                    fontFamily: "Courier"
-                  }}
-                >
-                  {" "}
-                  {/* <Link to="/Login">Login</Link>
-                  <Link to="/Signup">Signup</Link> */}
-                  <Route path="/Signup/" exact component={Signup} />
-                  <Route path="/Login/" exact component={Login} />
-                </h3>
-              </Router>
+                <Switch>
+                  <Route path="/signup" component={Signup} />
+                </Switch>
+              </BrowserRouter>
               <div className="form-group col-md-9">
                 <label
                   htmlFor="inputUsername"
