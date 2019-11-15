@@ -3,7 +3,8 @@ import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
 import fire from "../../config/fire";
 import { Button, Alert } from "react-bootstrap";
 import "./login.css";
-import Signup from "./signup";
+//import Signup from "./signup";
+import Home from "../home/home";
 
 class Login extends Component {
   constructor(props) {
@@ -14,7 +15,7 @@ class Login extends Component {
       password: "",
       clicked: "",
       userName: "",
-      viewPasswordResetModal: false
+      viewHome: false
     };
   }
   handleChange = e => {
@@ -28,7 +29,7 @@ class Login extends Component {
   };
 
   login = e => {
-    e.preventDefault();
+    //  e.preventDefault();
 
     // this.handleRememberMe(); // Function to toggle persistant login
 
@@ -99,6 +100,12 @@ class Login extends Component {
     }
     console.log(s);
   };
+  changetoHome = () => {
+    this.setState({
+      viewHome: !this.state.viewHome
+      //  viewlogin: false
+    });
+  };
   render() {
     //  const ans = this.extractUsername(this.state.email);
     return (
@@ -106,14 +113,6 @@ class Login extends Component {
         <div>
           <form>
             <div className="emailpassdiv">
-              <BrowserRouter>
-                <Link to="/login">Login</Link>
-                <Link to="/signup">Signup</Link>
-
-                <Switch>
-                  <Route path="/signup" component={Signup} />
-                </Switch>
-              </BrowserRouter>
               <div className="form-group col-md-9">
                 <label
                   htmlFor="inputUsername"
@@ -187,14 +186,26 @@ class Login extends Component {
                 )}
               </div>
             </div>
-            <Button className="Loginbtn" onClick={this.login}>
+            <Button
+              className="Loginbtn"
+              onClick={() => {
+                this.login();
+                this.changetoHome();
+              }}
+            >
               Login
+            </Button>
+            <Button className="signupbtn" onClick={this.signUp}>
+              Signup
             </Button>
             <Button
               onClick={() => {
                 this.extractUsername(this.state.email);
               }}
-            ></Button>
+            >
+              extract name
+            </Button>
+            {this.state.viewHome ? <Home /> : null}
           </form>
         </div>
       </body>

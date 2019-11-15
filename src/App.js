@@ -1,11 +1,13 @@
 import React, { Component } from "react";
 //import logo from './logo.svg';
 //import './App.css';
+import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Home from "./components/home/home";
 import Quiz from "./components/quiz/quiz";
 import Login from "./components/quiz/login";
 import { Button, Col } from "react-bootstrap";
+import Signup from "./components/quiz/signup";
 
 class App extends Component {
   constructor(props) {

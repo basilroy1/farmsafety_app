@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import fire from "../../config/fire";
 import { Button, Alert } from "react-bootstrap";
-import Login from "./login";
+//import Login from "./login";
 import "./login.css";
 class Signup extends Component {
   constructor(props) {
