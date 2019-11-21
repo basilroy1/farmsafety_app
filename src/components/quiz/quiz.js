@@ -98,6 +98,7 @@ class Quiz extends Component {
       Question: this.state.questions, //Send data to DB to track for analysis
       UserAnswer: this.state.userAns
     });
+
     console.log("Sent to Database");
   };
 

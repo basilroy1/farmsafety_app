@@ -31,7 +31,7 @@ class App extends Component {
         {this.state.viewlogin ? <Login /> : null}
         <div>
           <Button onClick={this.changetoQuiz}>Enter The site</Button>
-          <Col md={12}>{this.state.viewquiz ? <Quiz /> : null}</Col>
+          <Col md={12}>{this.state.viewquiz ? <Home /> : null}</Col>
         </div>
       </div>
     );

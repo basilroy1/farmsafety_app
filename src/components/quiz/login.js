@@ -37,6 +37,9 @@ class Login extends Component {
       .auth()
       .signInWithEmailAndPassword(this.state.email, this.state.password)
       .then(u => {
+        this.setState({
+          viewHome: true
+        });
         console.log("Logged in");
       })
       .catch(error => {
@@ -98,6 +101,7 @@ class Login extends Component {
         s += email.substring(0, r);
       }
     }
+    // return s;
     console.log(s);
   };
   changetoHome = () => {
@@ -106,12 +110,13 @@ class Login extends Component {
       //  viewlogin: false
     });
   };
+
   render() {
     //  const ans = this.extractUsername(this.state.email);
     return (
       <body>
         <div>
-          <form>
+          <form className="loginForm">
             <div className="emailpassdiv">
               <div className="form-group col-md-9">
                 <label
@@ -186,13 +191,7 @@ class Login extends Component {
                 )}
               </div>
             </div>
-            <Button
-              className="Loginbtn"
-              onClick={() => {
-                this.login();
-                this.changetoHome();
-              }}
-            >
+            <Button className="Loginbtn" onClick={this.login}>
               Login
             </Button>
             <Button className="signupbtn" onClick={this.signUp}>
@@ -205,9 +204,9 @@ class Login extends Component {
             >
               extract name
             </Button>
-            {this.state.viewHome ? <Home /> : null}
           </form>
         </div>
+        {this.state.viewHome ? <Home /> : null}
       </body>
     );
   }
