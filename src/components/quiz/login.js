@@ -3,9 +3,9 @@ import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
 import fire from "../../config/fire";
 import { Button, Alert } from "react-bootstrap";
 import "./login.css";
-//import Signup from "./signup";
+import { GiFarmTractor } from "react-icons/gi";
 import Home from "../home/home";
-
+import Welcome from "../home/welcome";
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -15,7 +15,7 @@ class Login extends Component {
       password: "",
       clicked: "",
       userName: "",
-      viewHome: false
+      viewWelcome: false
     };
   }
   handleChange = e => {
@@ -38,7 +38,7 @@ class Login extends Component {
       .signInWithEmailAndPassword(this.state.email, this.state.password)
       .then(u => {
         this.setState({
-          viewHome: true
+          viewWelcome: true
         });
         console.log("Logged in");
       })
@@ -192,11 +192,9 @@ class Login extends Component {
               </div>
             </div>
             <Button className="Loginbtn" onClick={this.login}>
-              Login
+              Login <GiFarmTractor />
             </Button>
-            <Button className="signupbtn" onClick={this.signUp}>
-              Signup
-            </Button>
+
             <Button
               onClick={() => {
                 this.extractUsername(this.state.email);
@@ -206,7 +204,7 @@ class Login extends Component {
             </Button>
           </form>
         </div>
-        {this.state.viewHome ? <Home /> : null}
+        {this.state.viewWelcome ? <Welcome /> : null}
       </body>
     );
   }

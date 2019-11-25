@@ -4,6 +4,7 @@ import "./quiz.css";
 //import from "./login"
 //import useState from "react";
 import fire from "../../config/fire";
+import { FaHorse, FaArrowRight } from "react-icons/fa";
 import { Button, ButtonGroup, Toast, ProgressBar } from "react-bootstrap";
 
 import Questions, { Quizdata } from "./questions";
@@ -135,14 +136,16 @@ class Quiz extends Component {
         ))}
 
         <br></br>
-        <Button onClick={() => this.checkAns()}>CHECK</Button>
+        <Button onClick={() => this.checkAns()}>
+          CHECK <FaHorse />
+        </Button>
         <Button
           onClick={() => {
             this.nextQuestion();
             this.pushtoDB();
           }}
         >
-          NEXT
+          NEXT <FaArrowRight />
         </Button>
 
         <br></br>

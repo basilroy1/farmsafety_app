@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import fire from "../../config/fire";
 import { Button, Alert } from "react-bootstrap";
-//import Login from "./login";
+import { GiFarmTractor } from "react-icons/gi";
 import "./login.css";
 class Signup extends Component {
   constructor(props) {
@@ -80,7 +80,7 @@ class Signup extends Component {
     return (
       <body>
         <div>
-          <form>
+          <form className="loginForm">
             <div className="emailpassdiv">
               <div className="form-group col-md-9">
                 <label
@@ -155,8 +155,12 @@ class Signup extends Component {
                 )}
               </div>
             </div>
-            <Button className="signupbtn" onClick={this.signUp}>
-              Signup
+            <Button
+              className="signupbtn"
+              style={{ marginLeft: 200 }}
+              onClick={this.signUp}
+            >
+              Signup <GiFarmTractor />
             </Button>
             <Button
               onClick={() => {

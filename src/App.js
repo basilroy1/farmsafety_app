@@ -15,20 +15,20 @@ class App extends Component {
 
     this.state = {
       viewquiz: false,
-      viewlogin: true
+      viewHome: true
       //email: ""
     };
   }
   changetoQuiz = () => {
     this.setState({
       viewquiz: !this.state.viewquiz,
-      viewlogin: false
+      viewHome: false
     });
   };
   render() {
     return (
       <div className="App">
-        {this.state.viewlogin ? <Login /> : null}
+        {this.state.viewHome ? <Home /> : null}
         <div>
           <Button onClick={this.changetoQuiz}>Enter The site</Button>
           <Col md={12}>{this.state.viewquiz ? <Home /> : null}</Col>

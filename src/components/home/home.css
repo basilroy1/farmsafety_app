@@ -5,5 +5,13 @@ h2 {
   margin: 0 auto;
 }
 .background {
-  background-color: brown;
+  background-color: #deb887;
+}
+.SlidePictures {
+}
+p {
+  font-family: cursive;
+  font-size: larger;
+  font-style: inherit;
+  font-weight: bolder;
 }
