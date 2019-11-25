@@ -46,6 +46,7 @@ class Signup extends Component {
       })
       .catch(error => {
         console.log(error);
+        alert(error);
       });
   };
 

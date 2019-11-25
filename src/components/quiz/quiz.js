@@ -115,14 +115,14 @@ class Quiz extends Component {
   render() {
     const { userAns, options, currentQuest } = this.state;
     return (
-      <div className="lol">
+      <div className="quizForm">
         <br></br>
         <div>
           <ProgressBar animated now={this.state.currentQuest * 9} />
         </div>
         {this.state.questions}
         <br></br>
-
+        <p>Q{this.state.currentQuest}</p>
         {options.map(option => (
           <Button
             key={option.id}
@@ -149,7 +149,9 @@ class Quiz extends Component {
         </Button>
 
         <br></br>
+
         <Button onClick={this.logout}>LogOut</Button>
+
         {currentQuest === Quizdata.length - 1 ? (
           <Button onClick={this.pushtoDB2}>Finish</Button>
         ) : null}

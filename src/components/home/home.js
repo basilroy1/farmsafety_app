@@ -25,18 +25,27 @@ class Home extends Component {
     return (
       <div className="background">
         <BrowserRouter>
-          <Navbar bg="primary" variant="dark">
-            <Link to="/">Home</Link>
+          {/*  <Navbar bg="primary" variant="dark">
+            <Button>
+              {" "}
+              <Link to="/">Home</Link>
+            </Button>
             <Nav className="mr-auto">
-              <Link to="/Login">Login</Link>
-              <Link to="/Signup">Signup</Link>
+              <Button>
+                <Link to="/Login">Login</Link>
+              </Button>
+              <Button>
+                <Link to="/Signup">Signup</Link>
+              </Button>
             </Nav>
           </Navbar>
 
           <Route path="/Login" component={Login} exact />
           <Route path="/Signup" component={Signup} exact />
           <Route path="/Home" component={Home} exact />
+    */}
         </BrowserRouter>
+
         <div>
           <h2 variant="primary" size="lg" block>
             Farm safety guide

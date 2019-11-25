@@ -1,5 +1,8 @@
-.lol {
+.quizForm {
   text-align: center;
+  margin-left: 100px;
+  margin-right: 100px;
+  border-radius: 20px;
   font-size: 30px;
   color: orange;
   background-color: rgb(177, 81, 57);

@@ -24,6 +24,9 @@ class Welcome extends Component {
       <div>
         <Navbar bg="primary" variant="dark">
           <Nav className="mr-auto">
+            <Button onClick={this.logout}>
+              <Nav>Logout</Nav>
+            </Button>
             Welcome <MdPerson />
           </Nav>
         </Navbar>
