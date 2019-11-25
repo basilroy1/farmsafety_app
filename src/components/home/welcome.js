@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { MdPerson } from "react-icons/md";
+import { FiLogOut } from "react-icons/fi";
 import {
   Button,
   Nav,
@@ -24,11 +25,18 @@ class Welcome extends Component {
       <div>
         <Navbar bg="primary" variant="dark">
           <Nav className="mr-auto">
-            <Button onClick={this.logout}>
-              <Nav>Logout</Nav>
-            </Button>
             Welcome <MdPerson />
+            <Button>Rookie</Button>
+            <Button>Student</Button>
+            <Button>Intermediate</Button>
+            <Button>Expert</Button>
+            <Button>Master</Button>
           </Nav>
+          <Button onClick={this.logout}>
+            <Nav>
+              Logout <FiLogOut />
+            </Nav>
+          </Button>
         </Navbar>
       </div>
     );

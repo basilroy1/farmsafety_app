@@ -9,6 +9,9 @@ import Quiz from "./components/quiz/quiz";
 import Login from "./components/quiz/login";
 import { Button, Col, Nav, Navbar } from "react-bootstrap";
 import Signup from "./components/quiz/signup";
+import Welcome from "./components/home/welcome";
+import { FiLogIn } from "react-icons/fi";
+import { TiHome } from "react-icons/ti";
 
 class App extends Component {
   constructor(props) {
@@ -57,11 +60,15 @@ class App extends Component {
           <BrowserRouter>
             <Navbar bg="primary" variant="dark">
               <Button onClick={this.changetoHome}>
-                <Link to="/">Home</Link>
+                <Link to="/">
+                  Home <TiHome />
+                </Link>
               </Button>
               <Nav className="mr-auto">
                 <Button onClick={this.changetoLogin}>
-                  <Link to="/Login">Login</Link>
+                  <Link to="/Login">
+                    Login <FiLogIn />
+                  </Link>
                 </Button>
 
                 <Button onClick={this.changetoSignup}>
@@ -73,7 +80,7 @@ class App extends Component {
               <Route path="/Home" component={Home} exact />
             ) : null}
             {this.state.viewLogin ? (
-              <Route path="/Login" component={Login} exact />
+              <Route path="/Login" component={Welcome} exact />
             ) : null}
             {this.state.viewSignup ? (
               <Route path="/Signup" component={Signup} exact />

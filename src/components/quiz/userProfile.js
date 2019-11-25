@@ -9,11 +9,11 @@ class UserProfile extends Component {
       <div>
         <img src={ProfilePic} />
 
-        <Container>
-          Email :{this.state.email}
-          Score :{this.state.score}
+        <li>
+          Email :{this.props.email}
+          Score :{this.props.score}
           Level :{}
-        </Container>
+        </li>
       </div>
     );
   }

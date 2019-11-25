@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
+//import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
 import fire from "../../config/fire";
 import { Button, Alert } from "react-bootstrap";
 import "./login.css";
@@ -132,101 +132,103 @@ class Login extends Component {
   render() {
     //  const ans = this.extractUsername(this.state.email);
     return (
-      <div>
-        <form className="loginForm">
-          <div className="emailpassdiv">
-            <div className="form-group col-md-9">
-              <label
-                htmlFor="inputUsername"
-                style={{ color: "yellow", font: "bolder" }}
-              >
-                Username
-              </label>
-              <input
-                type="username"
-                name="userName"
-                placeholder="Enter Username"
-                className="form-control"
-                onChange={this.handleChange}
-                value={this.state.userName}
-              />
+      <body>
+        <div>
+          <form className="loginForm">
+            <div className="emailpassdiv">
+              <div className="form-group col-md-9">
+                <label
+                  htmlFor="inputUsername"
+                  style={{ color: "yellow", font: "bolder" }}
+                >
+                  Username
+                </label>
+                <input
+                  type="username"
+                  name="userName"
+                  placeholder="Enter Username"
+                  className="form-control"
+                  onChange={this.handleChange}
+                  value={this.state.userName}
+                />
 
-              {this.state.userName ? (
-                <span style={{ color: "#00FF7F" }}>That's Good!</span>
-              ) : (
-                <span style={{ color: "#881d11" }}></span>
-              )}
+                {this.state.userName ? (
+                  <span style={{ color: "#00FF7F" }}>That's Good!</span>
+                ) : (
+                  <span style={{ color: "#881d11" }}></span>
+                )}
+              </div>
+
+              <div className="form-group col-md-9 ">
+                <label
+                  htmlFor="emailInput"
+                  style={{ color: "yellow", font: "bolder" }}
+                >
+                  Email Address
+                </label>
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Enter Email Address"
+                  className="form-control"
+                  value={this.state.email}
+                  onChange={this.handleChange}
+                />
+
+                {this.state.email ? (
+                  <span style={{ color: "#00FF7F" }}>That's Good!</span>
+                ) : (
+                  <span style={{ color: "yellow" }}></span>
+                )}
+                <br></br>
+              </div>
+              <div className="form-group col-md-9">
+                <label
+                  htmlFor="inputPassword"
+                  style={{ color: "yellow", font: "bolder" }}
+                >
+                  Password
+                </label>
+                <input
+                  type="password"
+                  name="password"
+                  placeholder="Enter Password"
+                  className="form-control"
+                  value={this.state.password}
+                  onChange={this.handleChange}
+                />
+
+                {this.state.password.length >= 6 ? (
+                  <span style={{ color: "#00FF7F" }}>
+                    Minimum 6 characters long
+                  </span>
+                ) : (
+                  <span style={{ color: "#FF0000" }}>
+                    Minumum 6 characters long
+                  </span>
+                )}
+              </div>
             </div>
+            <Button
+              className="Loginbtn"
+              onClick={() => {
+                this.login();
+              }}
+            >
+              Login <GiFarmTractor />
+            </Button>
 
-            <div className="form-group col-md-9 ">
-              <label
-                htmlFor="emailInput"
-                style={{ color: "yellow", font: "bolder" }}
-              >
-                Email Address
-              </label>
-              <input
-                type="email"
-                name="email"
-                placeholder="Enter Email Address"
-                className="form-control"
-                value={this.state.email}
-                onChange={this.handleChange}
-              />
-
-              {this.state.email ? (
-                <span style={{ color: "#00FF7F" }}>That's Good!</span>
-              ) : (
-                <span style={{ color: "yellow" }}></span>
-              )}
-              <br></br>
-            </div>
-            <div className="form-group col-md-9">
-              <label
-                htmlFor="inputPassword"
-                style={{ color: "yellow", font: "bolder" }}
-              >
-                Password
-              </label>
-              <input
-                type="password"
-                name="password"
-                placeholder="Enter Password"
-                className="form-control"
-                value={this.state.password}
-                onChange={this.handleChange}
-              />
-
-              {this.state.password.length >= 6 ? (
-                <span style={{ color: "#00FF7F" }}>
-                  Minimum 6 characters long
-                </span>
-              ) : (
-                <span style={{ color: "#FF0000" }}>
-                  Minumum 6 characters long
-                </span>
-              )}
-            </div>
-          </div>
-          <Button
-            className="Loginbtn"
-            onClick={() => {
-              this.login();
-            }}
-          >
-            Login <GiFarmTractor />
-          </Button>
-
-          <Button
-            onClick={() => {
-              this.extractUsername(this.state.email);
-            }}
-          >
-            extract name
-          </Button>
-        </form>
+            <Button
+              onClick={() => {
+                this.extractUsername(this.state.email);
+              }}
+            >
+              extract name
+            </Button>
+          </form>
+        </div>
         {this.state.viewWelcome ? <Welcome /> : null}
-      </div>
+      </body>
     );
   }
 }
