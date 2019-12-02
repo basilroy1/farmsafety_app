@@ -1,0 +1,7 @@
+.groove {
+  font-family: "Times New Roman", Times, serif;
+  font: lighter;
+  font-size: 20px;
+  width: 800px;
+  border-style: groove;
+}

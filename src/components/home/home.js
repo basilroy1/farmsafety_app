@@ -59,7 +59,7 @@ class Home extends Component {
               />
               <Carousel.Caption>
                 <h3>Did You Know</h3>
-                <p>
+                <p className="didYoknow">
                   There are approximately 139,860 family farms in Ireland with
                   an average size of 32.7 hectares per holding.
                 </p>
@@ -70,7 +70,7 @@ class Home extends Component {
 
               <Carousel.Caption>
                 <h3>Did You Know</h3>
-                <p>
+                <p className="didYoknow">
                   Survey found that in the five year period 2012-2017 that 11%
                   of farms had an accident and in total 2,814 accidents
                   occurred. Farm accidents have risen by 13% in the last 5 years
@@ -87,7 +87,7 @@ class Home extends Component {
 
               <Carousel.Caption>
                 <h3>Did You Know</h3>
-                <p>
+                <p className="didYoknow">
                   In 2016, 417 farmers and farm workers died from a work-related
                   injury, resulting in a fatality rate of 21.4 deaths per
                   100,000 workers. Transportation incidents, which include

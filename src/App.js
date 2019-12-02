@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-//import logo from './logo.svg';
 //import "./App.css";
 import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
 import fire from "./config/fire";
@@ -12,6 +11,7 @@ import Signup from "./components/quiz/signup";
 import Welcome from "./components/home/welcome";
 import { FiLogIn } from "react-icons/fi";
 import { TiHome } from "react-icons/ti";
+//import login from ".login/components/quiz/login";
 
 class App extends Component {
   constructor(props) {
@@ -27,7 +27,9 @@ class App extends Component {
   changetoQuiz = () => {
     this.setState({
       viewquiz: !this.state.viewquiz,
-      viewHome: false
+      viewHome: false,
+      viewLogin: false,
+      viewSignup: false
     });
   };
 
@@ -80,7 +82,7 @@ class App extends Component {
               <Route path="/Home" component={Home} exact />
             ) : null}
             {this.state.viewLogin ? (
-              <Route path="/Login" component={Welcome} exact />
+              <Route path="/Login" component={Login} exact />
             ) : null}
             {this.state.viewSignup ? (
               <Route path="/Signup" component={Signup} exact />
@@ -91,9 +93,11 @@ class App extends Component {
           {this.state.viewLogin ? <Login /> : null}
           {this.state.viewSignup ? <Signup /> : null}
         */}
+
+          {this.state.viewHome ? <Home /> : null}
           <div>
             <Button onClick={this.changetoQuiz}>Enter The site</Button>
-            <Col md={12}>{this.state.viewquiz ? <Home /> : null}</Col>
+            <Col md={12}>{this.state.viewquiz ? <Quiz /> : null}</Col>
           </div>
         </div>
       </body>

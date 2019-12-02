@@ -11,7 +11,7 @@ class Signup extends Component {
       email: "",
       password: "",
       clicked: "",
-      userName: "",
+      //   userName: "",
       viewPasswordResetModal: false
     };
   }
@@ -83,29 +83,6 @@ class Signup extends Component {
         <div>
           <form className="loginForm">
             <div className="emailpassdiv">
-              <div className="form-group col-md-9">
-                <label
-                  htmlFor="inputUsername"
-                  style={{ color: "yellow", font: "bolder" }}
-                >
-                  Username
-                </label>
-                <input
-                  type="username"
-                  name="userName"
-                  placeholder="Enter Username"
-                  className="form-control"
-                  onChange={this.handleChange}
-                  value={this.state.userName}
-                />
-
-                {this.state.userName ? (
-                  <span style={{ color: "#00FF7F" }}>That's Good!</span>
-                ) : (
-                  <span style={{ color: "#881d11" }}></span>
-                )}
-              </div>
-
               <div className="form-group col-md-9 ">
                 <label
                   htmlFor="emailInput"
