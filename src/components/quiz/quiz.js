@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import QuestionBox from "./questionBox";
+//import QuestionBox from "./questionBox";
 import "./quiz.css";
 //import from "./login"
 //import useState from "react";
@@ -16,7 +16,8 @@ class Quiz extends Component {
     options: [],
     disabled: true,
     currentQuest: 0,
-    scores: 0
+    scores: 0,
+    pictures: ""
   };
 
   loadQuiz = () => {
@@ -113,7 +114,7 @@ class Quiz extends Component {
   };
 
   render() {
-    const { userAns, options, currentQuest } = this.state;
+    const { userAns, options, currentQuest, pictures } = this.state;
     return (
       <div className="quizForm">
         <br></br>
@@ -123,6 +124,7 @@ class Quiz extends Component {
         {this.state.questions}
         <br></br>
         <p>Q{this.state.currentQuest}</p>
+
         {options.map(option => (
           <Button
             key={option.id}
