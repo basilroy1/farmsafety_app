@@ -125,6 +125,8 @@ class Quiz extends Component {
         <br></br>
         <p>Q{this.state.currentQuest}</p>
 
+        {this.state.pictures}
+        <br></br>
         {options.map(option => (
           <Button
             key={option.id}
