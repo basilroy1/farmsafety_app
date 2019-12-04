@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import Pic from "../pictures/saferty_gaurd.jpg";
 import Pic2 from "../pictures/userprofilepic.jpg";
 import Pic3 from "../pictures/piechartMachinery.jpg";
@@ -10,28 +10,28 @@ export const Quizdata = [
     question: "what does this sign mean?",
     options: ["123", "stop", "yes", "go back"],
     answer: "123",
-    picture: <img src={Pic} />
+    picture: <img src={Pic} alt="" />
   },
   {
     id: 2,
     question: "what danger is shown?",
     options: ["dont enter", "abcd", "all fine"],
     answer: "abcd",
-    picture: <img src={Pic2} />
+    picture: <img src={Pic2} alt="" />
   },
   {
     id: 3,
     question: "is this correct?",
     options: ["dont enter", "nothing", "all fine"],
     answer: "nothing",
-    picture: <img src={Pic3} />
+    picture: <img src={Pic3} alt="" />
   },
   {
     id: 4,
     question: "what should you do?",
     options: ["dont enter", "easy", "all fine", "1"],
     answer: "easy",
-    picture: <img src={Pic4} />
+    picture: <img src={Pic4} alt="" />
   },
   {
     id: 5,

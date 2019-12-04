@@ -1,11 +1,9 @@
 import React, { Component } from "react";
-//import QuestionBox from "./questionBox";
 import "./quiz.css";
-//import from "./login"
-//import useState from "react";
 import fire from "../../config/fire";
 import { FaHorse, FaArrowRight } from "react-icons/fa";
 import { Button, ButtonGroup, Toast, ProgressBar } from "react-bootstrap";
+import { Alert } from "reactstrap";
 
 import Questions, { Quizdata } from "./questions";
 import Login from "./login";
@@ -14,8 +12,9 @@ class Quiz extends Component {
   state = {
     userAns: null,
     options: [],
-    disabled: true,
+    disabled: false,
     currentQuest: 0,
+    isEnd: false,
     scores: 0,
     pictures: ""
   };
@@ -96,7 +95,6 @@ class Quiz extends Component {
     newRef.set({
       ID: fire.auth().currentUser.uid,
       UserEmail: fire.auth().currentUser.email,
-      // Username: this.state.userName,
       Question: this.state.questions, //Send data to DB to track for analysis
       UserAnswer: this.state.userAns
     });
@@ -108,62 +106,90 @@ class Quiz extends Component {
     var ref = fire.database().ref("data");
     var newRef = ref.push();
     newRef.set({
+      ID: fire.auth().currentUser.uid,
+      UserEmail: fire.auth().currentUser.email,
+      Question: this.state.questions, //Send data to DB to track for analysis
+      UserAnswer: this.state.userAns,
       Score: this.state.scores
     });
     console.log("Sent to Database");
   };
 
-  render() {
-    const { userAns, options, currentQuest, pictures } = this.state;
-    return (
-      <div className="quizForm">
-        <br></br>
-        <div>
-          <ProgressBar animated now={this.state.currentQuest * 9} />
-        </div>
-        {this.state.questions}
-        <br></br>
-        <p>Q{this.state.currentQuest}</p>
+  finishQuiz = () => {
+    if (this.state.currentQuestion === Quizdata.length - 1) {
+      this.setState({
+        isEnd: true
+      });
+      return <Alert>quiz Finished</Alert>;
+    }
+  };
 
-        {this.state.pictures}
-        <br></br>
-        {options.map(option => (
-          <Button
-            key={option.id}
-            className={`ui floating message options
+  render() {
+    const { userAns, options, currentQuest, isEnd } = this.state;
+    if (isEnd) {
+      return (
+        <div>
+          <Alert>Quiz Finished</Alert>
+          <span>
+            Quiz score : {this.state.scores}/{Quizdata.length - 1}
+          </span>
+        </div>
+      );
+    } else {
+      return (
+        <div className="quizForm">
+          <br></br>
+          <div>
+            <ProgressBar animated now={this.state.currentQuest * 10} />
+          </div>
+          {this.state.questions}
+          <br></br>
+          <p>Q{this.state.currentQuest}</p>
+
+          {this.state.pictures}
+          <br></br>
+          {options.map(option => (
+            <Button
+              key={option.id}
+              className={`ui floating message options
             ${userAns === option ? "selected" : null}
            `}
-            onClick={() => this.checkAns(option)}
-          >
-            {option}
+              onClick={() => this.checkAns(option)}
+            >
+              {option}
+            </Button>
+          ))}
+
+          <br></br>
+          <Button onClick={() => this.checkAns()}>
+            CHECK <FaHorse />
           </Button>
-        ))}
+          {currentQuest < Quizdata.length - 1 && (
+            <Button
+              disabled={this.state.disabled}
+              onClick={() => {
+                this.nextQuestion();
+                this.pushtoDB();
+              }}
+            >
+              NEXT <FaArrowRight />
+            </Button>
+          )}
+          <br></br>
 
-        <br></br>
-        <Button onClick={() => this.checkAns()}>
-          CHECK <FaHorse />
-        </Button>
-        <Button
-          onClick={() => {
-            this.nextQuestion();
-            this.pushtoDB();
-          }}
-        >
-          NEXT <FaArrowRight />
-        </Button>
-
-        <br></br>
-
-        <Button onClick={this.logout}>LogOut</Button>
-
-        {currentQuest === Quizdata.length - 1 ? (
-          <Button onClick={this.pushtoDB2}>Finish</Button>
-        ) : null}
-        <span>
-          Quiz score : {this.state.scores}/{Quizdata.length - 1}
-        </span>
-      </div>
-    );
+          {currentQuest === Quizdata.length - 1 && (
+            <Button
+              onClick={() => {
+                this.pushtoDB2();
+                this.finishQuiz();
+              }}
+            >
+              Finish
+            </Button>
+          )}
+        </div>
+      );
+    }
   }
 }
 export default Quiz;

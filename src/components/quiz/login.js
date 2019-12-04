@@ -84,23 +84,6 @@ class Login extends Component {
       });
   };
 
-  passwordReset = e => {
-    e.preventDefault();
-
-    const auth = fire.auth();
-    const email = this.state.email;
-    const validEmail =
-      email.endsWith("@mumail.ie") || email.endsWith("@gmail.com");
-
-    if (!validEmail) {
-      alert("Please enter a valid email");
-      return;
-    }
-
-    auth
-      .sendPasswordResetEmail(email)
-      .then(alert("An email has been sent to you to reset your password"));
-  };
   extractUsername = email => {
     var s = "";
     for (var r in email) {
