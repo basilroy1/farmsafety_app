@@ -187,6 +187,8 @@ class Quiz extends Component {
               Finish
             </Button>
           )}
+
+          <li>{this.props.email} yes</li>
         </div>
       );
     }

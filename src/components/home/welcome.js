@@ -27,15 +27,17 @@ class Welcome extends Component {
     this.state = {
       viewquiz: false,
       people: [],
-      dataHasLoaded: false
+      dataHasLoaded: ""
       // viewLogin:false
     };
   }
 
   componentDidMount() {
     this.retrieveData();
+    function isData(data) {
+      this.setState({ dataHasLoaded: data });
+    }
   }
-
   retrieveData = () => {
     /*const db = fire.database();
     const ref = db.ref("User");
@@ -65,34 +67,56 @@ class Welcome extends Component {
     var ref = fire.database().ref("data");
     var user = fire.auth().currentUser.uid; //gets users Unique ID
 
+    var query = ref.orderByChild("ID").equalTo(user); //retrieves data about only the current logged in user
+    var topScores = ref.orderByChild("Score"); //gets the max score of the current user
     console.log(user);
-    ref.on("value", function(snapshot) {
+    console.log(topScores);
+
+    query.on("value", function(snapshot) {
       snapshot.forEach(function(user) {
         //   var ID = t.ID;
-        if (user) {
-          var t = {
-            ID: user.val().ID,
-            Question: user.val().Question,
-            UserAnswer: user.val().UserAnswer,
+        //   var topScores = ref.orderByChild("Score").limitToLast(1);
+        // console.log(topScores);
 
-            UserEmail: user.val().UserEmail,
-            Score: user.val().Score
-          };
-          // if (ID === user) {
-          //   var x = {
-          ///   ID: user.val().ID,
-          //     Question: user.val().Question,
-          //   UserAnswer: user.val().UserAnswer,
-          //           UserEmail: user.val().UserEmail,
-          //             Score: user.val().Score
-          //       };
-        }
+        var t = {
+          ID: user.val().ID,
+          Question: user.val().Question,
+          UserAnswer: user.val().UserAnswer,
+          UserEmail: user.val().UserEmail,
+          Score: user.val().Score
+        };
+
+        //   for (var i = 0; i < t.length; i++) {
+        //console.log(t[i]);
+        //   }
+        // if (ID === user) {
+        //   var x = {
+        ///   ID: user.val().ID,
+        //     Question: user.val().Question,
+        //   UserAnswer: user.val().UserAnswer,
+        //           UserEmail: user.val().UserEmail,
+        //             Score: user.val().Score
+        //       };
+
         // console.log(x);
         //}
         console.log(t);
       });
+
+      /*  return (
+        <div>
+          <p>
+            <li>
+              {ID},{UserAnswer}
+            </li>
+          </p>
+        </div>
+      );
+
+    */
     });
   };
+
   changetoQuiz = () => {
     this.setState({
       viewquiz: true
@@ -128,6 +152,10 @@ class Welcome extends Component {
       <div>
         {/*  <div>{this.state.dataHasLoaded ? renderData : loadingSpinner}</div>*/}
         <div>
+          {this.state.dataHasLoaded
+            ? this.state.dataHasLoaded.map(data => <Quiz data={data} />)
+            : "no data"}
+          );
           <Navbar bg="primary" variant="dark">
             <Nav className="mr-auto">
               Welcome <MdPerson />
@@ -145,6 +173,7 @@ class Welcome extends Component {
             </Button>
           </Navbar>
         </div>
+        {this.people}
         <div style={{ backgroundColor: "white" }}>
           <h3 className="heading" style={{ color: "black" }}>
             Guarding <GiSwordsEmblem />
