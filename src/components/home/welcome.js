@@ -39,73 +39,38 @@ class Welcome extends Component {
           user
         });
       } else {
-        this.setState({ user: null, viewHome: true });
+        this.setState({ user: null });
       }
-      return user.uid;
+      return user;
     });
   };
   retrieveData = () => {
-    var ref = fire.database().ref("data");
+    var ref = fire.database().ref("data"); //takes the last data in DB
     //  var user1 = fire.auth().user.uid;
     // var query = ref.orderByChild("ID").equalTo(user1); //retrieves data about only the current logged in user
 
-    let currentState = this.state.people;
-    ref.on("value", snapshot => {
-      //callback start
+    //  let currentState = this.state.people;
+    ref.once("value", snapshot => {
+      let currentState = this.state.people;
 
-      snapshot.forEach(data => {
-        const currentUser = data.val();
-        let user = {
-          email: currentUser.UserEmail,
-          useranswer: currentUser.UserAnswer,
-          questions: currentUser.Question,
-          id: currentUser.ID
-          // score: currentUser.Score
-        };
-
-        currentState.push(user);
-        console.log(currentState);
-      });
+      const currentUser = snapshot.val();
+      for (let i in currentUser) {
+        currentState.push({
+          email: currentUser[i].UserEmail,
+          UserAnswer: currentUser[i].UserAnswer,
+          Questions: currentUser[i].Question,
+          id: currentUser[i].ID,
+          Score: currentUser[i].Score
+        });
+      }
+      // currentState.push(user);
+      console.log(currentState);
 
       this.setState({
         people: currentState,
         dataHasLoaded: true
       });
     });
-
-    /*   var ref = fire.database().ref("data");
-    var user = fire.auth().currentUser.uid; //gets users Unique ID
-
-    var query = ref.orderByChild("ID").equalTo(user); //retrieves data about only the current logged in user
-    var topScores = ref.orderByChild("Score"); //gets the max score of the current user
-    console.log(user);
-    console.log(topScores);
-
-    query.on("value", function(snapshot) {
-      snapshot.forEach(function(user) {
-        var t = {
-          ID: user.val().ID,
-          Question: user.val().Question,
-          UserAnswer: user.val().UserAnswer,
-          UserEmail: user.val().UserEmail,
-          Score: user.val().Score
-        };
-            console.log(t);
-      });
-*/
-    /*  return (
-        <div>
-          <p>
-            <li>
-              {ID},{UserAnswer}
-            </li>
-          </p>
-
-        </div>
-      );
-
-    */
-    // });
   };
 
   changetoQuiz = () => {
@@ -119,27 +84,19 @@ class Welcome extends Component {
     console.log("Logged out");
   };
   render() {
-    let people = this.state.people;
-    // console.log(people);
-    let renderData = people.map((person, index) => {
+    let renderData = this.state.people.map((person, index) => {
       return (
-        <p
-          key={index}
-          email={person.UserEmail}
-          //   score={person.Score}
-          useranswer={person.UserAnswer}
-        />
+        <div style={{ color: " yellow" }} key={index}>
+          <p>{person.id}</p>
+          <p>{person.UserAnswer}</p>
+          <p>{person.Questions}</p>
+          <p>{person.email}</p>
+        </div>
       );
     });
 
     let loadingSpinner = (
-      <Loader
-        id="loader"
-        type="Plane"
-        color="#570F0F "
-        height="100"
-        width="100"
-      />
+      <Loader id="loader" type="Plane" color="blue " height="100" width="100" />
     );
 
     return (
@@ -148,7 +105,7 @@ class Welcome extends Component {
         <div>
           <Navbar bg="primary" variant="dark">
             <Nav className="mr-auto">
-              Welcome <MdPerson />
+              Welcome
               <Button>Rookie</Button>
               <Button>Student</Button>
               <Button>Intermediate</Button>
@@ -159,6 +116,11 @@ class Welcome extends Component {
             <Button onClick={this.logout}>
               <Nav>
                 Logout <FiLogOut />
+              </Nav>
+            </Button>
+            <Button onClick={this.viewProfile}>
+              <Nav>
+                Profile <MdPerson />
               </Nav>
             </Button>
           </Navbar>
@@ -203,8 +165,6 @@ class Welcome extends Component {
               <img src={piechart} alt="" />
             </p>
           </h3>
-
-          <p>{this.props.useremail}</p>
 
           <Button onClick={this.changetoQuiz}>Take the Quiz</Button>
           {this.state.viewquiz ? <Quiz /> : null}
