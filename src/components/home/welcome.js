@@ -9,9 +9,11 @@ import { Button, Nav, Navbar } from "react-bootstrap";
 //import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
 //import Login from "../quiz/login";
 //import Signup from "../quiz/signup";
+
 //import Home from "./home";
 import Quiz from "../quiz/quiz";
 import fire from "../../config/fire";
+import UserProfile from "../quiz/userProfile";
 
 class Welcome extends Component {
   constructor(props) {
@@ -21,7 +23,8 @@ class Welcome extends Component {
       viewquiz: false,
       people: [],
       dataHasLoaded: false,
-      user: {}
+      user: {},
+      viewProfile: false
       // viewLogin:false
     };
   }
@@ -33,6 +36,7 @@ class Welcome extends Component {
     console.log("Data loaded");
   }
   authListener = () => {
+    //checks if user is already logged in 0n browser
     fire.auth().onAuthStateChanged(user => {
       if (user) {
         this.setState({
@@ -45,7 +49,10 @@ class Welcome extends Component {
     });
   };
   retrieveData = () => {
-    var ref = fire.database().ref("data"); //takes the last data in DB
+    var ref = fire
+      .database()
+      .ref("data")
+      .limitToLast(1); //takes the last data in DB
     //  var user1 = fire.auth().user.uid;
     // var query = ref.orderByChild("ID").equalTo(user1); //retrieves data about only the current logged in user
 
@@ -60,7 +67,8 @@ class Welcome extends Component {
           UserAnswer: currentUser[i].UserAnswer,
           Questions: currentUser[i].Question,
           id: currentUser[i].ID,
-          Score: currentUser[i].Score
+          Score: currentUser[i].Score,
+          Level: currentUser[i].UserLevel
         });
       }
       // currentState.push(user);
@@ -78,6 +86,12 @@ class Welcome extends Component {
       viewquiz: true
     });
   };
+  changetoProfile = () => {
+    this.setState({
+      viewProfile: true
+    });
+  };
+
   logout = e => {
     e.preventDefault();
     fire.auth().signOut();
@@ -86,22 +100,26 @@ class Welcome extends Component {
   render() {
     let renderData = this.state.people.map((person, index) => {
       return (
-        <div style={{ color: " yellow" }} key={index}>
-          <p>{person.id}</p>
-          <p>{person.UserAnswer}</p>
-          <p>{person.Questions}</p>
+        <div style={{ color: " black" }} key={index}>
+          <p>{person.Score}</p>
           <p>{person.email}</p>
+          {this.state.viewProfile ? (
+            <UserProfile
+              className="userProfile"
+              level={person.UserLevel}
+              score={person.Score}
+              question={person.Questions}
+              email={person.email}
+            />
+          ) : null}
         </div>
       );
     });
 
-    let loadingSpinner = (
-      <Loader id="loader" type="Plane" color="blue " height="100" width="100" />
-    );
+    let loadingSpinner = <Loader id="loader" type="ThreeDots" color="red " />;
 
     return (
       <div>
-        {<div>{this.state.dataHasLoaded ? renderData : loadingSpinner}</div>}
         <div>
           <Navbar bg="primary" variant="dark">
             <Nav className="mr-auto">
@@ -111,14 +129,13 @@ class Welcome extends Component {
               <Button>Intermediate</Button>
               <Button>Expert</Button>
               <Button>Master</Button>
-              <Button onClick={this.retrieveData}>Display User Info</Button>
             </Nav>
             <Button onClick={this.logout}>
               <Nav>
                 Logout <FiLogOut />
               </Nav>
             </Button>
-            <Button onClick={this.viewProfile}>
+            <Button onClick={this.changetoProfile}>
               <Nav>
                 Profile <MdPerson />
               </Nav>
@@ -137,6 +154,7 @@ class Welcome extends Component {
             upgraded in line with the guarding on newer models Do not use a
             machine unless all guards are in place
           </p>
+
           <h3 className="heading" style={{ color: "black" }}>
             Machinery Checks <MdCheckBox />
             <p className="groove">
@@ -165,7 +183,7 @@ class Welcome extends Component {
               <img src={piechart} alt="" />
             </p>
           </h3>
-
+          {<div>{this.state.dataHasLoaded ? renderData : loadingSpinner}</div>}
           <Button onClick={this.changetoQuiz}>Take the Quiz</Button>
           {this.state.viewquiz ? <Quiz /> : null}
         </div>

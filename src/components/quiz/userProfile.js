@@ -3,17 +3,22 @@ import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
 import fire from "../../config/fire";
 import { Button, Alert, Container } from "react-bootstrap";
 import ProfilePic from "../pictures/userprofilepic.jpg";
+import "./userProfile.css";
 class UserProfile extends Component {
   render() {
     return (
-      <div>
-        <img src={ProfilePic} />
+      <div id="container">
+        <img id="profilepic" src={ProfilePic} />
 
-        <li>
-          Email :{this.props.email}
-          Score :{this.props.score}
-          Level :{}
-        </li>
+        <ul>
+          Email : {this.props.email}
+          <br></br>
+          Question : {this.props.question}
+          <br></br>
+          Score : {this.props.score}
+          <br></br>
+          Level : {this.props.level}
+        </ul>
       </div>
     );
   }

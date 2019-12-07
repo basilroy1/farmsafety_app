@@ -2,10 +2,16 @@ import React, { Component } from "react";
 import "./quiz.css";
 import fire from "../../config/fire";
 import { FaHorse, FaArrowRight } from "react-icons/fa";
-import { Button, ButtonGroup, Toast, ProgressBar } from "react-bootstrap";
+import { Button, ProgressBar } from "react-bootstrap";
 import { Alert } from "reactstrap";
 
-import Questions, { Quizdata } from "./questions";
+import Questions, {
+  Quizdata,
+  Quizdata2,
+  Quizdata3,
+  Quizdata4,
+  Quizdata5
+} from "./questions";
 import Login from "./login";
 //import { Label } from "semantic-ui-react";
 class Quiz extends Component {
@@ -18,7 +24,8 @@ class Quiz extends Component {
       currentQuest: 0,
       isEnd: false,
       scores: 0,
-      pictures: ""
+      pictures: "",
+      level1: false
     };
   }
   loadQuiz = () => {
@@ -99,6 +106,7 @@ class Quiz extends Component {
       UserEmail: fire.auth().currentUser.email,
       Question: this.state.questions, //Send data to DB to track for analysis
       UserAnswer: this.state.userAns
+      //  userLevel: this.state.level1
     });
 
     console.log("Sent to Database");
@@ -112,11 +120,16 @@ class Quiz extends Component {
       UserEmail: fire.auth().currentUser.email,
       Question: this.state.questions, //Send data to DB to track for analysis
       UserAnswer: this.state.userAns,
-      Score: this.state.scores
+      Score: this.state.scores,
+      userLevel: this.state.level1
     });
     console.log("Sent to Database");
   };
-
+  chooseLevel1 = () => {
+    this.setState({
+      level1: true
+    });
+  };
   finishQuiz = () => {
     if (this.state.currentQuestion === Quizdata.length - 1) {
       this.setState({
@@ -184,6 +197,7 @@ class Quiz extends Component {
               onClick={() => {
                 this.pushtoDB2();
                 this.finishQuiz();
+                this.chooseLevel1();
               }}
             >
               Finish
