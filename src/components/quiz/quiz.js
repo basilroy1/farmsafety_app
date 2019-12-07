@@ -9,16 +9,18 @@ import Questions, { Quizdata } from "./questions";
 import Login from "./login";
 //import { Label } from "semantic-ui-react";
 class Quiz extends Component {
-  state = {
-    userAns: null,
-    options: [],
-    disabled: false,
-    currentQuest: 0,
-    isEnd: false,
-    scores: 0,
-    pictures: ""
-  };
-
+  constructor(props) {
+    super(props);
+    this.state = {
+      userAns: null,
+      options: [],
+      disabled: false,
+      currentQuest: 0,
+      isEnd: false,
+      scores: 0,
+      pictures: ""
+    };
+  }
   loadQuiz = () => {
     const { currentQuest } = this.state;
     //  console.log(Quizdata[2].question);
@@ -187,8 +189,6 @@ class Quiz extends Component {
               Finish
             </Button>
           )}
-
-          <li>{this.props.email} yes</li>
         </div>
       );
     }

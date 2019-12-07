@@ -7,6 +7,7 @@ import { GiFarmTractor } from "react-icons/gi";
 import Home from "../home/home";
 import Welcome from "../home/welcome";
 import App from "../../App";
+import UserDisplayInfo from "../home/userdisplayInfo";
 class Login extends Component {
   constructor(props) {
     super(props);

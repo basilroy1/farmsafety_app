@@ -5,57 +5,66 @@ import { FiLogOut } from "react-icons/fi";
 import { GiSwordsEmblem } from "react-icons/gi";
 import piechart from "../pictures/piechartMachinery.jpg";
 import Loader from "react-loader-spinner";
-import {
-  Button,
-  Nav,
-  Navbar,
-  Form,
-  FormControl,
-  Carousel
-} from "react-bootstrap";
+import { Button, Nav, Navbar } from "react-bootstrap";
 //import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
-import Login from "../quiz/login";
-import Signup from "../quiz/signup";
-import Home from "./home";
+//import Login from "../quiz/login";
+//import Signup from "../quiz/signup";
+//import Home from "./home";
 import Quiz from "../quiz/quiz";
 import fire from "../../config/fire";
 
 class Welcome extends Component {
   constructor(props) {
     super(props);
-    this.logout = this.logout.bind(this);
+    // this.logout = this.logout.bind(this);
     this.state = {
       viewquiz: false,
       people: [],
-      dataHasLoaded: ""
+      dataHasLoaded: false,
+      user: {}
       // viewLogin:false
     };
   }
 
   componentDidMount() {
+    this.authListener();
     this.retrieveData();
-    function isData(data) {
-      this.setState({ dataHasLoaded: data });
-    }
+
+    console.log("Data loaded");
   }
+  authListener = () => {
+    fire.auth().onAuthStateChanged(user => {
+      if (user) {
+        this.setState({
+          user
+        });
+      } else {
+        this.setState({ user: null, viewHome: true });
+      }
+      return user.uid;
+    });
+  };
   retrieveData = () => {
-    /*const db = fire.database();
-    const ref = db.ref("User");
+    var ref = fire.database().ref("data");
+    //  var user1 = fire.auth().user.uid;
+    // var query = ref.orderByChild("ID").equalTo(user1); //retrieves data about only the current logged in user
 
     let currentState = this.state.people;
-    ref.once("value", snapshot => {
+    ref.on("value", snapshot => {
       //callback start
 
       snapshot.forEach(data => {
         const currentUser = data.val();
         let user = {
           email: currentUser.UserEmail,
-          userAnswer: currentUser.userAnswer,
-          questions: currentUser.Questions,
-          ID: currentUser.ID,
-          score: currentUser.Score
+          useranswer: currentUser.UserAnswer,
+          questions: currentUser.Question,
+          id: currentUser.ID
+          // score: currentUser.Score
         };
+
         currentState.push(user);
+        console.log(currentState);
       });
 
       this.setState({
@@ -63,8 +72,8 @@ class Welcome extends Component {
         dataHasLoaded: true
       });
     });
-    */
-    var ref = fire.database().ref("data");
+
+    /*   var ref = fire.database().ref("data");
     var user = fire.auth().currentUser.uid; //gets users Unique ID
 
     var query = ref.orderByChild("ID").equalTo(user); //retrieves data about only the current logged in user
@@ -74,10 +83,6 @@ class Welcome extends Component {
 
     query.on("value", function(snapshot) {
       snapshot.forEach(function(user) {
-        //   var ID = t.ID;
-        //   var topScores = ref.orderByChild("Score").limitToLast(1);
-        // console.log(topScores);
-
         var t = {
           ID: user.val().ID,
           Question: user.val().Question,
@@ -85,36 +90,22 @@ class Welcome extends Component {
           UserEmail: user.val().UserEmail,
           Score: user.val().Score
         };
-
-        //   for (var i = 0; i < t.length; i++) {
-        //console.log(t[i]);
-        //   }
-        // if (ID === user) {
-        //   var x = {
-        ///   ID: user.val().ID,
-        //     Question: user.val().Question,
-        //   UserAnswer: user.val().UserAnswer,
-        //           UserEmail: user.val().UserEmail,
-        //             Score: user.val().Score
-        //       };
-
-        // console.log(x);
-        //}
-        console.log(t);
+            console.log(t);
       });
-
-      /*  return (
+*/
+    /*  return (
         <div>
           <p>
             <li>
               {ID},{UserAnswer}
             </li>
           </p>
+
         </div>
       );
 
     */
-    });
+    // });
   };
 
   changetoQuiz = () => {
@@ -128,15 +119,18 @@ class Welcome extends Component {
     console.log("Logged out");
   };
   render() {
-    /*  let people = this.state.people;
-    let renderData = people.map(person => (
-      <Home
-        key={person.ID}
-        UserEmail={person.UserEmail}
-        score={person.Score}
-        userAnswer={person.userAnswer}
-      />
-    ));
+    let people = this.state.people;
+    // console.log(people);
+    let renderData = people.map((person, index) => {
+      return (
+        <p
+          key={index}
+          email={person.UserEmail}
+          //   score={person.Score}
+          useranswer={person.UserAnswer}
+        />
+      );
+    });
 
     let loadingSpinner = (
       <Loader
@@ -147,15 +141,11 @@ class Welcome extends Component {
         width="100"
       />
     );
-*/
+
     return (
       <div>
-        {/*  <div>{this.state.dataHasLoaded ? renderData : loadingSpinner}</div>*/}
+        {<div>{this.state.dataHasLoaded ? renderData : loadingSpinner}</div>}
         <div>
-          {this.state.dataHasLoaded
-            ? this.state.dataHasLoaded.map(data => <Quiz data={data} />)
-            : "no data"}
-          );
           <Navbar bg="primary" variant="dark">
             <Nav className="mr-auto">
               Welcome <MdPerson />
@@ -173,7 +163,7 @@ class Welcome extends Component {
             </Button>
           </Navbar>
         </div>
-        {this.people}
+
         <div style={{ backgroundColor: "white" }}>
           <h3 className="heading" style={{ color: "black" }}>
             Guarding <GiSwordsEmblem />
@@ -213,6 +203,9 @@ class Welcome extends Component {
               <img src={piechart} alt="" />
             </p>
           </h3>
+
+          <p>{this.props.useremail}</p>
+
           <Button onClick={this.changetoQuiz}>Take the Quiz</Button>
           {this.state.viewquiz ? <Quiz /> : null}
         </div>

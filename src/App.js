@@ -21,9 +21,30 @@ class App extends Component {
       viewquiz: false,
       viewHome: true,
       viewLogin: false,
-      viewSignup: false
+      viewSignup: false,
+      user: {}
     };
   }
+
+  componentDidMount() {
+    this.authListener();
+  }
+
+  authListener() {
+    fire.auth().onAuthStateChanged(user => {
+      if (user) {
+        this.setState({
+          user,
+          viewHome: false,
+          viewLogin: false,
+          viewSignup: false
+        });
+      } else {
+        this.setState({ user: null, viewHome: true });
+      }
+    });
+  }
+
   changetoQuiz = () => {
     this.setState({
       viewquiz: !this.state.viewquiz,
@@ -50,8 +71,8 @@ class App extends Component {
   };
   changetoHome = () => {
     this.setState({
-      viewHome: true,
-      viewLogin: false
+      viewHome: true
+      //  viewLogin: false
     });
   };
 
@@ -88,13 +109,9 @@ class App extends Component {
               <Route path="/Signup" component={Signup} exact />
             ) : null}
           </BrowserRouter>
-
-          {/*  {this.state.viewHome ? <Home /> : null}
-          {this.state.viewLogin ? <Login /> : null}
-          {this.state.viewSignup ? <Signup /> : null}
-        */}
-
           {this.state.viewHome ? <Home /> : null}
+          {this.state.user ? <Welcome /> : null}
+
           <div>
             <Button onClick={this.changetoQuiz}>Enter The site</Button>
             <Col md={12}>{this.state.viewquiz ? <Quiz /> : null}</Col>
