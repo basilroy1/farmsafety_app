@@ -111,11 +111,6 @@ class App extends Component {
           </BrowserRouter>
           {this.state.viewHome ? <Home /> : null}
           {this.state.user ? <Welcome /> : null}
-
-          <div>
-            <Button onClick={this.changetoQuiz}>Enter The site</Button>
-            <Col md={12}>{this.state.viewquiz ? <Quiz /> : null}</Col>
-          </div>
         </div>
       </body>
     );

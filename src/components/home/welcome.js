@@ -9,8 +9,6 @@ import { Button, Nav, Navbar } from "react-bootstrap";
 //import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
 //import Login from "../quiz/login";
 //import Signup from "../quiz/signup";
-
-//import Home from "./home";
 import Quiz from "../quiz/quiz";
 import fire from "../../config/fire";
 import UserProfile from "../quiz/userProfile";
@@ -108,8 +106,6 @@ class Welcome extends Component {
     let renderData = this.state.people.map((person, index) => {
       return (
         <div style={{ color: " black" }} key={index}>
-          <p>{person.Score}</p>
-          <p>{person.email}</p>
           {this.state.viewProfile ? (
             <UserProfile
               className="userProfile"

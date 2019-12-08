@@ -1,5 +1,5 @@
 import Pic from "../pictures/saferty_gaurd.jpg";
-export const QuizdataLevel3 = [
+export const Quizdata3 = [
   {
     id: 1,
     question: "what does this sign mean?",
@@ -78,4 +78,4 @@ export const QuizdataLevel3 = [
     picture: ""
   }
 ];
-export default QuizdataLevel3;
+export default Quizdata3;

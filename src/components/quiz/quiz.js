@@ -4,15 +4,11 @@ import fire from "../../config/fire";
 import { FaHorse, FaArrowRight } from "react-icons/fa";
 import { Button, ProgressBar } from "react-bootstrap";
 import { Alert } from "reactstrap";
-
-import Questions, {
-  Quizdata,
-  Quizdata2,
-  Quizdata3,
-  Quizdata4,
-  Quizdata5
-} from "./questions";
-import Login from "./login";
+import Questions, { Quizdata } from "./questions";
+import { Quizdata2 } from "./questionsLevel2";
+import { Quizdata3 } from "./questionsLevel3";
+import { Quizdata4 } from "./questionsLevel4";
+import { Quizdata5 } from "./questionsLevel5";
 //import { Label } from "semantic-ui-react";
 class Quiz extends Component {
   constructor(props) {
@@ -25,7 +21,11 @@ class Quiz extends Component {
       isEnd: false,
       scores: 0,
       pictures: "",
-      level1: false
+      level1: false,
+      level2: false,
+      level3: true,
+      level4: false,
+      level5: false
     };
   }
   loadQuiz = () => {
@@ -41,7 +41,58 @@ class Quiz extends Component {
     });
     console.log(this.state.answer);
   };
-
+  loadQuiz2 = () => {
+    const { currentQuest } = this.state;
+    //  console.log(Quizdata[2].question);
+    this.setState(() => {
+      return {
+        questions: Quizdata2[currentQuest].question,
+        options: Quizdata2[currentQuest].options,
+        answer: Quizdata2[currentQuest].answer,
+        pictures: Quizdata2[Questions].picture
+      };
+    });
+    console.log(this.state.answer);
+  };
+  loadQuiz3 = () => {
+    const { currentQuest } = this.state;
+    //  console.log(Quizdata[2].question);
+    this.setState(() => {
+      return {
+        questions: Quizdata3[currentQuest].question,
+        options: Quizdata3[currentQuest].options,
+        answer: Quizdata3[currentQuest].answer,
+        pictures: Quizdata3[currentQuest].picture
+      };
+    });
+    console.log(this.state.answer);
+  };
+  loadQuiz4 = () => {
+    const { currentQuest } = this.state;
+    //  console.log(Quizdata[2].question);
+    this.setState(() => {
+      return {
+        questions: Quizdata4[currentQuest].question,
+        options: Quizdata4[currentQuest].options,
+        answer: Quizdata4[currentQuest].answer,
+        pictures: Quizdata4[currentQuest].picture
+      };
+    });
+    console.log(this.state.answer);
+  };
+  loadQuiz5 = () => {
+    const { currentQuest } = this.state;
+    //  console.log(Quizdata[2].question);
+    this.setState(() => {
+      return {
+        questions: Quizdata5[currentQuest].question,
+        options: Quizdata5[currentQuest].options,
+        answer: Quizdata5[currentQuest].answer,
+        pictures: Quizdata5[currentQuest].picture
+      };
+    });
+    console.log(this.state.answer);
+  };
   nextQuestion = e => {
     // e.preventDefault();
     if (this.state.userAns === null) {
@@ -77,7 +128,22 @@ class Quiz extends Component {
   };
 
   componentDidMount() {
-    this.loadQuiz(); //loads quiz quiz data in
+    if (this.state.level1) {
+      this.loadQuiz();
+      console.log("Quiz1 loaded"); //loads quiz  data in
+    } else if (this.state.level2) {
+      this.loadQuiz2(); //loads quiz  data in
+      console.log("Quiz2 loaded");
+    } else if (this.state.level3) {
+      this.loadQuiz3(); //loads quiz  data i
+      console.log("Quiz3 loaded");
+    } else if (this.state.level4) {
+      this.loadQuiz4(); //loads quiz  data in
+      console.log("Quiz4 loaded");
+    } else {
+      this.loadQuiz5(); //loads quiz  data in
+      console.log("Quiz5 loaded");
+    }
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -135,7 +201,11 @@ class Quiz extends Component {
       this.setState({
         isEnd: true
       });
-      return <Alert>quiz Finished</Alert>;
+      return (
+        <h3>
+          Quiz Finished, You scored {this.state.scores}/{Quizdata.length - 1}!
+        </h3>
+      );
     }
   };
 
