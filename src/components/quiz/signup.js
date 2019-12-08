@@ -140,11 +140,6 @@ class Signup extends Component {
             >
               Signup <GiFarmTractor />
             </Button>
-            <Button
-              onClick={() => {
-                this.extractUsername(this.state.email);
-              }}
-            ></Button>
           </form>
         </div>
       </body>

@@ -7,7 +7,6 @@ import { GiFarmTractor } from "react-icons/gi";
 import Home from "../home/home";
 import Welcome from "../home/welcome";
 import App from "../../App";
-import UserDisplayInfo from "../home/userdisplayInfo";
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -95,12 +94,7 @@ class Login extends Component {
     // return s;
     console.log(s);
   };
-  changetoHome = () => {
-    this.setState({
-      viewHome: !this.state.viewHome
-      //  viewlogin: false
-    });
-  };
+
   /* loadData = () => {
     var db = fire.database();
     var ref = db.ref("data");
@@ -182,14 +176,6 @@ class Login extends Component {
               }}
             >
               Login <GiFarmTractor />
-            </Button>
-
-            <Button
-              onClick={() => {
-                this.extractUsername(this.state.email);
-              }}
-            >
-              extract name
             </Button>
           </form>
         </div>

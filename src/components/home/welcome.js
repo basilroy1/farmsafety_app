@@ -49,35 +49,42 @@ class Welcome extends Component {
     });
   };
   retrieveData = () => {
-    var ref = fire
-      .database()
-      .ref("data")
-      .limitToLast(1); //takes the last data in DB
-    //  var user1 = fire.auth().user.uid;
-    // var query = ref.orderByChild("ID").equalTo(user1); //retrieves data about only the current logged in user
+    fire.auth().onAuthStateChanged(user => {
+      if (user) {
+        var ref = fire
+          .database()
+          .ref("data")
+          .limitToLast(1);
+        //takes the last data in DB
 
-    //  let currentState = this.state.people;
-    ref.once("value", snapshot => {
-      let currentState = this.state.people;
+        var userUID = fire.auth().currentUser.uid;
+        var query = ref.orderByChild("ID").equalTo(userUID); //retrieves data about only the current logged in user
+        console.log(userUID);
+        query.once("value", snapshot => {
+          let currentState = this.state.people;
 
-      const currentUser = snapshot.val();
-      for (let i in currentUser) {
-        currentState.push({
-          email: currentUser[i].UserEmail,
-          UserAnswer: currentUser[i].UserAnswer,
-          Questions: currentUser[i].Question,
-          id: currentUser[i].ID,
-          Score: currentUser[i].Score,
-          Level: currentUser[i].UserLevel
+          const currentUser = snapshot.val();
+          for (let i in currentUser) {
+            currentState.push({
+              email: currentUser[i].UserEmail,
+              UserAnswer: currentUser[i].UserAnswer,
+              Questions: currentUser[i].Question,
+              id: currentUser[i].ID,
+              Score: currentUser[i].Score,
+              Level: currentUser[i].userLevel
+            });
+          }
+          // currentState.push(user);
+          console.log(currentState);
+
+          this.setState({
+            people: currentState,
+            dataHasLoaded: true
+          });
         });
+      } else {
+        console.log("no user");
       }
-      // currentState.push(user);
-      console.log(currentState);
-
-      this.setState({
-        people: currentState,
-        dataHasLoaded: true
-      });
     });
   };
 
