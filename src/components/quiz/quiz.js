@@ -9,6 +9,7 @@ import { Quizdata2 } from "./questionsLevel2";
 import { Quizdata3 } from "./questionsLevel3";
 import { Quizdata4 } from "./questionsLevel4";
 import { Quizdata5 } from "./questionsLevel5";
+import Welcome from "../home/welcome";
 //import { Label } from "semantic-ui-react";
 class Quiz extends Component {
   constructor(props) {
@@ -21,12 +22,13 @@ class Quiz extends Component {
       isEnd: false,
       scores: 0,
       pictures: "",
-      level1: false,
+      level1: true,
       level2: false,
-      level3: true,
+      level3: false,
       level4: false,
       level5: false
     };
+    this.changeToquiz2 = this.changeToquiz2.bind(this);
   }
   loadQuiz = () => {
     const { currentQuest } = this.state;
@@ -93,6 +95,54 @@ class Quiz extends Component {
     });
     console.log(this.state.answer);
   };
+
+  changeToquiz1 = () => {
+    this.setState({
+      level1: true,
+      level2: false,
+      level3: false,
+      level4: false,
+      level5: false
+    });
+  };
+
+  changeToquiz2 = () => {
+    this.setState({
+      level1: false,
+      level2: true,
+      level3: false,
+      level4: false,
+      level5: false
+    });
+  };
+  changeToquiz3 = () => {
+    this.setState({
+      level1: false,
+      level2: false,
+      level3: true,
+      level4: false,
+      level5: false
+    });
+  };
+  changeToquiz4 = () => {
+    this.setState({
+      level1: false,
+      level2: false,
+      level3: false,
+      level4: true,
+      level5: false
+    });
+  };
+  changeToquiz5 = () => {
+    this.setState({
+      level1: false,
+      level2: false,
+      level3: false,
+      level4: false,
+      level5: true
+    });
+  };
+
   nextQuestion = e => {
     // e.preventDefault();
     if (this.state.userAns === null) {
@@ -131,16 +181,20 @@ class Quiz extends Component {
     if (this.state.level1) {
       this.loadQuiz();
       console.log("Quiz1 loaded"); //loads quiz  data in
-    } else if (this.state.level2) {
+    }
+    if (this.state.level2) {
       this.loadQuiz2(); //loads quiz  data in
       console.log("Quiz2 loaded");
-    } else if (this.state.level3) {
+    }
+    if (this.state.level3) {
       this.loadQuiz3(); //loads quiz  data i
       console.log("Quiz3 loaded");
-    } else if (this.state.level4) {
-      this.loadQuiz4(); //loads quiz  data in
+    }
+    if (this.state.level4) {
+      this.loadQuiz4(); //changeToquiz2 quiz  data in
       console.log("Quiz4 loaded");
-    } else {
+    }
+    if (this.state.level5) {
       this.loadQuiz5(); //loads quiz  data in
       console.log("Quiz5 loaded");
     }
@@ -171,8 +225,9 @@ class Quiz extends Component {
       ID: fire.auth().currentUser.uid,
       UserEmail: fire.auth().currentUser.email,
       Question: this.state.questions, //Send data to DB to track for analysis
-      UserAnswer: this.state.userAns
-      //  userLevel: this.state.level1
+      UserAnswer: this.state.userAns,
+      Score: this.state.scores,
+      userLevel: this.state.level1
     });
 
     console.log("Sent to Database");
@@ -224,6 +279,7 @@ class Quiz extends Component {
       return (
         <div className="quizForm">
           <br></br>
+
           <div>
             <ProgressBar animated now={this.state.currentQuest * 10} />
           </div>

@@ -25,13 +25,61 @@ class Welcome extends Component {
       viewProfile: false
       // viewLogin:false
     };
+    //this.changeToquiz2 = this.changeToquiz2.bind(this);
   }
+  changeToquiz1 = () => {
+    this.setState({
+      level1: true,
+      level2: false,
+      level3: false,
+      level4: false,
+      level5: false
+    });
+  };
+
+  changeToquiz2 = () => {
+    this.setState({
+      level1: false,
+      level2: true,
+      level3: false,
+      level4: false,
+      level5: false
+    });
+  };
+  changeToquiz3 = () => {
+    this.setState({
+      level1: false,
+      level2: false,
+      level3: true,
+      level4: false,
+      level5: false
+    });
+  };
+  changeToquiz4 = () => {
+    this.setState({
+      level1: false,
+      level2: false,
+      level3: false,
+      level4: true,
+      level5: false
+    });
+  };
+  changeToquiz5 = () => {
+    this.setState({
+      level1: false,
+      level2: false,
+      level3: false,
+      level4: false,
+      level5: true
+    });
+  };
 
   componentDidMount() {
     this.authListener();
     this.retrieveData();
-
     console.log("Data loaded");
+    // this.props.loadQuiz2();
+    //console.log("quiz 2");
   }
   authListener = () => {
     //checks if user is already logged in 0n browser
@@ -128,7 +176,7 @@ class Welcome extends Component {
             <Nav className="mr-auto">
               Welcome
               <Button>Rookie</Button>
-              <Button>Student</Button>
+              <Button onClick={this.props.updatState}>Student</Button>
               <Button>Intermediate</Button>
               <Button>Expert</Button>
               <Button>Master</Button>

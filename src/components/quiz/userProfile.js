@@ -20,7 +20,7 @@ class UserProfile extends Component {
                 Email :
                 {this.props.email ? this.props.email : "No data for Email"}
                 <br></br>
-                Score :{" "}
+                Score : No data for LevelNo data for LevelNo data for Level
                 {this.props.score ? this.props.score : "No data for Score"}
                 <br></br>
                 Level :{" "}

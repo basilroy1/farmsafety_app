@@ -1,44 +1,73 @@
 import React from "react";
-import Pic from "../pictures/saferty_gaurd.jpg";
-import Pic2 from "../pictures/userprofilepic.jpg";
-import Pic3 from "../pictures/piechartMachinery.jpg";
-import Pic4 from "../pictures/farm_danger.jpeg";
+import "./questions";
+import Pic from "../pictures/rookie1.png";
+import Pic2 from "../pictures/rookie2.PNG";
+import Pic3 from "../pictures/rookie3.png";
+import Pic4 from "../pictures/rookie4.jpg";
+import Pic5 from "../pictures/rookie5.jpg";
 
 export const Quizdata = [
   {
     id: 1,
-    question: "what does this sign mean?",
-    options: ["123", "stop", "yes", "go back"],
-    answer: "123",
-    picture: <img src={Pic} alt="" />
+    question:
+      "If you see this sign on a gate or farm entrance what should you do?",
+    options: [
+      "You should never enter the area where this sign is displayed",
+      "You can enter the area, if you know there is no bull present",
+      "Sometimes, these signs are wrong. So it is OK to enter if you take care",
+      "Most bulls are tame farm pets. You just have to take care"
+    ],
+    answer: "You should never enter the area where this sign is displayed",
+    picture: <img src={Pic} id="pic1" alt="" />
   },
   {
     id: 2,
-    question: "what danger is shown?",
-    options: ["dont enter", "abcd", "all fine"],
-    answer: "abcd",
-    picture: <img src={Pic2} alt="" />
+    question:
+      "If you see this symbol on a bottle or container what does it mean?",
+    options: [
+      "This symbol tells you that the contents of the bottle or container are hazardous and are very dangerous to humans and animals. You should not touch this bootle or container",
+      "This symbol is the logo or symbol for famous brands of chemicals",
+      "This symbol is the international symbol for weed killer spray",
+      "This symbol tells you that the contents of the bottle or container are hazardour and are very dangerous to animals only"
+    ],
+    answer:
+      "This symbol tells you that the contents of the bottle or container are hazardous and are very dangerous to humans and animals. You should not touch this bootle or container",
+    picture: <img src={Pic2} alt="" id="pic2" />
   },
   {
     id: 3,
-    question: "is this correct?",
-    options: ["dont enter", "nothing", "all fine"],
-    answer: "nothing",
-    picture: <img src={Pic3} alt="" />
+    question:
+      "If you see this symbol on a bottle or container what does it mean?",
+    options: [
+      "This symbol tells you that there is electricity flowing in a system",
+      "This symbol tells you that a machine has very dangerous blades or knives which can harm you",
+      "This symbol tells you that a food or liquid is out of date",
+      "This symbol tells you that this is a biological hazard and it is a serious threat to the health of all living things"
+    ],
+    answer:
+      "This symbol tells you that this is a biological hazard and it is a serious threat to the health of all living things",
+    picture: <img src={Pic3} alt="" id="pic3" />
   },
   {
     id: 4,
-    question: "what should you do?",
-    options: ["dont enter", "easy", "all fine", "1"],
-    answer: "easy",
-    picture: <img src={Pic4} alt="" />
+    question: " Why should children not play with this piece of equipment?",
+    options: [
+      "It is a boring toy",
+      "This ratchet strap has many moving parts and it can cause damage to fingers and hands",
+      "This isn't a piece of farm machinery equipment",
+      "It doesn't work outside"
+    ],
+    answer:
+      "This ratchet strap has many moving parts and it can cause damage to fingers and hands",
+    picture: <img src={Pic4} alt="" id="pic4" />
   },
   {
     id: 5,
-    question: "what should you do?",
-    options: ["dont enter", "12", "all fine"],
-    answer: "12",
-    picture: ""
+    question:
+      "What age must you be in Ireland to drive a quad (all terrain vehicle) on a public road?",
+    options: ["21 years old", "12 years old", "14 years old", "16 years old"],
+    answer: "16 years old",
+    picture: <img src={Pic5} alt="" id="pic5" />
   },
   {
     id: 6,
