@@ -5,7 +5,7 @@ import { FiLogOut } from "react-icons/fi";
 import { GiSwordsEmblem } from "react-icons/gi";
 import piechart from "../pictures/piechartMachinery.jpg";
 import Loader from "react-loader-spinner";
-import { Button, Nav, Navbar } from "react-bootstrap";
+import { Button, Nav, Navbar, ButtonToolbar } from "react-bootstrap";
 //import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
 //import Login from "../quiz/login";
 //import Signup from "../quiz/signup";
@@ -179,11 +179,13 @@ class Welcome extends Component {
           <Navbar bg="primary" variant="dark">
             <Nav className="mr-auto">
               Welcome
-              <Button>Rookie</Button>
-              <Button onClick={this.x}>Student</Button>
-              <Button>Intermediate</Button>
-              <Button>Expert</Button>
-              <Button>Master</Button>
+              <ButtonToolbar>
+                <Button>Rookie</Button>
+                <Button onClick={this.x}>Student</Button>
+                <Button>Intermediate</Button>
+                <Button>Expert</Button>
+                <Button>Master</Button>
+              </ButtonToolbar>
             </Nav>
             <Button onClick={this.logout}>
               <Nav>

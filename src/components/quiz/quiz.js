@@ -27,7 +27,7 @@ class Quiz extends Component {
       level1: false,
       level2: false,
       level3: false,
-      level4: false,
+      level4: true,
       level5: false
     };
     this.changeToquiz2 = this.changeToquiz2.bind();
@@ -205,28 +205,6 @@ class Quiz extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (this.state.level1) {
-      this.loadQuiz();
-      console.log("Quiz1 loaded"); //loads quiz  data in
-    }
-    if (this.state.level2) {
-      this.loadQuiz2(); //loads quiz  data in
-      console.log("Quiz2 loaded");
-    }
-    if (this.state.level3) {
-      this.loadQuiz3(); //loads quiz  data i
-      console.log("Quiz3 loaded");
-    }
-    if (this.state.level4) {
-      this.loadQuiz4(); //changeToquiz2 quiz  data in
-      console.log("Quiz4 loaded");
-    }
-    if (this.state.level5) {
-      this.loadQuiz5(); //loads quiz  data in
-      console.log("Quiz5 loaded");
-    } else {
-      console.log("No user states changed");
-    }
     const { currentQuest } = this.state;
     if (this.state.currentQuest !== prevState.currentQuest) {
       this.setState({
@@ -314,6 +292,8 @@ class Quiz extends Component {
           <br></br>
           {options.map(option => (
             <Button
+              size="lg"
+              block
               key={option.id}
               className={`ui floating message options
             ${userAns === option ? "selected" : null}

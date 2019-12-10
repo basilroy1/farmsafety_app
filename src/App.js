@@ -6,7 +6,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Home from "./components/home/home";
 import Quiz from "./components/quiz/quiz";
 import Login from "./components/quiz/login";
-import { Button, Col, Nav, Navbar } from "react-bootstrap";
+import { Button, Col, Nav, Navbar, ButtonToolbar } from "react-bootstrap";
 import Signup from "./components/quiz/signup";
 import Welcome from "./components/home/welcome";
 import { FiLogIn } from "react-icons/fi";
@@ -81,23 +81,29 @@ class App extends Component {
       <body>
         <div className="App">
           <BrowserRouter>
-            <Navbar bg="primary" variant="light">
-              <Button onClick={this.changetoHome}>
-                <Link to="/">
-                  Home <TiHome />
-                </Link>
-              </Button>
-              <Nav className="mr-auto">
-                <Button onClick={this.changetoLogin}>
-                  <Link to="/Login">
-                    Login <FiLogIn />
+            <Navbar bg="dark" variant="dark">
+              <ButtonToolbar>
+                <Button bg="dark" variant="dark" onClick={this.changetoHome}>
+                  <Link to="/">
+                    Home <TiHome />
                   </Link>
                 </Button>
+                <Nav className="mr-auto">
+                  <Button bg="dark" variant="dark" onClick={this.changetoLogin}>
+                    <Link to="/Login">
+                      Login <FiLogIn />
+                    </Link>
+                  </Button>
 
-                <Button onClick={this.changetoSignup}>
-                  <Link to="/Signup">Signup</Link>
-                </Button>
-              </Nav>
+                  <Button
+                    bg="dark"
+                    variant="dark"
+                    onClick={this.changetoSignup}
+                  >
+                    <Link to="/Signup">Signup</Link>
+                  </Button>
+                </Nav>
+              </ButtonToolbar>
             </Navbar>
             {this.state.viewHome ? (
               <Route path="/Home" component={Home} exact />
