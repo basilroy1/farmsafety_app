@@ -16,7 +16,6 @@ import UserProfile from "../quiz/userProfile";
 class Welcome extends Component {
   constructor(props) {
     super(props);
-    // this.logout = this.logout.bind(this);
     this.state = {
       viewquiz: false,
       people: [],
@@ -154,6 +153,8 @@ class Welcome extends Component {
     console.log("Logged out");
   };
   render() {
+    const x = this.props.stateQuiz1;
+    console.log(x);
     let renderData = this.state.people.map((person, index) => {
       return (
         <div style={{ color: " black" }} key={index}>
@@ -171,7 +172,7 @@ class Welcome extends Component {
     });
 
     let loadingSpinner = <Loader id="loader" type="ThreeDots" color="red " />;
-    const changeToquiz = this.props.changeToquiz1;
+
     return (
       <div>
         <div>
@@ -179,7 +180,7 @@ class Welcome extends Component {
             <Nav className="mr-auto">
               Welcome
               <Button>Rookie</Button>
-              <Button onClick={changeToquiz}>Student</Button>
+              <Button onClick={this.x}>Student</Button>
               <Button>Intermediate</Button>
               <Button>Expert</Button>
               <Button>Master</Button>
