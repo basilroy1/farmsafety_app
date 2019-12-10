@@ -10,6 +10,8 @@ import { Quizdata3 } from "./questionsLevel3";
 import { Quizdata4 } from "./questionsLevel4";
 import { Quizdata5 } from "./questionsLevel5";
 import Welcome from "../home/welcome";
+import Test from "../home/test";
+
 //import { Label } from "semantic-ui-react";
 class Quiz extends Component {
   constructor(props) {
@@ -22,13 +24,13 @@ class Quiz extends Component {
       isEnd: false,
       scores: 0,
       pictures: "",
-      level1: true,
+      level1: false,
       level2: false,
       level3: false,
       level4: false,
       level5: false
     };
-    this.changeToquiz2 = this.changeToquiz2.bind(this);
+    this.changeToquiz2 = this.changeToquiz2.bind(<Welcome />);
   }
   loadQuiz = () => {
     const { currentQuest } = this.state;
@@ -197,6 +199,8 @@ class Quiz extends Component {
     if (this.state.level5) {
       this.loadQuiz5(); //loads quiz  data in
       console.log("Quiz5 loaded");
+    } else {
+      console.log("No user states changed");
     }
   }
 
@@ -212,6 +216,7 @@ class Quiz extends Component {
       });
     }
   }
+
   logout = e => {
     e.preventDefault();
     fire.auth().signOut();
@@ -246,11 +251,7 @@ class Quiz extends Component {
     });
     console.log("Sent to Database");
   };
-  chooseLevel1 = () => {
-    this.setState({
-      level1: true
-    });
-  };
+
   finishQuiz = () => {
     if (this.state.currentQuestion === Quizdata.length - 1) {
       this.setState({
@@ -279,7 +280,7 @@ class Quiz extends Component {
       return (
         <div className="quizForm">
           <br></br>
-
+          <Test stateQuiz1={this.changeToquiz2} />
           <div>
             <ProgressBar animated now={this.state.currentQuest * 10} />
           </div>

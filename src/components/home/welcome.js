@@ -25,7 +25,7 @@ class Welcome extends Component {
       viewProfile: false
       // viewLogin:false
     };
-    //this.changeToquiz2 = this.changeToquiz2.bind(this);
+    //  this.changeToquiz2 = this.changeToquiz2.bind(this);
   }
   changeToquiz1 = () => {
     this.setState({
@@ -36,6 +36,7 @@ class Welcome extends Component {
       level5: false
     });
   };
+  /*
 
   changeToquiz2 = () => {
     this.setState({
@@ -46,6 +47,7 @@ class Welcome extends Component {
       level5: false
     });
   };
+  */
   changeToquiz3 = () => {
     this.setState({
       level1: false,
@@ -81,6 +83,7 @@ class Welcome extends Component {
     // this.props.loadQuiz2();
     //console.log("quiz 2");
   }
+
   authListener = () => {
     //checks if user is already logged in 0n browser
     fire.auth().onAuthStateChanged(user => {
@@ -141,7 +144,7 @@ class Welcome extends Component {
   };
   changetoProfile = () => {
     this.setState({
-      viewProfile: true
+      viewProfile: !this.state.viewProfile
     });
   };
 
@@ -168,7 +171,7 @@ class Welcome extends Component {
     });
 
     let loadingSpinner = <Loader id="loader" type="ThreeDots" color="red " />;
-
+    const changeToquiz = this.props.changeToquiz1;
     return (
       <div>
         <div>
@@ -176,7 +179,7 @@ class Welcome extends Component {
             <Nav className="mr-auto">
               Welcome
               <Button>Rookie</Button>
-              <Button onClick={this.props.updatState}>Student</Button>
+              <Button onClick={changeToquiz}>Student</Button>
               <Button>Intermediate</Button>
               <Button>Expert</Button>
               <Button>Master</Button>

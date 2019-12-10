@@ -5,6 +5,9 @@ import { Button, Container, Card } from "react-bootstrap";
 import ProfilePic from "../pictures/userprofilepic.jpg";
 import "./userProfile.css";
 class UserProfile extends Component {
+  componentDidUpdate(prevProps, prevState) {
+    console.log("In componentDidUpdate() Messenger.js");
+  }
   render() {
     return (
       <div id="container" style={{ fontFamily: "sans-serif" }}>
@@ -20,7 +23,7 @@ class UserProfile extends Component {
                 Email :
                 {this.props.email ? this.props.email : "No data for Email"}
                 <br></br>
-                Score : No data for LevelNo data for LevelNo data for Level
+                Score :
                 {this.props.score ? this.props.score : "No data for Score"}
                 <br></br>
                 Level :{" "}
