@@ -51,7 +51,7 @@ class Home extends Component {
             <span class="w3-padding w3-black w3-opacity-min">
               <b>FS</b>
             </span>{" "}
-            <span class="w3-hide-small w3-text-light-grey">Architects</span>
+            <span class="w3-hide-small w3-text-light-grey">Farm Safety</span>
           </h1>
           <Carousel>
             <Carousel.Item className="SlidePictures">

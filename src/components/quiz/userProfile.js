@@ -2,6 +2,7 @@ import React, { Component } from "react";
 //import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
 import fire from "../../config/fire";
 import { Button, Container, Card } from "react-bootstrap";
+import { MdEmail } from "react-icons/md";
 import ProfilePic from "../pictures/userprofilepic.jpg";
 import "./userProfile.css";
 class UserProfile extends Component {
@@ -20,7 +21,7 @@ class UserProfile extends Component {
             <Card.Text style={{ marginLeft: 70 }}>
               <br></br>
               <ul>
-                Email :
+                <MdEmail /> Email :
                 {this.props.email ? this.props.email : "No data for Email"}
                 <br></br>
                 Score :
