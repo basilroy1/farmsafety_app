@@ -5,7 +5,7 @@ import { FiLogOut } from "react-icons/fi";
 import { GiSwordsEmblem } from "react-icons/gi";
 import piechart from "../pictures/piechartMachinery.jpg";
 import Loader from "react-loader-spinner";
-import { Button, Nav, Navbar, ButtonToolbar } from "react-bootstrap";
+import { Button, Nav, Navbar, ButtonToolbar, Tabs, Tab } from "react-bootstrap";
 //import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
 //import Login from "../quiz/login";
 //import Signup from "../quiz/signup";
@@ -22,6 +22,7 @@ class Welcome extends Component {
       dataHasLoaded: false,
       user: {},
       viewProfile: false
+
       // viewLogin:false
     };
     //  this.changeToquiz2 = this.changeToquiz2.bind(this);
@@ -152,9 +153,10 @@ class Welcome extends Component {
     fire.auth().signOut();
     console.log("Logged out");
   };
+
   render() {
     const x = this.props.stateQuiz1;
-    console.log(x);
+
     let renderData = this.state.people.map((person, index) => {
       return (
         <div style={{ color: " black" }} key={index}>
@@ -176,8 +178,8 @@ class Welcome extends Component {
     return (
       <div>
         <div>
-          <Navbar bg="primary" variant="dark">
-            <Nav className="mr-auto">
+          <Navbar id="navbar" bg="primary" variant="dark">
+            <Nav className="mr-auto" style={{ fontSize: 25 }}>
               Welcome
               <ButtonToolbar>
                 <Button>Rookie</Button>

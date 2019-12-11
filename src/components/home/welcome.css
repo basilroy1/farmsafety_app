@@ -5,3 +5,8 @@
   width: 800px;
   border-style: groove;
 }
+#navbar .sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}

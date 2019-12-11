@@ -47,9 +47,12 @@ class Home extends Component {
         </BrowserRouter>
 
         <div>
-          <h2 variant="primary" size="lg" block>
-            Farm safety guide
-          </h2>
+          <h1 class="w3-xxlarge w3-text-white">
+            <span class="w3-padding w3-black w3-opacity-min">
+              <b>FS</b>
+            </span>{" "}
+            <span class="w3-hide-small w3-text-light-grey">Architects</span>
+          </h1>
           <Carousel>
             <Carousel.Item className="SlidePictures">
               <img

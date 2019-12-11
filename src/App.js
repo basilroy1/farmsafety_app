@@ -81,7 +81,7 @@ class App extends Component {
       <body>
         <div className="App">
           <BrowserRouter>
-            <Navbar bg="dark" variant="dark">
+            <Navbar id="navbar" bg="dark" variant="dark">
               <ButtonToolbar>
                 <Button bg="dark" variant="dark" onClick={this.changetoHome}>
                   <Link to="/">
