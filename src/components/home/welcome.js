@@ -20,6 +20,7 @@ import {
 import Quiz from "../quiz/quiz";
 import fire from "../../config/fire";
 import UserProfile from "../quiz/userProfile";
+import Test from "./test";
 
 class Welcome extends Component {
   constructor(props) {
@@ -33,7 +34,7 @@ class Welcome extends Component {
 
       // viewLogin:false
     };
-    //  this.changeToquiz2 = this.changeToquiz2.bind(this);
+    this.changeToquiz2 = this.changeToquiz2.bind(this);
   }
   changeToquiz1 = () => {
     this.setState({
@@ -44,7 +45,6 @@ class Welcome extends Component {
       level5: false
     });
   };
-  /*
 
   changeToquiz2 = () => {
     this.setState({
@@ -55,7 +55,7 @@ class Welcome extends Component {
       level5: false
     });
   };
-  */
+
   changeToquiz3 = () => {
     this.setState({
       level1: false,
@@ -191,7 +191,7 @@ class Welcome extends Component {
               Welcome
               <ButtonToolbar>
                 <Button>Rookie</Button>
-                <Button onClick={this.x}>Student</Button>
+                <Button onClick={this.changeToquiz2}>Student</Button>
                 <Button>Intermediate</Button>
                 <Button>Expert</Button>
                 <Button>Master</Button>
@@ -209,6 +209,8 @@ class Welcome extends Component {
             </Button>
           </Navbar>
         </div>
+
+        <Quiz stateOutput={this.changeToquiz1} />
 
         <div style={{ backgroundColor: "white" }}>
           <h3 className="heading" style={{ color: "black" }}>

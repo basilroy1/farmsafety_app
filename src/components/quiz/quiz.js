@@ -25,12 +25,12 @@ class Quiz extends Component {
       scores: 0,
       pictures: "",
       level1: false,
-      level2: false,
+      level2: this.props.stateOutput,
       level3: false,
-      level4: true,
+      level4: false,
       level5: false
     };
-    this.changeToquiz2 = this.changeToquiz2.bind();
+    //  this.changeToquiz2 = this.changeToquiz2.bind();
   }
   loadQuiz = () => {
     const { currentQuest } = this.state;
@@ -53,7 +53,7 @@ class Quiz extends Component {
         questions: Quizdata2[currentQuest].question,
         options: Quizdata2[currentQuest].options,
         answer: Quizdata2[currentQuest].answer,
-        pictures: Quizdata2[Questions].picture
+        pictures: Quizdata2[currentQuest].picture
       };
     });
     console.log(this.state.answer);
@@ -71,6 +71,7 @@ class Quiz extends Component {
     });
     console.log(this.state.answer);
   };
+  false;
   loadQuiz4 = () => {
     const { currentQuest } = this.state;
     //  console.log(Quizdata[2].question);
@@ -280,7 +281,9 @@ class Quiz extends Component {
       return (
         <div className="quizForm">
           <br></br>
-          <Welcome stateQuiz1={this.changeToquiz2} />
+          {/*  <Welcome stateQuiz1={this.changeToquiz2} />*/}
+          {/*<Test stateQuiz1={this.changeToquiz2} />*/}
+
           <div>
             <ProgressBar animated now={this.state.currentQuest * 10} />
           </div>
