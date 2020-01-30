@@ -27,8 +27,7 @@ class UserProfile extends Component {
                 Score :
                 {this.props.score ? this.props.score : "No data for Score"}
                 <br></br>
-                Level :{" "}
-                {this.props.level ? this.props.level : "No data for User Level"}
+                Level : {this.props.level ? "rookie" : "no data for level"}
               </ul>
             </Card.Text>
           </Card.Body>

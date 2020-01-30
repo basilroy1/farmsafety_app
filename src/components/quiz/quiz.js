@@ -20,6 +20,7 @@ class Quiz extends Component {
       userAns: null,
       options: [],
       disabled: false,
+      levelDisable: false,
       currentQuest: 0,
       isEnd: false,
       scores: 0,
@@ -184,20 +185,16 @@ class Quiz extends Component {
     if (this.props.userLevel1) {
       this.loadQuiz();
       console.log("Quiz1 loaded"); //loads quiz 1 data in
-    }
-    if (this.props.userLevel2) {
+    } else if (this.props.userLevel2) {
       this.loadQuiz2(); //loads quiz 2 data in
       console.log("Quiz2 loaded");
-    }
-    if (this.props.userLevel3) {
+    } else if (this.props.userLevel3) {
       this.loadQuiz3(); //loads quiz3  data
       console.log("Quiz3 loaded");
-    }
-    if (this.props.userLevel4) {
+    } else if (this.props.userLevel4) {
       this.loadQuiz4(); //loads quiz4  data in
       console.log("Quiz4 loaded");
-    }
-    if (this.props.userLevel5) {
+    } else if (this.props.userLevel5) {
       this.loadQuiz5(); //loads quiz 5 data in
       console.log("Quiz5 loaded");
     } else {
@@ -227,13 +224,23 @@ class Quiz extends Component {
   pushtoDB = () => {
     var ref = fire.database().ref("data");
     var newRef = ref.push();
+    const rookie = this.props.userLevel1 ? "rookie" : null;
+    const student = this.props.userLevel2;
+    const intermediate = this.props.userLevel3 ? "intermediate" : null;
+    const expert = this.props.userLevel4 ? "expert" : null;
+    const master = this.props.userLevel5 ? "master" : null;
+
     newRef.set({
       ID: fire.auth().currentUser.uid,
       UserEmail: fire.auth().currentUser.email,
       Question: this.state.questions, //Send data to DB to track for analysis
       UserAnswer: this.state.userAns,
       Score: this.state.scores,
-      userLevel: this.props.userLevel1
+      UserLevel: rookie
+      //  UserLevel: student
+      // UserLevel: intermediate,
+      // UserLevel: expert,
+      //UserLevel: master
     });
 
     console.log("Sent to Database");
@@ -242,15 +249,30 @@ class Quiz extends Component {
   pushtoDB2 = () => {
     var ref = fire.database().ref("data");
     var newRef = ref.push();
+    const rookie = this.props.userLevel1 ? "rookie" : "not rookie";
+    const student = this.props.userLevel2 ? "student" : null;
+    const intermediate = this.props.userLevel3 ? "intermediate" : null;
+    const expert = this.props.userLevel4 ? "expert" : null;
+    const master = this.props.userLevel5 ? "master" : null;
     newRef.set({
       ID: fire.auth().currentUser.uid,
       UserEmail: fire.auth().currentUser.email,
       Question: this.state.questions, //Send data to DB to track for analysis
       UserAnswer: this.state.userAns,
       Score: this.state.scores,
-      userLevel: this.props.userLevel1
+      UserLevel: rookie ///need to chnage the name of these as it overrides the value in the database
+      //    UserLevel: student
+      //  UserLevel: intermediate,
+      // UserLevel: expert,
+      //  UserLevel: master
     });
     console.log("Sent to Database");
+  };
+
+  disableCheckLevel = () => {
+    this.setState({
+      levelDisable: true
+    });
   };
 
   finishQuiz = () => {
@@ -271,7 +293,6 @@ class Quiz extends Component {
     if (isEnd) {
       return (
         <div>
-          <Alert>Quiz Finished</Alert>
           <span>
             Quiz score : {this.state.scores}/{Quizdata.length - 1}
           </span>
@@ -328,6 +349,7 @@ class Quiz extends Component {
               onClick={() => {
                 this.pushtoDB2();
                 this.finishQuiz();
+                this.disableCheckLevel();
                 //  this.chooseLevel1();
               }}
             >
