@@ -21,6 +21,12 @@ import Quiz from "../quiz/quiz";
 import fire from "../../config/fire";
 import UserProfile from "../quiz/userProfile";
 import Test from "./test";
+import Articles from "./articles";
+import Articles2 from "./articles2";
+import Articles3 from "./articles3";
+import Articles4 from "./articles4";
+import Articles5 from "./articles5";
+import { FaLessThanEqual, FaSadCry } from "react-icons/fa";
 
 class Welcome extends Component {
   constructor(props) {
@@ -30,11 +36,17 @@ class Welcome extends Component {
       people: [],
       dataHasLoaded: false,
       user: {},
+      disabled: false,
+      article1: true,
+      article2: false,
+      article3: false,
+      article4: false,
+      article5: false,
       viewProfile: false
 
       // viewLogin:false
     };
-    this.changeToquiz1 = this.changeToquiz1.bind(this);
+    //  this.changeToquiz1 = this.changeToquiz1.bind(this);
   }
   changeToquiz1 = () => {
     this.setState({
@@ -54,7 +66,6 @@ class Welcome extends Component {
       level4: false,
       level5: false
     });
-    console.log("quiz2 clciked");
   };
 
   changeToquiz3 = () => {
@@ -160,7 +171,41 @@ class Welcome extends Component {
     fire.auth().signOut();
     console.log("Logged out");
   };
-
+  articelState = () => {
+    if (this.state.level1) {
+      this.setState({
+        article1: true,
+        article2: false,
+        article3: false,
+        article4: false,
+        article5: false
+      });
+    } else if (this.state.level2) {
+      this.setState({
+        article1: false,
+        article2: true,
+        article3: false,
+        article4: false,
+        article5: false
+      });
+    } else if (this.state.level3) {
+      this.setState({
+        article1: false,
+        article2: false,
+        article3: true,
+        article4: false,
+        article5: false
+      });
+    } else if (this.state.level4) {
+      this.setState({
+        article1: false,
+        article2: true,
+        article3: false,
+        article4: true,
+        article5: false
+      });
+    }
+  };
   render() {
     const x = this.props.stateQuiz1;
 
@@ -189,11 +234,41 @@ class Welcome extends Component {
             <Nav className="mr-auto" style={{ fontSize: 25 }}>
               Welcome
               <ButtonToolbar>
-                <Button onClick={this.changeToquiz1}>Rookie</Button>
-                <Button onClick={this.changeToquiz2}>Student</Button>
-                <Button onClick={this.changeToquiz3}>Intermediate</Button>
-                <Button onClick={this.changeToquiz4}>Expert</Button>
-                <Button onClick={this.changeToquiz5}>Master</Button>
+                <Button
+                  onClick={() => {
+                    this.changeToquiz1();
+                    this.articelState();
+                  }}
+                >
+                  Rookie
+                </Button>
+                <Button
+                  disabled={this.state.disabled}
+                  onClick={() => {
+                    this.changeToquiz2();
+                    this.articelState();
+                  }}
+                >
+                  Student
+                </Button>
+                <Button
+                  disabled={this.state.disabled}
+                  onClick={this.changeToquiz3}
+                >
+                  Intermediate
+                </Button>
+                <Button
+                  disabled={this.state.disabled}
+                  onClick={this.changeToquiz4}
+                >
+                  Expert
+                </Button>
+                <Button
+                  disabled={this.state.disabled}
+                  onClick={this.changeToquiz5}
+                >
+                  Master
+                </Button>
               </ButtonToolbar>
             </Nav>
             <Button onClick={this.logout}>
@@ -208,8 +283,12 @@ class Welcome extends Component {
             </Button>
           </Navbar>
         </div>
-
-        <div style={{ backgroundColor: "white" }}>
+        {this.state.article1 ? <Articles /> : null}
+        {this.state.article2 ? <Articles2 /> : null}
+        {this.state.article3 ? <Articles3 /> : null}
+        {this.state.article4 ? <Articles4 /> : null}
+        {this.state.article5 ? <Articles5 /> : null}
+        {/*     <div style={{ backgroundColor: "white" }}>
           <h3 className="heading" style={{ color: "black" }}>
             Guarding <GiSwordsEmblem />
           </h3>
@@ -248,20 +327,20 @@ class Welcome extends Component {
               machine object are the main causes of deaths with farm machinery.
               <img src={piechart} alt="" />
             </p>
-          </h3>
-          {<div>{this.state.dataHasLoaded ? renderData : loadingSpinner}</div>}
-          <Button onClick={this.changetoQuiz}>Take the Quiz</Button>
+          </h3>*/}
 
-          {this.state.viewquiz ? (
-            <Quiz
-              userLevel1={this.state.level1}
-              userLevel2={this.state.level2}
-              userLevel3={this.state.level3}
-              userLevel4={this.state.level4}
-              userLevel5={this.state.level5}
-            />
-          ) : null}
-        </div>
+        {<div>{this.state.dataHasLoaded ? renderData : loadingSpinner}</div>}
+        <Button onClick={this.changetoQuiz}>Take the Quiz</Button>
+
+        {this.state.viewquiz ? (
+          <Quiz
+            userLevel1={this.state.level1}
+            userLevel2={this.state.level2}
+            userLevel3={this.state.level3}
+            userLevel4={this.state.level4}
+            userLevel5={this.state.level5}
+          />
+        ) : null}
       </div>
     );
   }

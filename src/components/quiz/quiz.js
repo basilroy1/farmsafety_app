@@ -183,22 +183,22 @@ class Quiz extends Component {
   componentDidMount() {
     if (this.props.userLevel1) {
       this.loadQuiz();
-      console.log("Quiz1 loaded"); //loads quiz  data in
+      console.log("Quiz1 loaded"); //loads quiz 1 data in
     }
     if (this.props.userLevel2) {
-      this.loadQuiz2(); //loads quiz  data in
+      this.loadQuiz2(); //loads quiz 2 data in
       console.log("Quiz2 loaded");
     }
     if (this.props.userLevel3) {
-      this.loadQuiz3(); //loads quiz  data i
+      this.loadQuiz3(); //loads quiz3  data
       console.log("Quiz3 loaded");
     }
     if (this.props.userLevel4) {
-      this.loadQuiz4(); //changeToquiz2 quiz  data in
+      this.loadQuiz4(); //loads quiz4  data in
       console.log("Quiz4 loaded");
     }
     if (this.props.userLevel5) {
-      this.loadQuiz5(); //loads quiz  data in
+      this.loadQuiz5(); //loads quiz 5 data in
       console.log("Quiz5 loaded");
     } else {
       console.log("No user states changed");
@@ -233,7 +233,7 @@ class Quiz extends Component {
       Question: this.state.questions, //Send data to DB to track for analysis
       UserAnswer: this.state.userAns,
       Score: this.state.scores,
-      userLevel: this.state.level1
+      userLevel: this.props.userLevel1
     });
 
     console.log("Sent to Database");
@@ -248,7 +248,7 @@ class Quiz extends Component {
       Question: this.state.questions, //Send data to DB to track for analysis
       UserAnswer: this.state.userAns,
       Score: this.state.scores,
-      userLevel: this.state.level1
+      userLevel: this.props.userLevel1
     });
     console.log("Sent to Database");
   };
@@ -328,7 +328,7 @@ class Quiz extends Component {
               onClick={() => {
                 this.pushtoDB2();
                 this.finishQuiz();
-                this.chooseLevel1();
+                //  this.chooseLevel1();
               }}
             >
               Finish
