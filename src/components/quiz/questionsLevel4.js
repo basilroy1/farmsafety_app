@@ -3,7 +3,7 @@ export const Quizdata4 = [
   {
     id: 1,
     question: "what does this sign mean?",
-    options: ["123", "stop", "yes", "go back"],
+    options: ["123", "quiz4", "yes", "go back"],
     answer: "123",
     picture: Pic
   },

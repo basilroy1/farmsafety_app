@@ -25,7 +25,7 @@ class Quiz extends Component {
       scores: 0,
       pictures: "",
       level1: false,
-      level2: this.props.stateOutput,
+      level2: false,
       level3: false,
       level4: false,
       level5: false
@@ -99,7 +99,7 @@ class Quiz extends Component {
     console.log(this.state.answer);
   };
 
-  changeToquiz1 = () => {
+  /*  changeToquiz1 = () => {
     this.setState({
       level1: true,
       level2: false,
@@ -145,7 +145,7 @@ class Quiz extends Component {
       level5: true
     });
   };
-
+*/
   nextQuestion = e => {
     // e.preventDefault();
     if (this.state.userAns === null) {
@@ -181,23 +181,23 @@ class Quiz extends Component {
   };
 
   componentDidMount() {
-    if (this.state.level1) {
+    if (this.props.userLevel1) {
       this.loadQuiz();
       console.log("Quiz1 loaded"); //loads quiz  data in
     }
-    if (this.state.level2) {
+    if (this.props.userLevel2) {
       this.loadQuiz2(); //loads quiz  data in
       console.log("Quiz2 loaded");
     }
-    if (this.state.level3) {
+    if (this.props.userLevel3) {
       this.loadQuiz3(); //loads quiz  data i
       console.log("Quiz3 loaded");
     }
-    if (this.state.level4) {
+    if (this.props.userLevel4) {
       this.loadQuiz4(); //changeToquiz2 quiz  data in
       console.log("Quiz4 loaded");
     }
-    if (this.state.level5) {
+    if (this.props.userLevel5) {
       this.loadQuiz5(); //loads quiz  data in
       console.log("Quiz5 loaded");
     } else {
@@ -282,7 +282,6 @@ class Quiz extends Component {
         <div className="quizForm">
           <br></br>
           {/*  <Welcome stateQuiz1={this.changeToquiz2} />*/}
-          {/*<Test stateQuiz1={this.changeToquiz2} />*/}
 
           <div>
             <ProgressBar animated now={this.state.currentQuest * 10} />

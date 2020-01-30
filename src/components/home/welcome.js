@@ -34,7 +34,7 @@ class Welcome extends Component {
 
       // viewLogin:false
     };
-    this.changeToquiz2 = this.changeToquiz2.bind(this);
+    this.changeToquiz1 = this.changeToquiz1.bind(this);
   }
   changeToquiz1 = () => {
     this.setState({
@@ -54,6 +54,7 @@ class Welcome extends Component {
       level4: false,
       level5: false
     });
+    console.log("quiz2 clciked");
   };
 
   changeToquiz3 = () => {
@@ -88,8 +89,6 @@ class Welcome extends Component {
     this.authListener();
     this.retrieveData();
     console.log("Data loaded");
-    // this.props.loadQuiz2();
-    //console.log("quiz 2");
   }
 
   authListener = () => {
@@ -190,11 +189,11 @@ class Welcome extends Component {
             <Nav className="mr-auto" style={{ fontSize: 25 }}>
               Welcome
               <ButtonToolbar>
-                <Button>Rookie</Button>
+                <Button onClick={this.changeToquiz1}>Rookie</Button>
                 <Button onClick={this.changeToquiz2}>Student</Button>
-                <Button>Intermediate</Button>
-                <Button>Expert</Button>
-                <Button>Master</Button>
+                <Button onClick={this.changeToquiz3}>Intermediate</Button>
+                <Button onClick={this.changeToquiz4}>Expert</Button>
+                <Button onClick={this.changeToquiz5}>Master</Button>
               </ButtonToolbar>
             </Nav>
             <Button onClick={this.logout}>
@@ -209,8 +208,6 @@ class Welcome extends Component {
             </Button>
           </Navbar>
         </div>
-
-        <Quiz stateOutput={this.changeToquiz1} />
 
         <div style={{ backgroundColor: "white" }}>
           <h3 className="heading" style={{ color: "black" }}>
@@ -254,7 +251,16 @@ class Welcome extends Component {
           </h3>
           {<div>{this.state.dataHasLoaded ? renderData : loadingSpinner}</div>}
           <Button onClick={this.changetoQuiz}>Take the Quiz</Button>
-          {this.state.viewquiz ? <Quiz /> : null}
+
+          {this.state.viewquiz ? (
+            <Quiz
+              userLevel1={this.state.level1}
+              userLevel2={this.state.level2}
+              userLevel3={this.state.level3}
+              userLevel4={this.state.level4}
+              userLevel5={this.state.level5}
+            />
+          ) : null}
         </div>
       </div>
     );

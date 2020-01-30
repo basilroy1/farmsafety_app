@@ -3,7 +3,7 @@ class Test extends Component {
   render() {
     return (
       <div>
-        <button onClick={this.props.stateOutput}>click meee</button>
+        <button onClick={this.props.stateOutput}>Student</button>
       </div>
     );
   }
