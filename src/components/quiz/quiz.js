@@ -20,7 +20,7 @@ class Quiz extends Component {
       userAns: null,
       options: [],
       disabled: false,
-      levelDisable: false,
+      levelDisable: true,
       currentQuest: 0,
       isEnd: false,
       scores: 0,
@@ -229,7 +229,7 @@ class Quiz extends Component {
 
   disableCheckLevel = () => {
     this.setState({
-      levelDisable: true
+      levelDisable: false
     });
   };
 
@@ -238,21 +238,16 @@ class Quiz extends Component {
       this.setState({
         isEnd: true
       });
-      return (
-        <h3 style={{ color: "red" }}>
-          Quiz Finished, You scored {this.state.scores}/{Quizdata.length - 1}!
-        </h3>
-      );
     }
   };
 
   render() {
     const { userAns, options, currentQuest, isEnd } = this.state;
-    if (isEnd) {
+    if (currentQuest === Quizdata.length - 1) {
       return (
         <div>
-          <h3>
-            Quiz score : {this.state.scores}/{Quizdata.length - 1}
+          <h3 className="SummaryResults">
+            Quiz Finished, You scored {this.state.scores}/{Quizdata.length - 1}!
           </h3>
         </div>
       );
@@ -295,6 +290,7 @@ class Quiz extends Component {
               onClick={() => {
                 this.nextQuestion();
                 this.pushtoDB();
+                this.finishQuiz();
               }}
             >
               NEXT <FaArrowRight />
@@ -307,7 +303,7 @@ class Quiz extends Component {
               onClick={() => {
                 this.finishQuiz();
                 this.pushtoDB2();
-                this.disableCheck();
+                this.disableCheckLevel();
               }}
             >
               Finish

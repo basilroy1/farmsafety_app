@@ -27,7 +27,7 @@ class UserProfile extends Component {
                 <br></br>
                 Score :{this.props.score}
                 <br></br>
-                <GiTrophy /> Level : {this.props.levelRook ? "Rookie" : null}
+                <GiTrophy /> Level :{this.props.levelRook ? "Rookie" : null}
                 {this.props.levelStudent ? "Student" : null}
                 {this.props.levelIntermediate ? "Intermediate" : null}
                 {this.props.levelExpert ? "Expert" : null}

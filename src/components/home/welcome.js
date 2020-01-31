@@ -34,7 +34,7 @@ class Welcome extends Component {
       people: [],
       dataHasLoaded: false,
       user: {},
-      disabled: false,
+      disabled: true,
       article1: true,
       article2: false,
       article3: false,
@@ -255,8 +255,8 @@ class Welcome extends Component {
                 <Button
                   disabled={this.state.disabled}
                   onClick={() => {
-                    this.changeToquiz2();
                     this.articelState();
+                    this.changeToquiz2();
                   }}
                 >
                   Student
