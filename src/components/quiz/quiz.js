@@ -10,7 +10,7 @@ import { Quizdata3 } from "./questionsLevel3";
 import { Quizdata4 } from "./questionsLevel4";
 import { Quizdata5 } from "./questionsLevel5";
 import Welcome from "../home/welcome";
-import Test from "../home/test";
+import UserProfile from "./userProfile";
 
 //import { Label } from "semantic-ui-react";
 class Quiz extends Component {
@@ -25,6 +25,7 @@ class Quiz extends Component {
       isEnd: false,
       scores: 0,
       pictures: "",
+      levelRook: false,
       level1: false,
       level2: false,
       level3: false,
@@ -100,53 +101,6 @@ class Quiz extends Component {
     console.log(this.state.answer);
   };
 
-  /*  changeToquiz1 = () => {
-    this.setState({
-      level1: true,
-      level2: false,
-      level3: false,
-      level4: false,
-      level5: false
-    });
-  };
-
-  changeToquiz2 = () => {
-    this.setState({
-      level1: false,
-      level2: true,
-      level3: false,
-      level4: false,
-      level5: false
-    });
-  };
-  changeToquiz3 = () => {
-    this.setState({
-      level1: false,
-      level2: false,
-      level3: true,
-      level4: false,
-      level5: false
-    });
-  };
-  changeToquiz4 = () => {
-    this.setState({
-      level1: false,
-      level2: false,
-      level3: false,
-      level4: true,
-      level5: false
-    });
-  };
-  changeToquiz5 = () => {
-    this.setState({
-      level1: false,
-      level2: false,
-      level3: false,
-      level4: false,
-      level5: true
-    });
-  };
-*/
   nextQuestion = e => {
     // e.preventDefault();
     if (this.state.userAns === null) {
@@ -156,6 +110,7 @@ class Quiz extends Component {
     this.setState({
       currentQuest: this.state.currentQuest + 1
     });
+    console.log(this.state.currentQuest);
     this.setState({
       userAns: null
     });
@@ -224,11 +179,11 @@ class Quiz extends Component {
   pushtoDB = () => {
     var ref = fire.database().ref("data");
     var newRef = ref.push();
-    const rookie = this.props.userLevel1 ? "rookie" : null;
+    const rookie = this.props.userLevel1;
     const student = this.props.userLevel2;
-    const intermediate = this.props.userLevel3 ? "intermediate" : null;
-    const expert = this.props.userLevel4 ? "expert" : null;
-    const master = this.props.userLevel5 ? "master" : null;
+    const intermediate = this.props.userLevel3;
+    const expert = this.props.userLevel4;
+    const master = this.props.userLevel5;
 
     newRef.set({
       ID: fire.auth().currentUser.uid,
@@ -236,11 +191,11 @@ class Quiz extends Component {
       Question: this.state.questions, //Send data to DB to track for analysis
       UserAnswer: this.state.userAns,
       Score: this.state.scores,
-      UserLevel: rookie
-      //  UserLevel: student
-      // UserLevel: intermediate,
-      // UserLevel: expert,
-      //UserLevel: master
+      UserLevel: rookie,
+      UserLevelStudent: student,
+      UserLevelIntermediate: intermediate,
+      UserLevelExpert: expert,
+      UserLevelMaster: master
     });
 
     console.log("Sent to Database");
@@ -249,22 +204,25 @@ class Quiz extends Component {
   pushtoDB2 = () => {
     var ref = fire.database().ref("data");
     var newRef = ref.push();
-    const rookie = this.props.userLevel1 ? "rookie" : "not rookie";
-    const student = this.props.userLevel2 ? "student" : null;
-    const intermediate = this.props.userLevel3 ? "intermediate" : null;
-    const expert = this.props.userLevel4 ? "expert" : null;
-    const master = this.props.userLevel5 ? "master" : null;
+    const rookie = this.props.userLevel1;
+    const student = this.props.userLevel2;
+    const intermediate = this.props.userLevel3;
+    const expert = this.props.userLevel4;
+    const master = this.props.userLevel5;
     newRef.set({
       ID: fire.auth().currentUser.uid,
       UserEmail: fire.auth().currentUser.email,
       Question: this.state.questions, //Send data to DB to track for analysis
       UserAnswer: this.state.userAns,
       Score: this.state.scores,
-      UserLevel: rookie ///need to chnage the name of these as it overrides the value in the database
-      //    UserLevel: student
-      //  UserLevel: intermediate,
-      // UserLevel: expert,
-      //  UserLevel: master
+      UserLevel: rookie, ///need to chnage the name of these as it overrides the value in the database
+      UserLevelStudent: student,
+      UserLevelIntermediate: intermediate,
+      UserLevelExpert: expert,
+      UserLevelMaster: master
+    });
+    this.setState({
+      levelRook: rookie
     });
     console.log("Sent to Database");
   };
@@ -281,7 +239,7 @@ class Quiz extends Component {
         isEnd: true
       });
       return (
-        <h3>
+        <h3 style={{ color: "red" }}>
           Quiz Finished, You scored {this.state.scores}/{Quizdata.length - 1}!
         </h3>
       );
@@ -293,9 +251,9 @@ class Quiz extends Component {
     if (isEnd) {
       return (
         <div>
-          <span>
+          <h3>
             Quiz score : {this.state.scores}/{Quizdata.length - 1}
-          </span>
+          </h3>
         </div>
       );
     } else {
@@ -309,10 +267,10 @@ class Quiz extends Component {
           </div>
           {this.state.questions}
           <br></br>
-          <p>Q{this.state.currentQuest}</p>
-
+          <p style={{ textAlign: "center" }}>Q{this.state.currentQuest}</p>
           {this.state.pictures}
           <br></br>
+
           {options.map(option => (
             <Button
               size="lg"
@@ -347,10 +305,9 @@ class Quiz extends Component {
           {currentQuest === Quizdata.length - 1 && (
             <Button
               onClick={() => {
-                this.pushtoDB2();
                 this.finishQuiz();
-                this.disableCheckLevel();
-                //  this.chooseLevel1();
+                this.pushtoDB2();
+                this.disableCheck();
               }}
             >
               Finish

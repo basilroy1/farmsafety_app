@@ -75,7 +75,12 @@ class App extends Component {
       //  viewLogin: false
     });
   };
-
+  /*disableCheckLevel = () => {
+    this.setState({
+      levelDisable: true
+    });
+  };
+  */
   render() {
     return (
       <body>

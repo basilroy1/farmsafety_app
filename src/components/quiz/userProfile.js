@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import fire from "../../config/fire";
 import { Button, Container, Card } from "react-bootstrap";
 import { MdEmail } from "react-icons/md";
+import { GiTrophy } from "react-icons/gi";
 import ProfilePic from "../pictures/userprofilepic.jpg";
 import "./userProfile.css";
 class UserProfile extends Component {
@@ -24,10 +25,13 @@ class UserProfile extends Component {
                 <MdEmail /> Email :
                 {this.props.email ? this.props.email : "No data for Email"}
                 <br></br>
-                Score :
-                {this.props.score ? this.props.score : "No data for Score"}
+                Score :{this.props.score}
                 <br></br>
-                Level : {this.props.level ? "rookie" : "no data for level"}
+                <GiTrophy /> Level : {this.props.levelRook ? "Rookie" : null}
+                {this.props.levelStudent ? "Student" : null}
+                {this.props.levelIntermediate ? "Intermediate" : null}
+                {this.props.levelExpert ? "Expert" : null}
+                {this.props.levelMaster ? "Master" : null}
               </ul>
             </Card.Text>
           </Card.Body>

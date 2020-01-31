@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import "./welcome.css";
-import { MdPerson, MdCheckBox } from "react-icons/md";
+import { MdPerson } from "react-icons/md";
 import { FiLogOut } from "react-icons/fi";
-import { GiSwordsEmblem } from "react-icons/gi";
-import piechart from "../pictures/piechartMachinery.jpg";
+//import { GiSwordsEmblem } from "react-icons/gi";
+//import piechart from "../pictures/piechartMachinery.jpg";
 import Loader from "react-loader-spinner";
 import {
   Button,
@@ -20,7 +20,6 @@ import {
 import Quiz from "../quiz/quiz";
 import fire from "../../config/fire";
 import UserProfile from "../quiz/userProfile";
-import Test from "./test";
 import Articles from "./articles";
 import Articles2 from "./articles2";
 import Articles3 from "./articles3";
@@ -35,15 +34,13 @@ class Welcome extends Component {
       people: [],
       dataHasLoaded: false,
       user: {},
-      disabled: true,
+      disabled: false,
       article1: true,
       article2: false,
       article3: false,
       article4: false,
       article5: false,
       viewProfile: false
-
-      // viewLogin:false
     };
     //  this.changeToquiz1 = this.changeToquiz1.bind(this);
   }
@@ -137,7 +134,11 @@ class Welcome extends Component {
               Questions: currentUser[i].Question,
               id: currentUser[i].ID,
               Score: currentUser[i].Score,
-              Level: currentUser[i].userLevel
+              levelRook: currentUser[i].UserLevel,
+              levelStudent: currentUser[i].UserLevelStudent,
+              levelIntermediate: currentUser[i].UserLevelIntermediate,
+              levelExpert: currentUser[i].UserLevelExpert,
+              levelMaster: currentUser[i].UserLevelMaster
             });
           }
           // currentState.push(user);
@@ -156,7 +157,7 @@ class Welcome extends Component {
 
   changetoQuiz = () => {
     this.setState({
-      viewquiz: true
+      viewquiz: !this.state.viewquiz
     });
   };
   changetoProfile = () => {
@@ -220,7 +221,11 @@ class Welcome extends Component {
           {this.state.viewProfile ? (
             <UserProfile
               className="userProfile"
-              level={person.UserLevel}
+              levelRook={person.levelRook}
+              levelStudent={person.levelStudent}
+              levelIntermediate={person.levelIntermediate}
+              levelExpert={person.levelExpert}
+              levelMaster={person.levelMaster}
               score={person.Score}
               question={person.Questions}
               email={person.email}
@@ -229,7 +234,7 @@ class Welcome extends Component {
         </div>
       );
     });
-
+    //console.log(this.level);
     let loadingSpinner = <Loader id="loader" type="ThreeDots" color="red " />;
 
     return (
