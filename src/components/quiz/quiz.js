@@ -234,7 +234,7 @@ class Quiz extends Component {
   };
 
   finishQuiz = () => {
-    if (this.state.currentQuestion === Quizdata.length - 1) {
+    if (this.state.currentQuest === Quizdata.length - 1) {
       this.setState({
         isEnd: true
       });
@@ -243,7 +243,7 @@ class Quiz extends Component {
 
   render() {
     const { userAns, options, currentQuest, isEnd } = this.state;
-    if (currentQuest === Quizdata.length - 1) {
+    if (isEnd) {
       return (
         <div>
           <h3 className="SummaryResults">
