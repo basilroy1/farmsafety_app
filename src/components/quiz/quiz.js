@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./quiz.css";
 import fire from "../../config/fire";
-import { FaHorse, FaArrowRight } from "react-icons/fa";
+import { FaHorse, FaArrowRight, FaSadTear, FaSmile } from "react-icons/fa";
 import { Button, ProgressBar } from "react-bootstrap";
 import { Alert } from "reactstrap";
 import Questions, { Quizdata } from "./questions";
@@ -240,15 +240,29 @@ class Quiz extends Component {
       });
     }
   };
-
+  loadQuizComponent = () => {
+    return <Quiz />;
+  };
   render() {
-    const { userAns, options, currentQuest, isEnd } = this.state;
-    if (isEnd) {
+    const { userAns, scores, options, currentQuest, isEnd } = this.state;
+    if (isEnd && scores >= 5) {
       return (
         <div>
           <h3 className="SummaryResults">
-            Quiz Finished, You scored {this.state.scores}/{Quizdata.length - 1}!
+            Quiz Finished, You passed {this.state.scores}/{Quizdata.length - 1}{" "}
+            <FaSmile />!
           </h3>
+          <Button>next challenge</Button>
+        </div>
+      );
+    } else if (isEnd && scores < 5) {
+      return (
+        <div>
+          <h3 className="SummaryResults">
+            Quiz Finished, You failed {this.state.scores}/{Quizdata.length - 1}{" "}
+            <FaSadTear />!
+          </h3>
+          <Button onClick={this.loadQuizComponent}>try again</Button>
         </div>
       );
     } else {

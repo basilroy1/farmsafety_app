@@ -32,6 +32,7 @@ class Welcome extends Component {
       article3: false,
       article4: false,
       article5: false,
+      hideQuiz: false,
       viewProfile: false
     };
     //  this.changeToquiz1 = this.changeToquiz1.bind(this);
@@ -168,6 +169,11 @@ class Welcome extends Component {
     fire.auth().signOut();
     console.log("Logged out");
   };
+  hideQuizButton = () => {
+    this.setState({
+      hideQuiz: true
+    });
+  };
   articelState = () => {
     if (this.state.level1) {
       this.setState({
@@ -231,6 +237,7 @@ class Welcome extends Component {
         </div>
       );
     });
+
     //console.log(this.level);
     let loadingSpinner = <Loader id="loader" type="ThreeDots" color="red " />;
 
@@ -306,8 +313,17 @@ class Welcome extends Component {
         {this.state.article5 ? <Articles5 /> : null}
 
         {<div>{this.state.dataHasLoaded ? renderData : loadingSpinner}</div>}
-        <Button onClick={this.changetoQuiz}>Take the Quiz</Button>
 
+        {this.state.hideQuiz ? null : (
+          <Button
+            onClick={() => {
+              this.changetoQuiz();
+              this.hideQuizButton();
+            }}
+          >
+            Take the Quiz
+          </Button>
+        )}
         {this.state.viewquiz ? (
           <Quiz
             userLevel1={this.state.level1}
