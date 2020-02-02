@@ -149,7 +149,12 @@ class Welcome extends Component {
 
   changetoQuiz = () => {
     this.setState({
-      viewquiz: !this.state.viewquiz
+      viewquiz: !this.state.viewquiz,
+      article1: false,
+      article2: false,
+      article3: false,
+      article4: false,
+      article5: false
     });
   };
   changetoProfile = () => {

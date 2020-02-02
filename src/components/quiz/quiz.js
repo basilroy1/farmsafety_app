@@ -25,7 +25,6 @@ class Quiz extends Component {
       isEnd: false,
       scores: 0,
       pictures: "",
-      levelRook: false,
       level1: false,
       level2: false,
       level3: false,
@@ -99,41 +98,6 @@ class Quiz extends Component {
       };
     });
     console.log(this.state.answer);
-  };
-
-  nextQuestion = e => {
-    // e.preventDefault();
-    if (this.state.userAns === null) {
-      alert("choose an option");
-      return;
-    }
-    this.setState({
-      currentQuest: this.state.currentQuest + 1
-    });
-    console.log(this.state.currentQuest);
-    this.setState({
-      userAns: null
-    });
-    // console.log(this.state.currentQuest);
-  };
-
-  checkAns = userAns => {
-    const { answer, scores } = this.state;
-
-    this.setState({
-      userAns: answer,
-      disabled: false
-    });
-    console.log(userAns);
-    if (userAns === answer) {
-      console.log("Correct");
-      this.setState({
-        scores: scores + 1
-      });
-    } else {
-      console.log("Wrong");
-      alert("Correct answer is " + answer);
-    }
   };
 
   componentDidMount() {
@@ -221,9 +185,7 @@ class Quiz extends Component {
       UserLevelExpert: expert,
       UserLevelMaster: master
     });
-    this.setState({
-      levelRook: rookie
-    });
+
     console.log("Sent to Database");
   };
 
@@ -231,6 +193,44 @@ class Quiz extends Component {
     this.setState({
       levelDisable: false
     });
+  };
+  nextQuestion = () => {
+    const { userAns } = this.state;
+    // e.preventDefault();
+    if (userAns === null) {
+      alert("choose an option");
+      return;
+    }
+    this.setState({
+      currentQuest: this.state.currentQuest + 1
+    });
+
+    this.setState({
+      userAns: null
+    });
+  };
+
+  checkAns = userAns => {
+    const { answer, scores } = this.state;
+
+    this.setState({
+      userAns: answer,
+      disabled: false
+    });
+    console.log(userAns);
+    if (userAns === answer) {
+      console.log("Correct");
+      this.setState({
+        scores: scores + 1
+      });
+    } else {
+      this.setState({
+        scores: scores
+      });
+      console.log("Wrong");
+      //  alert("Correct answer is " + answer);
+    }
+    console.log("score : " + this.state.scores);
   };
 
   finishQuiz = () => {
@@ -290,7 +290,6 @@ class Quiz extends Component {
               onClick={() => {
                 this.nextQuestion();
                 this.pushtoDB();
-                this.finishQuiz();
               }}
             >
               NEXT <FaArrowRight />

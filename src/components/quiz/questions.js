@@ -8,7 +8,7 @@ import Pic5 from "../pictures/rookie5.jpg";
 
 export const Quizdata = [
   {
-    id: 1,
+    id: 0,
     question:
       "If you see this sign on a gate or farm entrance what should you do?",
     options: [
@@ -21,7 +21,7 @@ export const Quizdata = [
     picture: <img src={Pic} id="pic1" alt="" />
   },
   {
-    id: 2,
+    id: 1,
     question:
       "If you see this symbol on a bottle or container what does it mean?",
     options: [
@@ -35,7 +35,7 @@ export const Quizdata = [
     picture: <img src={Pic2} alt="" id="pic2" />
   },
   {
-    id: 3,
+    id: 2,
     question:
       "If you see this symbol on a bottle or container what does it mean?",
     options: [
@@ -49,7 +49,7 @@ export const Quizdata = [
     picture: <img src={Pic3} alt="" id="pic3" />
   },
   {
-    id: 4,
+    id: 3,
     question: " Why should children not play with this piece of equipment?",
     options: [
       "It is a boring toy",
@@ -62,7 +62,7 @@ export const Quizdata = [
     picture: <img src={Pic4} alt="" id="pic4" />
   },
   {
-    id: 5,
+    id: 4,
     question:
       "What age must you be in Ireland to drive a quad (all terrain vehicle) on a public road?",
     options: ["21 years old", "12 years old", "14 years old", "16 years old"],
@@ -70,35 +70,35 @@ export const Quizdata = [
     picture: <img src={Pic5} alt="" id="pic5" />
   },
   {
-    id: 6,
+    id: 5,
     question: "what should you do?",
     options: ["dont enter", "43", "all fine"],
     answer: "43",
     picture: ""
   },
   {
-    id: 7,
+    id: 6,
     question: "what should you do?",
     options: ["dont enter", "set", "all fine"],
     answer: "set",
     picture: ""
   },
   {
-    id: 8,
+    id: 7,
     question: "what should you do?",
     options: ["dont enter", "lol", "all fine"],
     answer: "lol",
     picture: ""
   },
   {
-    id: 9,
+    id: 8,
     question: "what should you do?",
     options: ["dont enter", "nothing", "all fine"],
     answer: "nothing",
     picture: ""
   },
   {
-    id: 10,
+    id: 9,
     question: "what should you do?",
     options: ["dont enter", "yup", "all fine"],
     answer: "yup",
@@ -107,8 +107,8 @@ export const Quizdata = [
   {
     id: 10,
     question: "what should you do?",
-    options: ["dont enter", "xd", "all fine"],
-    answer: "xd",
+    options: ["dont enter", "qqqq", "all fine"],
+    answer: "qqqq",
     picture: ""
   }
 ];
