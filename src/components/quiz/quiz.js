@@ -11,6 +11,7 @@ import { Quizdata4 } from "./questionsLevel4";
 import { Quizdata5 } from "./questionsLevel5";
 import Welcome from "../home/welcome";
 import UserProfile from "./userProfile";
+import Test from "../home/test";
 
 //import { Label } from "semantic-ui-react";
 class Quiz extends Component {
@@ -241,8 +242,16 @@ class Quiz extends Component {
     }
   };
   loadQuizComponent = () => {
-    return <Quiz />;
+    if (
+      this.state.currentQuest === Quizdata.length - 1 &&
+      this.state.scores < 5
+    ) {
+      this.setState({
+        isEnd: true
+      });
+    }
   };
+
   render() {
     const { userAns, scores, options, currentQuest, isEnd } = this.state;
     if (isEnd && scores >= 5) {
@@ -252,6 +261,7 @@ class Quiz extends Component {
             Quiz Finished, You passed {this.state.scores}/{Quizdata.length - 1}{" "}
             <FaSmile />!
           </h3>
+
           <Button>next challenge</Button>
         </div>
       );
@@ -262,7 +272,9 @@ class Quiz extends Component {
             Quiz Finished, You failed {this.state.scores}/{Quizdata.length - 1}{" "}
             <FaSadTear />!
           </h3>
-          <Button onClick={this.loadQuizComponent}>try again</Button>
+          <Test result={this.loadQuizComponent}>
+            <Button>try again</Button>
+          </Test>
         </div>
       );
     } else {

@@ -17,6 +17,7 @@ import Articles2 from "./articles2";
 import Articles3 from "./articles3";
 import Articles4 from "./articles4";
 import Articles5 from "./articles5";
+import Test from "./test";
 
 class Welcome extends Component {
   constructor(props) {
@@ -324,6 +325,7 @@ class Welcome extends Component {
             Take the Quiz
           </Button>
         )}
+
         {this.state.viewquiz ? (
           <Quiz
             userLevel1={this.state.level1}
