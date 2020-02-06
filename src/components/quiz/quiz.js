@@ -190,11 +190,11 @@ class Quiz extends Component {
     console.log("Sent to Database");
   };
 
-  disableCheckLevel = () => {
-    this.setState({
-      levelDisable: false
-    });
-  };
+  // disableCheckLevel = () => {
+  //  this.setState({
+  //   levelDisable: false
+  //});
+  //};
   nextQuestion = () => {
     const { userAns } = this.state;
     // e.preventDefault();
@@ -328,7 +328,8 @@ class Quiz extends Component {
               onClick={() => {
                 this.finishQuiz();
                 this.pushtoDB2();
-                this.disableCheckLevel();
+                //  this.disableCheckLevel();
+                this.props.handleDisableValue(scores); // child to parent
               }}
             >
               Finish

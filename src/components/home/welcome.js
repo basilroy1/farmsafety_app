@@ -28,12 +28,18 @@ class Welcome extends Component {
       dataHasLoaded: false,
       user: {},
       disabled: true,
+      disabledRook: true,
+      disabledStudent: true,
+      disabledInterm: true,
+      disabledExpert: true,
+      disabledMaster: true,
       article1: true,
       article2: false,
       article3: false,
       article4: false,
       article5: false,
       hideQuiz: false,
+
       viewProfile: false
     };
     //  this.changeToquiz1 = this.changeToquiz1.bind(this);
@@ -44,7 +50,8 @@ class Welcome extends Component {
       level2: false,
       level3: false,
       level4: false,
-      level5: false
+      level5: false,
+      disabled: false
     });
   };
 
@@ -54,7 +61,8 @@ class Welcome extends Component {
       level2: true,
       level3: false,
       level4: false,
-      level5: false
+      level5: false,
+      disabledStudent: false
     });
   };
 
@@ -64,7 +72,8 @@ class Welcome extends Component {
       level2: false,
       level3: true,
       level4: false,
-      level5: false
+      level5: false,
+      disabledInterm: false
     });
   };
   changeToquiz4 = () => {
@@ -73,7 +82,8 @@ class Welcome extends Component {
       level2: false,
       level3: false,
       level4: true,
-      level5: false
+      level5: false,
+      disabledExpert: false
     });
   };
   changeToquiz5 = () => {
@@ -82,7 +92,8 @@ class Welcome extends Component {
       level2: false,
       level3: false,
       level4: false,
-      level5: true
+      level5: true,
+      disabledMaster: false
     });
   };
 
@@ -218,6 +229,56 @@ class Welcome extends Component {
       });
     }
   };
+
+  handleDisableValue = scores => {
+    if (this.state.disabledRook && scores >= 5) {
+      this.setState({
+        disabledStudent: false
+      });
+    } else if (this.state.disabledStudent && scores >= 5) {
+      this.setState({
+        disabledInterm: false
+      });
+    } else if (this.state.disabledInterm && scores >= 5) {
+      this.setState({
+        disabledExpert: false
+      });
+    } else if (this.state.disabledExpert && scores >= 5) {
+      this.setState({
+        disabledMaster: false
+      });
+    } else if (this.state.disabledRook && scores < 5) {
+      this.setState({
+        disabledStudent: true
+      });
+    } else if (this.state.disabledStudent && scores < 5) {
+      this.setState({
+        disabledStudent: true
+      });
+    } else if (this.state.disabledInterm && scores < 5) {
+      this.setState({
+        disabledInterm: true
+      });
+    } else if (this.state.disabledExpert && scores < 5) {
+      this.setState({
+        disabledExpert: true
+      });
+    } else if (this.state.disabledMaster && scores < 5) {
+      this.setState({
+        disabledMaster: true
+      });
+    }
+
+    /*  {
+      this.state.disabledRook && scores >= 5
+        ? this.setState({
+            disabledMaster: true
+          })
+        : null;
+    }
+    */
+  };
+
   render() {
     let renderData = this.state.people.map((person, index) => {
       return (
@@ -258,7 +319,7 @@ class Welcome extends Component {
                   Rookie
                 </Button>
                 <Button
-                  disabled={this.state.disabled}
+                  disabled={this.state.disabledStudent}
                   onClick={() => {
                     this.articelState();
                     this.changeToquiz2();
@@ -267,7 +328,7 @@ class Welcome extends Component {
                   Student
                 </Button>
                 <Button
-                  disabled={this.state.disabled}
+                  disabled={this.state.disabledInterm}
                   onClick={() => {
                     this.changeToquiz3();
                     this.articelState();
@@ -276,7 +337,7 @@ class Welcome extends Component {
                   Intermediate
                 </Button>
                 <Button
-                  disabled={this.state.disabled}
+                  disabled={this.state.disabledExpert}
                   onClick={() => {
                     this.changeToquiz4();
                     this.articelState();
@@ -285,7 +346,7 @@ class Welcome extends Component {
                   Expert
                 </Button>
                 <Button
-                  disabled={this.state.disabled}
+                  disabled={this.state.disabledMaster}
                   onClick={() => {
                     this.changeToquiz5();
                     this.articelState();
@@ -317,6 +378,8 @@ class Welcome extends Component {
 
         {this.state.hideQuiz ? null : (
           <Button
+            disabled={this.state.disabled}
+            //  disabled={this.state.disabledStudent}
             onClick={() => {
               this.changetoQuiz();
               this.hideQuizButton();
@@ -328,6 +391,7 @@ class Welcome extends Component {
 
         {this.state.viewquiz ? (
           <Quiz
+            handleDisableValue={this.handleDisableValue}
             userLevel1={this.state.level1}
             userLevel2={this.state.level2}
             userLevel3={this.state.level3}
