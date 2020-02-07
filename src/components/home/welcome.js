@@ -28,22 +28,17 @@ class Welcome extends Component {
       dataHasLoaded: false,
       user: {},
       disabled: true,
-      disabledRook: true,
-      disabledStudent: true,
-      disabledInterm: true,
-      disabledExpert: true,
-      disabledMaster: true,
+      level: 0,
       article1: true,
       article2: false,
       article3: false,
       article4: false,
       article5: false,
       hideQuiz: false,
-
       viewProfile: false
     };
-    //  this.changeToquiz1 = this.changeToquiz1.bind(this);
   }
+
   changeToquiz1 = () => {
     this.setState({
       level1: true,
@@ -62,7 +57,8 @@ class Welcome extends Component {
       level3: false,
       level4: false,
       level5: false,
-      disabledStudent: false
+      disabled: false
+      //  disabledStudent: false
     });
   };
 
@@ -73,7 +69,8 @@ class Welcome extends Component {
       level3: true,
       level4: false,
       level5: false,
-      disabledInterm: false
+      disabled: false
+      // disabledInterm: false
     });
   };
   changeToquiz4 = () => {
@@ -83,7 +80,8 @@ class Welcome extends Component {
       level3: false,
       level4: true,
       level5: false,
-      disabledExpert: false
+      disabled: false
+      //   disabledExpert: false
     });
   };
   changeToquiz5 = () => {
@@ -93,7 +91,8 @@ class Welcome extends Component {
       level3: false,
       level4: false,
       level5: true,
-      disabledMaster: false
+      disabled: false
+      //   disabledMaster: false
     });
   };
 
@@ -143,7 +142,8 @@ class Welcome extends Component {
               levelStudent: currentUser[i].UserLevelStudent,
               levelIntermediate: currentUser[i].UserLevelIntermediate,
               levelExpert: currentUser[i].UserLevelExpert,
-              levelMaster: currentUser[i].UserLevelMaster
+              levelMaster: currentUser[i].UserLevelMaster,
+              Rank: currentUser[i].RankValue
             });
           }
           // currentState.push(user);
@@ -152,6 +152,7 @@ class Welcome extends Component {
           this.setState({
             people: currentState,
             dataHasLoaded: true
+            // level: Rank
           });
         });
       } else {
@@ -231,25 +232,33 @@ class Welcome extends Component {
   };
 
   handleDisableValue = scores => {
+    if (scores >= 5 && this.state.level < 4) {
+      this.setState({ level: this.state.level + 1 });
+    } else {
+      this.setState({ level: this.state.level + 0 });
+    }
+    console.log(this.state.level);
+  };
+  /*handleDisableValue = scores => {
     if (this.state.disabledRook && scores >= 5) {
       this.setState({
         disabledStudent: false
       });
-    } else if (this.state.disabledStudent && scores >= 5) {
+    } else if (this.state.disabledStudent === false && scores >= 5) {
       this.setState({
         disabledInterm: false
       });
-    } else if (this.state.disabledInterm && scores >= 5) {
+    } else if (this.state.disabledInterm === false && scores >= 5) {
       this.setState({
         disabledExpert: false
       });
-    } else if (this.state.disabledExpert && scores >= 5) {
+    } else if (this.state.disabledExpert === false && scores >= 5) {
       this.setState({
         disabledMaster: false
       });
     } else if (this.state.disabledRook && scores < 5) {
       this.setState({
-        disabledStudent: true
+        disabledRook: true
       });
     } else if (this.state.disabledStudent && scores < 5) {
       this.setState({
@@ -267,19 +276,13 @@ class Welcome extends Component {
       this.setState({
         disabledMaster: true
       });
-    }
-
-    /*  {
-      this.state.disabledRook && scores >= 5
-        ? this.setState({
-            disabledMaster: true
-          })
-        : null;
-    }
-    */
-  };
-
+    }  
+  };*/
   render() {
+    const STUDENT = 1;
+    const INTERM = 2;
+    const EXPERT = 3;
+    const MASTER = 4;
     let renderData = this.state.people.map((person, index) => {
       return (
         <div style={{ color: " black" }} key={index}>
@@ -294,13 +297,13 @@ class Welcome extends Component {
               score={person.Score}
               question={person.Questions}
               email={person.email}
+              // Rank={person.RankValue}
             />
           ) : null}
         </div>
       );
     });
 
-    //console.log(this.level);
     let loadingSpinner = <Loader id="loader" type="ThreeDots" color="red " />;
 
     return (
@@ -319,7 +322,7 @@ class Welcome extends Component {
                   Rookie
                 </Button>
                 <Button
-                  disabled={this.state.disabledStudent}
+                  disabled={this.state.level < STUDENT}
                   onClick={() => {
                     this.articelState();
                     this.changeToquiz2();
@@ -328,7 +331,7 @@ class Welcome extends Component {
                   Student
                 </Button>
                 <Button
-                  disabled={this.state.disabledInterm}
+                  disabled={this.state.level < INTERM}
                   onClick={() => {
                     this.changeToquiz3();
                     this.articelState();
@@ -337,7 +340,7 @@ class Welcome extends Component {
                   Intermediate
                 </Button>
                 <Button
-                  disabled={this.state.disabledExpert}
+                  disabled={this.state.level < EXPERT}
                   onClick={() => {
                     this.changeToquiz4();
                     this.articelState();
@@ -346,7 +349,7 @@ class Welcome extends Component {
                   Expert
                 </Button>
                 <Button
-                  disabled={this.state.disabledMaster}
+                  disabled={this.state.level < MASTER}
                   onClick={() => {
                     this.changeToquiz5();
                     this.articelState();
@@ -376,21 +379,19 @@ class Welcome extends Component {
 
         {<div>{this.state.dataHasLoaded ? renderData : loadingSpinner}</div>}
 
-        {this.state.hideQuiz ? null : (
-          <Button
-            disabled={this.state.disabled}
-            //  disabled={this.state.disabledStudent}
-            onClick={() => {
-              this.changetoQuiz();
-              this.hideQuizButton();
-            }}
-          >
-            Take the Quiz
-          </Button>
-        )}
+        <Button
+          disabled={this.state.disabled}
+          onClick={() => {
+            this.changetoQuiz();
+            this.hideQuizButton();
+          }}
+        >
+          Take the Quiz
+        </Button>
 
         {this.state.viewquiz ? (
           <Quiz
+            rankValue={this.state.level}
             handleDisableValue={this.handleDisableValue}
             userLevel1={this.state.level1}
             userLevel2={this.state.level2}

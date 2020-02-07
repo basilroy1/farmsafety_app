@@ -21,7 +21,7 @@ class Quiz extends Component {
       userAns: null,
       options: [],
       disabled: false,
-      levelDisable: true,
+      // levelDisable: true,
       currentQuest: 0,
       isEnd: false,
       scores: 0,
@@ -149,6 +149,7 @@ class Quiz extends Component {
     const intermediate = this.props.userLevel3;
     const expert = this.props.userLevel4;
     const master = this.props.userLevel5;
+    const rankVal = this.props.rankValue;
 
     newRef.set({
       ID: fire.auth().currentUser.uid,
@@ -160,7 +161,8 @@ class Quiz extends Component {
       UserLevelStudent: student,
       UserLevelIntermediate: intermediate,
       UserLevelExpert: expert,
-      UserLevelMaster: master
+      UserLevelMaster: master,
+      RankValue: rankVal
     });
 
     console.log("Sent to Database");
@@ -174,27 +176,24 @@ class Quiz extends Component {
     const intermediate = this.props.userLevel3;
     const expert = this.props.userLevel4;
     const master = this.props.userLevel5;
+    const rankVal = this.props.rankValue;
     newRef.set({
       ID: fire.auth().currentUser.uid,
       UserEmail: fire.auth().currentUser.email,
       Question: this.state.questions, //Send data to DB to track for analysis
       UserAnswer: this.state.userAns,
       Score: this.state.scores,
-      UserLevel: rookie, ///need to chnage the name of these as it overrides the value in the database
+      UserLevel: rookie, ///need to change the name of these as it overrides the value in the database
       UserLevelStudent: student,
       UserLevelIntermediate: intermediate,
       UserLevelExpert: expert,
-      UserLevelMaster: master
+      UserLevelMaster: master,
+      RankValue: rankVal
     });
 
     console.log("Sent to Database");
   };
 
-  // disableCheckLevel = () => {
-  //  this.setState({
-  //   levelDisable: false
-  //});
-  //};
   nextQuestion = () => {
     const { userAns } = this.state;
     // e.preventDefault();
