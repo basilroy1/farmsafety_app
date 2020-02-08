@@ -143,7 +143,7 @@ class Welcome extends Component {
               levelIntermediate: currentUser[i].UserLevelIntermediate,
               levelExpert: currentUser[i].UserLevelExpert,
               levelMaster: currentUser[i].UserLevelMaster,
-              Rank: currentUser[i].RankValue
+              rank: currentUser[i].RankValue
             });
           }
           // currentState.push(user);
@@ -152,7 +152,7 @@ class Welcome extends Component {
           this.setState({
             people: currentState,
             dataHasLoaded: true
-            // level: Rank
+            //  level: rank
           });
         });
       } else {
@@ -230,15 +230,19 @@ class Welcome extends Component {
       });
     }
   };
+  /*you can map DB value to your javascript level values. for eg. if your DB has a level as "student" 
+you can use state value to STUDENT constant which is 1. you can create a simple object like { "student": STUDENT, "master": MASTER, and other } and 
+get current level and assign that to your state*/
 
   handleDisableValue = scores => {
     if (scores >= 5 && this.state.level < 4) {
-      this.setState({ level: this.state.level + 1 });
-    } else {
-      this.setState({ level: this.state.level + 0 });
+      this.setState(prevState => ({
+        level: this.state.level + 1
+      }));
     }
     console.log(this.state.level);
   };
+  // state = { rank: STUDENT };
   /*handleDisableValue = scores => {
     if (this.state.disabledRook && scores >= 5) {
       this.setState({
@@ -297,12 +301,14 @@ class Welcome extends Component {
               score={person.Score}
               question={person.Questions}
               email={person.email}
-              // Rank={person.RankValue}
+              rank={person.rank}
             />
           ) : null}
         </div>
       );
+      let res = this.state.rank;
     });
+    //let res = this.state.rank;
 
     let loadingSpinner = <Loader id="loader" type="ThreeDots" color="red " />;
 
