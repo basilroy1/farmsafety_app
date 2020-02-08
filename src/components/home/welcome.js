@@ -17,7 +17,6 @@ import Articles2 from "./articles2";
 import Articles3 from "./articles3";
 import Articles4 from "./articles4";
 import Articles5 from "./articles5";
-import Test from "./test";
 
 class Welcome extends Component {
   constructor(props) {
@@ -146,6 +145,10 @@ class Welcome extends Component {
               rank: currentUser[i].RankValue
             });
           }
+          // this.setState({
+          // level: this.state.rank
+          // });
+
           // currentState.push(user);
           console.log(currentState);
 
@@ -234,7 +237,10 @@ class Welcome extends Component {
 you can use state value to STUDENT constant which is 1. you can create a simple object like { "student": STUDENT, "master": MASTER, and other } and 
 get current level and assign that to your state*/
 
-  handleDisableValue = scores => {
+  handleDisableValue = (scores, rank, user) => {
+    if (user) {
+      this.setState({ level: rank });
+    }
     if (scores >= 5 && this.state.level < 4) {
       this.setState(prevState => ({
         level: this.state.level + 1
@@ -242,7 +248,9 @@ get current level and assign that to your state*/
     }
     console.log(this.state.level);
   };
+
   // state = { rank: STUDENT };
+
   /*handleDisableValue = scores => {
     if (this.state.disabledRook && scores >= 5) {
       this.setState({
@@ -306,9 +314,7 @@ get current level and assign that to your state*/
           ) : null}
         </div>
       );
-      let res = this.state.rank;
     });
-    //let res = this.state.rank;
 
     let loadingSpinner = <Loader id="loader" type="ThreeDots" color="red " />;
 

@@ -27,6 +27,7 @@ class Quiz extends Component {
       scores: 0,
       pictures: "",
       level1: false,
+      //   res: true,
       level2: false,
       level3: false,
       level4: false,
@@ -239,6 +240,12 @@ class Quiz extends Component {
         isEnd: true
       });
     }
+    /* setTimeout(() => {
+      this.setState({
+        isEnd: false
+      });
+    }, 3500);
+    */
   };
   loadQuizComponent = () => {
     if (
