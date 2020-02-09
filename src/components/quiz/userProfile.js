@@ -32,8 +32,6 @@ class UserProfile extends Component {
                 {this.props.levelIntermediate ? "Intermediate" : null}
                 {this.props.levelExpert ? "Expert" : null}
                 {this.props.levelMaster ? "Master" : null}
-                <br></br>
-                rank: {this.props.rank}
               </ul>
             </Card.Text>
           </Card.Body>

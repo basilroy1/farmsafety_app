@@ -57,7 +57,6 @@ class Welcome extends Component {
       level4: false,
       level5: false,
       disabled: false
-      //  disabledStudent: false
     });
   };
 
@@ -69,7 +68,6 @@ class Welcome extends Component {
       level4: false,
       level5: false,
       disabled: false
-      // disabledInterm: false
     });
   };
   changeToquiz4 = () => {
@@ -80,7 +78,6 @@ class Welcome extends Component {
       level4: true,
       level5: false,
       disabled: false
-      //   disabledExpert: false
     });
   };
   changeToquiz5 = () => {
@@ -91,13 +88,13 @@ class Welcome extends Component {
       level4: false,
       level5: true,
       disabled: false
-      //   disabledMaster: false
     });
   };
 
   componentDidMount() {
     this.authListener();
     this.retrieveData();
+
     console.log("Data loaded");
   }
 
@@ -145,23 +142,20 @@ class Welcome extends Component {
               rank: currentUser[i].RankValue
             });
           }
-          // this.setState({
-          // level: this.state.rank
-          // });
 
           // currentState.push(user);
           console.log(currentState);
-
+          this.rankData(); //setting rank value from DB
           this.setState({
             people: currentState,
             dataHasLoaded: true
-            //  level: rank
           });
         });
       } else {
         console.log("no user");
       }
     });
+    // this.data();
   };
 
   changetoQuiz = () => {
@@ -233,63 +227,23 @@ class Welcome extends Component {
       });
     }
   };
-  /*you can map DB value to your javascript level values. for eg. if your DB has a level as "student" 
-you can use state value to STUDENT constant which is 1. you can create a simple object like { "student": STUDENT, "master": MASTER, and other } and 
-get current level and assign that to your state*/
 
-  handleDisableValue = (scores, rank, user) => {
-    if (user) {
-      this.setState({ level: rank });
-    }
+  handleDisableValue = scores => {
     if (scores >= 5 && this.state.level < 4) {
       this.setState(prevState => ({
         level: this.state.level + 1
       }));
     }
-    console.log(this.state.level);
+  };
+  rankData = () => {
+    this.state.people.map((person, index) => {
+      this.setState({
+        level: person.rank
+      });
+      console.log(this.state.level);
+    });
   };
 
-  // state = { rank: STUDENT };
-
-  /*handleDisableValue = scores => {
-    if (this.state.disabledRook && scores >= 5) {
-      this.setState({
-        disabledStudent: false
-      });
-    } else if (this.state.disabledStudent === false && scores >= 5) {
-      this.setState({
-        disabledInterm: false
-      });
-    } else if (this.state.disabledInterm === false && scores >= 5) {
-      this.setState({
-        disabledExpert: false
-      });
-    } else if (this.state.disabledExpert === false && scores >= 5) {
-      this.setState({
-        disabledMaster: false
-      });
-    } else if (this.state.disabledRook && scores < 5) {
-      this.setState({
-        disabledRook: true
-      });
-    } else if (this.state.disabledStudent && scores < 5) {
-      this.setState({
-        disabledStudent: true
-      });
-    } else if (this.state.disabledInterm && scores < 5) {
-      this.setState({
-        disabledInterm: true
-      });
-    } else if (this.state.disabledExpert && scores < 5) {
-      this.setState({
-        disabledExpert: true
-      });
-    } else if (this.state.disabledMaster && scores < 5) {
-      this.setState({
-        disabledMaster: true
-      });
-    }  
-  };*/
   render() {
     const STUDENT = 1;
     const INTERM = 2;
