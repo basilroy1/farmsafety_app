@@ -133,11 +133,7 @@ class Signup extends Component {
                 )}
               </div>
             </div>
-            <Button
-              className="signupbtn"
-              style={{ marginLeft: 200 }}
-              onClick={this.signUp}
-            >
+            <Button className="signupbtn" onClick={this.signUp}>
               Signup <GiFarmTractor />
             </Button>
           </form>

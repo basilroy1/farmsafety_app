@@ -21,8 +21,24 @@
 .options {
   cursor: pointer;
 }
-.SummaryResults {
-  background-color: aqua;
-  padding: 30px;
-  text-align: center;
+.SummaryResultsFail {
+  background-color: rgb(196, 26, 54);
+  padding: 50px;
+  margin: 0;
+  border-radius: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+.SummaryResultsPass {
+  background-color: rgb(0, 255, 115);
+  padding: 50px;
+  border-radius: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }

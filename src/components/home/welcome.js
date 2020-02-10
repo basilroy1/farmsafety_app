@@ -358,6 +358,7 @@ class Welcome extends Component {
         {<div>{this.state.dataHasLoaded ? renderData : loadingSpinner}</div>}
 
         <Button
+          id="takeQuizbtn"
           disabled={this.state.disabled}
           onClick={() => {
             this.changetoQuiz();

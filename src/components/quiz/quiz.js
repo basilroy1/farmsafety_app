@@ -2,8 +2,9 @@ import React, { Component } from "react";
 import "./quiz.css";
 import fire from "../../config/fire";
 import { FaHorse, FaArrowRight, FaSadTear, FaSmile } from "react-icons/fa";
+//import { MdClose } from "react-icons/md";
 import { Button, ProgressBar } from "react-bootstrap";
-import { Alert } from "reactstrap";
+//import { Alert } from "reactstrap";
 import Questions, { Quizdata } from "./questions";
 import { Quizdata2 } from "./questionsLevel2";
 import { Quizdata3 } from "./questionsLevel3";
@@ -11,7 +12,6 @@ import { Quizdata4 } from "./questionsLevel4";
 import { Quizdata5 } from "./questionsLevel5";
 import Welcome from "../home/welcome";
 import UserProfile from "./userProfile";
-import Test from "../home/test";
 
 //import { Label } from "semantic-ui-react";
 class Quiz extends Component {
@@ -253,7 +253,7 @@ class Quiz extends Component {
     if (isEnd && scores >= 5) {
       return (
         <div>
-          <h3 className="SummaryResults">
+          <h3 className="SummaryResultsPass">
             Quiz Finished, You passed {this.state.scores}/{Quizdata.length - 1}{" "}
             <FaSmile />!
           </h3>
@@ -264,11 +264,10 @@ class Quiz extends Component {
     } else if (isEnd && scores < 5) {
       return (
         <div>
-          <h3 className="SummaryResults">
+          <h3 className="SummaryResultsFail">
             Quiz Finished, You failed {this.state.scores}/{Quizdata.length - 1}{" "}
             <FaSadTear />!
           </h3>
-
           <Button
             onClick={() => {
               this.props.tryAgain();

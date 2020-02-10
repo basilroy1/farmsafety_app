@@ -13,8 +13,9 @@ import Login from "../quiz/login";
 import Signup from "..//quiz/signup";
 import fire from "../../config/fire";
 import Pictures from "../pictures/farm_danger.jpeg";
-import Pictures1 from "../pictures/health_hazard.jpg";
+import Pictures1 from "../pictures/machinery_hazard.jpg";
 import Pictures2 from "../pictures/saferty_gaurd.jpg";
+import Pictures3 from "../pictures/pondSafety.jpg";
 class Home extends Component {
   logout = e => {
     e.preventDefault();
@@ -47,7 +48,10 @@ class Home extends Component {
         </BrowserRouter>
 
         <div>
-          <h1 className="w3-xxlarge w3-text-white">
+          <h1
+            className="w3-xxlarge w3-text-white"
+            style={{ textAlign: "center" }}
+          >
             <span class="w3-padding w3-black w3-opacity-min">
               <b>FS</b>
             </span>{" "}
@@ -63,7 +67,7 @@ class Home extends Component {
                 alt="first slide"
               />
               <Carousel.Caption>
-                <h3>Did You Know</h3>
+                <h3>Did You Know ?</h3>
                 <p className="didYoknow">
                   There are approximately 139,860 family farms in Ireland with
                   an average size of 32.7 hectares per holding.
@@ -74,7 +78,7 @@ class Home extends Component {
               <img className="d-block w-100" src={Pictures} alt="Third slide" />
 
               <Carousel.Caption>
-                <h3>Did You Know</h3>
+                <h3>Did You Know ?</h3>
                 <p className="didYoknow">
                   Survey found that in the five year period 2012-2017 that 11%
                   of farms had an accident and in total 2,814 accidents
@@ -86,18 +90,37 @@ class Home extends Component {
             <Carousel.Item className="SlidePictures">
               <img
                 className="d-block w-100"
-                src={Pictures1}
+                src={Pictures3}
                 alt="Third slide"
               />
 
               <Carousel.Caption>
-                <h3>Did You Know</h3>
+                <h3>Did You Know ?</h3>
                 <p className="didYoknow">
                   In 2016, 417 farmers and farm workers died from a work-related
                   injury, resulting in a fatality rate of 21.4 deaths per
                   100,000 workers. Transportation incidents, which include
                   tractor overturns were the leading cause of death for these
                   farmers and farm workers.
+                </p>
+              </Carousel.Caption>
+            </Carousel.Item>
+
+            <Carousel.Item className="SlidePictures">
+              <img
+                className="d-block w-100"
+                src={Pictures1}
+                alt="Third slide"
+              />
+
+              <Carousel.Caption>
+                <h3>Did You Know ?</h3>
+                <p className="didYoknow">
+                  Ireland is the fourth largest sheep meat producer in the EU
+                  but is the largest net exporter of sheep meat. The Irish sheep
+                  flock showed a rise of 1.3% and totalled 5.16 million head,
+                  with the breeding flock decreasing by around 1.1% to 2.56
+                  million head according to the June 2015 livestock census.
                 </p>
               </Carousel.Caption>
             </Carousel.Item>
