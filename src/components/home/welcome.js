@@ -33,7 +33,7 @@ class Welcome extends Component {
       article3: false,
       article4: false,
       article5: false,
-      hideQuiz: false,
+      hideQuiz: true,
       viewProfile: false
     };
   } //  this.disableCheckLevel();
@@ -57,7 +57,7 @@ class Welcome extends Component {
       level4: false,
       level5: false,
       disabled: false
-      //  level: 1
+      //level: 1
     });
   };
 
@@ -69,7 +69,7 @@ class Welcome extends Component {
       level4: false,
       level5: false,
       disabled: false
-      //   level: 2
+      // level: 2
     });
   };
   changeToquiz4 = () => {
@@ -80,7 +80,7 @@ class Welcome extends Component {
       level4: true,
       level5: false,
       disabled: false
-      //   level: 3
+      //     level: 3
     });
   };
   changeToquiz5 = () => {
@@ -91,7 +91,7 @@ class Welcome extends Component {
       level4: false,
       level5: true,
       disabled: false
-      //   level: 4
+      //    level: 4
     });
   };
   checkQuiznLevel = () => {
@@ -197,7 +197,7 @@ class Welcome extends Component {
   };
   hideQuizButton = () => {
     this.setState({
-      hideQuiz: true
+      hideQuiz: !this.state.hideQuiz
     });
   };
   articelState = () => {
@@ -308,6 +308,7 @@ class Welcome extends Component {
                     this.changeToquiz1();
                     this.articelState();
                     this.checkQuiznLevel();
+                    //       this.hideQuizButton();
                   }}
                 >
                   Rookie
@@ -319,6 +320,7 @@ class Welcome extends Component {
                     this.articelState();
                     this.changeToquiz2();
                     this.checkQuiznLevel();
+                    //    this.hideQuizButton();
                   }}
                 >
                   Student
@@ -330,6 +332,7 @@ class Welcome extends Component {
                     this.changeToquiz3();
                     this.articelState();
                     this.checkQuiznLevel();
+                    //    this.hideQuizButton();
                   }}
                 >
                   Intermediate
@@ -341,6 +344,7 @@ class Welcome extends Component {
                     this.changeToquiz4();
                     this.articelState();
                     this.checkQuiznLevel();
+                    //    this.hideQuizButton();
                   }}
                 >
                   Expert
@@ -352,6 +356,7 @@ class Welcome extends Component {
                     this.changeToquiz5();
                     this.articelState();
                     this.checkQuiznLevel();
+                    //      this.hideQuizButton();
                   }}
                 >
                   Master
@@ -378,18 +383,18 @@ class Welcome extends Component {
         {this.state.article5 ? <Articles5 /> : null}
 
         {<div>{this.state.dataHasLoaded ? renderData : loadingSpinner}</div>}
-
-        <Button
-          id="takeQuizbtn"
-          disabled={this.state.disabled}
-          onClick={() => {
-            this.changetoQuiz();
-            this.hideQuizButton();
-          }}
-        >
-          Take the Quiz
-        </Button>
-
+        {this.state.hideQuiz ? (
+          <Button
+            id="takeQuizbtn"
+            disabled={this.state.disabled}
+            onClick={() => {
+              this.changetoQuiz();
+              this.hideQuizButton();
+            }}
+          >
+            Take the Quiz
+          </Button>
+        ) : null}
         {this.state.viewquiz ? (
           <Quiz
             tryAgain={this.hideQuizButton}
