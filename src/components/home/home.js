@@ -68,10 +68,12 @@ class Home extends Component {
               />
               <Carousel.Caption>
                 <h3>Did You Know ?</h3>
-                <p className="didYoknow">
-                  There are approximately 139,860 family farms in Ireland with
-                  an average size of 32.7 hectares per holding.
-                </p>
+                <div className="caption">
+                  <p className="didYoknow">
+                    There are approximately 139,860 family farms in Ireland with
+                    an average size of 32.7 hectares per holding.
+                  </p>
+                </div>
               </Carousel.Caption>
             </Carousel.Item>
             <Carousel.Item className="SlidePictures">
@@ -79,12 +81,14 @@ class Home extends Component {
 
               <Carousel.Caption>
                 <h3>Did You Know ?</h3>
-                <p className="didYoknow">
-                  Survey found that in the five year period 2012-2017 that 11%
-                  of farms had an accident and in total 2,814 accidents
-                  occurred. Farm accidents have risen by 13% in the last 5 years
-                  and by 31% in the last ten years
-                </p>
+                <div className="caption">
+                  <p className="didYoknow">
+                    Survey found that in the five year period 2012-2017 that 11%
+                    of farms had an accident and in total 2,814 accidents
+                    occurred. Farm accidents have risen by 13% in the last 5
+                    years and by 31% in the last ten years
+                  </p>
+                </div>
               </Carousel.Caption>
             </Carousel.Item>
             <Carousel.Item className="SlidePictures">
@@ -96,13 +100,15 @@ class Home extends Component {
 
               <Carousel.Caption>
                 <h3>Did You Know ?</h3>
-                <p className="didYoknow">
-                  In 2016, 417 farmers and farm workers died from a work-related
-                  injury, resulting in a fatality rate of 21.4 deaths per
-                  100,000 workers. Transportation incidents, which include
-                  tractor overturns were the leading cause of death for these
-                  farmers and farm workers.
-                </p>
+                <div className="caption">
+                  <p className="didYoknow">
+                    In 2016, 417 farmers and farm workers died from a
+                    work-related injury, resulting in a fatality rate of 21.4
+                    deaths per 100,000 workers. Transportation incidents, which
+                    include tractor overturns were the leading cause of death
+                    for these farmers and farm workers.
+                  </p>
+                </div>
               </Carousel.Caption>
             </Carousel.Item>
 
@@ -115,13 +121,16 @@ class Home extends Component {
 
               <Carousel.Caption>
                 <h3>Did You Know ?</h3>
-                <p className="didYoknow">
-                  Ireland is the fourth largest sheep meat producer in the EU
-                  but is the largest net exporter of sheep meat. The Irish sheep
-                  flock showed a rise of 1.3% and totalled 5.16 million head,
-                  with the breeding flock decreasing by around 1.1% to 2.56
-                  million head according to the June 2015 livestock census.
-                </p>
+                <div className="caption">
+                  <p className="didYoknow">
+                    Ireland is the fourth largest sheep meat producer in the EU
+                    but is the largest net exporter of sheep meat. The Irish
+                    sheep flock showed a rise of 1.3% and totalled 5.16 million
+                    head, with the breeding flock decreasing by around 1.1% to
+                    2.56 million head according to the June 2015 livestock
+                    census.
+                  </p>
+                </div>
               </Carousel.Caption>
             </Carousel.Item>
           </Carousel>

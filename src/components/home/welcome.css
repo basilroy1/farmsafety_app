@@ -2,7 +2,7 @@
   font-family: "Times New Roman", Times, serif;
   font: lighter;
   font-size: 20px;
-  width: 820px;
+  width: 800px;
   border-style: groove;
 }
 #navbar .sticky {
@@ -10,10 +10,21 @@
   top: 0;
   width: 100%;
 }
+
 #takeQuizbtn {
   position: absolute;
   margin: 0;
+  top: 109%;
   left: 50%;
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
+}
+.btnLevel {
+  background-color: brown;
+}
+#innerBorder {
+  background-color: rgb(219, 217, 217);
+}
+.heading {
+  color: rgb(255, 115, 0);
 }

@@ -94,7 +94,19 @@ class Welcome extends Component {
       //   level: 4
     });
   };
-
+  checkQuiznLevel = () => {
+    if (
+      (this.state.viewquiz && this.state.level1) ||
+      (this.state.viewquiz && this.state.level2) ||
+      (this.state.viewquiz && this.state.level3) ||
+      (this.state.viewquiz && this.state.level4) ||
+      (this.state.viewquiz && this.state.level5)
+    ) {
+      this.setState({
+        viewquiz: false
+      });
+    }
+  };
   componentDidMount() {
     this.authListener();
     this.retrieveData();
@@ -291,45 +303,55 @@ class Welcome extends Component {
               Welcome
               <ButtonToolbar>
                 <Button
+                  className="btnLevel"
                   onClick={() => {
                     this.changeToquiz1();
                     this.articelState();
+                    this.checkQuiznLevel();
                   }}
                 >
                   Rookie
                 </Button>
                 <Button
+                  className="btnLevel"
                   disabled={this.state.level < STUDENT}
                   onClick={() => {
                     this.articelState();
                     this.changeToquiz2();
+                    this.checkQuiznLevel();
                   }}
                 >
                   Student
                 </Button>
                 <Button
+                  className="btnLevel"
                   disabled={this.state.level < INTERM}
                   onClick={() => {
                     this.changeToquiz3();
                     this.articelState();
+                    this.checkQuiznLevel();
                   }}
                 >
                   Intermediate
                 </Button>
                 <Button
+                  className="btnLevel"
                   disabled={this.state.level < EXPERT}
                   onClick={() => {
                     this.changeToquiz4();
                     this.articelState();
+                    this.checkQuiznLevel();
                   }}
                 >
                   Expert
                 </Button>
                 <Button
+                  className="btnLevel"
                   disabled={this.state.level < MASTER}
                   onClick={() => {
                     this.changeToquiz5();
                     this.articelState();
+                    this.checkQuiznLevel();
                   }}
                 >
                   Master

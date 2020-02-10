@@ -269,6 +269,7 @@ class Quiz extends Component {
             <FaSadTear />!
           </h3>
           <Button
+            id="tryagain"
             onClick={() => {
               this.props.tryAgain();
               this.props.tryAgain2();

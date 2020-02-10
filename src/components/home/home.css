@@ -17,3 +17,9 @@ p {
   font-weight: bold;
   margin-left: center;
 }
+.caption {
+  background-color: black;
+  padding: 30px;
+  border-radius: 20px;
+  opacity: 0.5;
+}
