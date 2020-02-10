@@ -5,7 +5,7 @@ import { FiLogOut } from "react-icons/fi";
 //import { GiSwordsEmblem } from "react-icons/gi";
 //import piechart from "../pictures/piechartMachinery.jpg";
 import Loader from "react-loader-spinner";
-import { Button, Nav, Navbar, ButtonToolbar } from "react-bootstrap";
+import { Button, Nav, Navbar, ButtonToolbar, Card } from "react-bootstrap";
 //import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
 //import Login from "../quiz/login";
 //import Signup from "../quiz/signup";
@@ -36,7 +36,7 @@ class Welcome extends Component {
       hideQuiz: false,
       viewProfile: false
     };
-  }
+  } //  this.disableCheckLevel();
 
   changeToquiz1 = () => {
     this.setState({
@@ -57,6 +57,7 @@ class Welcome extends Component {
       level4: false,
       level5: false,
       disabled: false
+      //  level: 1
     });
   };
 
@@ -68,6 +69,7 @@ class Welcome extends Component {
       level4: false,
       level5: false,
       disabled: false
+      //   level: 2
     });
   };
   changeToquiz4 = () => {
@@ -78,6 +80,7 @@ class Welcome extends Component {
       level4: true,
       level5: false,
       disabled: false
+      //   level: 3
     });
   };
   changeToquiz5 = () => {
@@ -88,6 +91,7 @@ class Welcome extends Component {
       level4: false,
       level5: true,
       disabled: false
+      //   level: 4
     });
   };
 
@@ -146,6 +150,7 @@ class Welcome extends Component {
           // currentState.push(user);
           console.log(currentState);
           this.rankData(); //setting rank value from DB
+
           this.setState({
             people: currentState,
             dataHasLoaded: true
@@ -155,7 +160,6 @@ class Welcome extends Component {
         console.log("no user");
       }
     });
-    // this.data();
   };
 
   changetoQuiz = () => {
@@ -235,6 +239,13 @@ class Welcome extends Component {
       }));
     }
   };
+  quizInfo = () => {
+    return (
+      <div>
+        <Card>click on the appropriate level to take the quiz</Card>
+      </div>
+    );
+  };
   rankData = () => {
     this.state.people.map((person, index) => {
       this.setState({
@@ -251,7 +262,7 @@ class Welcome extends Component {
     const MASTER = 4;
     let renderData = this.state.people.map((person, index) => {
       return (
-        <div style={{ color: " black" }} key={index}>
+        <div id="userProfileComp" style={{ color: " black" }} key={index}>
           {this.state.viewProfile ? (
             <UserProfile
               className="userProfile"
@@ -263,7 +274,7 @@ class Welcome extends Component {
               score={person.Score}
               question={person.Questions}
               email={person.email}
-              rank={person.rank}
+              //  rank={person.rank}
             />
           ) : null}
         </div>
@@ -337,6 +348,7 @@ class Welcome extends Component {
             </Button>
           </Navbar>
         </div>
+
         {this.state.article1 ? <Articles /> : null}
         {this.state.article2 ? <Articles2 /> : null}
         {this.state.article3 ? <Articles3 /> : null}
@@ -357,6 +369,9 @@ class Welcome extends Component {
 
         {this.state.viewquiz ? (
           <Quiz
+            tryAgain={this.hideQuizButton}
+            tryAgain2={this.changetoQuiz}
+            articelVal={this.articelState}
             rankValue={this.state.level}
             handleDisableValue={this.handleDisableValue}
             userLevel1={this.state.level1}

@@ -247,16 +247,6 @@ class Quiz extends Component {
     }, 3500);
     */
   };
-  loadQuizComponent = () => {
-    if (
-      this.state.currentQuest === Quizdata.length - 1 &&
-      this.state.scores < 5
-    ) {
-      this.setState({
-        isEnd: true
-      });
-    }
-  };
 
   render() {
     const { userAns, scores, options, currentQuest, isEnd } = this.state;
@@ -268,7 +258,7 @@ class Quiz extends Component {
             <FaSmile />!
           </h3>
 
-          <Button>next challenge</Button>
+          <Button onClick={this.props.articleVal}>next challenge</Button>
         </div>
       );
     } else if (isEnd && scores < 5) {
@@ -278,17 +268,21 @@ class Quiz extends Component {
             Quiz Finished, You failed {this.state.scores}/{Quizdata.length - 1}{" "}
             <FaSadTear />!
           </h3>
-          <Test result={this.loadQuizComponent}>
-            <Button>try again</Button>
-          </Test>
+
+          <Button
+            onClick={() => {
+              this.props.tryAgain();
+              this.props.tryAgain2();
+            }}
+          >
+            Try Again
+          </Button>
         </div>
       );
     } else {
       return (
         <div className="quizForm">
           <br></br>
-          {/*  <Welcome stateQuiz1={this.changeToquiz2} />*/}
-
           <div>
             <ProgressBar animated now={this.state.currentQuest * 10} />
           </div>
@@ -334,7 +328,6 @@ class Quiz extends Component {
               onClick={() => {
                 this.finishQuiz();
                 this.pushtoDB2();
-                //  this.disableCheckLevel();
                 this.props.handleDisableValue(scores); // child to parent
               }}
             >
