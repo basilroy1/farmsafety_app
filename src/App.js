@@ -81,30 +81,38 @@ class App extends Component {
       <body>
         <div className="App">
           <BrowserRouter>
-            <Navbar id="navbar" bg="dark" variant="dark">
-              <ButtonToolbar>
-                <Button bg="dark" variant="dark" onClick={this.changetoHome}>
-                  <Link to="/">
-                    Home <TiHome />
-                  </Link>
-                </Button>
-                <Nav className="mr-auto">
-                  <Button bg="dark" variant="dark" onClick={this.changetoLogin}>
-                    <Link to="/Login">
-                      Login <FiLogIn />
+            {this.state.user ? (
+              <Welcome />
+            ) : (
+              <Navbar id="navbar" bg="dark" variant="dark">
+                <ButtonToolbar>
+                  <Button bg="dark" variant="dark" onClick={this.changetoHome}>
+                    <Link to="/">
+                      Home <TiHome />
                     </Link>
                   </Button>
+                  <Nav className="mr-auto">
+                    <Button
+                      bg="dark"
+                      variant="dark"
+                      onClick={this.changetoLogin}
+                    >
+                      <Link to="/Login">
+                        Login <FiLogIn />
+                      </Link>
+                    </Button>
 
-                  <Button
-                    bg="dark"
-                    variant="dark"
-                    onClick={this.changetoSignup}
-                  >
-                    <Link to="/Signup">Signup</Link>
-                  </Button>
-                </Nav>
-              </ButtonToolbar>
-            </Navbar>
+                    <Button
+                      bg="dark"
+                      variant="dark"
+                      onClick={this.changetoSignup}
+                    >
+                      <Link to="/Signup">Signup</Link>
+                    </Button>
+                  </Nav>
+                </ButtonToolbar>
+              </Navbar>
+            )}
             {this.state.viewHome ? (
               <Route path="/Home" component={Home} exact />
             ) : null}
@@ -116,7 +124,6 @@ class App extends Component {
             ) : null}
           </BrowserRouter>
           {this.state.viewHome ? <Home /> : null}
-          {this.state.user ? <Welcome /> : null}
         </div>
       </body>
     );

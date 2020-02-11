@@ -17,6 +17,10 @@ import Articles2 from "./articles2";
 import Articles3 from "./articles3";
 import Articles4 from "./articles4";
 import Articles5 from "./articles5";
+//import Modal from "react-bootstrap/Modal";
+//import useState from "usestate";
+import { useState } from "react";
+import { Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 
 class Welcome extends Component {
   constructor(props) {
@@ -197,7 +201,7 @@ class Welcome extends Component {
   };
   hideQuizButton = () => {
     this.setState({
-      hideQuiz: !this.state.hideQuiz
+      hideQuiz: false
     });
   };
   articelState = () => {
@@ -266,6 +270,7 @@ class Welcome extends Component {
       console.log(this.state.level);
     });
   };
+  modalInstruction = () => {};
 
   render() {
     const STUDENT = 1;
@@ -363,6 +368,10 @@ class Welcome extends Component {
                 </Button>
               </ButtonToolbar>
             </Nav>
+
+            <Button>
+              <Nav>Instructions</Nav>
+            </Button>
             <Button onClick={this.logout}>
               <Nav>
                 Logout <FiLogOut />
