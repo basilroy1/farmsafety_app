@@ -52,7 +52,7 @@ class Home extends Component {
             className="w3-xxlarge w3-text-white"
             style={{ textAlign: "center" }}
           >
-            <span class="w3-padding w3-black w3-opacity-min">
+            <span className="w3-padding w3-black w3-opacity-min">
               <b>FS</b>
             </span>{" "}
             <span className="w3-hide-small w3-text-light-grey">

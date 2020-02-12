@@ -22,6 +22,7 @@ class Articles extends Component {
           <h3 className="heading">
             Guarding <GiSwordsEmblem />
           </h3>
+
           <p className="groove">
             Fixed guards must always be kept in place. These prevent
             entanglement The guard should ensure that no part of your body can
@@ -29,6 +30,24 @@ class Articles extends Component {
             upgraded in line with the guarding on newer models Do not use a
             machine unless all guards are in place
           </p>
+          <h3 style={{ marginLeft: "center " }} className="heading">
+            Farm Safety in News
+          </h3>
+          <iframe
+            src="https://www.youtube.com/embed/E7wJTI-1dvQ"
+            frameBorder="0"
+            allow="autoplay; encrypted-media"
+            allowFullScreen
+            title="video"
+          />
+          <iframe
+            width="300"
+            height="315"
+            src="https://www.youtube.com/embed/H9aQGovNlcU"
+            frameBorder="0"
+            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          ></iframe>
           <h3 className="heading">
             <Button>
               {" "}

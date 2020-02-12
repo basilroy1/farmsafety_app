@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import "./welcome.css";
 import { MdPerson } from "react-icons/md";
 import { FiLogOut } from "react-icons/fi";
-//import { GiSwordsEmblem } from "react-icons/gi";
-//import piechart from "../pictures/piechartMachinery.jpg";
 import Loader from "react-loader-spinner";
 import { Button, Nav, Navbar, ButtonToolbar, Card } from "react-bootstrap";
 //import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
@@ -21,6 +19,7 @@ import Articles5 from "./articles5";
 //import useState from "usestate";
 import { useState } from "react";
 import { Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
+import InstructionsModal from "./instructionsmodal";
 
 class Welcome extends Component {
   constructor(props) {
@@ -33,6 +32,7 @@ class Welcome extends Component {
       disabled: true,
       level: 0,
       article1: true,
+      viewModal: false,
       article2: false,
       article3: false,
       article4: false,
@@ -117,6 +117,9 @@ class Welcome extends Component {
 
     console.log("Data loaded");
   }
+  //componentDidUpdate() {
+  //this.retrieveData();
+  // }
 
   authListener = () => {
     //checks if user is already logged in 0n browser
@@ -255,6 +258,7 @@ class Welcome extends Component {
       }));
     }
   };
+
   quizInfo = () => {
     return (
       <div>
@@ -270,7 +274,15 @@ class Welcome extends Component {
       console.log(this.state.level);
     });
   };
-  modalInstruction = () => {};
+
+  modalInstruction = () => {
+    this.setState({
+      viewModal: !this.state.viewModal
+    });
+  };
+  closeModal = () => {
+    this.setState({ viewModal: false });
+  };
 
   render() {
     const STUDENT = 1;
@@ -279,7 +291,11 @@ class Welcome extends Component {
     const MASTER = 4;
     let renderData = this.state.people.map((person, index) => {
       return (
-        <div id="userProfileComp" style={{ color: " black" }} key={index}>
+        <div
+          id="userProfileComp"
+          style={{ color: " black", position: "absolute" }}
+          key={index}
+        >
           {this.state.viewProfile ? (
             <UserProfile
               className="userProfile"
@@ -368,10 +384,11 @@ class Welcome extends Component {
                 </Button>
               </ButtonToolbar>
             </Nav>
-
-            <Button>
-              <Nav>Instructions</Nav>
-            </Button>
+            <ButtonToolbar>
+              <Button onClick={() => this.setState({ viewModal: true })}>
+                <Nav>Instructions</Nav>
+              </Button>
+            </ButtonToolbar>
             <Button onClick={this.logout}>
               <Nav>
                 Logout <FiLogOut />
@@ -390,20 +407,25 @@ class Welcome extends Component {
         {this.state.article3 ? <Articles3 /> : null}
         {this.state.article4 ? <Articles4 /> : null}
         {this.state.article5 ? <Articles5 /> : null}
-
-        {<div>{this.state.dataHasLoaded ? renderData : loadingSpinner}</div>}
-        {this.state.hideQuiz ? (
-          <Button
-            id="takeQuizbtn"
-            disabled={this.state.disabled}
-            onClick={() => {
-              this.changetoQuiz();
-              this.hideQuizButton();
-            }}
-          >
-            Take the Quiz
-          </Button>
+        {this.state.viewModal ? (
+          <InstructionsModal
+            isOpen={this.state.viewModal}
+            onHide={this.closeModal}
+          />
         ) : null}
+        {<div>{this.state.dataHasLoaded ? renderData : loadingSpinner}</div>}
+        {/*{this.state.hideQuiz ? (*/}
+        <Button
+          id="takeQuizbtn"
+          disabled={this.state.disabled}
+          onClick={() => {
+            this.changetoQuiz();
+            this.hideQuizButton();
+          }}
+        >
+          Take the Quiz
+        </Button>
+        {/*  ) : null} */}
         {this.state.viewquiz ? (
           <Quiz
             tryAgain={this.hideQuizButton}
