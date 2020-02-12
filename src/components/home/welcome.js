@@ -15,8 +15,7 @@ import Articles2 from "./articles2";
 import Articles3 from "./articles3";
 import Articles4 from "./articles4";
 import Articles5 from "./articles5";
-//import Modal from "react-bootstrap/Modal";
-//import useState from "usestate";
+
 import { useState } from "react";
 import { Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import InstructionsModal from "./instructionsmodal";
@@ -95,7 +94,7 @@ class Welcome extends Component {
       level4: false,
       level5: true,
       disabled: false
-      //    level: 4
+      //   level: 4
     });
   };
   checkQuiznLevel = () => {
@@ -252,10 +251,23 @@ class Welcome extends Component {
   };
 
   handleDisableValue = scores => {
+    let n = this.state.level;
+    let newN = n + 1;
+    // this.setState({
+    //  level: newN
+    //});
+    this.setState({
+      scores: this.state.people[0].Score
+    });
     if (scores >= 5 && this.state.level < 4) {
-      this.setState(prevState => ({
-        level: this.state.level + 1
-      }));
+      this.setState({
+        level: newN
+      });
+    } else if (this.state.people[0].Score >= 5 && n < this.state.level) {
+      this.setState({
+        level: n
+      });
+      console.log("level " + this.state.level);
     }
   };
 
@@ -267,12 +279,17 @@ class Welcome extends Component {
     );
   };
   rankData = () => {
-    this.state.people.map((person, index) => {
+    /* this.state.people.map((person, index) => {
       this.setState({
         level: person.rank
       });
       console.log(this.state.level);
     });
+    */
+    this.setState({
+      level: this.state.people[0].rank
+    });
+    console.log(this.state.level);
   };
 
   modalInstruction = () => {
@@ -289,7 +306,7 @@ class Welcome extends Component {
     const INTERM = 2;
     const EXPERT = 3;
     const MASTER = 4;
-    let renderData = this.state.people.map((person, index) => {
+    /* let renderData = this.state.people.map((person, index) => {
       return (
         <div
           id="userProfileComp"
@@ -307,14 +324,15 @@ class Welcome extends Component {
               score={person.Score}
               question={person.Questions}
               email={person.email}
-              //  rank={person.rank}
+             
             />
           ) : null}
         </div>
       );
     });
+*/
 
-    let loadingSpinner = <Loader id="loader" type="ThreeDots" color="red " />;
+    // let loadingSpinner = <Loader id="loader" type="ThreeDots" color="red " />;
 
     return (
       <div>
@@ -401,7 +419,21 @@ class Welcome extends Component {
             </Button>
           </Navbar>
         </div>
-
+        <div id="userProfileComp">
+          {this.state.viewProfile ? (
+            <UserProfile
+              className="userProfile"
+              levelRook={this.state.people[0].levelRook}
+              levelStudent={this.state.people[0].levelStudent}
+              levelIntermediate={this.state.people[0].levelIntermediate}
+              levelExpert={this.state.people[0].levelExpert}
+              levelMaster={this.state.people[0].levelMaster}
+              score={this.state.people[0].Score}
+              question={this.state.people[0].Questions}
+              email={this.state.people[0].email}
+            />
+          ) : null}
+        </div>
         {this.state.article1 ? <Articles /> : null}
         {this.state.article2 ? <Articles2 /> : null}
         {this.state.article3 ? <Articles3 /> : null}
@@ -413,7 +445,7 @@ class Welcome extends Component {
             onHide={this.closeModal}
           />
         ) : null}
-        {<div>{this.state.dataHasLoaded ? renderData : loadingSpinner}</div>}
+        {/*  {<div>{this.state.dataHasLoaded ? renderData : loadingSpinner}</div>}*/}
         {/*{this.state.hideQuiz ? (*/}
         <Button
           id="takeQuizbtn"

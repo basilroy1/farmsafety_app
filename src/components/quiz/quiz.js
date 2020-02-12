@@ -27,7 +27,6 @@ class Quiz extends Component {
       scores: 0,
       pictures: "",
       level1: false,
-      //   res: true,
       level2: false,
       level3: false,
       level4: false,
@@ -125,14 +124,56 @@ class Quiz extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     const { currentQuest } = this.state;
-    if (this.state.currentQuest !== prevState.currentQuest) {
-      this.setState({
-        disabled: true,
-        questions: Quizdata[currentQuest].question,
-        options: Quizdata[currentQuest].options,
-        answer: Quizdata[currentQuest].answer,
-        pictures: Quizdata[currentQuest].picture
-      });
+    if (this.props.userLevel1) {
+      if (this.state.currentQuest !== prevState.currentQuest) {
+        this.setState({
+          disabled: true,
+          questions: Quizdata[currentQuest].question,
+          options: Quizdata[currentQuest].options,
+          answer: Quizdata[currentQuest].answer,
+          pictures: Quizdata[currentQuest].picture
+        });
+      }
+    } else if (this.props.userLevel2) {
+      if (this.state.currentQuest !== prevState.currentQuest) {
+        this.setState({
+          disabled: true,
+          questions: Quizdata2[currentQuest].question,
+          options: Quizdata2[currentQuest].options,
+          answer: Quizdata2[currentQuest].answer,
+          pictures: Quizdata2[currentQuest].picture
+        });
+      }
+    } else if (this.props.userLevel3) {
+      if (this.state.currentQuest !== prevState.currentQuest) {
+        this.setState({
+          disabled: true,
+          questions: Quizdata3[currentQuest].question,
+          options: Quizdata3[currentQuest].options,
+          answer: Quizdata3[currentQuest].answer,
+          pictures: Quizdata3[currentQuest].picture
+        });
+      }
+    } else if (this.props.userLevel4) {
+      if (this.state.currentQuest !== prevState.currentQuest) {
+        this.setState({
+          disabled: true,
+          questions: Quizdata4[currentQuest].question,
+          options: Quizdata4[currentQuest].options,
+          answer: Quizdata4[currentQuest].answer,
+          pictures: Quizdata4[currentQuest].picture
+        });
+      }
+    } else if (this.props.userLevel5) {
+      if (this.state.currentQuest !== prevState.currentQuest) {
+        this.setState({
+          disabled: true,
+          questions: Quizdata5[currentQuest].question,
+          options: Quizdata5[currentQuest].options,
+          answer: Quizdata5[currentQuest].answer,
+          pictures: Quizdata5[currentQuest].picture
+        });
+      }
     }
   }
 

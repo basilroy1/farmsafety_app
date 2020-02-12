@@ -28,3 +28,8 @@
 .heading {
   color: rgb(255, 115, 0);
 }
+
+#userProfileComp {
+  float: right;
+  color: rgb(0, 50, 85);
+}
