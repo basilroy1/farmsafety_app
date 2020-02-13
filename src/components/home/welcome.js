@@ -341,7 +341,7 @@ class Welcome extends Component {
           <Navbar id="navbar" bg="primary" variant="dark">
             <Nav className="mr-auto" style={{ fontSize: 25 }}>
               Welcome
-              <ButtonToolbar style={{ marginLeft: 600 }}>
+              <ButtonToolbar className="levelButtons">
                 <Button
                   className="btnLevel"
                   onClick={() => {

@@ -22,6 +22,12 @@
 .btnLevel {
   background-color: brown;
 }
+.levelButtons {
+  position: absolute;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
 #innerBorder {
   background-color: rgb(219, 217, 217);
   padding: 20px;

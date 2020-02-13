@@ -113,7 +113,6 @@ class Login extends Component {
   };
   */
   render() {
-    //  const ans = this.extractUsername(this.state.email);
     return (
       <body>
         <div>
