@@ -12,8 +12,8 @@ class UserProfile extends Component {
   }
   render() {
     return (
-      <div id="container" style={{ fontFamily: "sans-serif" }}>
-        <Card border="primary" style={{ width: "40rem", marginLeft: 50 }}>
+      <div id="container">
+        <Card border="warning" style={{ width: "40rem", marginLeft: 50 }}>
           <Card.Header style={{ textAlign: "center" }}> Profile</Card.Header>
           <Card.Body>
             <Card.Title style={{ marginLeft: 230 }}>
@@ -22,8 +22,7 @@ class UserProfile extends Component {
             <Card.Text style={{ marginLeft: 70 }}>
               <br></br>
               <ul>
-                <MdEmail /> Email :
-                {this.props.email ? this.props.email : "No data for Email"}
+                <MdEmail /> Email :{this.props.email}
                 <br></br>
                 Score :{this.props.score}
                 <br></br>

@@ -14,7 +14,7 @@ class Articles extends Component {
       <div>
         <div id="innerBorder">
           <Accordion defaultActiveKey="0">
-            <Card>
+            <Card border="warning">
               <Card.Header>
                 <Accordion.Toggle as={Button} variant="link" eventKey="0">
                   Guarding <GiSwordsEmblem /> <FaChevronRight />
@@ -33,7 +33,7 @@ class Articles extends Component {
                 </Card.Body>
               </Accordion.Collapse>
             </Card>
-            <Card>
+            <Card border="warning">
               <Card.Header>
                 <Accordion.Toggle as={Button} variant="link" eventKey="1">
                   Machinery Checks <MdCheckBox />
@@ -52,7 +52,7 @@ class Articles extends Component {
                 </Card.Body>
               </Accordion.Collapse>
             </Card>
-            <Card>
+            <Card border="warning">
               <Card.Header>
                 <Accordion.Toggle as={Button} variant="link" eventKey="2">
                   Machinery Checks <MdCheckBox />
@@ -70,7 +70,7 @@ class Articles extends Component {
                 </Card.Body>
               </Accordion.Collapse>
             </Card>
-            <Card>
+            <Card border="warning">
               <Card.Header>
                 <Accordion.Toggle as={Button} variant="link" eventKey="3">
                   Machinery Fatalities <MdCheckBox />

@@ -12,7 +12,6 @@ import { Quizdata4 } from "./questionsLevel4";
 import { Quizdata5 } from "./questionsLevel5";
 import Welcome from "../home/welcome";
 import UserProfile from "./userProfile";
-
 //import { Label } from "semantic-ui-react";
 class Quiz extends Component {
   constructor(props) {
@@ -24,6 +23,7 @@ class Quiz extends Component {
       // levelDisable: true,
       currentQuest: 0,
       isEnd: false,
+      people: [],
       scores: 0,
       pictures: "",
       level1: false,
@@ -73,7 +73,7 @@ class Quiz extends Component {
     });
     console.log(this.state.answer);
   };
-  false;
+
   loadQuiz4 = () => {
     const { currentQuest } = this.state;
     //  console.log(Quizdata[2].question);
@@ -235,7 +235,52 @@ class Quiz extends Component {
 
     console.log("Sent to Database");
   };
+  updatedData = () => {
+    fire.auth().onAuthStateChanged(user => {
+      if (user) {
+        var ref = fire
+          .database()
+          .ref("data")
+          .limitToLast(1);
+        //takes the last data in DB
 
+        var userUID = fire.auth().currentUser.uid;
+        var query = ref.orderByChild("ID").equalTo(userUID); //retrieves data about only the current logged in user
+        console.log(userUID);
+        query.once("value", snapshot => {
+          let currentState = this.state.people;
+
+          const currentUser = snapshot.val();
+          for (let i in currentUser) {
+            currentState.push({
+              email: currentUser[i].UserEmail,
+              UserAnswer: currentUser[i].UserAnswer,
+              Questions: currentUser[i].Question,
+              id: currentUser[i].ID,
+              Score: currentUser[i].Score,
+              levelRook: currentUser[i].UserLevel,
+              levelStudent: currentUser[i].UserLevelStudent,
+              levelIntermediate: currentUser[i].UserLevelIntermediate,
+              levelExpert: currentUser[i].UserLevelExpert,
+              levelMaster: currentUser[i].UserLevelMaster,
+              rank: currentUser[i].RankValue
+            });
+          }
+
+          // currentState.push(user);
+          console.log(currentState);
+          //  this.rankData(); //setting rank value from DB
+
+          this.setState({
+            people: currentState
+            // dataHasLoaded: true
+          });
+        });
+      } else {
+        console.log("no user");
+      }
+    });
+  };
   nextQuestion = () => {
     const { userAns } = this.state;
     // e.preventDefault();
@@ -279,7 +324,11 @@ class Quiz extends Component {
     if (this.state.currentQuest === Quizdata.length - 1) {
       this.setState({
         isEnd: true
+        //  d: this.props.current
       });
+      // this.updatedData()
+      //  this.props.DBdata();
+      // console.log("DB score " + this.props.d);
     }
     /* setTimeout(() => {
       this.setState({
@@ -287,6 +336,11 @@ class Quiz extends Component {
       });
     }, 3500);
     */
+  };
+  datafromQuiz = scores => {
+    this.setState({
+      scores: this.state.people[0].Score
+    });
   };
 
   render() {
@@ -314,6 +368,7 @@ class Quiz extends Component {
             onClick={() => {
               this.props.tryAgain();
               this.props.tryAgain2();
+              //  this.updatedData();
             }}
           >
             Try Again
@@ -357,6 +412,7 @@ class Quiz extends Component {
               onClick={() => {
                 this.nextQuestion();
                 this.pushtoDB();
+                this.updatedData();
               }}
             >
               NEXT <FaArrowRight />
@@ -369,6 +425,8 @@ class Quiz extends Component {
               onClick={() => {
                 this.finishQuiz();
                 this.pushtoDB2();
+                this.updatedData();
+                this.props.quiz(scores);
                 this.props.handleDisableValue(scores); // child to parent
               }}
             >

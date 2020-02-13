@@ -30,6 +30,7 @@ class Welcome extends Component {
       user: {},
       disabled: true,
       level: 0,
+      //   fakelevel: 0,
       article1: true,
       viewModal: false,
       article2: false,
@@ -60,7 +61,7 @@ class Welcome extends Component {
       level4: false,
       level5: false,
       disabled: false
-      //level: 1
+      //   fakelevel: 1
     });
   };
 
@@ -116,9 +117,6 @@ class Welcome extends Component {
 
     console.log("Data loaded");
   }
-  //componentDidUpdate() {
-  //this.retrieveData();
-  // }
 
   authListener = () => {
     //checks if user is already logged in 0n browser
@@ -179,7 +177,10 @@ class Welcome extends Component {
       }
     });
   };
-
+  datafromQuiz = scores => {
+    let re = scores;
+    return re;
+  };
   changetoQuiz = () => {
     this.setState({
       viewquiz: !this.state.viewquiz,
@@ -257,19 +258,16 @@ class Welcome extends Component {
     //  level: newN
     //});
     this.setState({
-      scores: this.state.people[0].Score
+      scores: this.state.scores
     });
+
     if (scores >= 5 && this.state.level < 4) {
       this.setState({
         level: newN
       });
-    } else if (this.state.people[0].Score >= 5 && n < this.state.level) {
-      this.setState({
-        level: n
-      });
-      console.log("old level " + this.state.level);
-      console.log("new level " + this.state.level);
     }
+    console.log("old level " + this.state.level);
+    console.log("new level " + this.state.level);
   };
 
   quizInfo = () => {
@@ -280,17 +278,18 @@ class Welcome extends Component {
     );
   };
   rankData = () => {
-    /* this.state.people.map((person, index) => {
+    this.state.people.map((person, index) => {
       this.setState({
         level: person.rank
       });
       console.log(this.state.level);
     });
-    */
+    /*
     this.setState({
       level: this.state.people[0].rank
     });
     console.log(this.state.level);
+  */
   };
 
   modalInstruction = () => {
@@ -440,6 +439,7 @@ class Welcome extends Component {
         {this.state.article3 ? <Articles3 /> : null}
         {this.state.article4 ? <Articles4 /> : null}
         {this.state.article5 ? <Articles5 /> : null}
+
         {this.state.viewModal ? (
           <InstructionsModal
             isOpen={this.state.viewModal}
@@ -461,6 +461,10 @@ class Welcome extends Component {
         {/*  ) : null} */}
         {this.state.viewquiz ? (
           <Quiz
+            //  DBdata={this.updatedData}
+            //  current={this.state.currentState}
+            //  d={this.state.people}
+            quiz={this.datafromQuiz}
             tryAgain={this.hideQuizButton}
             tryAgain2={this.changetoQuiz}
             articelVal={this.articelState}
