@@ -267,7 +267,8 @@ class Welcome extends Component {
       this.setState({
         level: n
       });
-      console.log("level " + this.state.level);
+      console.log("old level " + this.state.level);
+      console.log("new level " + this.state.level);
     }
   };
 
@@ -340,7 +341,7 @@ class Welcome extends Component {
           <Navbar id="navbar" bg="primary" variant="dark">
             <Nav className="mr-auto" style={{ fontSize: 25 }}>
               Welcome
-              <ButtonToolbar>
+              <ButtonToolbar style={{ marginLeft: 600 }}>
                 <Button
                   className="btnLevel"
                   onClick={() => {

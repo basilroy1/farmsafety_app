@@ -24,6 +24,7 @@
 }
 #innerBorder {
   background-color: rgb(219, 217, 217);
+  padding: 20px;
 }
 .heading {
   color: rgb(255, 115, 0);
