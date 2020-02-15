@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Modal, ModalHeader, Button, ModalBody, ModalFooter } from "reactstrap";
+import { Modal, Button } from "reactstrap";
 
 class InstructionsModal extends Component {
   constructor(props) {

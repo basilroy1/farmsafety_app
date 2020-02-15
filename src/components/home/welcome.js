@@ -17,7 +17,7 @@ import Articles4 from "./articles4";
 import Articles5 from "./articles5";
 
 import { useState } from "react";
-import { Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
+//import { Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import InstructionsModal from "./instructionsmodal";
 
 class Welcome extends Component {
@@ -26,7 +26,7 @@ class Welcome extends Component {
     this.state = {
       viewquiz: false,
       people: [],
-      newPeople: [],
+      // newPeople: [],
       dataHasLoaded: false,
       user: {},
       disabled: true,
@@ -166,7 +166,6 @@ class Welcome extends Component {
               rank: currentUser[i].RankValue
             });
           }
-
           // currentState.push(user);
           console.log(currentState);
           this.rankData(); //setting rank value from DB
@@ -251,16 +250,21 @@ class Welcome extends Component {
       });
     }
   };
-
+  clickedrookie = () => {
+    console.log("clicked rookie");
+  };
+  clickedstudent = () => {
+    console.log("clicked student");
+  };
+  clickedinterm = () => {
+    console.log("clicked interm");
+  };
   handleDisableValue = scores => {
     let n = this.state.level;
     let newN = n + 1;
     // this.setState({
     //  level: newN
     //});
-    this.setState({
-      scores: this.state.scores
-    });
 
     if (scores >= 5 && this.state.level < 4) {
       this.setState({
@@ -272,7 +276,7 @@ class Welcome extends Component {
   };
 
   rankData = () => {
-    this.state.people.map((person, index) => {
+    this.state.people.map(person => {
       this.setState({
         level: person.rank
       });
@@ -333,6 +337,7 @@ class Welcome extends Component {
                 <Button
                   className="btnLevel"
                   onClick={() => {
+                    this.clickedrookie();
                     this.changeToquiz1();
                     this.articelState();
                     this.checkQuiznLevel();
@@ -345,6 +350,7 @@ class Welcome extends Component {
                   className="btnLevel"
                   disabled={this.state.level < STUDENT}
                   onClick={() => {
+                    this.clickedstudent();
                     this.articelState();
                     this.changeToquiz2();
                     this.checkQuiznLevel();
@@ -357,6 +363,7 @@ class Welcome extends Component {
                   className="btnLevel"
                   disabled={this.state.level < INTERM}
                   onClick={() => {
+                    this.clickedinterm();
                     this.changeToquiz3();
                     this.articelState();
                     this.checkQuiznLevel();
@@ -450,9 +457,9 @@ class Welcome extends Component {
         {/*  ) : null} */}
         {this.state.viewquiz ? (
           <Quiz
-            DBdata={this.updatedData}
-            current={this.state.currentState}
-            d={this.state.newPeople}
+            //   DBdata={this.updatedData}
+            //  current={this.state.currentState}
+            // d={this.state.newPeople}
             //     quiz={this.datafromQuiz}
             tryAgain={this.hideQuizButton}
             tryAgain2={this.changetoQuiz}

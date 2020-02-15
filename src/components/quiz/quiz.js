@@ -25,13 +25,14 @@ class Quiz extends Component {
       people: [],
       scores: 0,
       pictures: "",
+      count: 0,
       level1: false,
       level2: false,
       level3: false,
       level4: false,
-      level5: false
+      level5: false,
+      correct: false
     };
-    //  this.changeToquiz2 = this.changeToquiz2.bind();
   }
   loadQuiz = () => {
     const { currentQuest } = this.state;
@@ -282,54 +283,70 @@ class Quiz extends Component {
   };
   */
   nextQuestion = () => {
-    const { userAns } = this.state;
+    const { scores, correct } = this.state;
     // e.preventDefault();
-    if (userAns === null) {
-      alert("choose an option");
-      return;
-    }
-    this.setState({
-      currentQuest: this.state.currentQuest + 1
-    });
-
-    this.setState({
-      userAns: null
-    });
-  };
-
-  checkAns = userAns => {
-    const { answer, scores } = this.state;
-
-    this.setState({
-      userAns: answer,
-      disabled: false
-    });
-    console.log(userAns);
-    if (userAns === answer) {
+    if (correct) {
       console.log("Correct");
       this.setState({
         scores: scores + 1
       });
     } else {
-      this.setState({
-        scores: scores
-      });
+      this.setState({ scores: scores });
       console.log("Wrong");
-      //  alert("Correct answer is " + answer);
     }
-    console.log("score : " + this.state.scores);
+    console.log("scores" + this.state.scores);
+
+    this.setState({
+      currentQuest: this.state.currentQuest + 1
+    });
+  };
+
+  checkAns = userAns => {
+    const { answer, correct } = this.state;
+
+    this.setState({
+      userAns: answer,
+      disabled: false
+    });
+    if (userAns === answer) {
+      console.log("Correct");
+      this.setState({
+        correct: true
+      });
+    } else {
+      this.setState({
+        correct: false
+      });
+    }
+    //  alert("Correct answer is " + answer);
+    //  console.log(userAns);
   };
 
   finishQuiz = () => {
+    const { correct, scores } = this.state;
     if (this.state.currentQuest === Quizdata.length - 1) {
       this.setState({
         isEnd: true
-        //  d: this.props.current
+        //  d: this.props.currentFarm Safety in News
       });
+      if (correct) {
+        // last question score updation here as cant be done in nextquestion function due to out of bounds
+        console.log("Correct on finish");
+        console.log("scores before update " + this.state.scores);
+        this.setState({
+          scores: this.state.scores + 1
+        });
+      } else {
+        this.setState({ scores: scores });
+        console.log("Wrong");
+      }
+      console.log("scores after upadtion " + this.state.scores);
       // this.updatedData()
       //  this.props.DBdata();
-      // this.props.DBdata();
     }
+
+    // this.props.DBdata();
+    //console.log("Sent to Database from on finish");
     /* setTimeout(() => {
       this.setState({
         isEnd: false
@@ -382,11 +399,11 @@ class Quiz extends Component {
           {this.state.pictures}
           <br></br>
 
-          {options.map(option => (
+          {options.map((option, id) => (
             <Button
               size="lg"
               block
-              key={option.id}
+              key={id}
               className={`ui floating message options
             ${userAns === option ? "selected" : null}
            `}
@@ -418,6 +435,7 @@ class Quiz extends Component {
             <Button
               onClick={() => {
                 this.finishQuiz();
+                //  this.nextQuestion();
                 this.pushtoDB2();
                 this.props.handleDisableValue(scores); // child to parent
               }}
