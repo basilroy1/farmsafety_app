@@ -37,6 +37,6 @@
 }
 
 #userProfileComp {
-  float: right;
+  position: absolute;
   color: rgb(0, 50, 85);
 }

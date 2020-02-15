@@ -26,6 +26,7 @@ class Welcome extends Component {
     this.state = {
       viewquiz: false,
       people: [],
+      newPeople: [],
       dataHasLoaded: false,
       user: {},
       disabled: true,
@@ -115,9 +116,12 @@ class Welcome extends Component {
     this.authListener();
     this.retrieveData();
 
-    console.log("Data loaded");
+    console.log("Data loaded mounted");
   }
 
+  componentWillUpdate() {
+    console.log("component update");
+  }
   authListener = () => {
     //checks if user is already logged in 0n browser
     fire.auth().onAuthStateChanged(user => {
@@ -143,7 +147,7 @@ class Welcome extends Component {
         var userUID = fire.auth().currentUser.uid;
         var query = ref.orderByChild("ID").equalTo(userUID); //retrieves data about only the current logged in user
         console.log(userUID);
-        query.once("value", snapshot => {
+        query.on("value", snapshot => {
           let currentState = this.state.people;
 
           const currentUser = snapshot.val();
@@ -177,10 +181,7 @@ class Welcome extends Component {
       }
     });
   };
-  datafromQuiz = scores => {
-    let re = scores;
-    return re;
-  };
+
   changetoQuiz = () => {
     this.setState({
       viewquiz: !this.state.viewquiz,
@@ -270,13 +271,6 @@ class Welcome extends Component {
     console.log("new level " + this.state.level);
   };
 
-  quizInfo = () => {
-    return (
-      <div>
-        <Card>click on the appropriate level to take the quiz</Card>
-      </div>
-    );
-  };
   rankData = () => {
     this.state.people.map((person, index) => {
       this.setState({
@@ -306,13 +300,10 @@ class Welcome extends Component {
     const INTERM = 2;
     const EXPERT = 3;
     const MASTER = 4;
-    /* let renderData = this.state.people.map((person, index) => {
+
+    let renderData = this.state.people.map((person, index) => {
       return (
-        <div
-          id="userProfileComp"
-          style={{ color: " black", position: "absolute" }}
-          key={index}
-        >
+        <div id="userProfileComp" key={index}>
           {this.state.viewProfile ? (
             <UserProfile
               className="userProfile"
@@ -324,13 +315,11 @@ class Welcome extends Component {
               score={person.Score}
               question={person.Questions}
               email={person.email}
-             
             />
           ) : null}
         </div>
       );
     });
-*/
 
     // let loadingSpinner = <Loader id="loader" type="ThreeDots" color="red " />;
 
@@ -419,7 +408,7 @@ class Welcome extends Component {
             </Button>
           </Navbar>
         </div>
-        <div id="userProfileComp">
+        {/*    <div id="userProfileComp">
           {this.state.viewProfile ? (
             <UserProfile
               className="userProfile"
@@ -434,19 +423,19 @@ class Welcome extends Component {
             />
           ) : null}
         </div>
+          */}
         {this.state.article1 ? <Articles /> : null}
         {this.state.article2 ? <Articles2 /> : null}
         {this.state.article3 ? <Articles3 /> : null}
         {this.state.article4 ? <Articles4 /> : null}
         {this.state.article5 ? <Articles5 /> : null}
-
         {this.state.viewModal ? (
           <InstructionsModal
             isOpen={this.state.viewModal}
             onHide={this.closeModal}
           />
         ) : null}
-        {/*  {<div>{this.state.dataHasLoaded ? renderData : loadingSpinner}</div>}*/}
+        {<div>{this.state.viewProfile ? renderData : null}</div>}
         {/*{this.state.hideQuiz ? (*/}
         <Button
           id="takeQuizbtn"
@@ -461,10 +450,10 @@ class Welcome extends Component {
         {/*  ) : null} */}
         {this.state.viewquiz ? (
           <Quiz
-            //  DBdata={this.updatedData}
-            //  current={this.state.currentState}
-            //  d={this.state.people}
-            quiz={this.datafromQuiz}
+            DBdata={this.updatedData}
+            current={this.state.currentState}
+            d={this.state.newPeople}
+            //     quiz={this.datafromQuiz}
             tryAgain={this.hideQuizButton}
             tryAgain2={this.changetoQuiz}
             articelVal={this.articelState}

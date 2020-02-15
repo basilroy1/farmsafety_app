@@ -20,7 +20,6 @@ class Quiz extends Component {
       userAns: null,
       options: [],
       disabled: false,
-      // levelDisable: true,
       currentQuest: 0,
       isEnd: false,
       people: [],
@@ -206,7 +205,7 @@ class Quiz extends Component {
       UserLevelMaster: master,
       RankValue: rankVal
     });
-
+    //this.props.DBdata();
     console.log("Sent to Database");
   };
 
@@ -232,10 +231,10 @@ class Quiz extends Component {
       UserLevelMaster: master,
       RankValue: rankVal
     });
-
+    // this.props.DBdata();
     console.log("Sent to Database");
   };
-  updatedData = () => {
+  /*updatedData = () => {
     fire.auth().onAuthStateChanged(user => {
       if (user) {
         var ref = fire
@@ -268,7 +267,7 @@ class Quiz extends Component {
           }
 
           // currentState.push(user);
-          console.log(currentState);
+          console.log("new updated DB in quiz" + currentState);
           //  this.rankData(); //setting rank value from DB
 
           this.setState({
@@ -281,6 +280,7 @@ class Quiz extends Component {
       }
     });
   };
+  */
   nextQuestion = () => {
     const { userAns } = this.state;
     // e.preventDefault();
@@ -328,7 +328,7 @@ class Quiz extends Component {
       });
       // this.updatedData()
       //  this.props.DBdata();
-      // console.log("DB score " + this.props.d);
+      // this.props.DBdata();
     }
     /* setTimeout(() => {
       this.setState({
@@ -336,11 +336,6 @@ class Quiz extends Component {
       });
     }, 3500);
     */
-  };
-  datafromQuiz = scores => {
-    this.setState({
-      scores: this.state.people[0].Score
-    });
   };
 
   render() {
@@ -368,7 +363,6 @@ class Quiz extends Component {
             onClick={() => {
               this.props.tryAgain();
               this.props.tryAgain2();
-              //  this.updatedData();
             }}
           >
             Try Again
@@ -412,7 +406,7 @@ class Quiz extends Component {
               onClick={() => {
                 this.nextQuestion();
                 this.pushtoDB();
-                this.updatedData();
+                // this.updatedData();
               }}
             >
               NEXT <FaArrowRight />
@@ -425,8 +419,6 @@ class Quiz extends Component {
               onClick={() => {
                 this.finishQuiz();
                 this.pushtoDB2();
-                this.updatedData();
-                this.props.quiz(scores);
                 this.props.handleDisableValue(scores); // child to parent
               }}
             >
