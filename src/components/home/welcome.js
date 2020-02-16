@@ -15,7 +15,7 @@ import Articles2 from "./articles2";
 import Articles3 from "./articles3";
 import Articles4 from "./articles4";
 import Articles5 from "./articles5";
-
+import { Alert } from "reactstrap";
 import { useState } from "react";
 //import { Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import InstructionsModal from "./instructionsmodal";
@@ -431,6 +431,10 @@ class Welcome extends Component {
           ) : null}
         </div>
           */}
+
+        <div>
+          <Alert color="primary">This is a primary alert — check it out!</Alert>
+        </div>
         {this.state.article1 ? <Articles /> : null}
         {this.state.article2 ? <Articles2 /> : null}
         {this.state.article3 ? <Articles3 /> : null}

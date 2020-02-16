@@ -97,6 +97,7 @@ class Articles extends Component {
           <iframe
             width="300"
             height="315"
+            title="lol"
             src="https://www.youtube.com/embed/H9aQGovNlcU"
             frameBorder="0"
             allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"

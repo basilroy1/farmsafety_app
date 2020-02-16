@@ -100,6 +100,7 @@ class Articles extends Component {
 
           <iframe
             width="300"
+            title="lol"
             height="315"
             src="https://www.youtube.com/embed/H9aQGovNlcU"
             frameBorder="0"

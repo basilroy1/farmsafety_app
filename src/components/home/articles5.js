@@ -101,6 +101,7 @@ class Articles extends Component {
             height="315"
             src="https://www.youtube.com/embed/H9aQGovNlcU"
             frameBorder="0"
+            title="lol"
             allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
           ></iframe>

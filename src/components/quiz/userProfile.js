@@ -4,12 +4,10 @@ import fire from "../../config/fire";
 import { Button, Container, Card } from "react-bootstrap";
 import { MdEmail } from "react-icons/md";
 import { GiTrophy } from "react-icons/gi";
+import { IoMdClipboard } from "react-icons/io";
 import ProfilePic from "../pictures/userprofilepic.jpg";
 import "./userProfile.css";
 class UserProfile extends Component {
-  componentDidUpdate(prevProps, prevState) {
-    console.log("In componentDidUpdate() Messenger.js");
-  }
   render() {
     return (
       <div id="container">
@@ -22,11 +20,12 @@ class UserProfile extends Component {
             <Card.Text style={{ marginLeft: 70 }}>
               <br></br>
               <ul>
-                <MdEmail /> Email :{this.props.email}
+                <MdEmail /> Email :&ensp; {this.props.email}
                 <br></br>
-                Score :{this.props.score}
+                <IoMdClipboard /> Score :&ensp; {this.props.score}
                 <br></br>
-                <GiTrophy /> Level :{this.props.levelRook ? "Rookie" : null}
+                <GiTrophy /> Level :&ensp;
+                {this.props.levelRook ? "Rookie" : null}
                 {this.props.levelStudent ? "Student" : null}
                 {this.props.levelIntermediate ? "Intermediate" : null}
                 {this.props.levelExpert ? "Expert" : null}
