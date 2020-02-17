@@ -92,21 +92,29 @@ class Articles extends Component {
                 </Card.Body>
               </Accordion.Collapse>
             </Card>
+
+            <Card border="warning">
+              <Card.Header>
+                <Accordion.Toggle as={Button} variant="link" eventKey="4">
+                  Farm Safety in News <MdCheckBox />
+                  <FaChevronRight />
+                </Accordion.Toggle>
+              </Card.Header>
+              <Accordion.Collapse eventKey="4">
+                <Card.Body>
+                  <iframe
+                    width="300"
+                    title="lol"
+                    height="315"
+                    src="https://www.youtube.com/embed/H9aQGovNlcU"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  ></iframe>
+                </Card.Body>
+              </Accordion.Collapse>
+            </Card>
           </Accordion>
-
-          <h3 style={{ marginLeft: "center " }} className="heading">
-            Farm Safety in News
-          </h3>
-
-          <iframe
-            width="300"
-            title="lol"
-            height="315"
-            src="https://www.youtube.com/embed/H9aQGovNlcU"
-            frameBorder="0"
-            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-          ></iframe>
         </div>
       </div>
     );

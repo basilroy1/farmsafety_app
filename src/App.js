@@ -11,6 +11,7 @@ import Signup from "./components/quiz/signup";
 import Welcome from "./components/home/welcome";
 import { FiLogIn } from "react-icons/fi";
 import { TiHome } from "react-icons/ti";
+import { Alert } from "reactstrap";
 //import login from ".login/components/quiz/login";
 
 class App extends Component {

@@ -3,6 +3,7 @@ import "./welcome.css";
 import { MdPerson } from "react-icons/md";
 import { FiLogOut } from "react-icons/fi";
 import Loader from "react-loader-spinner";
+
 import { Button, Nav, Navbar, ButtonToolbar, Card } from "react-bootstrap";
 //import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
 //import Login from "../quiz/login";
@@ -16,7 +17,7 @@ import Articles3 from "./articles3";
 import Articles4 from "./articles4";
 import Articles5 from "./articles5";
 import { Alert } from "reactstrap";
-import { useState } from "react";
+
 //import { Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import InstructionsModal from "./instructionsmodal";
 
@@ -115,13 +116,9 @@ class Welcome extends Component {
   componentDidMount() {
     this.authListener();
     this.retrieveData();
-
-    console.log("Data loaded mounted");
+    console.log("Data mounted");
   }
 
-  componentWillUpdate() {
-    console.log("component update");
-  }
   authListener = () => {
     //checks if user is already logged in 0n browser
     fire.auth().onAuthStateChanged(user => {
@@ -262,7 +259,7 @@ class Welcome extends Component {
   handleDisableValue = scores => {
     let n = this.state.level;
     let newN = n + 1;
-    // this.setState({
+    //this.setState({
     //  level: newN
     //});
 
@@ -271,8 +268,9 @@ class Welcome extends Component {
         level: newN
       });
     }
-    console.log("old level " + this.state.level);
-    console.log("new level " + this.state.level);
+    console.log("current level " + this.state.level);
+    //  console.log("new level " + this.state.level);
+    console.log("prev level " + n);
   };
 
   rankData = () => {
@@ -280,7 +278,7 @@ class Welcome extends Component {
       this.setState({
         level: person.rank
       });
-      console.log(this.state.level);
+      console.log("Rank " + this.state.level);
     });
     /*
     this.setState({
@@ -354,6 +352,7 @@ class Welcome extends Component {
                     this.articelState();
                     this.changeToquiz2();
                     this.checkQuiznLevel();
+                    //       this.handleDisableValue();
                     //    this.hideQuizButton();
                   }}
                 >

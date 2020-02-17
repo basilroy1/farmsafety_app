@@ -12,7 +12,6 @@ import { Quizdata4 } from "./questionsLevel4";
 import { Quizdata5 } from "./questionsLevel5";
 import Welcome from "../home/welcome";
 import UserProfile from "./userProfile";
-import { GiThunderSkull } from "react-icons/gi";
 //import { Label } from "semantic-ui-react";
 class Quiz extends Component {
   constructor(props) {
@@ -26,7 +25,8 @@ class Quiz extends Component {
       people: [],
       scores: 0,
       pictures: "",
-      count: 0,
+      checker: false,
+
       level1: false,
       level2: false,
       level3: false,
@@ -124,7 +124,8 @@ class Quiz extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const { currentQuest } = this.state;
+    const { currentQuest, checker } = this.state;
+    //  if (checker === false) {
     if (this.props.userLevel1) {
       if (this.state.currentQuest !== prevState.currentQuest) {
         this.setState({
@@ -176,6 +177,7 @@ class Quiz extends Component {
         });
       }
     }
+    //  }
   }
 
   logout = e => {
@@ -237,59 +239,19 @@ class Quiz extends Component {
     console.log("Sent to Database");
   };
   */
-  /*updatedData = () => {
-    fire.auth().onAuthStateChanged(user => {
-      if (user) {
-        var ref = fire
-          .database()
-          .ref("data")
-          .limitToLast(1);
-        //takes the last data in DB
 
-        var userUID = fire.auth().currentUser.uid;
-        var query = ref.orderByChild("ID").equalTo(userUID); //retrieves data about only the current logged in user
-        console.log(userUID);
-        query.once("value", snapshot => {
-          let currentState = this.state.people;
-
-          const currentUser = snapshot.val();
-          for (let i in currentUser) {
-            currentState.push({
-              email: currentUser[i].UserEmail,
-              UserAnswer: currentUser[i].UserAnswer,
-              Questions: currentUser[i].Question,
-              id: currentUser[i].ID,
-              Score: currentUser[i].Score,
-              levelRook: currentUser[i].UserLevel,
-              levelStudent: currentUser[i].UserLevelStudent,
-              levelIntermediate: currentUser[i].UserLevelIntermediate,
-              levelExpert: currentUser[i].UserLevelExpert,
-              levelMaster: currentUser[i].UserLevelMaster,
-              rank: currentUser[i].RankValue
-            });
-          }
-
-          // currentState.push(user);
-          console.log("new updated DB in quiz" + currentState);
-          //  this.rankData(); //setting rank value from DB
-
-          this.setState({
-            people: currentState
-            // dataHasLoaded: true
-          });
-        });
-      } else {
-        console.log("no user");
-      }
-    });
-  };
-  */
   nextQuestion = () => {
-    const { scores, correct, answer, userAns } = this.state;
+    const {
+      scores,
+      correct,
+      answer,
+      userAns,
+      currentQuest,
+      checker
+    } = this.state;
     if (userAns === null) {
       return;
     }
-    // e.preventDefault();
     /*  if (correct) {
       console.log("Correct");
       this.setState({
@@ -301,6 +263,22 @@ class Quiz extends Component {
     }
     console.log("scores " + this.state.scores);
 */
+
+    /*if (correct) {
+      console.log("Correct");
+
+      this.setState({
+        scores: scores + 1
+        // correct: false
+      });
+    } else {
+      this.setState({ scores: scores });
+      //  alert("Correct Answer is " + answer);
+      //);
+    }
+    console.log("scores " + this.state.scores);
+    */
+
     if (userAns === answer) {
       console.log("Correct");
 
@@ -309,6 +287,7 @@ class Quiz extends Component {
         // correct: false
       });
     } else {
+      console.log("wrong");
       this.setState({ scores: scores });
 
       //  alert("Correct Answer is " + answer);
@@ -318,6 +297,13 @@ class Quiz extends Component {
     this.setState({
       currentQuest: this.state.currentQuest + 1
     });
+
+    /* if (currentQuest === Quizdata.length - 1) {
+      this.setState({
+        checker: true
+      });
+    }
+    */
   };
 
   checkAns = answer => {
@@ -328,7 +314,7 @@ class Quiz extends Component {
       disabled: false
     });
 
-    /*  if (userAns === answer) {
+    /* if (userAns === answer) {
       console.log("Correct");
       this.setState({
         correct: true
@@ -345,15 +331,31 @@ class Quiz extends Component {
   };
 
   finishQuiz = () => {
-    const { scores } = this.state;
+    const { scores, userAns, checker, answer } = this.state;
 
     if (this.state.currentQuest === Quizdata.length - 1) {
       this.setState({
         isEnd: true
         //  d: this.props.current
       });
+
+      if (userAns === answer) {
+        console.log("Correct");
+
+        this.setState({
+          scores: scores + 1
+          // correct: false
+        });
+      } else {
+        console.log("wrong");
+        this.setState({ scores: scores });
+
+        //  alert("Correct Answer is " + answer);
+        //);
+      }
+      console.log("scores " + this.state.scores);
     }
-    /*  if (this.state.correct) {
+    /* if (this.state.correct) {
       // last question score updation here as cant be done in nextquestion function due to out of bounds
       console.log("Correct on finish");
       console.log("scores before update " + this.state.scores);
@@ -365,7 +367,7 @@ class Quiz extends Component {
       console.log("Wrong");
     }
     console.log("scores after updation " + this.state.scores);
-*/
+
     // this.props.DBdata();
     //console.log("Sent to Database from on finish");
     /* setTimeout(() => {
@@ -434,9 +436,7 @@ class Quiz extends Component {
               {option}
             </Button>
           ))}
-          {this.state.correct ? null : (
-            <Alert color="warning">correct answer is {this.state.answer}</Alert>
-          )}
+          <div className="hrLine"></div>
           <br></br>
           <Button onClick={() => this.checkAns()}>
             CHECK <FaHorse />
@@ -447,6 +447,7 @@ class Quiz extends Component {
               onClick={() => {
                 this.nextQuestion();
                 this.pushtoDB();
+                //    this.props.handleDisableValue(scores);
                 // this.updatedData();
               }}
             >
@@ -459,6 +460,7 @@ class Quiz extends Component {
             <Button
               onClick={() => {
                 this.finishQuiz();
+                // this.nextQuestion();
                 this.pushtoDB();
                 this.props.handleDisableValue(scores); // child to parent
               }}

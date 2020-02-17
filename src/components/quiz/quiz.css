@@ -1,11 +1,10 @@
 .quizForm {
   text-align: center;
-  margin-left: 100px;
-  margin-right: 100px;
-  border-radius: 20px;
+
   font-size: 30px;
   color: orange;
-  background-color: rgb(177, 81, 57);
+  background-color: #001f3f;
+  /*rgb(177, 81, 57);*/
 }
 .bigbutton {
   width: 100px;
@@ -17,6 +16,10 @@
     rgb(16, 190, 39),
     rgb(15, 216, 115)
   ) !important;
+}
+.hrLine {
+  padding: 40px;
+  background-color: yellow;
 }
 .options {
   cursor: pointer;
