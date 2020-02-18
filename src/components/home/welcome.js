@@ -32,7 +32,7 @@ class Welcome extends Component {
       user: {},
       disabled: true,
       level: 0,
-      //   fakelevel: 0,
+      fakelevel: 0,
       article1: true,
       viewModal: false,
       article2: false,
@@ -51,7 +51,8 @@ class Welcome extends Component {
       level3: false,
       level4: false,
       level5: false,
-      disabled: false
+      disabled: false,
+      fakelevel: 0
     });
   };
 
@@ -62,8 +63,8 @@ class Welcome extends Component {
       level3: false,
       level4: false,
       level5: false,
-      disabled: false
-      //   fakelevel: 1
+      disabled: false,
+      fakelevel: 1
     });
   };
 
@@ -74,8 +75,8 @@ class Welcome extends Component {
       level3: true,
       level4: false,
       level5: false,
-      disabled: false
-      // level: 2
+      disabled: false,
+      fakelevel: 2
     });
   };
   changeToquiz4 = () => {
@@ -85,8 +86,8 @@ class Welcome extends Component {
       level3: false,
       level4: true,
       level5: false,
-      disabled: false
-      //     level: 3
+      disabled: false,
+      fakelevel: 3
     });
   };
   changeToquiz5 = () => {
@@ -96,8 +97,8 @@ class Welcome extends Component {
       level3: false,
       level4: false,
       level5: true,
-      disabled: false
-      //   level: 4
+      disabled: false,
+      fakelevel: 4
     });
   };
   checkQuiznLevel = () => {
@@ -257,20 +258,27 @@ class Welcome extends Component {
     console.log("clicked interm");
   };
   handleDisableValue = scores => {
-    let n = this.state.level;
-    let newN = n + 1;
+    //    let n = this.state.level;
+    //   let newN = n + 1;
     //this.setState({
     //  level: newN
     //});
-
     if (scores >= 5 && this.state.level < 4) {
       this.setState({
-        level: newN
+        level: this.state.level + 1
       });
+    }
+    if (scores >= 5 && this.state.fakelevel < this.state.level) {
+      this.setState({
+        level: this.state.level
+      });
+    }
+    if (scores >= 5 && this.state.level > 4) {
+      return <div>You have completed the safety Guide!</div>;
     }
     console.log("current level " + this.state.level);
     //  console.log("new level " + this.state.level);
-    console.log("prev level " + n);
+    //  console.log("prev level " + n);
   };
 
   rankData = () => {

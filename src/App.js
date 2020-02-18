@@ -1,17 +1,17 @@
 import React, { Component } from "react";
 //import "./App.css";
-import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter, Route, Link } from "react-router-dom";
 import fire from "./config/fire";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Home from "./components/home/home";
-import Quiz from "./components/quiz/quiz";
+//import Quiz from "./components/quiz/quiz";
 import Login from "./components/quiz/login";
-import { Button, Col, Nav, Navbar, ButtonToolbar } from "react-bootstrap";
+import { Button, Nav, Navbar, ButtonToolbar } from "react-bootstrap";
 import Signup from "./components/quiz/signup";
 import Welcome from "./components/home/welcome";
 import { FiLogIn } from "react-icons/fi";
 import { TiHome } from "react-icons/ti";
-import { Alert } from "reactstrap";
+//import { Alert } from "reactstrap";
 //import login from ".login/components/quiz/login";
 
 class App extends Component {
@@ -79,54 +79,48 @@ class App extends Component {
 
   render() {
     return (
-      <body>
-        <div className="App">
-          <BrowserRouter>
-            {this.state.user ? (
-              <Welcome />
-            ) : (
-              <Navbar id="navbar" bg="dark" variant="dark">
-                <ButtonToolbar>
-                  <Button bg="dark" variant="dark" onClick={this.changetoHome}>
-                    <Link to="/">
-                      Home <TiHome />
+      <div className="body">
+        <BrowserRouter>
+          {this.state.user ? (
+            <Welcome />
+          ) : (
+            <Navbar id="navbar" bg="dark" variant="dark">
+              <ButtonToolbar>
+                <Button bg="dark" variant="dark" onClick={this.changetoHome}>
+                  <Link to="/">
+                    Home <TiHome />
+                  </Link>
+                </Button>
+                <Nav className="mr-auto">
+                  <Button bg="dark" variant="dark" onClick={this.changetoLogin}>
+                    <Link to="/Login">
+                      Login <FiLogIn />
                     </Link>
                   </Button>
-                  <Nav className="mr-auto">
-                    <Button
-                      bg="dark"
-                      variant="dark"
-                      onClick={this.changetoLogin}
-                    >
-                      <Link to="/Login">
-                        Login <FiLogIn />
-                      </Link>
-                    </Button>
 
-                    <Button
-                      bg="dark"
-                      variant="dark"
-                      onClick={this.changetoSignup}
-                    >
-                      <Link to="/Signup">Signup</Link>
-                    </Button>
-                  </Nav>
-                </ButtonToolbar>
-              </Navbar>
-            )}
-            {this.state.viewHome ? (
-              <Route path="/Home" component={Home} exact />
-            ) : null}
-            {this.state.viewLogin ? (
-              <Route path="/Login" component={Login} exact />
-            ) : null}
-            {this.state.viewSignup ? (
-              <Route path="/Signup" component={Signup} exact />
-            ) : null}
-          </BrowserRouter>
-          {this.state.viewHome ? <Home /> : null}
-        </div>
-      </body>
+                  <Button
+                    bg="dark"
+                    variant="dark"
+                    onClick={this.changetoSignup}
+                  >
+                    <Link to="/Signup">Signup</Link>
+                  </Button>
+                </Nav>
+              </ButtonToolbar>
+            </Navbar>
+          )}
+          {this.state.viewHome ? (
+            <Route path="/Home" component={Home} exact />
+          ) : null}
+          {this.state.viewLogin ? (
+            <Route path="/Login" component={Login} exact />
+          ) : null}
+          {this.state.viewSignup ? (
+            <Route path="/Signup" component={Signup} exact />
+          ) : null}
+        </BrowserRouter>
+        {this.state.viewHome ? <Home /> : null}
+      </div>
     );
   }
 }

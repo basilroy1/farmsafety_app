@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 //import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
 import fire from "../../config/fire";
-import { Button, Alert } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import "./login.css";
 import { GiFarmTractor } from "react-icons/gi";
-import Home from "../home/home";
+//import Home from "../home/home";
 import Welcome from "../home/welcome";
-import App from "../../App";
+//import App from "../../App";
 class Login extends Component {
   constructor(props) {
     super(props);

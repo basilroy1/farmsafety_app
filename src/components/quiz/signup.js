@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import fire from "../../config/fire";
-import { Button, Alert } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import { GiFarmTractor } from "react-icons/gi";
 import "./login.css";
 class Signup extends Component {
