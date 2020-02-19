@@ -19,9 +19,7 @@
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 }
-.btnLevel {
-  background-color: brown;
-}
+
 .levelButtons {
   position: absolute;
   left: 50%;

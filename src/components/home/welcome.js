@@ -8,6 +8,7 @@ import { Button, Nav, Navbar, ButtonToolbar, Card } from "react-bootstrap";
 //import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
 //import Login from "../quiz/login";
 //import Signup from "../quiz/signup";
+import OverlayTrigger from "react-bootstrap/Overlay";
 import Quiz from "../quiz/quiz";
 import fire from "../../config/fire";
 import UserProfile from "../quiz/userProfile";
@@ -351,7 +352,7 @@ class Welcome extends Component {
                   }}
                 >
                   Rookie
-                </Button>
+                </Button>{" "}
                 <Button
                   className="btnLevel"
                   disabled={this.state.level < STUDENT}
@@ -360,12 +361,12 @@ class Welcome extends Component {
                     this.articelState();
                     this.changeToquiz2();
                     this.checkQuiznLevel();
-                    //       this.handleDisableValue();
+
                     //    this.hideQuizButton();
                   }}
                 >
                   Student
-                </Button>
+                </Button>{" "}
                 <Button
                   className="btnLevel"
                   disabled={this.state.level < INTERM}
@@ -378,7 +379,7 @@ class Welcome extends Component {
                   }}
                 >
                   Intermediate
-                </Button>
+                </Button>{" "}
                 <Button
                   className="btnLevel"
                   disabled={this.state.level < EXPERT}
@@ -390,7 +391,7 @@ class Welcome extends Component {
                   }}
                 >
                   Expert
-                </Button>
+                </Button>{" "}
                 <Button
                   className="btnLevel"
                   disabled={this.state.level < MASTER}
@@ -406,9 +407,12 @@ class Welcome extends Component {
               </ButtonToolbar>
             </Nav>
             <ButtonToolbar>
-              <Button onClick={() => this.setState({ viewModal: true })}>
-                <Nav>Instructions</Nav>
-              </Button>
+              <OverlayTrigger>
+                {" "}
+                <Button onClick={() => this.setState({ viewModal: true })}>
+                  <Nav>Instructions</Nav>
+                </Button>
+              </OverlayTrigger>
             </ButtonToolbar>
             <Button onClick={this.logout}>
               <Nav>
@@ -422,6 +426,7 @@ class Welcome extends Component {
             </Button>
           </Navbar>
         </div>
+
         {/*    <div id="userProfileComp">
           {this.state.viewProfile ? (
             <UserProfile
@@ -440,7 +445,7 @@ class Welcome extends Component {
           */}
 
         <div>
-          <Alert color="primary">This is a primary alert — check it out!</Alert>
+          <Alert variant="primary">Test!</Alert>
         </div>
         {this.state.article1 ? <Articles /> : null}
         {this.state.article2 ? <Articles2 /> : null}
