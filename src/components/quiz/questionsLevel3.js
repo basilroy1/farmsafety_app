@@ -63,15 +63,9 @@ export const Quizdata3 = [
     answer: "nothing",
     picture: ""
   },
+
   {
     id: 9,
-    question: "what should you do?",
-    options: ["dont enter", "yup", "all fine"],
-    answer: "yup",
-    picture: ""
-  },
-  {
-    id: 10,
     question: "what should you do?",
     options: ["dont enter", "qqq", "all fine"],
     answer: "qqq",

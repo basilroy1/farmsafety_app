@@ -3,11 +3,7 @@ import "./welcome.css";
 import { MdPerson } from "react-icons/md";
 import { FiLogOut } from "react-icons/fi";
 import Loader from "react-loader-spinner";
-
 import { Button, Nav, Navbar, ButtonToolbar, Card } from "react-bootstrap";
-//import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
-//import Login from "../quiz/login";
-//import Signup from "../quiz/signup";
 import OverlayTrigger from "react-bootstrap/Overlay";
 import Quiz from "../quiz/quiz";
 import fire from "../../config/fire";
@@ -32,6 +28,7 @@ class Welcome extends Component {
       dataHasLoaded: false,
       user: {},
       disabled: true,
+      quizCompleted: false,
       level: 0,
       fakelevel: 0,
       article1: true,
@@ -259,11 +256,6 @@ class Welcome extends Component {
     console.log("clicked interm");
   };
   handleDisableValue = scores => {
-    //    let n = this.state.level;
-    //   let newN = n + 1;
-    //this.setState({
-    //  level: newN
-    //});
     if (scores >= 5 && this.state.level < 4) {
       this.setState({
         level: this.state.level + 1
@@ -273,9 +265,11 @@ class Welcome extends Component {
       this.setState({
         level: this.state.level
       });
-    }
-    if (scores >= 5 && this.state.level > 4) {
-      return <div>You have completed the safety Guide!</div>;
+    } else if (scores >= 5 && this.state.level > 4) {
+      this.setState({
+        quizCompleted: true
+      });
+      console.log(this.state.quizCompleted);
     }
     console.log("current level " + this.state.level);
     //  console.log("new level " + this.state.level);
@@ -477,6 +471,7 @@ class Welcome extends Component {
             //  current={this.state.currentState}
             // d={this.state.newPeople}
             //     quiz={this.datafromQuiz}
+            quizFinished={this.state.quizCompleted}
             tryAgain={this.hideQuizButton}
             tryAgain2={this.changetoQuiz}
             articelVal={this.articelState}

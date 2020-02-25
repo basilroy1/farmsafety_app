@@ -4,15 +4,12 @@ import fire from "../../config/fire";
 import { FaHorse, FaArrowRight, FaSadTear, FaSmile } from "react-icons/fa";
 //import { MdClose } from "react-icons/md";
 import { Button, ProgressBar } from "react-bootstrap";
-import { Alert } from "reactstrap";
-import Questions, { Quizdata } from "./questions";
+//import { Alert } from "reactstrap";
+import { Quizdata } from "./questions";
 import { Quizdata2 } from "./questionsLevel2";
 import { Quizdata3 } from "./questionsLevel3";
 import { Quizdata4 } from "./questionsLevel4";
 import { Quizdata5 } from "./questionsLevel5";
-import Welcome from "../home/welcome";
-import UserProfile from "./userProfile";
-//import { Label } from "semantic-ui-react";
 class Quiz extends Component {
   constructor(props) {
     super(props);
@@ -25,8 +22,6 @@ class Quiz extends Component {
       people: [],
       scores: 0,
       pictures: "",
-      checker: false,
-
       level1: false,
       level2: false,
       level3: false,
@@ -124,8 +119,8 @@ class Quiz extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const { currentQuest, checker } = this.state;
-    //  if (checker === false) {
+    const { currentQuest } = this.state;
+
     if (this.props.userLevel1) {
       if (this.state.currentQuest !== prevState.currentQuest) {
         this.setState({
@@ -177,7 +172,6 @@ class Quiz extends Component {
         });
       }
     }
-    //  }
   }
 
   logout = e => {
@@ -209,46 +203,11 @@ class Quiz extends Component {
       UserLevelMaster: master,
       RankValue: rankVal
     });
-    //this.props.DBdata();
     console.log("Sent to Database");
   };
-  /*
-  pushtoDB2 = () => {
-    var ref = fire.database().ref("data");
-    var newRef = ref.push();
-    const rookie = this.props.userLevel1;
-    const student = this.props.userLevel2;
-    const intermediate = this.props.userLevel3;
-    const expert = this.props.userLevel4;
-    const master = this.props.userLevel5;
-    const rankVal = this.props.rankValue;
-    newRef.set({
-      ID: fire.auth().currentUser.uid,
-      UserEmail: fire.auth().currentUser.email,
-      Question: this.state.questions, //Send data to DB to track for analysis
-      UserAnswer: this.state.userAns,
-      Score: this.state.scores,
-      UserLevel: rookie, ///need to change the name of these as it overrides the value in the database
-      UserLevelStudent: student,
-      UserLevelIntermediate: intermediate,
-      UserLevelExpert: expert,
-      UserLevelMaster: master,
-      RankValue: rankVal
-    });
-    // this.props.DBdata();
-    console.log("Sent to Database");
-  };
-  */
 
   nextQuestion = () => {
-    const {
-      scores,
-      correct,
-      answer,
-      userAns,
-      currentQuest,
-      checker
-    } = this.state;
+    const { scores, answer, userAns } = this.state;
     if (userAns === null) {
       return;
     }
@@ -278,82 +237,68 @@ class Quiz extends Component {
     }
     console.log("scores " + this.state.scores);
     */
-
+    this.setState(
+      {
+        currentQuest: this.state.currentQuest + 1,
+        scores: userAns === answer ? scores + 1 : scores
+      },
+      () => {
+        this.pushtoDB();
+      }
+    );
     if (userAns === answer) {
       console.log("Correct");
-
-      this.setState({
-        scores: scores + 1
-        // correct: false
-      });
     } else {
       console.log("wrong");
-      this.setState({ scores: scores });
 
       //  alert("Correct Answer is " + answer);
       //);
     }
     console.log("scores " + this.state.scores);
-    this.setState({
-      currentQuest: this.state.currentQuest + 1
-    });
-
-    /* if (currentQuest === Quizdata.length - 1) {
-      this.setState({
-        checker: true
-      });
-    }
-    */
   };
 
   checkAns = answer => {
-    const { userAns } = this.state;
     //userans and answer switched
     this.setState({
       userAns: answer,
       disabled: false
     });
-
-    /* if (userAns === answer) {
+    /*  if (userAns === answer) {
       console.log("Correct");
       this.setState({
-        correct: true
+        scores: userAns === answer ? scores + 1 : scores
       });
     } else {
       this.setState({
         correct: false
       });
     }
-    */
-
+*/
     //  alert("Correct answer is " + answer);
-    //  console.log(userAns);
   };
 
   finishQuiz = () => {
-    const { scores, userAns, checker, answer } = this.state;
-
     if (this.state.currentQuest === Quizdata.length - 1) {
-      this.setState({
-        isEnd: true
-        //  d: this.props.current
-      });
-
-      if (userAns === answer) {
+      if (this.state.userAns === this.state.answer) {
         console.log("Correct");
-
-        this.setState({
-          scores: scores + 1
-          // correct: false
-        });
-      } else {
-        console.log("wrong");
-        this.setState({ scores: scores });
-
-        //  alert("Correct Answer is " + answer);
-        //);
       }
+      //var newScore = this.state.scores + 1;
+      this.setState(
+        {
+          isEnd: true,
+          scores:
+            this.state.userAns === this.state.answer
+              ? this.state.scores + 1
+              : this.state.scores
+        },
+        () => {
+          this.pushtoDB();
+        }
+      );
+      //      console.log(this.state);
       console.log("scores " + this.state.scores);
+    } else {
+      console.log("didnt enter");
     }
     /* if (this.state.correct) {
       // last question score updation here as cant be done in nextquestion function due to out of bounds
@@ -385,23 +330,33 @@ class Quiz extends Component {
       return (
         <div>
           <h3 className="SummaryResultsPass">
-            Quiz Finished, You passed {this.state.scores}/{Quizdata.length - 1}{" "}
+            Quiz Finished, You passed {this.state.scores}/{Quizdata.length}{" "}
             <FaSmile />!
           </h3>
 
-          <Button onClick={this.props.articleVal}>next challenge</Button>
+          <Button onClick={this.pushtoDB}>next challenge</Button>
+        </div>
+      );
+    } else if (scores >= 5 && this.props.quizFinished) {
+      return (
+        <div>
+          <h3 className="">
+            Farm Safety Guide Completed Successfully!!
+            <FaSmile />!
+          </h3>
         </div>
       );
     } else if (isEnd && scores < 5) {
       return (
         <div>
           <h3 className="SummaryResultsFail">
-            Quiz Finished, You failed {this.state.scores}/{Quizdata.length - 1}{" "}
+            Quiz Finished, You failed {this.state.scores}/{Quizdata.length}{" "}
             <FaSadTear />!
           </h3>
           <Button
             id="tryagain"
             onClick={() => {
+              //  this.pushtoDB();
               this.props.tryAgain();
               this.props.tryAgain2();
             }}
@@ -415,7 +370,7 @@ class Quiz extends Component {
         <div className="quizForm">
           <br></br>
           <div>
-            <ProgressBar animated now={this.state.currentQuest * 10} />
+            <ProgressBar animated now={this.state.currentQuest * 11.99} />
           </div>
           {this.state.questions}
           <br></br>
@@ -428,6 +383,7 @@ class Quiz extends Component {
               size="lg"
               block
               key={id}
+              //  disabled={this.state.checker}
               className={`ui floating message options
             ${userAns === option ? "selected" : null}
            `}
@@ -436,6 +392,7 @@ class Quiz extends Component {
               {option}
             </Button>
           ))}
+
           <div className="hrLine"></div>
           <br></br>
           <Button onClick={() => this.checkAns()}>
@@ -446,7 +403,7 @@ class Quiz extends Component {
               disabled={this.state.disabled}
               onClick={() => {
                 this.nextQuestion();
-                this.pushtoDB();
+
                 //    this.props.handleDisableValue(scores);
                 // this.updatedData();
               }}
@@ -461,7 +418,6 @@ class Quiz extends Component {
               onClick={() => {
                 this.finishQuiz();
                 // this.nextQuestion();
-                this.pushtoDB();
                 this.props.handleDisableValue(scores); // child to parent
               }}
             >

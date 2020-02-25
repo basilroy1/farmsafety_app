@@ -2,10 +2,6 @@ import React, { Component } from "react";
 import { Modal, Button } from "reactstrap";
 
 class InstructionsModal extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
       <div>
