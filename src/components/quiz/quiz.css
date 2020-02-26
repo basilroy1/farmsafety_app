@@ -17,6 +17,14 @@
     rgb(15, 216, 115)
   ) !important;
 }
+.wrong {
+  background: linear-gradient(
+    to right,
+    rgb(216, 18, 3),
+    rgb(189, 37, 17)
+  ) !important;
+}
+
 .hrLine {
   padding: 40px;
   background-color: yellow;
@@ -46,6 +54,13 @@
   transform: translate(-50%, -50%);
 }
 #tryagain {
+  position: absolute;
+  top: 54%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+#nextChallenge {
   position: absolute;
   top: 54%;
   left: 50%;

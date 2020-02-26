@@ -20,6 +20,7 @@ class Quiz extends Component {
       currentQuest: 0,
       isEnd: false,
       people: [],
+      limitedQuestion: 7,
       scores: 0,
       pictures: "",
       level1: false,
@@ -32,7 +33,6 @@ class Quiz extends Component {
   }
   loadQuiz = () => {
     const { currentQuest } = this.state;
-    //  console.log(Quizdata[2].question);
     this.setState(() => {
       return {
         questions: Quizdata[currentQuest].question,
@@ -45,7 +45,7 @@ class Quiz extends Component {
   };
   loadQuiz2 = () => {
     const { currentQuest } = this.state;
-    //  console.log(Quizdata[2].question);
+    //  console.log(Questions[2].question);
     this.setState(() => {
       return {
         questions: Quizdata2[currentQuest].question,
@@ -58,7 +58,7 @@ class Quiz extends Component {
   };
   loadQuiz3 = () => {
     const { currentQuest } = this.state;
-    //  console.log(Quizdata[2].question);
+    //  console.log(Questions[2].question);
     this.setState(() => {
       return {
         questions: Quizdata3[currentQuest].question,
@@ -72,7 +72,7 @@ class Quiz extends Component {
 
   loadQuiz4 = () => {
     const { currentQuest } = this.state;
-    //  console.log(Quizdata[2].question);
+    //  console.log(Questions[2].question);
     this.setState(() => {
       return {
         questions: Quizdata4[currentQuest].question,
@@ -85,7 +85,7 @@ class Quiz extends Component {
   };
   loadQuiz5 = () => {
     const { currentQuest } = this.state;
-    //  console.log(Quizdata[2].question);
+    //  console.log(Questions[2].question);
     this.setState(() => {
       return {
         questions: Quizdata5[currentQuest].question,
@@ -237,15 +237,22 @@ class Quiz extends Component {
     }
     console.log("scores " + this.state.scores);
     */
-    this.setState(
-      {
-        currentQuest: this.state.currentQuest + 1,
-        scores: userAns === answer ? scores + 1 : scores
-      },
-      () => {
-        this.pushtoDB();
-      }
-    );
+    if (this.state.currentQuest === this.state.limitedQuestion) {
+      this.setState({
+        currentQuest: this.state.currentQuest
+      });
+    } else {
+      this.setState(
+        {
+          currentQuest: this.state.currentQuest + 1,
+          scores: userAns === answer ? scores + 1 : scores
+        },
+        () => {
+          this.pushtoDB();
+          console.log("scores " + this.state.scores);
+        }
+      );
+    }
     if (userAns === answer) {
       console.log("Correct");
     } else {
@@ -254,7 +261,6 @@ class Quiz extends Component {
       //  alert("Correct Answer is " + answer);
       //);
     }
-    console.log("scores " + this.state.scores);
   };
 
   checkAns = answer => {
@@ -263,26 +269,18 @@ class Quiz extends Component {
       userAns: answer,
       disabled: false
     });
-    /*  if (userAns === answer) {
-      console.log("Correct");
-      this.setState({
-        scores: userAns === answer ? scores + 1 : scores
-      });
-    } else {
-      this.setState({
-        correct: false
-      });
-    }
-*/
     //  alert("Correct answer is " + answer);
   };
-
+  percentageCalculation = () => {
+    var x = Math.round(this.state.limitedQuestion * 0.5);
+    console.log("percent " + x);
+    return x;
+  };
   finishQuiz = () => {
-    if (this.state.currentQuest === Quizdata.length - 1) {
+    if (this.state.currentQuest === this.state.limitedQuestion - 1) {
       if (this.state.userAns === this.state.answer) {
         console.log("Correct");
       }
-      //var newScore = this.state.scores + 1;
       this.setState(
         {
           isEnd: true,
@@ -293,10 +291,10 @@ class Quiz extends Component {
         },
         () => {
           this.pushtoDB();
+          console.log("scores " + this.state.scores);
         }
       );
       //      console.log(this.state);
-      console.log("scores " + this.state.scores);
     } else {
       console.log("didnt enter");
     }
@@ -320,24 +318,43 @@ class Quiz extends Component {
           isEnd: false
         });
       }, 3500);
+      
       */
+
     console.log("rank " + this.props.rankValue);
+  };
+
+  loadNextChallenge = () => {
+    if (this.props.rankValue === 1) {
+      this.setState({
+        article2: true
+      });
+    } else if (this.props.rankValue === 2) {
+      this.setState({
+        article3: true
+      });
+    }
   };
 
   render() {
     const { userAns, scores, options, currentQuest, isEnd } = this.state;
-    if (isEnd && scores >= 5) {
+    if (isEnd && scores >= this.percentageCalculation()) {
       return (
         <div>
           <h3 className="SummaryResultsPass">
-            Quiz Finished, You passed {this.state.scores}/{Quizdata.length}{" "}
-            <FaSmile />!
+            Quiz Finished, You passed {this.state.scores}/
+            {this.state.limitedQuestion} <FaSmile />!
           </h3>
 
-          <Button onClick={this.pushtoDB}>next challenge</Button>
+          <Button id="nextChallenge" onClick={this.loadNextChallenge}>
+            next challenge
+          </Button>
         </div>
       );
-    } else if (scores >= 5 && this.props.quizFinished) {
+    } else if (
+      scores >= this.percentageCalculation() &&
+      this.props.quizFinished
+    ) {
       return (
         <div>
           <h3 className="">
@@ -346,12 +363,12 @@ class Quiz extends Component {
           </h3>
         </div>
       );
-    } else if (isEnd && scores < 5) {
+    } else if (isEnd && scores < this.percentageCalculation()) {
       return (
         <div>
           <h3 className="SummaryResultsFail">
-            Quiz Finished, You failed {this.state.scores}/{Quizdata.length}{" "}
-            <FaSadTear />!
+            Quiz Finished, You failed {this.state.scores}/
+            {this.state.limitedQuestion} <FaSadTear />!
           </h3>
           <Button
             id="tryagain"
@@ -374,7 +391,7 @@ class Quiz extends Component {
           </div>
           {this.state.questions}
           <br></br>
-          <p style={{ textAlign: "center" }}>Q{this.state.currentQuest}</p>
+          <p style={{ textAlign: "center" }}>Q{this.state.currentQuest + 1}</p>
           {this.state.pictures}
           <br></br>
 
@@ -383,7 +400,6 @@ class Quiz extends Component {
               size="lg"
               block
               key={id}
-              //  disabled={this.state.checker}
               className={`ui floating message options
             ${userAns === option ? "selected" : null}
            `}
@@ -395,17 +411,12 @@ class Quiz extends Component {
 
           <div className="hrLine"></div>
           <br></br>
-          <Button onClick={() => this.checkAns()}>
-            CHECK <FaHorse />
-          </Button>
-          {currentQuest < Quizdata.length - 1 && (
+
+          {currentQuest < this.state.limitedQuestion - 1 && (
             <Button
               disabled={this.state.disabled}
               onClick={() => {
                 this.nextQuestion();
-
-                //    this.props.handleDisableValue(scores);
-                // this.updatedData();
               }}
             >
               NEXT <FaArrowRight />
@@ -413,11 +424,10 @@ class Quiz extends Component {
           )}
           <br></br>
 
-          {currentQuest === Quizdata.length - 1 && (
+          {currentQuest === this.state.limitedQuestion - 1 && (
             <Button
               onClick={() => {
                 this.finishQuiz();
-                // this.nextQuestion();
                 this.props.handleDisableValue(scores); // child to parent
               }}
             >

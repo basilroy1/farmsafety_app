@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import "./welcome.css";
 import { MdPerson } from "react-icons/md";
 import { FiLogOut } from "react-icons/fi";
-import Loader from "react-loader-spinner";
-import { Button, Nav, Navbar, ButtonToolbar, Card } from "react-bootstrap";
-import OverlayTrigger from "react-bootstrap/Overlay";
+//import Loader from "react-loader-spinner";
+import { Button, Nav, Navbar, ButtonToolbar } from "react-bootstrap";
+///import OverlayTrigger from "react-bootstrap/Overlay";
 import Quiz from "../quiz/quiz";
 import fire from "../../config/fire";
 import UserProfile from "../quiz/userProfile";
@@ -272,10 +272,10 @@ class Welcome extends Component {
       console.log(this.state.quizCompleted);
     }
     console.log("current level " + this.state.level);
-    //  console.log("new level " + this.state.level);
-    //  console.log("prev level " + n);
   };
-
+  loadNextfromChild = data => {
+    //if(this.state.)
+  };
   rankData = () => {
     this.state.people.map(person => {
       this.setState({
@@ -401,12 +401,10 @@ class Welcome extends Component {
               </ButtonToolbar>
             </Nav>
             <ButtonToolbar>
-              <OverlayTrigger>
-                {" "}
-                <Button onClick={() => this.setState({ viewModal: true })}>
-                  <Nav>Instructions</Nav>
-                </Button>
-              </OverlayTrigger>
+              {" "}
+              <Button onClick={() => this.setState({ viewModal: true })}>
+                <Nav>Instructions</Nav>
+              </Button>
             </ButtonToolbar>
             <Button onClick={this.logout}>
               <Nav>
