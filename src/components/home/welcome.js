@@ -255,21 +255,36 @@ class Welcome extends Component {
   clickedinterm = () => {
     console.log("clicked interm");
   };
-  handleDisableValue = scores => {
-    if (scores >= 5 && this.state.level < 4) {
+  clickedexpert = () => {
+    console.log("clicked expert");
+  };
+  clickedmaster = () => {
+    console.log("clicked master");
+  };
+
+  handleDisableValue = (scores, limitedQuestion) => {
+    if (scores >= Math.round(limitedQuestion * 0.5) && this.state.level < 4) {
+      console.log("entered level up " + Math.round(limitedQuestion * 0.5));
       this.setState({
         level: this.state.level + 1
       });
     }
-    if (scores >= 5 && this.state.fakelevel < this.state.level) {
+    if (
+      scores >= Math.round(limitedQuestion * 0.5) &&
+      this.state.fakelevel < this.state.level
+    ) {
+      console.log("entered fakelevel " + Math.round(limitedQuestion * 0.5));
       this.setState({
         level: this.state.level
       });
-    } else if (scores >= 5 && this.state.level > 4) {
+    } else if (
+      scores >= Math.round(limitedQuestion * 0.5) &&
+      this.state.level > 4
+    ) {
+      console.log("entered max level " + Math.round(limitedQuestion * 0.5));
       this.setState({
         quizCompleted: true
       });
-      console.log(this.state.quizCompleted);
     }
     console.log("current level " + this.state.level);
   };
@@ -380,6 +395,7 @@ class Welcome extends Component {
                   onClick={() => {
                     this.changeToquiz4();
                     this.articelState();
+                    this.clickedexpert();
                     this.checkQuiznLevel();
                     //    this.hideQuizButton();
                   }}
@@ -391,6 +407,7 @@ class Welcome extends Component {
                   disabled={this.state.level < MASTER}
                   onClick={() => {
                     this.changeToquiz5();
+                    this.clickedmaster();
                     this.articelState();
                     this.checkQuiznLevel();
                     //      this.hideQuizButton();
@@ -475,6 +492,7 @@ class Welcome extends Component {
             articelVal={this.articelState}
             rankValue={this.state.level}
             handleDisableValue={this.handleDisableValue}
+            // percentageCalc={this.percentageCalc}
             userLevel1={this.state.level1}
             userLevel2={this.state.level2}
             userLevel3={this.state.level3}

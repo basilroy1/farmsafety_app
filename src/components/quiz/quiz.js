@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./quiz.css";
 import fire from "../../config/fire";
-import { FaHorse, FaArrowRight, FaSadTear, FaSmile } from "react-icons/fa";
+import { FaArrowRight, FaSadTear, FaSmile } from "react-icons/fa";
 //import { MdClose } from "react-icons/md";
 import { Button, ProgressBar } from "react-bootstrap";
 //import { Alert } from "reactstrap";
@@ -20,7 +20,7 @@ class Quiz extends Component {
       currentQuest: 0,
       isEnd: false,
       people: [],
-      limitedQuestion: 7,
+      limitedQuestion: 6,
       scores: 0,
       pictures: "",
       level1: false,
@@ -273,7 +273,6 @@ class Quiz extends Component {
   };
   percentageCalculation = () => {
     var x = Math.round(this.state.limitedQuestion * 0.5);
-    console.log("percent " + x);
     return x;
   };
   finishQuiz = () => {
@@ -387,7 +386,10 @@ class Quiz extends Component {
         <div className="quizForm">
           <br></br>
           <div>
-            <ProgressBar animated now={this.state.currentQuest * 11.99} />
+            <ProgressBar
+              animated
+              now={this.state.currentQuest * (100 / this.state.limitedQuestion)}
+            />
           </div>
           {this.state.questions}
           <br></br>
@@ -428,7 +430,10 @@ class Quiz extends Component {
             <Button
               onClick={() => {
                 this.finishQuiz();
-                this.props.handleDisableValue(scores); // child to parent
+                this.props.handleDisableValue(
+                  scores,
+                  this.state.limitedQuestion
+                ); // child to parent
               }}
             >
               Finish

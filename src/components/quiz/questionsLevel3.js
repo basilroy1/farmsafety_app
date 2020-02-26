@@ -72,4 +72,33 @@ export const Quizdata3 = [
     picture: ""
   }
 ];
+function shuffle(array) {
+  //fisher-yates algorithm
+  var currentIndex = array.length,
+    temporaryValue,
+    randomIndex;
+
+  // While there remain elements to shuffle...
+  while (0 !== currentIndex) {
+    function shuffleArray(array) {
+      for (var i = array.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+      }
+    }
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+
+    // And swap it with the current element.
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+
+  return array;
+}
+shuffle(Quizdata3);
 export default Quizdata3;
