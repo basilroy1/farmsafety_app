@@ -1,6 +1,4 @@
 import React, { Component } from "react";
-//import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
-//import fire from "../../config/fire";
 import { Card } from "react-bootstrap";
 import { MdEmail } from "react-icons/md";
 import { GiTrophy } from "react-icons/gi";

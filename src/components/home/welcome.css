@@ -40,3 +40,7 @@
   top: 100px;
   color: rgb(0, 50, 85);
 }
+#header1 :hover {
+  background-color: rgb(235, 180, 180);
+  border-top-width: 8px;
+}

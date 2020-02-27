@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import "./home.css";
 import { Carousel } from "react-bootstrap";
 import { BrowserRouter } from "react-router-dom";
-//import Login from "../quiz/login";
-//import Signup from "..//quiz/signup";
 import fire from "../../config/fire";
 import Pictures from "../pictures/farm_danger.jpeg";
 import Pictures1 from "../pictures/machinery_hazard.jpg";

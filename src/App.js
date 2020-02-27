@@ -11,8 +11,8 @@ import Signup from "./components/quiz/signup";
 import Welcome from "./components/home/welcome";
 import { FiLogIn } from "react-icons/fi";
 import { TiHome } from "react-icons/ti";
-//import { Alert } from "reactstrap";
-//import login from ".login/components/quiz/login";
+import Tooltip from "@material-ui/core/Tooltip";
+import Zoom from "@material-ui/core/Zoom";
 
 class App extends Component {
   constructor(props) {
@@ -86,25 +86,46 @@ class App extends Component {
           ) : (
             <Navbar id="navbar" bg="dark" variant="dark">
               <ButtonToolbar>
-                <Button bg="dark" variant="dark" onClick={this.changetoHome}>
-                  <Link to="/">
-                    Home <TiHome />
-                  </Link>
-                </Button>
-                <Nav className="mr-auto">
-                  <Button bg="dark" variant="dark" onClick={this.changetoLogin}>
-                    <Link to="/Login">
-                      Login <FiLogIn />
+                <Tooltip
+                  TransitionComponent={Zoom}
+                  title="Go to Home Page"
+                  arrow
+                >
+                  <Button bg="dark" variant="dark" onClick={this.changetoHome}>
+                    <Link to="/">
+                      Home <TiHome />
                     </Link>
                   </Button>
-
-                  <Button
-                    bg="dark"
-                    variant="dark"
-                    onClick={this.changetoSignup}
+                </Tooltip>
+                <Nav className="mr-auto">
+                  <Tooltip
+                    TransitionComponent={Zoom}
+                    title="Already have an Account"
+                    arrow
                   >
-                    <Link to="/Signup">Signup</Link>
-                  </Button>
+                    <Button
+                      bg="dark"
+                      variant="dark"
+                      onClick={this.changetoLogin}
+                    >
+                      <Link to="/Login">
+                        Login <FiLogIn />
+                      </Link>
+                    </Button>
+                  </Tooltip>
+                  <Tooltip
+                    TransitionComponent={Zoom}
+                    title="Create an Account and Sign in"
+                    arrow
+                  >
+                    <Button
+                      bg="dark"
+                      variant="dark"
+                      onClick={this.changetoSignup}
+                    >
+                      <Link to="/Signup">Signup</Link>
+                    </Button>
+                  </Tooltip>
                 </Nav>
               </ButtonToolbar>
             </Navbar>

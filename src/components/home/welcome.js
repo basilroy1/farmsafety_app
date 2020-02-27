@@ -4,7 +4,8 @@ import { MdPerson } from "react-icons/md";
 import { FiLogOut } from "react-icons/fi";
 //import Loader from "react-loader-spinner";
 import { Button, Nav, Navbar, ButtonToolbar } from "react-bootstrap";
-///import OverlayTrigger from "react-bootstrap/Overlay";
+import Tooltip from "@material-ui/core/Tooltip";
+import Zoom from "@material-ui/core/Zoom";
 import Quiz from "../quiz/quiz";
 import fire from "../../config/fire";
 import UserProfile from "../quiz/userProfile";
@@ -24,7 +25,6 @@ class Welcome extends Component {
     this.state = {
       viewquiz: false,
       people: [],
-      // newPeople: [],
       dataHasLoaded: false,
       user: {},
       disabled: true,
@@ -40,7 +40,7 @@ class Welcome extends Component {
       hideQuiz: true,
       viewProfile: false
     };
-  } //  this.disableCheckLevel();
+  }
 
   changeToquiz1 = () => {
     this.setState({
@@ -290,6 +290,15 @@ class Welcome extends Component {
   };
   loadNextfromChild = data => {
     //if(this.state.)
+    if (this.state.userLevel2) {
+      this.setState({
+        article2: data
+      });
+    } else if (this.state.userLevel3) {
+      this.setState({
+        article3: data
+      });
+    }
   };
   rankData = () => {
     this.state.people.map(person => {
@@ -419,20 +428,38 @@ class Welcome extends Component {
             </Nav>
             <ButtonToolbar>
               {" "}
-              <Button onClick={() => this.setState({ viewModal: true })}>
-                <Nav>Instructions</Nav>
-              </Button>
+              <Tooltip
+                TransitionComponent={Zoom}
+                title="Guide on how the Quiz works"
+                arrow
+              >
+                <Button onClick={() => this.setState({ viewModal: true })}>
+                  <Nav>Instructions</Nav>
+                </Button>
+              </Tooltip>
             </ButtonToolbar>
-            <Button onClick={this.logout}>
-              <Nav>
-                Logout <FiLogOut />
-              </Nav>
-            </Button>
-            <Button onClick={this.changetoProfile}>
-              <Nav>
-                Profile <MdPerson />
-              </Nav>
-            </Button>
+            <Tooltip
+              TransitionComponent={Zoom}
+              title="Log out and go to Home"
+              arrow
+            >
+              <Button onClick={this.logout}>
+                <Nav>
+                  Logout <FiLogOut />
+                </Nav>
+              </Button>
+            </Tooltip>
+            <Tooltip
+              TransitionComponent={Zoom}
+              title="View Your Profile Info"
+              arrow
+            >
+              <Button onClick={this.changetoProfile}>
+                <Nav>
+                  Profile <MdPerson />
+                </Nav>
+              </Button>
+            </Tooltip>
           </Navbar>
         </div>
 
@@ -482,17 +509,13 @@ class Welcome extends Component {
         {/*  ) : null} */}
         {this.state.viewquiz ? (
           <Quiz
-            //   DBdata={this.updatedData}
-            //  current={this.state.currentState}
-            // d={this.state.newPeople}
-            //     quiz={this.datafromQuiz}
             quizFinished={this.state.quizCompleted}
             tryAgain={this.hideQuizButton}
             tryAgain2={this.changetoQuiz}
             articelVal={this.articelState}
             rankValue={this.state.level}
+            loadNextfrom={this.loadNextfromChild}
             handleDisableValue={this.handleDisableValue}
-            // percentageCalc={this.percentageCalc}
             userLevel1={this.state.level1}
             userLevel2={this.state.level2}
             userLevel3={this.state.level3}

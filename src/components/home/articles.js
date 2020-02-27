@@ -6,7 +6,8 @@ import { GiSwordsEmblem } from "react-icons/gi";
 import { FaChevronRight, FaChevronDown } from "react-icons/fa";
 import piechart from "../pictures/piechartMachinery.jpg";
 import Accordion from "react-bootstrap/Accordion";
-
+import Tooltip from "@material-ui/core/Tooltip";
+import Fade from "@material-ui/core/Fade";
 import { Button } from "react-bootstrap";
 class Articles extends Component {
   render() {
@@ -14,9 +15,15 @@ class Articles extends Component {
       <div>
         <div id="innerBorder">
           <Accordion defaultActiveKey="0">
-            <Card border="warning">
+            <Card border="warning" id="header1">
               <Card.Header>
-                <Accordion.Toggle as={Button} variant="link" eventKey="0">
+                <Accordion.Toggle
+                  as={Button}
+                  size="sm"
+                  block
+                  variant="link"
+                  eventKey="0"
+                >
                   Guarding <GiSwordsEmblem /> <FaChevronRight />
                 </Accordion.Toggle>
               </Card.Header>
@@ -35,7 +42,13 @@ class Articles extends Component {
             </Card>
             <Card border="warning">
               <Card.Header>
-                <Accordion.Toggle as={Button} variant="link" eventKey="1">
+                <Accordion.Toggle
+                  as={Button}
+                  size="sm"
+                  block
+                  variant="link"
+                  eventKey="1"
+                >
                   Machinery Checks <MdCheckBox />
                   <FaChevronRight />
                 </Accordion.Toggle>
@@ -54,7 +67,13 @@ class Articles extends Component {
             </Card>
             <Card border="warning">
               <Card.Header>
-                <Accordion.Toggle as={Button} variant="link" eventKey="2">
+                <Accordion.Toggle
+                  as={Button}
+                  size="sm"
+                  block
+                  variant="link"
+                  eventKey="2"
+                >
                   Machinery Checks <MdCheckBox />
                   <FaChevronRight />
                 </Accordion.Toggle>
@@ -72,7 +91,13 @@ class Articles extends Component {
             </Card>
             <Card border="warning">
               <Card.Header>
-                <Accordion.Toggle as={Button} variant="link" eventKey="3">
+                <Accordion.Toggle
+                  as={Button}
+                  size="sm"
+                  block
+                  variant="link"
+                  eventKey="3"
+                >
                   Machinery Fatalities <MdCheckBox />
                   <FaChevronRight />
                 </Accordion.Toggle>
@@ -95,7 +120,13 @@ class Articles extends Component {
 
             <Card border="warning">
               <Card.Header>
-                <Accordion.Toggle as={Button} variant="link" eventKey="4">
+                <Accordion.Toggle
+                  as={Button}
+                  size="sm"
+                  block
+                  variant="link"
+                  eventKey="4"
+                >
                   Farm Safety in News <MdCheckBox />
                   <FaChevronRight />
                 </Accordion.Toggle>

@@ -27,8 +27,7 @@ class Quiz extends Component {
       level2: false,
       level3: false,
       level4: false,
-      level5: false,
-      correct: true
+      level5: false
     };
   }
   loadQuiz = () => {
@@ -328,10 +327,22 @@ class Quiz extends Component {
       this.setState({
         article2: true
       });
+      return this.state.article2;
     } else if (this.props.rankValue === 2) {
       this.setState({
         article3: true
       });
+      return this.state.article3;
+    } else if (this.props.rankValue === 3) {
+      this.setState({
+        article4: true
+      });
+      return this.state.article4;
+    } else if (this.props.rankValue === 4) {
+      this.setState({
+        article5: true
+      });
+      return this.state.article5;
     }
   };
 
@@ -345,7 +356,13 @@ class Quiz extends Component {
             {this.state.limitedQuestion} <FaSmile />!
           </h3>
 
-          <Button id="nextChallenge" onClick={this.loadNextChallenge}>
+          <Button
+            id="nextChallenge"
+            onClick={() => {
+              this.props.loadNextfrom(this.loadNextChallenge);
+              //   this.loadNextChallenge();
+            }}
+          >
             next challenge
           </Button>
         </div>
