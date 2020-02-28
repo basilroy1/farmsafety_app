@@ -5,6 +5,7 @@ import { FiLogOut } from "react-icons/fi";
 //import Loader from "react-loader-spinner";
 import { Button, Nav, Navbar, ButtonToolbar } from "react-bootstrap";
 import Tooltip from "@material-ui/core/Tooltip";
+import Drawer from "@material-ui/core/Drawer";
 import Zoom from "@material-ui/core/Zoom";
 import Quiz from "../quiz/quiz";
 import fire from "../../config/fire";
@@ -15,10 +16,16 @@ import Articles3 from "./articles3";
 import Articles4 from "./articles4";
 import Articles5 from "./articles5";
 import { Alert } from "reactstrap";
-
-//import { Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
+import { makeStyles } from "@material-ui/core/styles";
 import InstructionsModal from "./instructionsmodal";
-
+import List from "@material-ui/core/List";
+import Divider from "@material-ui/core/Divider";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemIcon from "@material-ui/core/ListItemIcon";
+import ListItemText from "@material-ui/core/ListItemText";
+//import InboxIcon from "@material-ui/icons/MoveToInbox";
+//import MailIcon from "@material-ui/icons/Mail";
+import SideProfileDrawer from "../home/sideProfileDrawer";
 class Welcome extends Component {
   constructor(props) {
     super(props);
@@ -28,6 +35,7 @@ class Welcome extends Component {
       dataHasLoaded: false,
       user: {},
       disabled: true,
+      date: new Date(),
       quizCompleted: false,
       level: 0,
       fakelevel: 0,
@@ -115,7 +123,17 @@ class Welcome extends Component {
   componentDidMount() {
     this.authListener();
     this.retrieveData();
+    this.timerID = setInterval(() => this.tick(), 1000);
     console.log("Data mounted");
+  }
+  componentWillUnmount() {
+    clearInterval(this.timerID);
+  }
+
+  tick() {
+    this.setState({
+      date: new Date()
+    });
   }
 
   authListener = () => {
@@ -159,7 +177,8 @@ class Welcome extends Component {
               levelIntermediate: currentUser[i].UserLevelIntermediate,
               levelExpert: currentUser[i].UserLevelExpert,
               levelMaster: currentUser[i].UserLevelMaster,
-              rank: currentUser[i].RankValue
+              rank: currentUser[i].RankValue,
+              lastLogin: currentUser[i].LastLogin
             });
           }
           // currentState.push(user);
@@ -344,6 +363,7 @@ class Welcome extends Component {
               score={person.Score}
               question={person.Questions}
               email={person.email}
+              time={person.lastLogin}
             />
           ) : null}
         </div>
@@ -494,7 +514,13 @@ class Welcome extends Component {
             onHide={this.closeModal}
           />
         ) : null}
-        {<div>{this.state.viewProfile ? renderData : null}</div>}
+        {
+          <div>
+            {this.state.viewProfile ? (
+              <SideProfileDrawer data={this.state.renderData} />
+            ) : null}
+          </div>
+        }
         {/*{this.state.hideQuiz ? (*/}
         <Button
           id="takeQuizbtn"
@@ -509,6 +535,7 @@ class Welcome extends Component {
         {/*  ) : null} */}
         {this.state.viewquiz ? (
           <Quiz
+            time={this.state.date.toLocaleTimeString()}
             quizFinished={this.state.quizCompleted}
             tryAgain={this.hideQuizButton}
             tryAgain2={this.changetoQuiz}

@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import fire from "../../config/fire";
 import { Button } from "react-bootstrap";
+import { MdMail } from "react-icons/md";
+import { AiOutlineLock } from "react-icons/ai";
+import TextField from "@material-ui/core/TextField";
+import Grid from "@material-ui/core/Grid";
 import { GiFarmTractor } from "react-icons/gi";
 import "./login.css";
 class Signup extends Component {
@@ -11,7 +15,6 @@ class Signup extends Component {
       email: "",
       password: "",
       clicked: "",
-      //   userName: "",
       viewPasswordResetModal: false
     };
   }
@@ -77,13 +80,61 @@ class Signup extends Component {
     console.log(s);
   };
   render() {
-    //  const ans = this.extractUsername(this.state.email);
     return (
       <body>
         <div>
           <form className="loginForm">
             <div className="emailpassdiv">
-              <div className="form-group col-md-9 ">
+              <div>
+                <Grid container spacing={1} alignItems="flex-end">
+                  <Grid item>
+                    <MdMail />
+                  </Grid>
+                  <Grid item>
+                    <TextField
+                      id="input-with-icon-grid"
+                      label="Enter Email"
+                      type="email"
+                      name="email"
+                      value={this.state.email}
+                      onChange={this.handleChange}
+                    />
+                  </Grid>
+                </Grid>
+                {this.state.email ? (
+                  <span style={{ color: "#00FF7F" }}>That's Good!</span>
+                ) : (
+                  <span style={{ color: "yellow" }}></span>
+                )}
+                <br></br>
+              </div>
+              <div>
+                <Grid container spacing={1} alignItems="flex-end">
+                  <Grid item>
+                    <AiOutlineLock />
+                  </Grid>
+                  <Grid item>
+                    <TextField
+                      id="input-with-icon-grid"
+                      label="Enter Password"
+                      type="password"
+                      name="password"
+                      value={this.state.password}
+                      onChange={this.handleChange}
+                    />
+                  </Grid>
+                </Grid>
+                {this.state.password.length >= 6 ? (
+                  <span style={{ color: "#00FF7F" }}>
+                    Minimum 6 characters long
+                  </span>
+                ) : (
+                  <span style={{ color: "rgb(179, 44, 44)" }}>
+                    Minumum 6 characters long
+                  </span>
+                )}
+              </div>
+              {/*} <div className="form-group col-md-9 ">
                 <label
                   htmlFor="emailInput"
                   style={{ color: "yellow", font: "bolder" }}
@@ -106,7 +157,8 @@ class Signup extends Component {
                 )}
                 <br></br>
               </div>
-              <div className="form-group col-md-9">
+                */}
+              {/* <div className="form-group col-md-9">
                 <label
                   htmlFor="inputPassword"
                   style={{ color: "yellow", font: "bolder" }}
@@ -132,6 +184,7 @@ class Signup extends Component {
                   </span>
                 )}
               </div>
+                */}
             </div>
             <Button className="signupbtn" onClick={this.signUp}>
               Signup <GiFarmTractor />

@@ -4,9 +4,12 @@ import fire from "../../config/fire";
 import { Button } from "react-bootstrap";
 import "./login.css";
 import { GiFarmTractor } from "react-icons/gi";
-//import Home from "../home/home";
+import { MdMail } from "react-icons/md";
+import { AiOutlineLock } from "react-icons/ai";
+import TextField from "@material-ui/core/TextField";
+import Grid from "@material-ui/core/Grid";
 import Welcome from "../home/welcome";
-//import App from "../../App";
+
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -94,31 +97,65 @@ class Login extends Component {
     // return s;
     console.log(s);
   };
-
-  /* loadData = () => {
-    var db = fire.database();
-    var ref = db.ref("data");
-
-    // Attach an asynchronous callback to read the data at our posts reference
-    ref.on(
-      "value",
-      function(snapshot) {
-        ID: fire.auth().currentUser.uid;
-        console.log(snapshot.val());
-      },
-      function(errorObject) {
-        console.log("The read failed: " + errorObject.code);
-      }
-    );
-  };
-  */
   render() {
     return (
       <body>
         <div>
           <form className="loginForm">
             <div className="emailpassdiv">
-              <div className="form-group col-md-9 ">
+              <div>
+                <Grid container spacing={1} alignItems="flex-end">
+                  <Grid item>
+                    <MdMail />
+                  </Grid>
+                  <Grid item>
+                    <TextField
+                      id="input-with-icon-grid"
+                      label="Enter Email"
+                      type="email"
+                      name="email"
+                      value={this.state.email}
+                      onChange={this.handleChange}
+                      variant="outlined"
+                    />
+                  </Grid>
+                </Grid>
+                {this.state.email ? (
+                  <span style={{ color: "#00FF7F" }}>That's Good!</span>
+                ) : (
+                  <span style={{ color: "yellow" }}></span>
+                )}
+                <br></br>
+              </div>
+
+              <div>
+                <Grid container spacing={1} alignItems="flex-end">
+                  <Grid item>
+                    <AiOutlineLock />
+                  </Grid>
+                  <Grid item>
+                    <TextField
+                      id="input-with-icon-grid"
+                      label="Enter Password"
+                      type="password"
+                      name="password"
+                      value={this.state.password}
+                      onChange={this.handleChange}
+                      //   variant="outlined"
+                    />
+                  </Grid>
+                </Grid>
+                {this.state.password.length >= 6 ? (
+                  <span style={{ color: "#00FF7F" }}>
+                    Minimum 6 characters long
+                  </span>
+                ) : (
+                  <span style={{ color: "rgb(179, 44, 44)" }}>
+                    Minumum 6 characters long
+                  </span>
+                )}
+              </div>
+              {/*  <div className="form-group col-md-9 ">
                 <label
                   htmlFor="emailInput"
                   style={{ color: "yellow", font: "bolder" }}
@@ -141,7 +178,9 @@ class Login extends Component {
                 )}
                 <br></br>
               </div>
-              <div className="form-group col-md-9">
+                */}
+
+              {/*  <div className="form-group col-md-9">
                 <label
                   htmlFor="inputPassword"
                   style={{ color: "yellow", font: "bolder" }}
@@ -150,11 +189,11 @@ class Login extends Component {
                 </label>
                 <input
                   type="password"
-                  name="password"
+                  // name="password"
                   placeholder="Enter Password"
                   className="form-control"
-                  value={this.state.password}
-                  onChange={this.handleChange}
+                  // value={this.state.password}
+                  //onChange={this.handleChange}
                 />
 
                 {this.state.password.length >= 6 ? (
@@ -167,7 +206,9 @@ class Login extends Component {
                   </span>
                 )}
               </div>
+              */}
             </div>
+
             <Button
               className="Loginbtn"
               onClick={() => {

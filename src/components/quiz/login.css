@@ -1,5 +1,5 @@
 .loginForm {
-  background-color: rgba(0, 0, 0, 0.87);
+  background-color: rgba(172, 170, 134, 0.87);
   border-radius: 30px;
   padding: 40px;
   height: 600px;
@@ -16,14 +16,26 @@ body {
 }
 
 .signupbtn {
-  margin-left: 175px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }
 
 .Loginbtn {
-  margin-left: 175px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }
 .emailpassdiv {
-  margin-left: 110px;
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }
 
 a {

@@ -200,7 +200,8 @@ class Quiz extends Component {
       UserLevelIntermediate: intermediate,
       UserLevelExpert: expert,
       UserLevelMaster: master,
-      RankValue: rankVal
+      RankValue: rankVal,
+      LastLogin: this.props.time
     });
     console.log("Sent to Database");
   };

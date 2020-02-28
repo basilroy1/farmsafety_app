@@ -6,8 +6,7 @@ import { GiSwordsEmblem } from "react-icons/gi";
 import { FaChevronRight, FaChevronDown } from "react-icons/fa";
 import piechart from "../pictures/piechartMachinery.jpg";
 import Accordion from "react-bootstrap/Accordion";
-import Tooltip from "@material-ui/core/Tooltip";
-import Fade from "@material-ui/core/Fade";
+
 import { Button } from "react-bootstrap";
 class Articles extends Component {
   render() {
