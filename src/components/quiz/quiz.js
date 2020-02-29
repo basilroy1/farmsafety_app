@@ -20,7 +20,7 @@ class Quiz extends Component {
       currentQuest: 0,
       isEnd: false,
       people: [],
-      limitedQuestion: 6,
+      limitedQuestion: 3,
       scores: 0,
       pictures: "",
       level1: false,

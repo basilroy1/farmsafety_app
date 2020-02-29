@@ -7,6 +7,7 @@ import Pictures from "../pictures/farm_danger.jpeg";
 import Pictures1 from "../pictures/machinery_hazard.jpg";
 import Pictures2 from "../pictures/saferty_gaurd.jpg";
 import Pictures3 from "../pictures/pondSafety.jpg";
+
 class Home extends Component {
   logout = e => {
     e.preventDefault();

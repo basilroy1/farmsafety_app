@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./welcome.css";
 import { MdPerson } from "react-icons/md";
 import { FiLogOut } from "react-icons/fi";
+import { FaBookOpen } from "react-icons/fa";
 //import Loader from "react-loader-spinner";
 import { Button, Nav, Navbar, ButtonToolbar } from "react-bootstrap";
 import Tooltip from "@material-ui/core/Tooltip";
@@ -20,11 +21,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import InstructionsModal from "./instructionsmodal";
 import List from "@material-ui/core/List";
 import Divider from "@material-ui/core/Divider";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
-//import InboxIcon from "@material-ui/icons/MoveToInbox";
-//import MailIcon from "@material-ui/icons/Mail";
+
 import SideProfileDrawer from "../home/sideProfileDrawer";
 class Welcome extends Component {
   constructor(props) {
@@ -379,6 +376,7 @@ class Welcome extends Component {
             <Nav className="mr-auto" style={{ fontSize: 25 }}>
               Welcome
               <ButtonToolbar className="levelButtons">
+                {" "}
                 <Button
                   className="btnLevel"
                   onClick={() => {
@@ -454,7 +452,10 @@ class Welcome extends Component {
                 arrow
               >
                 <Button onClick={() => this.setState({ viewModal: true })}>
-                  <Nav>Instructions</Nav>
+                  <Nav>
+                    Instructions&ensp;
+                    <FaBookOpen size={20} />
+                  </Nav>
                 </Button>
               </Tooltip>
             </ButtonToolbar>
@@ -465,7 +466,8 @@ class Welcome extends Component {
             >
               <Button onClick={this.logout}>
                 <Nav>
-                  Logout <FiLogOut />
+                  Logout&ensp;
+                  <FiLogOut size={20} />
                 </Nav>
               </Button>
             </Tooltip>
@@ -476,7 +478,8 @@ class Welcome extends Component {
             >
               <Button onClick={this.changetoProfile}>
                 <Nav>
-                  Profile <MdPerson />
+                  Profile&ensp;
+                  <MdPerson size={20} />
                 </Nav>
               </Button>
             </Tooltip>
@@ -516,8 +519,9 @@ class Welcome extends Component {
         ) : null}
         {
           <div>
+            {this.state.viewProfile ? renderData : null}
             {this.state.viewProfile ? (
-              <SideProfileDrawer data={this.state.renderData} />
+              <SideProfileDrawer viewprof={this.state.viewProfile} />
             ) : null}
           </div>
         }

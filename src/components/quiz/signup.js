@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import fire from "../../config/fire";
 import { Button } from "react-bootstrap";
-import { MdMail } from "react-icons/md";
+import { MdMail, MdDone, MdPriorityHigh, MdPersonAdd } from "react-icons/md";
 import { AiOutlineLock } from "react-icons/ai";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
@@ -85,10 +85,15 @@ class Signup extends Component {
         <div>
           <form className="loginForm">
             <div className="emailpassdiv">
+              <h1 className="signupHeader">SignUp</h1>
+              <div className="profileicon">
+                <MdPersonAdd size={75} />
+              </div>
+              <br />
               <div>
                 <Grid container spacing={1} alignItems="flex-end">
                   <Grid item>
-                    <MdMail />
+                    <MdMail size={20} color={"navy"} />
                   </Grid>
                   <Grid item>
                     <TextField
@@ -111,7 +116,7 @@ class Signup extends Component {
               <div>
                 <Grid container spacing={1} alignItems="flex-end">
                   <Grid item>
-                    <AiOutlineLock />
+                    <AiOutlineLock size={20} color={"navy"} />
                   </Grid>
                   <Grid item>
                     <TextField
@@ -126,11 +131,13 @@ class Signup extends Component {
                 </Grid>
                 {this.state.password.length >= 6 ? (
                   <span style={{ color: "#00FF7F" }}>
-                    Minimum 6 characters long
+                    Minimum 6 characters long&ensp;
+                    <MdDone size={23} />
                   </span>
                 ) : (
                   <span style={{ color: "rgb(179, 44, 44)" }}>
-                    Minumum 6 characters long
+                    Minumum 6 characters long&ensp;
+                    <MdPriorityHigh size={20} />
                   </span>
                 )}
               </div>

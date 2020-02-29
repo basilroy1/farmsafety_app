@@ -44,18 +44,7 @@ export default function TemporaryDrawer() {
       onClick={toggleDrawer(side, false)}
       onKeyDown={toggleDrawer(side, false)}
     >
-      <UserProfile />
-      <Divider />
-    </div>
-  );
-
-  const fullList = side => (
-    <div
-      className={classes.fullList}
-      role="presentation"
-      onClick={toggleDrawer(side, false)}
-      onKeyDown={toggleDrawer(side, false)}
-    >
+      {/* {this.props.data ? <UserProfile /> : null}*/}
       <UserProfile />
       <Divider />
     </div>
@@ -63,14 +52,7 @@ export default function TemporaryDrawer() {
 
   return (
     <div>
-      <Button
-        onClick={() => {
-          toggleDrawer("right", true);
-          //  this.props.data();
-        }}
-      >
-        Open Right
-      </Button>
+      <Button onClick={toggleDrawer("right", true)}>Open Right</Button>
 
       <Drawer
         anchor="right"

@@ -12,12 +12,18 @@
   right: 0;
 }
 body {
-  background-image: url("http://getwallpapers.com/wallpaper/full/a/5/d/544750.jpg");
+  /* background-image: url("http://getwallpapers.com/wallpaper/full/a/5/d/544750.jpg");*/
+  background-image: url(../pictures/farmbackground.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
 }
 
 .signupbtn {
   position: absolute;
-  top: 50%;
+  top: 65%;
   left: 50%;
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
@@ -25,14 +31,14 @@ body {
 
 .Loginbtn {
   position: absolute;
-  top: 50%;
+  top: 65%;
   left: 50%;
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 }
 .emailpassdiv {
   position: absolute;
-  top: 30%;
+  top: 35%;
   left: 50%;
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
@@ -44,4 +50,19 @@ a {
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
+}
+.loginHeader {
+  text-align: center;
+  font-size: 40px;
+  font-weight: bold;
+  font-family: monospace;
+}
+.signupHeader {
+  text-align: center;
+  font-size: 40px;
+  font-weight: bold;
+  font-family: monospace;
+}
+.profileicon {
+  margin-left: 9ex;
 }

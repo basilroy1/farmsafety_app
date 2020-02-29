@@ -4,12 +4,12 @@ import fire from "../../config/fire";
 import { Button } from "react-bootstrap";
 import "./login.css";
 import { GiFarmTractor } from "react-icons/gi";
-import { MdMail } from "react-icons/md";
+import { MdMail, MdDone, MdPriorityHigh } from "react-icons/md";
+import { FaUserCircle } from "react-icons/fa";
 import { AiOutlineLock } from "react-icons/ai";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import Welcome from "../home/welcome";
-
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -103,10 +103,16 @@ class Login extends Component {
         <div>
           <form className="loginForm">
             <div className="emailpassdiv">
+              <h1 className="loginHeader">Login</h1>
+              <br />
+              <div className="profileicon">
+                <FaUserCircle style={{}} size={75} />
+              </div>
+              <br />
               <div>
                 <Grid container spacing={1} alignItems="flex-end">
                   <Grid item>
-                    <MdMail />
+                    <MdMail color={"navy"} size={20} />
                   </Grid>
                   <Grid item>
                     <TextField
@@ -116,7 +122,6 @@ class Login extends Component {
                       name="email"
                       value={this.state.email}
                       onChange={this.handleChange}
-                      variant="outlined"
                     />
                   </Grid>
                 </Grid>
@@ -131,7 +136,7 @@ class Login extends Component {
               <div>
                 <Grid container spacing={1} alignItems="flex-end">
                   <Grid item>
-                    <AiOutlineLock />
+                    <AiOutlineLock color={"navy"} size={20} />
                   </Grid>
                   <Grid item>
                     <TextField
@@ -147,11 +152,13 @@ class Login extends Component {
                 </Grid>
                 {this.state.password.length >= 6 ? (
                   <span style={{ color: "#00FF7F" }}>
-                    Minimum 6 characters long
+                    Minimum 6 characters long&ensp;
+                    <MdDone size={23} />
                   </span>
                 ) : (
                   <span style={{ color: "rgb(179, 44, 44)" }}>
-                    Minumum 6 characters long
+                    Minumum 6 characters long&ensp;
+                    <MdPriorityHigh size={20} />
                   </span>
                 )}
               </div>

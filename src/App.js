@@ -10,6 +10,7 @@ import { Button, Nav, Navbar, ButtonToolbar } from "react-bootstrap";
 import Signup from "./components/quiz/signup";
 import Welcome from "./components/home/welcome";
 import { FiLogIn } from "react-icons/fi";
+import { MdPersonAdd } from "react-icons/md";
 import { TiHome } from "react-icons/ti";
 import Tooltip from "@material-ui/core/Tooltip";
 import Zoom from "@material-ui/core/Zoom";
@@ -93,7 +94,8 @@ class App extends Component {
                 >
                   <Button bg="dark" variant="dark" onClick={this.changetoHome}>
                     <Link to="/">
-                      Home <TiHome />
+                      Home&ensp;
+                      <TiHome size={20} />
                     </Link>
                   </Button>
                 </Tooltip>
@@ -109,7 +111,8 @@ class App extends Component {
                       onClick={this.changetoLogin}
                     >
                       <Link to="/Login">
-                        Login <FiLogIn />
+                        Login&ensp;
+                        <FiLogIn size={20} />
                       </Link>
                     </Button>
                   </Tooltip>
@@ -123,7 +126,10 @@ class App extends Component {
                       variant="dark"
                       onClick={this.changetoSignup}
                     >
-                      <Link to="/Signup">Signup</Link>
+                      <Link to="/Signup">
+                        Signup&ensp;
+                        <MdPersonAdd size={20} />
+                      </Link>
                     </Button>
                   </Tooltip>
                 </Nav>
