@@ -193,7 +193,12 @@ class Signup extends Component {
               </div>
                 */}
             </div>
-            <Button className="signupbtn" onClick={this.signUp}>
+            <Button
+              style={{ height: 50, width: 110, fontSize: 17 }}
+              className="signupbtn"
+              variant="info"
+              onClick={this.signUp}
+            >
               Signup <GiFarmTractor />
             </Button>
           </form>

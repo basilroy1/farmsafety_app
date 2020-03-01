@@ -4,7 +4,14 @@ import { MdPerson } from "react-icons/md";
 import { FiLogOut } from "react-icons/fi";
 import { FaBookOpen } from "react-icons/fa";
 //import Loader from "react-loader-spinner";
-import { Button, Nav, Navbar, ButtonToolbar } from "react-bootstrap";
+import {
+  Button,
+  Nav,
+  Navbar,
+  ButtonToolbar,
+  DropdownButton,
+  Dropdown
+} from "react-bootstrap";
 import Tooltip from "@material-ui/core/Tooltip";
 import Drawer from "@material-ui/core/Drawer";
 import Zoom from "@material-ui/core/Zoom";
@@ -21,6 +28,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import InstructionsModal from "./instructionsmodal";
 import List from "@material-ui/core/List";
 import Divider from "@material-ui/core/Divider";
+import Sidebar from "react-sidebar";
 
 import SideProfileDrawer from "../home/sideProfileDrawer";
 class Welcome extends Component {
@@ -28,6 +36,7 @@ class Welcome extends Component {
     super(props);
     this.state = {
       viewquiz: false,
+      sidebarOpen: false,
       people: [],
       dataHasLoaded: false,
       user: {},
@@ -45,6 +54,7 @@ class Welcome extends Component {
       hideQuiz: true,
       viewProfile: false
     };
+    this.onSetSidebarOpen = this.onSetSidebarOpen.bind(this);
   }
 
   changeToquiz1 = () => {
@@ -132,7 +142,9 @@ class Welcome extends Component {
       date: new Date()
     });
   }
-
+  onSetSidebarOpen(open) {
+    this.setState({ sidebarOpen: open });
+  }
   authListener = () => {
     //checks if user is already logged in 0n browser
     fire.auth().onAuthStateChanged(user => {
@@ -323,21 +335,12 @@ class Welcome extends Component {
       });
       console.log("Rank " + this.state.level);
     });
-    /*
-    this.setState({
-      level: this.state.people[0].rank
-    });
-    console.log(this.state.level);
-  */
   };
 
   modalInstruction = () => {
     this.setState({
       viewModal: !this.state.viewModal
     });
-  };
-  closeModal = () => {
-    this.setState({ viewModal: false });
   };
 
   render() {
@@ -451,7 +454,7 @@ class Welcome extends Component {
                 title="Guide on how the Quiz works"
                 arrow
               >
-                <Button onClick={() => this.setState({ viewModal: true })}>
+                <Button onClick={this.modalInstruction}>
                   <Nav>
                     Instructions&ensp;
                     <FaBookOpen size={20} />
@@ -471,11 +474,7 @@ class Welcome extends Component {
                 </Nav>
               </Button>
             </Tooltip>
-            <Tooltip
-              TransitionComponent={Zoom}
-              title="View Your Profile Info"
-              arrow
-            >
+            <Tooltip TransitionComponent={Zoom} title="View Profile info" arrow>
               <Button onClick={this.changetoProfile}>
                 <Nav>
                   Profile&ensp;
@@ -503,20 +502,13 @@ class Welcome extends Component {
         </div>
           */}
 
-        <div>
-          <Alert variant="primary">Test!</Alert>
-        </div>
         {this.state.article1 ? <Articles /> : null}
         {this.state.article2 ? <Articles2 /> : null}
         {this.state.article3 ? <Articles3 /> : null}
         {this.state.article4 ? <Articles4 /> : null}
         {this.state.article5 ? <Articles5 /> : null}
-        {this.state.viewModal ? (
-          <InstructionsModal
-            isOpen={this.state.viewModal}
-            onHide={this.closeModal}
-          />
-        ) : null}
+
+        {this.state.viewModal ? <InstructionsModal /> : null}
         {
           <div>
             {this.state.viewProfile ? renderData : null}

@@ -97,6 +97,7 @@ class Login extends Component {
     // return s;
     console.log(s);
   };
+
   render() {
     return (
       <body>
@@ -217,7 +218,9 @@ class Login extends Component {
             </div>
 
             <Button
+              style={{ height: 50, width: 110, fontSize: 17 }}
               className="Loginbtn"
+              variant="info"
               onClick={() => {
                 this.login();
               }}

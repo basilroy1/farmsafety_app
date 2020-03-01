@@ -10,7 +10,19 @@
   top: 0;
   width: 100%;
 }
-
+.Topic1 {
+  font-size: large;
+  font-weight: bolder;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  transition: all 0.5s ease;
+  background-color: rgb(221, 197, 90);
+}
+.Topic1 :hover {
+  background-color: #75c561;
+  -webkit-transition: background-color 750ms linear;
+  -ms-transition: background-color 750ms linear;
+  transition: background-color 780ms linear;
+}
 #takeQuizbtn {
   position: absolute;
   margin: 0;
