@@ -85,7 +85,7 @@ class Signup extends Component {
         <div>
           <form className="loginForm">
             <div className="emailpassdiv">
-              <h1 className="signupHeader">SignUp</h1>
+              <h1 className="signupHeader">Register</h1>
               <div className="profileicon">
                 <MdPersonAdd size={75} />
               </div>
@@ -99,6 +99,7 @@ class Signup extends Component {
                     <TextField
                       id="input-with-icon-grid"
                       label="Enter Email"
+                      required
                       type="email"
                       name="email"
                       value={this.state.email}
@@ -124,6 +125,7 @@ class Signup extends Component {
                       label="Enter Password"
                       type="password"
                       name="password"
+                      required
                       value={this.state.password}
                       onChange={this.handleChange}
                     />
@@ -194,12 +196,12 @@ class Signup extends Component {
                 */}
             </div>
             <Button
-              style={{ height: 50, width: 110, fontSize: 17 }}
+              style={{ height: 50, width: 200, fontSize: 17, borderRadius: 30 }}
               className="signupbtn"
               variant="info"
               onClick={this.signUp}
             >
-              Signup <GiFarmTractor />
+              Signup <GiFarmTractor size={22} />
             </Button>
           </form>
         </div>

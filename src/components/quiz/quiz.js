@@ -209,6 +209,7 @@ class Quiz extends Component {
   nextQuestion = () => {
     const { scores, answer, userAns } = this.state;
     if (userAns === null) {
+      alert("select an option");
       return;
     }
     /*  if (correct) {
@@ -297,29 +298,12 @@ class Quiz extends Component {
     } else {
       console.log("didnt enter");
     }
-    /* if (this.state.correct) {
-      // last question score updation here as cant be done in nextquestion function due to out of bounds
-      console.log("Correct on finish");
-      console.log("scores before update " + this.state.scores);
-      this.setState({
-        scores: this.state.scores + 1
-      });
-    } else {
-      this.setState({ scores: scores });
-      console.log("Wrong");
-    }
-    console.log("scores after updation " + this.state.scores);
-
-    // this.props.DBdata();
-    //console.log("Sent to Database from on finish");
     /* setTimeout(() => {
         this.setState({
           isEnd: false
         });
-      }, 3500);
-      
+      }, 3500);      
       */
-
     console.log("rank " + this.props.rankValue);
   };
 
@@ -360,11 +344,12 @@ class Quiz extends Component {
           <Button
             id="nextChallenge"
             onClick={() => {
-              this.props.loadNextfrom(this.loadNextChallenge);
+              this.props.loadNextfrom(true);
+              this.props.stateHiddenQuiz(true);
               //   this.loadNextChallenge();
             }}
           >
-            next challenge
+            Next challenge
           </Button>
         </div>
       );
@@ -393,6 +378,7 @@ class Quiz extends Component {
               //  this.pushtoDB();
               this.props.tryAgain();
               this.props.tryAgain2();
+              this.props.stateHiddenQuiz(true);
             }}
           >
             Try Again
@@ -448,6 +434,7 @@ class Quiz extends Component {
             <Button
               onClick={() => {
                 this.finishQuiz();
+                this.props.stateHiddenQuiz(false);
                 this.props.handleDisableValue(
                   scores,
                   this.state.limitedQuestion

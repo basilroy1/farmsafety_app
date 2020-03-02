@@ -92,7 +92,7 @@ class App extends Component {
                   arrow
                 >
                   <Button bg="dark" variant="dark" onClick={this.changetoHome}>
-                    <Link to="/">
+                    <Link to="/" style={{ color: "white" }}>
                       Home&ensp;
                       <TiHome size={20} />
                     </Link>
@@ -109,7 +109,7 @@ class App extends Component {
                       variant="dark"
                       onClick={this.changetoLogin}
                     >
-                      <Link to="/Login">
+                      <Link to="/Login" style={{ color: "white" }}>
                         Login&ensp;
                         <FiLogIn size={20} />
                       </Link>
@@ -120,12 +120,8 @@ class App extends Component {
                     title="Create an Account and Sign in"
                     arrow
                   >
-                    <Button
-                      bg="dark"
-                      variant="dark"
-                      onClick={this.changetoSignup}
-                    >
-                      <Link to="/Signup">
+                    <Button variant="dark" onClick={this.changetoSignup}>
+                      <Link to="/Signup" style={{ color: "white" }}>
                         Signup&ensp;
                         <MdPersonAdd size={20} />
                       </Link>

@@ -24,12 +24,8 @@
   transition: background-color 780ms linear;
 }
 #takeQuizbtn {
-  position: absolute;
-  margin: 0;
-  top: 109%;
-  left: 50%;
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
+  margin: auto;
+  display: block;
 }
 
 .levelButtons {

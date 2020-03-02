@@ -1,17 +1,10 @@
 import React, { Component } from "react";
 import "./welcome.css";
 import { MdPerson } from "react-icons/md";
-import { FiLogOut } from "react-icons/fi";
+import { FiLogOut, FiTrendingUp } from "react-icons/fi";
 import { FaBookOpen } from "react-icons/fa";
 //import Loader from "react-loader-spinner";
-import {
-  Button,
-  Nav,
-  Navbar,
-  ButtonToolbar,
-  DropdownButton,
-  Dropdown
-} from "react-bootstrap";
+import { Button, Nav, Navbar, ButtonToolbar } from "react-bootstrap";
 import Tooltip from "@material-ui/core/Tooltip";
 import Drawer from "@material-ui/core/Drawer";
 import Zoom from "@material-ui/core/Zoom";
@@ -226,9 +219,9 @@ class Welcome extends Component {
     fire.auth().signOut();
     console.log("Logged out");
   };
-  hideQuizButton = () => {
+  hideQuizButton = data => {
     this.setState({
-      hideQuiz: false
+      hideQuiz: data
     });
   };
   articelState = () => {
@@ -275,19 +268,19 @@ class Welcome extends Component {
     }
   };
   clickedrookie = () => {
-    console.log("clicked rookie");
+    console.log("clicked rookie and fake level is" + this.state.fakelevel);
   };
   clickedstudent = () => {
-    console.log("clicked student");
+    console.log("clicked student and fake level is" + this.state.fakelevel);
   };
   clickedinterm = () => {
-    console.log("clicked interm");
+    console.log("clicked interm and fake level is" + this.state.fakelevel);
   };
   clickedexpert = () => {
-    console.log("clicked expert");
+    console.log("clicked expert and fake level is" + this.state.fakelevel);
   };
   clickedmaster = () => {
-    console.log("clicked master");
+    console.log("clicked master and fake level is" + this.state.fakelevel);
   };
 
   handleDisableValue = (scores, limitedQuestion) => {
@@ -317,7 +310,6 @@ class Welcome extends Component {
     console.log("current level " + this.state.level);
   };
   loadNextfromChild = data => {
-    //if(this.state.)
     if (this.state.userLevel2) {
       this.setState({
         article2: data
@@ -342,7 +334,14 @@ class Welcome extends Component {
       viewModal: !this.state.viewModal
     });
   };
-
+  hideDiv = () => {
+    var x = document.getElementById("innerBorder");
+    if (x.style.display === "none") {
+      x.style.display = "block";
+    } else {
+      x.style.display = "none";
+    }
+  };
   render() {
     const STUDENT = 1;
     const INTERM = 2;
@@ -387,7 +386,7 @@ class Welcome extends Component {
                     this.changeToquiz1();
                     this.articelState();
                     this.checkQuiznLevel();
-                    //       this.hideQuizButton();
+                    //  this.hideQuizButton();
                   }}
                 >
                   Rookie
@@ -401,7 +400,7 @@ class Welcome extends Component {
                     this.changeToquiz2();
                     this.checkQuiznLevel();
 
-                    //    this.hideQuizButton();
+                    //   this.hideQuizButton();
                   }}
                 >
                   Student
@@ -414,7 +413,7 @@ class Welcome extends Component {
                     this.changeToquiz3();
                     this.articelState();
                     this.checkQuiznLevel();
-                    //    this.hideQuizButton();
+                    //      this.hideQuizButton();
                   }}
                 >
                   Intermediate
@@ -427,7 +426,7 @@ class Welcome extends Component {
                     this.articelState();
                     this.clickedexpert();
                     this.checkQuiznLevel();
-                    //    this.hideQuizButton();
+                    ///      this.hideQuizButton();
                   }}
                 >
                   Expert
@@ -507,6 +506,21 @@ class Welcome extends Component {
         {this.state.article3 ? <Articles3 /> : null}
         {this.state.article4 ? <Articles4 /> : null}
         {this.state.article5 ? <Articles5 /> : null}
+        <div id="innerBorder">
+          {this.state.hideQuiz ? (
+            <Button
+              id="takeQuizbtn"
+              disabled={this.state.disabled}
+              onClick={() => {
+                this.changetoQuiz();
+                this.hideQuizButton();
+                //this.hideDiv()
+              }}
+            >
+              Take the Quiz
+            </Button>
+          ) : null}
+        </div>
 
         {this.state.viewModal ? <InstructionsModal /> : null}
         {
@@ -518,19 +532,21 @@ class Welcome extends Component {
           </div>
         }
         {/*{this.state.hideQuiz ? (*/}
-        <Button
-          id="takeQuizbtn"
-          disabled={this.state.disabled}
-          onClick={() => {
-            this.changetoQuiz();
-            this.hideQuizButton();
-          }}
-        >
-          Take the Quiz
-        </Button>
+        {/*<Button
+            id="takQuizbtn"
+            disabled={this.state.disabled}
+            onClick={() => {
+              this.changetoQuiz();
+              this.hideQuizButton();
+            }}
+          >
+            Take the Quiz
+          </Button>
+          */}
         {/*  ) : null} */}
         {this.state.viewquiz ? (
           <Quiz
+            stateHiddenQuiz={this.hideQuizButton}
             time={this.state.date.toLocaleTimeString()}
             quizFinished={this.state.quizCompleted}
             tryAgain={this.hideQuizButton}

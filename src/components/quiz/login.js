@@ -56,11 +56,6 @@ class Login extends Component {
         console.log(error.message);
         //     return false;
       });
-    this.setState({
-      email: "",
-      // userName: "",
-      password: ""
-    });
   };
 
   signUp = e => {
@@ -107,7 +102,7 @@ class Login extends Component {
               <h1 className="loginHeader">Login</h1>
               <br />
               <div className="profileicon">
-                <FaUserCircle style={{}} size={75} />
+                <FaUserCircle size={75} />
               </div>
               <br />
               <div>
@@ -117,6 +112,7 @@ class Login extends Component {
                   </Grid>
                   <Grid item>
                     <TextField
+                      required
                       id="input-with-icon-grid"
                       label="Enter Email"
                       type="email"
@@ -141,6 +137,7 @@ class Login extends Component {
                   </Grid>
                   <Grid item>
                     <TextField
+                      required
                       id="input-with-icon-grid"
                       label="Enter Password"
                       type="password"
@@ -218,14 +215,14 @@ class Login extends Component {
             </div>
 
             <Button
-              style={{ height: 50, width: 110, fontSize: 17 }}
+              style={{ height: 50, width: 200, fontSize: 17, borderRadius: 30 }}
               className="Loginbtn"
               variant="info"
               onClick={() => {
                 this.login();
               }}
             >
-              Login <GiFarmTractor />
+              Login <GiFarmTractor size={22} />
             </Button>
           </form>
         </div>
