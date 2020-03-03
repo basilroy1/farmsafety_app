@@ -80,68 +80,74 @@ class App extends Component {
   render() {
     return (
       <div className="body">
-        <BrowserRouter>
-          {this.state.user ? (
-            <Welcome />
-          ) : (
-            <Navbar id="navbar" bg="dark" variant="dark">
-              <ButtonToolbar>
-                <Tooltip
-                  TransitionComponent={Zoom}
-                  title="Go to Home Page"
-                  arrow
-                >
-                  <Button bg="dark" variant="dark" onClick={this.changetoHome}>
-                    <Link to="/" style={{ color: "white" }}>
-                      Home&ensp;
-                      <TiHome size={20} />
-                    </Link>
-                  </Button>
-                </Tooltip>
-                <Nav className="mr-auto">
+        <body>
+          <BrowserRouter>
+            {this.state.user ? (
+              <Welcome />
+            ) : (
+              <Navbar id="navbar" bg="dark" variant="dark">
+                <ButtonToolbar>
                   <Tooltip
                     TransitionComponent={Zoom}
-                    title="Already have an Account"
+                    title="Go to Home Page"
                     arrow
                   >
                     <Button
                       bg="dark"
                       variant="dark"
-                      onClick={this.changetoLogin}
+                      onClick={this.changetoHome}
                     >
-                      <Link to="/Login" style={{ color: "white" }}>
-                        Login&ensp;
-                        <FiLogIn size={20} />
+                      <Link to="/" style={{ color: "white" }}>
+                        Home&ensp;
+                        <TiHome size={20} />
                       </Link>
                     </Button>
                   </Tooltip>
-                  <Tooltip
-                    TransitionComponent={Zoom}
-                    title="Create an Account and Sign in"
-                    arrow
-                  >
-                    <Button variant="dark" onClick={this.changetoSignup}>
-                      <Link to="/Signup" style={{ color: "white" }}>
-                        Signup&ensp;
-                        <MdPersonAdd size={20} />
-                      </Link>
-                    </Button>
-                  </Tooltip>
-                </Nav>
-              </ButtonToolbar>
-            </Navbar>
-          )}
-          {this.state.viewHome ? (
-            <Route path="/Home" component={Home} exact />
-          ) : null}
-          {this.state.viewLogin ? (
-            <Route path="/Login" component={Login} exact />
-          ) : null}
-          {this.state.viewSignup ? (
-            <Route path="/Signup" component={Signup} exact />
-          ) : null}
-        </BrowserRouter>
-        {this.state.viewHome ? <Home /> : null}
+                  <Nav className="mr-auto">
+                    <Tooltip
+                      TransitionComponent={Zoom}
+                      title="Already have an Account"
+                      arrow
+                    >
+                      <Button
+                        bg="dark"
+                        variant="dark"
+                        onClick={this.changetoLogin}
+                      >
+                        <Link to="/Login" style={{ color: "white" }}>
+                          Login&ensp;
+                          <FiLogIn size={20} />
+                        </Link>
+                      </Button>
+                    </Tooltip>
+                    <Tooltip
+                      TransitionComponent={Zoom}
+                      title="Create an Account and Sign in"
+                      arrow
+                    >
+                      <Button variant="dark" onClick={this.changetoSignup}>
+                        <Link to="/Signup" style={{ color: "white" }}>
+                          Signup&ensp;
+                          <MdPersonAdd size={20} />
+                        </Link>
+                      </Button>
+                    </Tooltip>
+                  </Nav>
+                </ButtonToolbar>
+              </Navbar>
+            )}
+            {this.state.viewHome ? (
+              <Route path="/Home" component={Home} exact />
+            ) : null}
+            {this.state.viewLogin ? (
+              <Route path="/Login" component={Login} exact />
+            ) : null}
+            {this.state.viewSignup ? (
+              <Route path="/Signup" component={Signup} exact />
+            ) : null}
+          </BrowserRouter>
+          {this.state.viewHome ? <Home /> : null}
+        </body>
       </div>
     );
   }

@@ -221,40 +221,62 @@ class Welcome extends Component {
     console.log("Logged out");
   };
   hideQuizButton = data => {
-    /* if (this.state.userLevel1) {
+    if (this.state.level === 0) {
       this.setState({
         article1: data
       });
-    } else if (this.state.userLevel2) {
+    } else if (this.state.level === 1) {
       this.setState({
         article2: data
+        // article1: !data
       });
-    } else if (this.state.userLevel3) {
+    } else if (this.state.level === 2) {
       this.setState({
         article3: data
       });
-    } else if (this.state.userLevel4) {
+    } else if (this.state.level === 3) {
       this.setState({
         article4: data
       });
-    } else if (this.state.userLevel5) {
+    } else if (this.state.level === 4) {
       this.setState({
         article5: data
       });
-      
     }
-    */
+
     this.setState({
       hideQuiz: data,
-      viewquiz: !data,
-      article1: data
+      viewquiz: !data
+      //article1: data
     });
   };
   hideQuizDisplayArticle = data => {
+    if (this.state.level === 0) {
+      this.setState({
+        article1: !data
+      });
+    } else if (this.state.level === 1) {
+      this.setState({
+        article2: !data
+        //  article1: data
+      });
+    } else if (this.state.level === 2) {
+      this.setState({
+        article3: !data
+      });
+    } else if (this.state.level === 3) {
+      this.setState({
+        article4: !data
+      });
+    } else if (this.state.level === 4) {
+      this.setState({
+        article5: !data
+      });
+    }
     this.setState({
       viewquiz: data,
-      hideQuiz: !data,
-      article1: !data
+      hideQuiz: !data
+      // article1: !data
     });
   };
   articelState = () => {
@@ -322,8 +344,7 @@ class Welcome extends Component {
       this.setState({
         level: this.state.level + 1
       });
-    }
-    if (
+    } else if (
       scores >= Math.round(limitedQuestion * 0.5) &&
       this.state.fakelevel < this.state.level
     ) {
@@ -365,11 +386,11 @@ class Welcome extends Component {
   modalInstruction = data => {
     this.setState({
       viewModal: data,
-      article1: !data,
       hideQuiz: !data,
       viewquiz: false
     });
   };
+
   render() {
     const STUDENT = 1;
     const INTERM = 2;
@@ -401,112 +422,117 @@ class Welcome extends Component {
 
     return (
       <div>
-        <div>
-          <Navbar id="navbar" bg="primary" variant="dark">
-            <Nav className="mr-auto" style={{ fontSize: 25 }}>
-              Welcome
-              <ButtonToolbar className="levelButtons">
+        <body>
+          <div>
+            <Navbar id="navbar" bg="primary" variant="dark">
+              <Nav className="mr-auto" style={{ fontSize: 25 }}>
+                Welcome
+                <ButtonToolbar className="levelButtons">
+                  {" "}
+                  <Button
+                    className="btnLevel"
+                    onClick={() => {
+                      this.clickedrookie();
+                      this.changeToquiz1();
+                      this.articelState();
+                      this.checkQuiznLevel();
+                    }}
+                  >
+                    Rookie
+                  </Button>{" "}
+                  <Button
+                    className="btnLevel"
+                    disabled={this.state.level < STUDENT}
+                    onClick={() => {
+                      this.clickedstudent();
+                      this.articelState();
+                      this.changeToquiz2();
+                      this.checkQuiznLevel();
+                    }}
+                  >
+                    Student
+                  </Button>{" "}
+                  <Button
+                    className="btnLevel"
+                    disabled={this.state.level < INTERM}
+                    onClick={() => {
+                      this.clickedinterm();
+                      this.changeToquiz3();
+                      this.articelState();
+                      this.checkQuiznLevel();
+                    }}
+                  >
+                    Intermediate
+                  </Button>{" "}
+                  <Button
+                    className="btnLevel"
+                    disabled={this.state.level < EXPERT}
+                    onClick={() => {
+                      this.changeToquiz4();
+                      this.articelState();
+                      this.clickedexpert();
+                      this.checkQuiznLevel();
+                    }}
+                  >
+                    Expert
+                  </Button>{" "}
+                  <Button
+                    className="btnLevel"
+                    disabled={this.state.level < MASTER}
+                    onClick={() => {
+                      this.changeToquiz5();
+                      this.clickedmaster();
+                      this.articelState();
+                      this.checkQuiznLevel();
+                    }}
+                  >
+                    Master
+                  </Button>
+                </ButtonToolbar>
+              </Nav>
+              <ButtonToolbar>
                 {" "}
-                <Button
-                  className="btnLevel"
-                  onClick={() => {
-                    this.clickedrookie();
-                    this.changeToquiz1();
-                    this.articelState();
-                    this.checkQuiznLevel();
-                  }}
+                <Tooltip
+                  TransitionComponent={Zoom}
+                  title="Guide on how the Quiz works"
+                  arrow
                 >
-                  Rookie
-                </Button>{" "}
-                <Button
-                  className="btnLevel"
-                  disabled={this.state.level < STUDENT}
-                  onClick={() => {
-                    this.clickedstudent();
-                    this.articelState();
-                    this.changeToquiz2();
-                    this.checkQuiznLevel();
-                  }}
-                >
-                  Student
-                </Button>{" "}
-                <Button
-                  className="btnLevel"
-                  disabled={this.state.level < INTERM}
-                  onClick={() => {
-                    this.clickedinterm();
-                    this.changeToquiz3();
-                    this.articelState();
-                    this.checkQuiznLevel();
-                  }}
-                >
-                  Intermediate
-                </Button>{" "}
-                <Button
-                  className="btnLevel"
-                  disabled={this.state.level < EXPERT}
-                  onClick={() => {
-                    this.changeToquiz4();
-                    this.articelState();
-                    this.clickedexpert();
-                    this.checkQuiznLevel();
-                  }}
-                >
-                  Expert
-                </Button>{" "}
-                <Button
-                  className="btnLevel"
-                  disabled={this.state.level < MASTER}
-                  onClick={() => {
-                    this.changeToquiz5();
-                    this.clickedmaster();
-                    this.articelState();
-                    this.checkQuiznLevel();
-                  }}
-                >
-                  Master
-                </Button>
+                  <Button onClick={this.modalInstruction}>
+                    <Nav>
+                      Instructions&ensp;
+                      <FaBookOpen size={20} />
+                    </Nav>
+                  </Button>
+                </Tooltip>
               </ButtonToolbar>
-            </Nav>
-            <ButtonToolbar>
-              {" "}
               <Tooltip
                 TransitionComponent={Zoom}
-                title="Guide on how the Quiz works"
+                title="Log out and go to Home"
                 arrow
               >
-                <Button onClick={this.modalInstruction}>
+                <Button onClick={this.logout}>
                   <Nav>
-                    Instructions&ensp;
-                    <FaBookOpen size={20} />
+                    Logout&ensp;
+                    <FiLogOut size={20} />
                   </Nav>
                 </Button>
               </Tooltip>
-            </ButtonToolbar>
-            <Tooltip
-              TransitionComponent={Zoom}
-              title="Log out and go to Home"
-              arrow
-            >
-              <Button onClick={this.logout}>
-                <Nav>
-                  Logout&ensp;
-                  <FiLogOut size={20} />
-                </Nav>
-              </Button>
-            </Tooltip>
-            <Tooltip TransitionComponent={Zoom} title="View Profile info" arrow>
-              <Button onClick={this.changetoProfile}>
-                <Nav>
-                  Profile&ensp;
-                  <MdPerson size={20} />
-                </Nav>
-              </Button>
-            </Tooltip>
-          </Navbar>
-        </div>
+              <Tooltip
+                TransitionComponent={Zoom}
+                title="View Profile info"
+                arrow
+              >
+                <Button onClick={this.changetoProfile}>
+                  <Nav>
+                    Profile&ensp;
+                    <MdPerson size={20} />
+                  </Nav>
+                </Button>
+              </Tooltip>
+            </Navbar>
+          </div>
 
-        {/*    <div id="userProfileComp">
+          {/*    <div id="userProfileComp">
           {this.state.viewProfile ? (
             <UserProfile
               className="userProfile"
@@ -522,40 +548,40 @@ class Welcome extends Component {
           ) : null}
         </div>
           */}
-        {this.state.hideQuiz ? (
-          <div id="innerBorder">
-            {this.state.article1 ? <Articles /> : null}
-            {this.state.article2 ? <Articles2 /> : null}
-            {this.state.article3 ? <Articles3 /> : null}
-            {this.state.article4 ? <Articles4 /> : null}
-            {this.state.article5 ? <Articles5 /> : null}
+          {this.state.hideQuiz ? (
+            <div id="innerBorder">
+              {this.state.article1 ? <Articles /> : null}
+              {this.state.article2 ? <Articles2 /> : null}
+              {this.state.article3 ? <Articles3 /> : null}
+              {this.state.article4 ? <Articles4 /> : null}
+              {this.state.article5 ? <Articles5 /> : null}
 
-            <Button
-              id="takeQuizbtn"
-              disabled={this.state.disabled}
-              onClick={() => {
-                this.changetoQuiz();
-                this.hideQuizButton();
-              }}
-            >
-              Take the Quiz
-            </Button>
-          </div>
-        ) : null}
+              <Button
+                id="takeQuizbtn"
+                disabled={this.state.disabled}
+                onClick={() => {
+                  this.changetoQuiz();
+                  this.hideQuizButton();
+                }}
+              >
+                Take the Quiz
+              </Button>
+            </div>
+          ) : null}
 
-        {this.state.viewModal ? (
-          <InstructionsModal view={this.modalInstruction} />
-        ) : null}
-        {
-          <div>
-            {this.state.viewProfile ? renderData : null}
-            {this.state.viewProfile ? (
-              <SideProfileDrawer viewprof={this.state.viewProfile} />
-            ) : null}
-          </div>
-        }
-        {/*{this.state.hideQuiz ? (*/}
-        {/*<Button
+          {this.state.viewModal ? (
+            <InstructionsModal view={this.modalInstruction} />
+          ) : null}
+          {
+            <div>
+              {this.state.viewProfile ? renderData : null}
+              {this.state.viewProfile ? (
+                <SideProfileDrawer viewprof={this.state.viewProfile} />
+              ) : null}
+            </div>
+          }
+          {/*{this.state.hideQuiz ? (*/}
+          {/*<Button
             id="takQuizbtn"
             disabled={this.state.disabled}
             onClick={() => {
@@ -566,26 +592,27 @@ class Welcome extends Component {
             Take the Quiz
           </Button>
           */}
-        {/*  ) : null} */}
-        {this.state.viewquiz ? (
-          <Quiz
-            stateHiddenQuiz={this.hideQuizButton}
-            hideQuiznDisplay={this.hideQuizDisplayArticle}
-            time={this.state.date.toLocaleTimeString()}
-            quizFinished={this.state.quizCompleted}
-            tryAgain={this.hideQuizButton}
-            tryAgain2={this.changetoQuiz}
-            articelVal={this.articelState}
-            rankValue={this.state.level}
-            loadNextfrom={this.loadNextfromChild}
-            handleDisableValue={this.handleDisableValue}
-            userLevel1={this.state.level1}
-            userLevel2={this.state.level2}
-            userLevel3={this.state.level3}
-            userLevel4={this.state.level4}
-            userLevel5={this.state.level5}
-          />
-        ) : null}
+          {/*  ) : null} */}
+          {this.state.viewquiz ? (
+            <Quiz
+              stateHiddenQuiz={this.hideQuizButton}
+              hideQuiznDisplay={this.hideQuizDisplayArticle}
+              time={this.state.date.toLocaleTimeString()}
+              quizFinished={this.state.quizCompleted}
+              tryAgain={this.hideQuizButton}
+              tryAgain2={this.changetoQuiz}
+              articelVal={this.articelState}
+              rankValue={this.state.level}
+              loadNextfrom={this.loadNextfromChild}
+              handleDisableValue={this.handleDisableValue}
+              userLevel1={this.state.level1}
+              userLevel2={this.state.level2}
+              userLevel3={this.state.level3}
+              userLevel4={this.state.level4}
+              userLevel5={this.state.level5}
+            />
+          ) : null}
+        </body>
       </div>
     );
   }

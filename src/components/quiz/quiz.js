@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import "./quiz.css";
 import fire from "../../config/fire";
-import { FaArrowRight, FaSadTear, FaSmile } from "react-icons/fa";
+import { FaArrowRight, FaSadTear, FaSmile, FaCheck } from "react-icons/fa";
 import { MdExitToApp, MdClose } from "react-icons/md";
 import { Button, ProgressBar } from "react-bootstrap";
-//import { Alert } from "reactstrap";
+import { Alert } from "reactstrap";
 import { Quizdata } from "./questions";
 import { Quizdata2 } from "./questionsLevel2";
 import { Quizdata3 } from "./questionsLevel3";
@@ -270,7 +270,19 @@ class Quiz extends Component {
       userAns: answer,
       disabled: false
     });
+
     //  alert("Correct answer is " + answer);
+  };
+  displayCorrectWrongAlerts = answer => {
+    if (this.state.userAns === answer) {
+      setTimeout(() => {
+        return (
+          <div>
+            <Alert variant="danger">hellooo</Alert>
+          </div>
+        );
+      }, 3500);
+    }
   };
   percentageCalculation = () => {
     var x = Math.round(this.state.limitedQuestion * 0.5);
@@ -307,30 +319,6 @@ class Quiz extends Component {
     console.log("rank " + this.props.rankValue);
   };
 
-  loadNextChallenge = () => {
-    if (this.props.rankValue === 1) {
-      this.setState({
-        article2: true
-      });
-      return this.state.article2;
-    } else if (this.props.rankValue === 2) {
-      this.setState({
-        article3: true
-      });
-      return this.state.article3;
-    } else if (this.props.rankValue === 3) {
-      this.setState({
-        article4: true
-      });
-      return this.state.article4;
-    } else if (this.props.rankValue === 4) {
-      this.setState({
-        article5: true
-      });
-      return this.state.article5;
-    }
-  };
-
   render() {
     const { userAns, scores, options, currentQuest, isEnd } = this.state;
     if (isEnd && scores >= this.percentageCalculation()) {
@@ -344,9 +332,7 @@ class Quiz extends Component {
           <Button
             id="nextChallenge"
             onClick={() => {
-              //  this.props.loadNextfrom(true);
               this.props.stateHiddenQuiz(true);
-              //   this.loadNextChallenge();
             }}
           >
             Next Challenge
@@ -390,6 +376,7 @@ class Quiz extends Component {
         <div className="quizForm">
           <div id="leaveQuiz">
             <Button
+              variant="danger"
               onClick={() => {
                 this.props.hideQuiznDisplay(false);
               }}
@@ -398,7 +385,7 @@ class Quiz extends Component {
             </Button>
           </div>
           <br />
-
+          <br />
           <div>
             <ProgressBar
               animated
@@ -418,9 +405,17 @@ class Quiz extends Component {
               className={`ui floating message options
             ${userAns === option ? "selected" : null}
            `}
-              onClick={() => this.checkAns(option)}
+              onClick={() => {
+                this.checkAns(option);
+                this.displayCorrectWrongAlerts();
+              }}
             >
               {option}
+              {this.state.userAns === this.state.answer ? (
+                <FaCheck />
+              ) : (
+                <MdClose />
+              )}
             </Button>
           ))}
           <div className="hrLine"></div>

@@ -23,7 +23,8 @@ class Articles extends Component {
               >
                 <Typography>
                   {" "}
-                  Guarding <GiSwordsEmblem />
+                  Guarding Rookie
+                  <GiSwordsEmblem />
                 </Typography>
               </ExpansionPanelSummary>
             </div>
