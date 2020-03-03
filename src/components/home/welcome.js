@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./welcome.css";
 import { MdPerson } from "react-icons/md";
-import { FiLogOut, FiTrendingUp } from "react-icons/fi";
+import { FiLogOut } from "react-icons/fi";
 import { FaBookOpen } from "react-icons/fa";
 //import Loader from "react-loader-spinner";
 import { Button, Nav, Navbar, ButtonToolbar } from "react-bootstrap";
@@ -48,6 +48,7 @@ class Welcome extends Component {
       viewProfile: false
     };
     this.onSetSidebarOpen = this.onSetSidebarOpen.bind(this);
+    //this.modalInstruction = this.modalInstruction.bind(this);
   }
 
   changeToquiz1 = () => {
@@ -220,8 +221,40 @@ class Welcome extends Component {
     console.log("Logged out");
   };
   hideQuizButton = data => {
+    /* if (this.state.userLevel1) {
+      this.setState({
+        article1: data
+      });
+    } else if (this.state.userLevel2) {
+      this.setState({
+        article2: data
+      });
+    } else if (this.state.userLevel3) {
+      this.setState({
+        article3: data
+      });
+    } else if (this.state.userLevel4) {
+      this.setState({
+        article4: data
+      });
+    } else if (this.state.userLevel5) {
+      this.setState({
+        article5: data
+      });
+      
+    }
+    */
     this.setState({
-      hideQuiz: data
+      hideQuiz: data,
+      viewquiz: !data,
+      article1: data
+    });
+  };
+  hideQuizDisplayArticle = data => {
+    this.setState({
+      viewquiz: data,
+      hideQuiz: !data,
+      article1: !data
     });
   };
   articelState = () => {
@@ -329,18 +362,13 @@ class Welcome extends Component {
     });
   };
 
-  modalInstruction = () => {
+  modalInstruction = data => {
     this.setState({
-      viewModal: !this.state.viewModal
+      viewModal: data,
+      article1: !data,
+      hideQuiz: !data,
+      viewquiz: false
     });
-  };
-  hideDiv = () => {
-    var x = document.getElementById("innerBorder");
-    if (x.style.display === "none") {
-      x.style.display = "block";
-    } else {
-      x.style.display = "none";
-    }
   };
   render() {
     const STUDENT = 1;
@@ -386,7 +414,6 @@ class Welcome extends Component {
                     this.changeToquiz1();
                     this.articelState();
                     this.checkQuiznLevel();
-                    //  this.hideQuizButton();
                   }}
                 >
                   Rookie
@@ -399,8 +426,6 @@ class Welcome extends Component {
                     this.articelState();
                     this.changeToquiz2();
                     this.checkQuiznLevel();
-
-                    //   this.hideQuizButton();
                   }}
                 >
                   Student
@@ -413,7 +438,6 @@ class Welcome extends Component {
                     this.changeToquiz3();
                     this.articelState();
                     this.checkQuiznLevel();
-                    //      this.hideQuizButton();
                   }}
                 >
                   Intermediate
@@ -426,7 +450,6 @@ class Welcome extends Component {
                     this.articelState();
                     this.clickedexpert();
                     this.checkQuiznLevel();
-                    ///      this.hideQuizButton();
                   }}
                 >
                   Expert
@@ -439,7 +462,6 @@ class Welcome extends Component {
                     this.clickedmaster();
                     this.articelState();
                     this.checkQuiznLevel();
-                    //      this.hideQuizButton();
                   }}
                 >
                   Master
@@ -500,29 +522,30 @@ class Welcome extends Component {
           ) : null}
         </div>
           */}
+        {this.state.hideQuiz ? (
+          <div id="innerBorder">
+            {this.state.article1 ? <Articles /> : null}
+            {this.state.article2 ? <Articles2 /> : null}
+            {this.state.article3 ? <Articles3 /> : null}
+            {this.state.article4 ? <Articles4 /> : null}
+            {this.state.article5 ? <Articles5 /> : null}
 
-        {this.state.article1 ? <Articles /> : null}
-        {this.state.article2 ? <Articles2 /> : null}
-        {this.state.article3 ? <Articles3 /> : null}
-        {this.state.article4 ? <Articles4 /> : null}
-        {this.state.article5 ? <Articles5 /> : null}
-        <div id="innerBorder">
-          {this.state.hideQuiz ? (
             <Button
               id="takeQuizbtn"
               disabled={this.state.disabled}
               onClick={() => {
                 this.changetoQuiz();
                 this.hideQuizButton();
-                //this.hideDiv()
               }}
             >
               Take the Quiz
             </Button>
-          ) : null}
-        </div>
+          </div>
+        ) : null}
 
-        {this.state.viewModal ? <InstructionsModal /> : null}
+        {this.state.viewModal ? (
+          <InstructionsModal view={this.modalInstruction} />
+        ) : null}
         {
           <div>
             {this.state.viewProfile ? renderData : null}
@@ -547,6 +570,7 @@ class Welcome extends Component {
         {this.state.viewquiz ? (
           <Quiz
             stateHiddenQuiz={this.hideQuizButton}
+            hideQuiznDisplay={this.hideQuizDisplayArticle}
             time={this.state.date.toLocaleTimeString()}
             quizFinished={this.state.quizCompleted}
             tryAgain={this.hideQuizButton}

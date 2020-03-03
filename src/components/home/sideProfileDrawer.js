@@ -12,7 +12,7 @@ import { Button } from "react-bootstrap";
 export default function TemporaryDrawer() {
   const useStyles = makeStyles({
     list: {
-      width: 550
+      width: 680
     },
     fullList: {
       width: "auto"
@@ -46,7 +46,6 @@ export default function TemporaryDrawer() {
     >
       {/* {this.props.data ? <UserProfile /> : null}*/}
       <UserProfile />
-      <Divider />
     </div>
   );
 

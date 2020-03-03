@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./quiz.css";
 import fire from "../../config/fire";
 import { FaArrowRight, FaSadTear, FaSmile } from "react-icons/fa";
-//import { MdClose } from "react-icons/md";
+import { MdExitToApp, MdClose } from "react-icons/md";
 import { Button, ProgressBar } from "react-bootstrap";
 //import { Alert } from "reactstrap";
 import { Quizdata } from "./questions";
@@ -344,12 +344,12 @@ class Quiz extends Component {
           <Button
             id="nextChallenge"
             onClick={() => {
-              this.props.loadNextfrom(true);
+              //  this.props.loadNextfrom(true);
               this.props.stateHiddenQuiz(true);
               //   this.loadNextChallenge();
             }}
           >
-            Next challenge
+            Next Challenge
           </Button>
         </div>
       );
@@ -388,7 +388,17 @@ class Quiz extends Component {
     } else {
       return (
         <div className="quizForm">
-          <br></br>
+          <div id="leaveQuiz">
+            <Button
+              onClick={() => {
+                this.props.hideQuiznDisplay(false);
+              }}
+            >
+              <MdClose size={40} />
+            </Button>
+          </div>
+          <br />
+
           <div>
             <ProgressBar
               animated
@@ -400,7 +410,6 @@ class Quiz extends Component {
           <p style={{ textAlign: "center" }}>Q{this.state.currentQuest + 1}</p>
           {this.state.pictures}
           <br></br>
-
           {options.map((option, id) => (
             <Button
               size="lg"
@@ -414,10 +423,8 @@ class Quiz extends Component {
               {option}
             </Button>
           ))}
-
           <div className="hrLine"></div>
           <br></br>
-
           {currentQuest < this.state.limitedQuestion - 1 && (
             <Button
               disabled={this.state.disabled}
@@ -429,12 +436,11 @@ class Quiz extends Component {
             </Button>
           )}
           <br></br>
-
           {currentQuest === this.state.limitedQuestion - 1 && (
             <Button
               onClick={() => {
                 this.finishQuiz();
-                this.props.stateHiddenQuiz(false);
+                //this.props.stateHiddenQuiz(true);
                 this.props.handleDisableValue(
                   scores,
                   this.state.limitedQuestion

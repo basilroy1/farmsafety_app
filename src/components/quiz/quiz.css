@@ -4,6 +4,7 @@
   font-size: 30px;
   color: orange;
   background-color: #001f3f;
+
   /*rgb(177, 81, 57);*/
 }
 .bigbutton {
@@ -66,4 +67,7 @@
   left: 50%;
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
+}
+#leaveQuiz {
+  float: right;
 }

@@ -1,0 +1,38 @@
+.body {
+  background: rgb(122, 177, 224);
+}
+.outlineLayout {
+  margin-left: 20%;
+
+  width: 60%;
+  border-radius: 20px;
+  background-color: rgb(188, 197, 190);
+}
+p {
+  line-height: 1.8;
+}
+.title {
+  font-weight: bold;
+}
+.topSpan {
+  display: inline-block;
+  white-space: nowrap;
+  font-size: 20px;
+}
+ul {
+  white-space: nowrap;
+}
+.heading3 {
+  font-weight: bold;
+  text-align: center;
+}
+.subheading {
+  font-weight: bold;
+  text-align: center;
+}
+
+#closebtn {
+  margin-left: 1%;
+  margin-top: 1%;
+  background-color: rgb(241, 75, 9);
+}
