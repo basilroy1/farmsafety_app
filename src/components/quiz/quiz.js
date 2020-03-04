@@ -1,8 +1,14 @@
 import React, { Component } from "react";
 import "./quiz.css";
 import fire from "../../config/fire";
-import { FaArrowRight, FaSadTear, FaSmile, FaCheck } from "react-icons/fa";
-import { MdExitToApp, MdClose } from "react-icons/md";
+import {
+  FaArrowRight,
+  FaSadTear,
+  FaSmile,
+  FaCheckCircle,
+  FaWindowClose
+} from "react-icons/fa";
+import { MdClose } from "react-icons/md";
 import { Button, ProgressBar } from "react-bootstrap";
 import { Alert } from "reactstrap";
 import { Quizdata } from "./questions";
@@ -273,17 +279,7 @@ class Quiz extends Component {
 
     //  alert("Correct answer is " + answer);
   };
-  displayCorrectWrongAlerts = answer => {
-    if (this.state.userAns === answer) {
-      setTimeout(() => {
-        return (
-          <div>
-            <Alert variant="danger">hellooo</Alert>
-          </div>
-        );
-      }, 3500);
-    }
-  };
+
   percentageCalculation = () => {
     var x = Math.round(this.state.limitedQuestion * 0.5);
     return x;
@@ -355,13 +351,15 @@ class Quiz extends Component {
       return (
         <div>
           <h3 className="SummaryResultsFail">
-            Quiz Finished, You failed {this.state.scores}/
-            {this.state.limitedQuestion} <FaSadTear />!
+            <Alert color="danger">
+              {" "}
+              Quiz Finished, You failed {this.state.scores}/
+              {this.state.limitedQuestion} <FaSadTear />!
+            </Alert>
           </h3>
           <Button
             id="tryagain"
             onClick={() => {
-              //  this.pushtoDB();
               this.props.tryAgain();
               this.props.tryAgain2();
               this.props.stateHiddenQuiz(true);
@@ -407,18 +405,30 @@ class Quiz extends Component {
            `}
               onClick={() => {
                 this.checkAns(option);
-                this.displayCorrectWrongAlerts();
               }}
             >
               {option}
-              {this.state.userAns === this.state.answer ? (
-                <FaCheck />
-              ) : (
-                <MdClose />
-              )}
+              {userAns === option &&
+              this.state.userAns === this.state.answer ? (
+                <Alert color="success">
+                  Correct <FaCheckCircle size={36} />
+                </Alert>
+              ) : null}
+              {userAns === option &&
+              this.state.userAns !== this.state.answer ? (
+                <Alert
+                  style={{
+                    fontSize: 30,
+                    backgroundColor: "rgb(255, 182, 182)",
+                    color: "rgb(236, 19, 19)"
+                  }}
+                >
+                  Wrong <FaWindowClose size={36} />
+                </Alert>
+              ) : null}
             </Button>
           ))}
-          <div className="hrLine"></div>
+
           <br></br>
           {currentQuest < this.state.limitedQuestion - 1 && (
             <Button

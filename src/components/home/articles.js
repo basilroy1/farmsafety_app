@@ -29,6 +29,7 @@ class Articles extends Component {
               </ExpansionPanelSummary>
             </div>
             <Divider />
+            <br />
             <ExpansionPanelDetails>
               <Typography>
                 <p className="groove">

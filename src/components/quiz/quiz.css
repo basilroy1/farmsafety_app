@@ -14,8 +14,9 @@
 .selected {
   background: linear-gradient(
     to right,
-    rgb(16, 190, 39),
-    rgb(15, 216, 115)
+    /* rgb(16, 190, 39),
+    rgb(15, 216, 115)*/ rgb(65, 130, 250),
+    rgb(131, 218, 143)
   ) !important;
 }
 .wrong {
@@ -72,4 +73,8 @@
   float: right;
   margin-right: 1%;
   margin-top: 1%;
+}
+.incorrectAns {
+  background-color: rgb(255, 182, 182);
+  color: rgb(236, 19, 19);
 }
