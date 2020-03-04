@@ -10,7 +10,11 @@ class UserProfile extends Component {
   render() {
     return (
       <div id="container">
-        <Card border="warning" style={{ width: "44rem", marginLeft: 40 }}>
+        <Card
+          //bg="dark"
+          border="warning"
+          style={{ width: "44rem", marginLeft: 40 }}
+        >
           <Card.Header style={{ textAlign: "center" }}> Profile</Card.Header>
           <Card.Body>
             <Card.Title style={{ marginLeft: 230 }}>

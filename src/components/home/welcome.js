@@ -17,7 +17,7 @@ import Articles3 from "./articles3";
 import Articles4 from "./articles4";
 import Articles5 from "./articles5";
 import { Alert } from "reactstrap";
-import { makeStyles } from "@material-ui/core/styles";
+//import Toast from 'react-bootstrap/Toast';
 import InstructionsModal from "./instructionsmodal";
 import List from "@material-ui/core/List";
 import Divider from "@material-ui/core/Divider";
@@ -323,28 +323,23 @@ class Welcome extends Component {
     }
   };
   clickedrookie = () => {
-    console.log("clicked rookie and fake level is" + this.state.fakelevel);
+    console.log("clicked rookie and fake level is " + this.state.fakelevel);
   };
   clickedstudent = () => {
-    console.log("clicked student and fake level is" + this.state.fakelevel);
+    console.log("clicked student and fake level is " + this.state.fakelevel);
   };
   clickedinterm = () => {
-    console.log("clicked interm and fake level is" + this.state.fakelevel);
+    console.log("clicked interm and fake level is " + this.state.fakelevel);
   };
   clickedexpert = () => {
-    console.log("clicked expert and fake level is" + this.state.fakelevel);
+    console.log("clicked expert and fake level is " + this.state.fakelevel);
   };
   clickedmaster = () => {
-    console.log("clicked master and fake level is" + this.state.fakelevel);
+    console.log("clicked master and fake level is " + this.state.fakelevel);
   };
 
   handleDisableValue = (scores, limitedQuestion) => {
-    if (scores >= Math.round(limitedQuestion * 0.5) && this.state.level < 4) {
-      console.log("entered level up " + Math.round(limitedQuestion * 0.5));
-      this.setState({
-        level: this.state.level + 1
-      });
-    } else if (
+    if (
       scores >= Math.round(limitedQuestion * 0.5) &&
       this.state.fakelevel < this.state.level
     ) {
@@ -354,8 +349,14 @@ class Welcome extends Component {
       });
     } else if (
       scores >= Math.round(limitedQuestion * 0.5) &&
-      this.state.level > 4
+      this.state.level < 5
     ) {
+      console.log("entered level up " + Math.round(limitedQuestion * 0.5));
+      this.setState({
+        level: this.state.level + 1
+      });
+    }
+    if (scores >= Math.round(limitedQuestion * 0.5) && this.state.level > 4) {
       console.log("entered max level " + Math.round(limitedQuestion * 0.5));
       this.setState({
         quizCompleted: true
@@ -363,17 +364,7 @@ class Welcome extends Component {
     }
     console.log("current level " + this.state.level);
   };
-  loadNextfromChild = data => {
-    if (this.state.userLevel2) {
-      this.setState({
-        article2: data
-      });
-    } else if (this.state.userLevel3) {
-      this.setState({
-        article3: data
-      });
-    }
-  };
+
   rankData = () => {
     this.state.people.map(person => {
       this.setState({
@@ -419,7 +410,7 @@ class Welcome extends Component {
     });
 
     // let loadingSpinner = <Loader id="loader" type="ThreeDots" color="red " />;
-
+    //console.log("render " + renderData);
     return (
       <div>
         <body>
@@ -576,7 +567,10 @@ class Welcome extends Component {
             <div>
               {this.state.viewProfile ? renderData : null}
               {this.state.viewProfile ? (
-                <SideProfileDrawer viewprof={this.state.viewProfile} />
+                <SideProfileDrawer
+                  randerdata={renderData}
+                  viewprof={this.state.viewProfile}
+                />
               ) : null}
             </div>
           }

@@ -68,9 +68,9 @@ class InstructionsModal extends Component {
                     <strong> Rookie</strong>. Once the User reads the article
                     and attempts the Quiz and achieves the
                     <br /> <strong>required 50%</strong> the User moves up to
-                    next level in this case it's Student etc. If the User{" "}
-                    <strong>Fails (less than 50%)</strong> the Quiz the level
-                    remains the same and the User will be <br />
+                    <strong>Next Level</strong> in this case it's Student etc.
+                    If the User <strong>Fails (less than 50%)</strong> the Quiz
+                    the level remains the same and the User will be <br />
                     prompted the
                     <br />
                     <strong>"Try Again"</strong> button to re-take the Quiz.
@@ -81,8 +81,9 @@ class InstructionsModal extends Component {
                   </li>
                   <li>
                     <strong>Enabling "Take Quiz" Button</strong> - Once reading
-                    the article is complete you have to double click the current
-                    level the User is on idicated by{" "}
+                    the article is complete you have to{" "}
+                    <strong>Double Click the current Level</strong> the User is
+                    on idicated by{" "}
                     <strong>
                       Rookie,Student,Intermediate,
                       <br />

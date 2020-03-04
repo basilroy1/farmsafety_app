@@ -5,10 +5,13 @@ import {
   FaArrowRight,
   FaSadTear,
   FaSmile,
+  FaLightbulb,
   FaCheckCircle,
+  FaThumbsDown,
+  FaThumbsUp,
   FaWindowClose
 } from "react-icons/fa";
-import { MdClose } from "react-icons/md";
+import { MdClose, MdTimer } from "react-icons/md";
 import { Button, ProgressBar } from "react-bootstrap";
 import { Alert } from "reactstrap";
 import { Quizdata } from "./questions";
@@ -16,6 +19,7 @@ import { Quizdata2 } from "./questionsLevel2";
 import { Quizdata3 } from "./questionsLevel3";
 import { Quizdata4 } from "./questionsLevel4";
 import { Quizdata5 } from "./questionsLevel5";
+import { Divider } from "@material-ui/core";
 class Quiz extends Component {
   constructor(props) {
     super(props);
@@ -316,17 +320,65 @@ class Quiz extends Component {
   };
 
   render() {
+    var incorrect = this.state.limitedQuestion - this.state.scores;
     const { userAns, scores, options, currentQuest, isEnd } = this.state;
-    if (isEnd && scores >= this.percentageCalculation()) {
+    if (
+      scores >= this.percentageCalculation() &&
+      this.props.quizFinished &&
+      isEnd
+    ) {
       return (
         <div>
-          <h3 className="SummaryResultsPass">
-            Quiz Finished, You passed {this.state.scores}/
-            {this.state.limitedQuestion} <FaSmile />!
+          <h3 className="QuizCompleted">
+            Farm Safety Guide Completed Successfully!!
+            <FaSmile />!
           </h3>
+        </div>
+      );
+    } else if (isEnd && scores >= this.percentageCalculation()) {
+      return (
+        <div className="SummaryResultsPass">
+          <h3>
+            <Alert style={{ textAlign: "center" }} color="success">
+              {" "}
+              Quiz Finished
+            </Alert>
+          </h3>
+          <br />
+          <h1>
+            <strong>Results</strong>
+          </h1>
+          <Divider />
+          <br />
+          <p>Incorrect No. of Questions : {incorrect}</p>
+          <p>No. of Questions Attempted : {this.state.limitedQuestion}</p>
+          <p className="results">
+            <strong>Final Score :</strong> {this.state.scores}/
+            {this.state.limitedQuestion} <FaSmile />!<br />{" "}
+            <strong> You Passed </strong> <FaThumbsUp color="black" size={23} />
+          </p>
 
+          <p className="Tips">
+            <br />
+            <strong style={{ fontSize: 20 }}>
+              <br />
+              <Divider />
+              Tips
+              <FaLightbulb color="yellow" size={20} />
+            </strong>
+
+            <li>
+              Read over the Article again paying particular{" "}
+              <strong>Attention to the Key Terms and Pictures</strong>.
+            </li>
+            <li>
+              Take Your time there are no <strong>Time Limits</strong>
+              <MdTimer size={20} />.
+            </li>
+          </p>
           <Button
             id="nextChallenge"
+            variant="success"
             onClick={() => {
               this.props.stateHiddenQuiz(true);
             }}
@@ -341,7 +393,7 @@ class Quiz extends Component {
     ) {
       return (
         <div>
-          <h3 className="">
+          <h3 className="QuizCompleted">
             Farm Safety Guide Completed Successfully!!
             <FaSmile />!
           </h3>
@@ -349,16 +401,49 @@ class Quiz extends Component {
       );
     } else if (isEnd && scores < this.percentageCalculation()) {
       return (
-        <div>
-          <h3 className="SummaryResultsFail">
-            <Alert color="danger">
+        <div className="SummaryResultsFail">
+          <h3>
+            <Alert style={{ textAlign: "center" }} color="danger">
               {" "}
-              Quiz Finished, You failed {this.state.scores}/
-              {this.state.limitedQuestion} <FaSadTear />!
+              Quiz Finished
             </Alert>
           </h3>
+          <br />
+          <h1>
+            <strong>Results</strong>
+          </h1>
+          <Divider />
+          <br />
+          <p>Incorrect No. of Questions : {incorrect}</p>
+          <p>No. of Questions Attempted : {this.state.limitedQuestion}</p>
+          <p className="results">
+            <strong>Final Score :</strong> {this.state.scores}/
+            {this.state.limitedQuestion} <FaSadTear />!<br />{" "}
+            <strong> You Failed </strong> <FaThumbsDown color="red" size={23} />
+          </p>
+
+          <p className="Tips">
+            <br />
+            <strong style={{ fontSize: 20 }}>
+              <br />
+              <Divider />
+              Tips
+              <FaLightbulb color="yellow" size={20} />
+            </strong>
+
+            <li>
+              Read over the Article again paying particular{" "}
+              <strong>Attention to the Key Terms and Pictures</strong>.
+            </li>
+            <li>
+              Take Your time while reading the Questions as there are no{" "}
+              <strong>Time Limits</strong>
+              <MdTimer size={20} />.
+            </li>
+          </p>
           <Button
             id="tryagain"
+            variant="warning"
             onClick={() => {
               this.props.tryAgain();
               this.props.tryAgain2();
@@ -397,9 +482,9 @@ class Quiz extends Component {
           <br></br>
           {options.map((option, id) => (
             <Button
+              key={id}
               size="lg"
               block
-              key={id}
               className={`ui floating message options
             ${userAns === option ? "selected" : null}
            `}

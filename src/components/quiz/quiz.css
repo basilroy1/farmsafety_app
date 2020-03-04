@@ -19,6 +19,7 @@
     rgb(131, 218, 143)
   ) !important;
 }
+
 .wrong {
   background: linear-gradient(
     to right,
@@ -35,7 +36,8 @@
   cursor: pointer;
 }
 .SummaryResultsFail {
-  background-color: rgb(196, 26, 54);
+  background-color: rgb(219, 150, 163);
+
   padding: 50px;
   margin: 0;
   border-radius: 20px;
@@ -46,7 +48,17 @@
   transform: translate(-50%, -50%);
 }
 .SummaryResultsPass {
-  background-color: rgb(0, 255, 115);
+  background-color: rgb(114, 240, 171);
+  padding: 50px;
+  border-radius: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+.QuizCompleted {
+  background-color: rgb(114, 240, 171);
   padding: 50px;
   border-radius: 20px;
   position: absolute;
@@ -57,14 +69,14 @@
 }
 #tryagain {
   position: absolute;
-  top: 54%;
+  top: 68%;
   left: 50%;
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 }
 #nextChallenge {
   position: absolute;
-  top: 54%;
+  top: 68%;
   left: 50%;
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
@@ -74,7 +86,11 @@
   margin-right: 1%;
   margin-top: 1%;
 }
-.incorrectAns {
-  background-color: rgb(255, 182, 182);
-  color: rgb(236, 19, 19);
+.results {
+  font-size: 20px;
+  text-align: center;
+}
+.Tips {
+  float: left;
+  text-align: center;
 }
