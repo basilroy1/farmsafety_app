@@ -30,6 +30,8 @@ class Welcome extends Component {
     this.state = {
       viewquiz: false,
       sidebarOpen: false,
+      value1: false,
+      value: 0,
       people: [],
       dataHasLoaded: false,
       user: {},
@@ -228,7 +230,6 @@ class Welcome extends Component {
     } else if (this.state.level === 1) {
       this.setState({
         article2: data
-        // article1: !data
       });
     } else if (this.state.level === 2) {
       this.setState({
@@ -238,7 +239,7 @@ class Welcome extends Component {
       this.setState({
         article4: data
       });
-    } else if (this.state.level === 4) {
+    } else if (this.state.level >= 4) {
       this.setState({
         article5: data
       });
@@ -268,7 +269,7 @@ class Welcome extends Component {
       this.setState({
         article4: !data
       });
-    } else if (this.state.level === 4) {
+    } else if (this.state.level >= 4) {
       this.setState({
         article5: !data
       });
@@ -339,9 +340,37 @@ class Welcome extends Component {
   };
 
   handleDisableValue = (scores, limitedQuestion) => {
-    if (
+    if (scores >= Math.round(limitedQuestion * 0.5) && this.state.level > 4) {
+      console.log("entered max level " + Math.round(limitedQuestion * 0.5));
+      this.setState(
+        {
+          quizCompleted: true
+        },
+        () => {
+          console.log("quiz completed state entered", this.state);
+        }
+      );
+    } else {
+      if (
+        scores >= Math.round(limitedQuestion * 0.5) &&
+        this.state.fakelevel < this.state.level ///// these 2 if are the problem for not going up from students
+      ) {
+        console.log("entered fakelevel " + Math.round(limitedQuestion * 0.5));
+        this.setState({
+          level: this.state.level
+        });
+      }
+      if (scores >= Math.round(limitedQuestion * 0.5) && this.state.level < 4) {
+        console.log("entered level up " + Math.round(limitedQuestion * 0.5));
+        this.setState({
+          level: this.state.level + 1
+        });
+      }
+      console.log("end of else statement");
+    }
+    /*if (
       scores >= Math.round(limitedQuestion * 0.5) &&
-      this.state.fakelevel < this.state.level
+      this.state.fakelevel < this.state.level /////here is a problem when at max level n when level goes to 5
     ) {
       console.log("entered fakelevel " + Math.round(limitedQuestion * 0.5));
       this.setState({
@@ -349,19 +378,28 @@ class Welcome extends Component {
       });
     } else if (
       scores >= Math.round(limitedQuestion * 0.5) &&
-      this.state.level < 5
+      this.state.level < 4
     ) {
       console.log("entered level up " + Math.round(limitedQuestion * 0.5));
       this.setState({
         level: this.state.level + 1
       });
-    }
-    if (scores >= Math.round(limitedQuestion * 0.5) && this.state.level > 4) {
+    } else if (
+      scores >= Math.round(limitedQuestion * 0.5) &&
+      this.state.level > 4
+    ) {
       console.log("entered max level " + Math.round(limitedQuestion * 0.5));
-      this.setState({
-        quizCompleted: true
-      });
+      this.setState(
+        {
+          quizCompleted: true
+        },
+        () => {
+          console.log("quiz completed state entered", this.state);
+        }
+      );
     }
+    // console.log("quiz completed state entered", this.state);
+    */
     console.log("current level " + this.state.level);
   };
 
