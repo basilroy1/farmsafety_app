@@ -3,11 +3,11 @@ import "./home.css";
 import { Carousel } from "react-bootstrap";
 import { BrowserRouter } from "react-router-dom";
 import fire from "../../config/fire";
-import Pictures from "../pictures/farm_danger.jpeg";
-import Pictures1 from "../pictures/machinery_hazard.jpg";
-import Pictures2 from "../pictures/saferty_gaurd.jpg";
-import Pictures3 from "../pictures/pondSafety.jpg";
-
+import Pictures from "../pictures/new4.jpg";
+import Pictures1 from "../pictures/new5.jpg";
+import Pictures2 from "../pictures/new6.jpg";
+import Pictures3 from "../pictures/new7.jpg";
+import Divider from "@material-ui/core/Divider";
 class Home extends Component {
   logout = e => {
     e.preventDefault();
@@ -39,11 +39,13 @@ class Home extends Component {
     */}
         </BrowserRouter>
 
+        <div className="x1">
+          <div className="cloud"></div>
+        </div>
         <div>
-          <h1
-            className="w3-xxlarge w3-text-white"
-            style={{ textAlign: "center" }}
-          >
+          <Divider />
+          <br />
+          <h1 className="homeTitle" style={{ textAlign: "center" }}>
             <span className="w3-padding w3-black w3-opacity-min">
               <b>FS</b>
             </span>{" "}
@@ -51,13 +53,14 @@ class Home extends Component {
               Farm Safety
             </span>
           </h1>
+          <br />
+          <Divider />
+          <div className="x2">
+            <div className="cloud"></div>
+          </div>
           <Carousel>
             <Carousel.Item className="SlidePictures">
-              <img
-                className="d-block w-100"
-                src={Pictures2}
-                alt="first slide"
-              />
+              <img src={Pictures2} alt="first slide" />
               <Carousel.Caption>
                 <h3>Did You Know ?</h3>
                 <div className="caption">
@@ -69,7 +72,7 @@ class Home extends Component {
               </Carousel.Caption>
             </Carousel.Item>
             <Carousel.Item className="SlidePictures">
-              <img className="d-block w-100" src={Pictures} alt="Third slide" />
+              <img src={Pictures} alt="Third slide" />
 
               <Carousel.Caption>
                 <h3>Did You Know ?</h3>
@@ -84,11 +87,7 @@ class Home extends Component {
               </Carousel.Caption>
             </Carousel.Item>
             <Carousel.Item className="SlidePictures">
-              <img
-                className="d-block w-100"
-                src={Pictures3}
-                alt="Third slide"
-              />
+              <img src={Pictures3} alt="Third slide" />
 
               <Carousel.Caption>
                 <h3>Did You Know ?</h3>
@@ -105,11 +104,7 @@ class Home extends Component {
             </Carousel.Item>
 
             <Carousel.Item className="SlidePictures">
-              <img
-                className="d-block w-100"
-                src={Pictures1}
-                alt="Third slide"
-              />
+              <img src={Pictures1} alt="Third slide" />
 
               <Carousel.Caption>
                 <h3>Did You Know ?</h3>
@@ -126,6 +121,13 @@ class Home extends Component {
               </Carousel.Caption>
             </Carousel.Item>
           </Carousel>
+        </div>
+        <div className="x3">
+          <div className="cloud"></div>
+        </div>
+
+        <div className="x4">
+          <div className="cloud"></div>
         </div>
       </div>
     );

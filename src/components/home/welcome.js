@@ -17,7 +17,6 @@ import Articles3 from "./articles3";
 import Articles4 from "./articles4";
 import Articles5 from "./articles5";
 import { Alert } from "reactstrap";
-//import Toast from 'react-bootstrap/Toast';
 import InstructionsModal from "./instructionsmodal";
 import List from "@material-ui/core/List";
 import Divider from "@material-ui/core/Divider";
@@ -142,7 +141,7 @@ class Welcome extends Component {
     this.setState({ sidebarOpen: open });
   }
   authListener = () => {
-    //checks if user is already logged in 0n browser
+    //checks if user is already logged in on browser
     fire.auth().onAuthStateChanged(user => {
       if (user) {
         this.setState({
@@ -248,7 +247,6 @@ class Welcome extends Component {
     this.setState({
       hideQuiz: data,
       viewquiz: !data
-      //article1: data
     });
   };
   hideQuizDisplayArticle = data => {
@@ -259,7 +257,6 @@ class Welcome extends Component {
     } else if (this.state.level === 1) {
       this.setState({
         article2: !data
-        //  article1: data
       });
     } else if (this.state.level === 2) {
       this.setState({
@@ -277,7 +274,6 @@ class Welcome extends Component {
     this.setState({
       viewquiz: data,
       hideQuiz: !data
-      // article1: !data
     });
   };
   articelState = () => {
