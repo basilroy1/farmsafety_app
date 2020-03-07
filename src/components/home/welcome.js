@@ -323,6 +323,7 @@ class Welcome extends Component {
       });
     }
   };
+
   clickedrookie = () => {
     console.log("clicked rookie and fake level is " + this.state.fakelevel);
   };
@@ -340,32 +341,42 @@ class Welcome extends Component {
   };
 
   handleDisableValue = (scores, limitedQuestion) => {
-    if (scores >= Math.round(limitedQuestion * 0.5) && this.state.level > 4) {
+    if (scores >= Math.round(limitedQuestion * 0.5) && this.state.level >= 4) {
       console.log("entered max level " + Math.round(limitedQuestion * 0.5));
       this.setState(
         {
           quizCompleted: true
         },
         () => {
-          console.log("quiz completed state entered", this.state);
+          console.log("quiz completed state entered");
         }
       );
     } else {
       if (
         scores >= Math.round(limitedQuestion * 0.5) &&
-        this.state.fakelevel < this.state.level ///// these 2 if are the problem for not going up from students
+        this.state.fakelevel < this.state.level
       ) {
         console.log("entered fakelevel " + Math.round(limitedQuestion * 0.5));
         this.setState({
           level: this.state.level
         });
-      }
-      if (scores >= Math.round(limitedQuestion * 0.5) && this.state.level < 4) {
+      } else if (
+        scores >= Math.round(limitedQuestion * 0.5) &&
+        this.state.level <= 4
+      ) {
         console.log("entered level up " + Math.round(limitedQuestion * 0.5));
-        this.setState({
-          level: this.state.level + 1
-        });
+
+        this.setState(
+          {
+            level: this.state.level + 1
+          },
+          () => {
+            console.log("entered level up last " + this.state.level);
+            console.log(this.state);
+          }
+        );
       }
+
       console.log("end of else statement");
     }
     /*if (
@@ -635,7 +646,7 @@ class Welcome extends Component {
               tryAgain2={this.changetoQuiz}
               articelVal={this.articelState}
               rankValue={this.state.level}
-              loadNextfrom={this.loadNextfromChild}
+              // loadNextfrom={this.loadNextfromChild}
               handleDisableValue={this.handleDisableValue}
               userLevel1={this.state.level1}
               userLevel2={this.state.level2}

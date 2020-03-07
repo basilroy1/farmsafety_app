@@ -104,7 +104,6 @@ class Quiz extends Component {
         pictures: Quizdata5[currentQuest].picture
       };
     });
-    console.log(this.state.answer);
   };
 
   componentDidMount() {

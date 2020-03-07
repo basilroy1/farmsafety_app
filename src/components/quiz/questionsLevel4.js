@@ -25,7 +25,7 @@ export const Quizdata4 = [
     id: 3,
     question: "what should you do?",
     options: ["dont enter", "232323", "all fine", "1"],
-    answer: "easy",
+    answer: "1",
     picture: ""
   },
   {
