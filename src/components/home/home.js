@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./home.css";
-import { FaRegCopyright } from "react-icons/fa";
+import { FaRegCopyright, FaChevronUp, FaChevronDown } from "react-icons/fa";
 import { Carousel } from "react-bootstrap";
 import { BrowserRouter } from "react-router-dom";
 import fire from "../../config/fire";
@@ -18,8 +18,8 @@ class Home extends Component {
   };
   render() {
     return (
-      <div className="background">
-        <html>
+      <html>
+        <div className="background">
           <p id="top"></p>
           <BrowserRouter>
             {/*  <Navbar bg="primary" variant="dark">
@@ -70,12 +70,12 @@ class Home extends Component {
             <br />
             <Divider />
             <p className="viewMore">View More</p>
-            <a href="#bottom">
-              <svg className="arrows">
-                <path className="a1" d="M0 0 L30 32 L60 0"></path>
-                <path className="a2" d="M0 20 L30 52 L60 20"></path>
-                <path className="a3" d="M0 40 L30 72 L60 40"></path>
-              </svg>
+            <a href="#arrowDown">
+              <div id="arrow-down">
+                <i>
+                  <FaChevronDown />
+                </i>
+              </div>
             </a>
             <div className="x2">
               <div className="cloud"></div>
@@ -128,7 +128,7 @@ class Home extends Component {
 
               <Carousel.Item className="SlidePictures">
                 <img src={Pictures1} alt="Third slide" />
-                <p id="bottom"></p>
+
                 <Carousel.Caption>
                   <h3>Did You Know ?</h3>
 
@@ -146,14 +146,17 @@ class Home extends Component {
               </Carousel.Item>
             </Carousel>
           </div>
+          <div id="arrowDown"> </div>
           <p className="goToTop">Go Back Top</p>
+
           <a href="#top">
-            <svg className="arrowsDowns">
-              <path className="a4" d="M0 0 L30 32 L60 0"></path>
-              <path className="a5" d="M0 20 L30 52 L60 20"></path>
-              <path className="a6" d="M0 40 L30 72 L60 40"></path>
-            </svg>
+            <div id="arrow-up">
+              <i>
+                <FaChevronUp />
+              </i>
+            </div>
           </a>
+
           <div className="x3">
             <div className="cloud"></div>
           </div>
@@ -164,8 +167,8 @@ class Home extends Component {
           <footer>
             <FaRegCopyright /> All rights reserved 2020
           </footer>
-        </html>
-      </div>
+        </div>
+      </html>
     );
   }
 }

@@ -14,6 +14,7 @@ class Signup extends Component {
     this.state = {
       email: "",
       password: "",
+      passwordConfirm: "",
       clicked: "",
       viewPasswordResetModal: false
     };
@@ -34,9 +35,12 @@ class Signup extends Component {
     const validEmail =
       this.state.email.endsWith("@gmail.com") ||
       this.state.email.endsWith("@mumail.ie");
-
+    const validPass = this.state.password === this.state.passwordConfirm;
     if (!validEmail) {
       alert("Please enter a valid Email address");
+      return;
+    } else if (!validPass) {
+      alert("Passwords Don't Match");
       return;
     }
 
@@ -139,6 +143,35 @@ class Signup extends Component {
                 ) : (
                   <span style={{ color: "rgb(179, 44, 44)" }}>
                     Minumum 6 characters long&ensp;
+                    <MdPriorityHigh size={20} />
+                  </span>
+                )}
+                <Grid container spacing={1} alignItems="flex-end">
+                  <Grid item>
+                    <AiOutlineLock size={20} color={"navy"} />
+                  </Grid>
+                  <Grid item>
+                    <TextField
+                      id="input-with-icon-grid"
+                      label="Confirm Password"
+                      type="password"
+                      name="passwordConfirm"
+                      required
+                      value={this.state.passwordConfirm}
+                      onChange={this.handleChange}
+                    />
+                  </Grid>
+                </Grid>
+                {this.state.password !== "" &&
+                this.state.passwordConfirm !== "" &&
+                this.state.password === this.state.passwordConfirm ? (
+                  <span style={{ color: "#00FF7F" }}>
+                    Passwords Match&ensp;
+                    <MdDone size={23} />
+                  </span>
+                ) : (
+                  <span style={{ color: "rgb(179, 44, 44)" }}>
+                    Passwords Dont Match&ensp;
                     <MdPriorityHigh size={20} />
                   </span>
                 )}

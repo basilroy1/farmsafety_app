@@ -1,9 +1,15 @@
 .background {
-  background-color: #4bbce9;
+  background: linear-gradient(
+    90deg,
+    rgb(156, 203, 226) 0%,
+    rgb(62, 154, 235) 100%
+  );
   padding: 50px;
 }
 .homeTitle {
   font-family: Courier New, monospace;
+  text-transform: uppercase;
+  letter-spacing: 4px;
   text-shadow: 4px 4px 3px rgba(160, 146, 146, 0.795);
 }
 .SlidePictures {
@@ -184,132 +190,37 @@ img {
   right: 50px;
   top: -90px;
 }
-
-.arrows {
-  width: 60px;
-  height: 72px;
-  position: absolute;
-  left: 50%;
-  margin-left: -30px;
-  bottom: 20px;
-  top: 75%;
+#arrow-down {
+  position: relative;
+  margin: 0 auto;
+  text-align: center;
+  animation: jump 4s infinite;
 }
-.arrows:hover {
-  cursor: pointer;
+#arrow-up {
+  position: relative;
+  margin: 0 auto;
+  text-align: center;
+  animation: jump 4s infinite;
 }
-.arrows path {
-  stroke: #1d1c1a;
-  fill: transparent;
-  stroke-width: 1px;
-  animation: arrow 2s infinite;
-  -webkit-animation: arrow 2s infinite;
+i {
+  content: "\f0a8";
+  font-family: "FontAwesome";
+  font-size: 70px;
+  transition: 0.3s ease-in-out;
 }
-.arrows path.a1 {
-  animation-delay: -1s;
-  -webkit-animation-delay: -1s; /* Safari 和 Chrome */
+i:hover {
+  opacity: 0.7;
+  transition: 0.3s ease-in-out;
 }
-
-.arrows path.a2 {
-  animation-delay: -0.5s;
-  -webkit-animation-delay: -0.5s; /* Safari 和 Chrome */
-}
-
-.arrows path.a3 {
-  animation-delay: 0s;
-  -webkit-animation-delay: 0s; /* Safari 和 Chrome */
-}
-
-@keyframes arrow {
+@keyframes jump {
   0% {
-    opacity: 0;
+    top: 0;
   }
-  40% {
-    opacity: 1;
-  }
-  80% {
-    opacity: 0;
+  50% {
+    top: 50px;
   }
   100% {
-    opacity: 0;
-  }
-}
-
-@-webkit-keyframes arrow /*Safari and Chrome*/ {
-  0% {
-    opacity: 0;
-  }
-  40% {
-    opacity: 1;
-  }
-  80% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 0;
-  }
-}
-
-.arrowsDowns {
-  width: 60px;
-  height: 72px;
-
-  left: 50%;
-  margin-left: -30px;
-  bottom: 20px;
-  top: 220%;
-}
-.arrowsDowns:hover {
-  cursor: pointer;
-}
-.arrowsDowns path {
-  stroke: #1d1c1a;
-  fill: transparent;
-  stroke-width: 1px;
-  animation: arrow 2s infinite;
-  -webkit-animation: arrow 2s infinite;
-}
-.arrowsDowns path.a4 {
-  animation-delay: -1s;
-  -webkit-animation-delay: -1s; /* Safari 和 Chrome */
-}
-
-.arrowsDowns path.a5 {
-  animation-delay: -0.5s;
-  -webkit-animation-delay: -0.5s; /* Safari 和 Chrome */
-}
-
-.arrowsDowns path.a6 {
-  animation-delay: 0s;
-  -webkit-animation-delay: 0s; /* Safari 和 Chrome */
-}
-
-@keyframes arrowsD {
-  0% {
-    opacity: 0;
-  }
-  40% {
-    opacity: 1;
-  }
-  80% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 0;
-  }
-}
-
-@-webkit-keyframes arrowsD /*Safari and Chrome*/ {
-  0% {
-    opacity: 0;
-  }
-  40% {
-    opacity: 1;
-  }
-  80% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 0;
+    top: 0;
   }
 }
 

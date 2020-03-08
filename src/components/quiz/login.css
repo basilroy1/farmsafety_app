@@ -24,7 +24,7 @@ body {
 
 .signupbtn {
   position: absolute;
-  top: 65%;
+  top: 77%;
   left: 50%;
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
@@ -40,7 +40,7 @@ body {
 }
 .emailpassdiv {
   position: absolute;
-  top: 30%;
+  top: 40%;
   left: 50%;
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
