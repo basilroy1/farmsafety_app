@@ -4,7 +4,7 @@ import { MdPerson } from "react-icons/md";
 import { FiLogOut } from "react-icons/fi";
 import { FaBookOpen } from "react-icons/fa";
 //import Loader from "react-loader-spinner";
-import { Button, Nav, Navbar, ButtonToolbar } from "react-bootstrap";
+import { Button, Nav, Navbar, ButtonToolbar, Modal } from "react-bootstrap";
 import Tooltip from "@material-ui/core/Tooltip";
 import Drawer from "@material-ui/core/Drawer";
 import Zoom from "@material-ui/core/Zoom";
@@ -23,6 +23,7 @@ import Divider from "@material-ui/core/Divider";
 import Sidebar from "react-sidebar";
 
 import SideProfileDrawer from "../home/sideProfileDrawer";
+import Test from "../quiz/test";
 class Welcome extends Component {
   constructor(props) {
     super(props);
@@ -455,7 +456,6 @@ class Welcome extends Component {
     });
 
     // let loadingSpinner = <Loader id="loader" type="ThreeDots" color="red " />;
-    //console.log("render " + renderData);
     return (
       <div>
         <body>
@@ -584,6 +584,7 @@ class Welcome extends Component {
           ) : null}
         </div>
           */}
+
           {this.state.hideQuiz ? (
             <div id="innerBorder">
               {this.state.article1 ? <Articles /> : null}
@@ -612,26 +613,19 @@ class Welcome extends Component {
             <div>
               {this.state.viewProfile ? renderData : null}
               {this.state.viewProfile ? (
+                <Test
+                  people={this.state.people}
+                  viewprof={this.state.viewProfile}
+                />
+              ) : null}
+              {this.state.viewProfile ? (
                 <SideProfileDrawer
-                  randerdata={renderData}
+                  people={this.state.people}
                   viewprof={this.state.viewProfile}
                 />
               ) : null}
             </div>
           }
-          {/*{this.state.hideQuiz ? (*/}
-          {/*<Button
-            id="takQuizbtn"
-            disabled={this.state.disabled}
-            onClick={() => {
-              this.changetoQuiz();
-              this.hideQuizButton();
-            }}
-          >
-            Take the Quiz
-          </Button>
-          */}
-          {/*  ) : null} */}
           {this.state.viewquiz ? (
             <Quiz
               stateHiddenQuiz={this.hideQuizButton}
@@ -642,7 +636,6 @@ class Welcome extends Component {
               tryAgain2={this.changetoQuiz}
               articelVal={this.articelState}
               rankValue={this.state.level}
-              // loadNextfrom={this.loadNextfromChild}
               handleDisableValue={this.handleDisableValue}
               userLevel1={this.state.level1}
               userLevel2={this.state.level2}

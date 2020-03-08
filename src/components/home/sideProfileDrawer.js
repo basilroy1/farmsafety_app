@@ -8,6 +8,8 @@ import Drawer from "@material-ui/core/Drawer";
 import Zoom from "@material-ui/core/Zoom";
 import UserProfile from "../quiz/userProfile";
 import { Button } from "react-bootstrap";
+import { render } from "react-dom";
+import Test from "../quiz/test";
 
 export default function TemporaryDrawer() {
   const useStyles = makeStyles({
@@ -44,7 +46,6 @@ export default function TemporaryDrawer() {
       onClick={toggleDrawer(side, false)}
       onKeyDown={toggleDrawer(side, false)}
     >
-      {/* {this.props.data ? <UserProfile /> : null}*/}
       <UserProfile />
     </div>
   );
