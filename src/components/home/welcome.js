@@ -213,7 +213,12 @@ class Welcome extends Component {
   };
   changetoProfile = () => {
     this.setState({
-      viewProfile: !this.state.viewProfile
+      viewProfile: true
+    });
+  };
+  closeProfile = data => {
+    this.setState({
+      viewProfile: data
     });
   };
 
@@ -440,6 +445,7 @@ class Welcome extends Component {
           {this.state.viewProfile ? (
             <UserProfile
               className="userProfile"
+              closeProf={this.closeProfile}
               levelRook={person.levelRook}
               levelStudent={person.levelStudent}
               levelIntermediate={person.levelIntermediate}

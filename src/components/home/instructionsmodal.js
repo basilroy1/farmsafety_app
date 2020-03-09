@@ -68,7 +68,7 @@ class InstructionsModal extends Component {
                     <strong> Rookie</strong>. Once the User reads the article
                     and attempts the Quiz and achieves the
                     <br /> <strong>required 50%</strong> the User moves up to
-                    <strong>Next Level</strong> in this case it's Student etc.
+                    <strong> Next Level</strong> in this case it's Student etc.
                     If the User <strong>Fails (less than 50%)</strong> the Quiz
                     the level remains the same and the User will be <br />
                     prompted the
