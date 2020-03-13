@@ -19,6 +19,7 @@ class UserProfile extends Component {
             {" "}
             Profile{" "}
             <Button
+              variant="danger"
               className="profileClosebtn"
               onClick={() => {
                 this.props.closeProf(false);
@@ -35,8 +36,7 @@ class UserProfile extends Component {
               <MdEmail /> Email :&ensp;{" "}
               {this.props.email ? this.props.email : "no data"}
               <Divider />
-              <IoMdClipboard /> Score :&ensp;{" "}
-              {this.props.score ? this.props.score : "No DATA"}
+              <IoMdClipboard /> Score :&ensp; {this.props.score}
               <Divider />
               <GiTrophy /> Level :&ensp;
               {this.props.levelRook ? "Rookie" : null}

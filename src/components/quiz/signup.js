@@ -111,10 +111,15 @@ class Signup extends Component {
                     />
                   </Grid>
                 </Grid>
-                {this.state.email ? (
-                  <span style={{ color: "#00FF7F" }}>That's Good!</span>
+                {this.state.email.endsWith("@mumail.ie") ||
+                this.state.email.endsWith("@gmail.com") ? (
+                  <span style={{ color: "#00FF7F" }}>
+                    That's a Valid Email!
+                  </span>
                 ) : (
-                  <span style={{ color: "yellow" }}></span>
+                  <span style={{ color: "rgb(179, 44, 44)" }}>
+                    Enter Valid Email
+                  </span>
                 )}
                 <br></br>
               </div>

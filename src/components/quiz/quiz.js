@@ -222,32 +222,7 @@ class Quiz extends Component {
       alert("select an option");
       return;
     }
-    /*  if (correct) {
-      console.log("Correct");
-      this.setState({
-        scores: scores + 1
-      });
-    } else {
-      this.setState({ scores: scores });
-      console.log("Wrong");
-    }
-    console.log("scores " + this.state.scores);
-*/
 
-    /*if (correct) {
-      console.log("Correct");
-
-      this.setState({
-        scores: scores + 1
-        // correct: false
-      });
-    } else {
-      this.setState({ scores: scores });
-      //  alert("Correct Answer is " + answer);
-      //);
-    }
-    console.log("scores " + this.state.scores);
-    */
     if (this.state.currentQuest === this.state.limitedQuestion) {
       this.setState({
         currentQuest: this.state.currentQuest
@@ -366,12 +341,8 @@ class Quiz extends Component {
             </strong>
 
             <li>
-              Read over the Article again paying particular{" "}
-              <strong>Attention to the Key Terms and Pictures</strong>.
-            </li>
-            <li>
-              Take Your time there are no <strong>Time Limits</strong>
-              <MdTimer size={20} />.
+              You have mastered the safety Guide but it does not mean you know{" "}
+              <strong>all possible safety/dangers</strong>.
             </li>
           </p>
           <Button
@@ -418,7 +389,7 @@ class Quiz extends Component {
             </strong>
 
             <li>
-              Read over the Article again paying particular{" "}
+              Read over the Article paying particular for the next Challenges{" "}
               <strong>Attention to the Key Terms and Pictures</strong>.
             </li>
             <li>

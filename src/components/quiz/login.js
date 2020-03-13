@@ -34,10 +34,6 @@ class Login extends Component {
   };
 
   login = e => {
-    //e.preventDefault();
-
-    // this.handleRememberMe(); // Function to toggle persistant login
-
     fire
       .auth()
       .signInWithEmailAndPassword(this.state.email, this.state.password)
@@ -48,13 +44,11 @@ class Login extends Component {
           viewLogin: false
         });
         console.log("Logged in");
-        //   return true;
       })
       .catch(error => {
         alert("Please enter a valid Maynooth email or password");
 
         console.log(error.message);
-        //     return false;
       });
   };
 
@@ -80,17 +74,6 @@ class Login extends Component {
       .catch(error => {
         console.log(error);
       });
-  };
-
-  extractUsername = email => {
-    var s = "";
-    for (var r in email) {
-      if (email.charAt(r) === "@") {
-        s += email.substring(0, r);
-      }
-    }
-    // return s;
-    console.log(s);
   };
 
   render() {
@@ -122,10 +105,15 @@ class Login extends Component {
                     />
                   </Grid>
                 </Grid>
-                {this.state.email ? (
-                  <span style={{ color: "#00FF7F" }}>That's Good!</span>
+                {this.state.email.endsWith("@mumail.ie") ||
+                this.state.email.endsWith("@gmail.com") ? (
+                  <span style={{ color: "#00FF7F" }}>
+                    That's a Valid Email!
+                  </span>
                 ) : (
-                  <span style={{ color: "yellow" }}></span>
+                  <span style={{ color: "rgb(179, 44, 44)" }}>
+                    Enter Valid Email
+                  </span>
                 )}
                 <br></br>
               </div>

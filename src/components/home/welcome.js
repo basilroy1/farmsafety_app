@@ -279,6 +279,7 @@ class Welcome extends Component {
     }
     this.setState({
       viewquiz: data,
+      viewProfile: data,
       hideQuiz: !data
     });
   };

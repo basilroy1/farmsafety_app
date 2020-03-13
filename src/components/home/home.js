@@ -57,6 +57,7 @@ class Home extends Component {
                 Farm Safety
                 <br />
                 <img
+                  className="img1"
                   src={Pictures4}
                   style={{
                     width: 700,
@@ -82,7 +83,7 @@ class Home extends Component {
             </div>
             <Carousel>
               <Carousel.Item className="SlidePictures">
-                <img src={Pictures2} alt="first slide" />
+                <img src={Pictures2} className="img1" alt="first slide" />
                 <Carousel.Caption>
                   <h3>Did You Know ?</h3>
                   <div className="caption">
@@ -94,7 +95,7 @@ class Home extends Component {
                 </Carousel.Caption>
               </Carousel.Item>
               <Carousel.Item className="SlidePictures">
-                <img src={Pictures} alt="Third slide" />
+                <img src={Pictures} className="img1" alt="Third slide" />
 
                 <Carousel.Caption>
                   <h3>Did You Know ?</h3>
@@ -109,7 +110,7 @@ class Home extends Component {
                 </Carousel.Caption>
               </Carousel.Item>
               <Carousel.Item className="SlidePictures">
-                <img src={Pictures3} alt="Third slide" />
+                <img src={Pictures3} className="img1" alt="Third slide" />
 
                 <Carousel.Caption>
                   <h3>Did You Know ?</h3>
@@ -127,7 +128,7 @@ class Home extends Component {
               </Carousel.Item>
 
               <Carousel.Item className="SlidePictures">
-                <img src={Pictures1} alt="Third slide" />
+                <img src={Pictures1} className="img1" alt="Third slide" />
 
                 <Carousel.Caption>
                   <h3>Did You Know ?</h3>

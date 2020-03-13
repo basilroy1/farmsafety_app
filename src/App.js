@@ -5,7 +5,7 @@ import fire from "./config/fire";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Home from "./components/home/home";
 import Login from "./components/quiz/login";
-import { Button, Nav, Navbar, ButtonToolbar, Tab } from "react-bootstrap";
+import { Button, Nav, Navbar, ButtonToolbar } from "react-bootstrap";
 import Signup from "./components/quiz/signup";
 import Welcome from "./components/home/welcome";
 import { FiLogIn } from "react-icons/fi";
@@ -13,7 +13,6 @@ import { MdPersonAdd } from "react-icons/md";
 import { TiHome } from "react-icons/ti";
 import Tooltip from "@material-ui/core/Tooltip";
 import Zoom from "@material-ui/core/Zoom";
-import Tabs from "react-bootstrap/Tabs";
 class App extends Component {
   constructor(props) {
     super(props);
@@ -45,15 +44,6 @@ class App extends Component {
       }
     });
   }
-
-  changetoQuiz = () => {
-    this.setState({
-      viewquiz: !this.state.viewquiz,
-      viewHome: false,
-      viewLogin: false,
-      viewSignup: false
-    });
-  };
 
   changetoLogin = () => {
     this.setState({
