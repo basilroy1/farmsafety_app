@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import "./home.css";
 import { FaRegCopyright, FaChevronUp, FaChevronDown } from "react-icons/fa";
 import { Carousel } from "react-bootstrap";
-import { BrowserRouter } from "react-router-dom";
-import fire from "../../config/fire";
 import Pictures from "../pictures/new4.jpg";
 import Pictures1 from "../pictures/new5.jpg";
 import Pictures2 from "../pictures/new6.jpg";
@@ -11,37 +9,11 @@ import Pictures4 from "../pictures/homepagelogo.png";
 import Pictures3 from "../pictures/new7.jpg";
 import Divider from "@material-ui/core/Divider";
 class Home extends Component {
-  logout = e => {
-    e.preventDefault();
-    fire.auth().signOut();
-    console.log("Logged out");
-  };
   render() {
     return (
       <html>
         <div className="background">
           <p id="top"></p>
-          <BrowserRouter>
-            {/*  <Navbar bg="primary" variant="dark">
-            <Button>
-              {" "}
-              <Link to="/">Home</Link>
-            </Button>
-            <Nav className="mr-auto">
-              <Button>
-                <Link to="/Login">Login</Link>
-              </Button>
-              <Button>
-                <Link to="/Signup">Signup</Link>
-              </Button>
-            </Nav>
-          </Navbar>
-
-          <Route path="/Login" component={Login} exact />
-          <Route path="/Signup" component={Signup} exact />
-          <Route path="/Home" component={Home} exact />
-    */}
-          </BrowserRouter>
 
           <div className="x1">
             <div className="cloud"></div>

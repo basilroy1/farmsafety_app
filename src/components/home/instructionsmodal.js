@@ -82,8 +82,8 @@ class InstructionsModal extends Component {
                   <li>
                     <strong>Enabling "Take Quiz" Button</strong> - Once reading
                     the article is complete you have to{" "}
-                    <strong>Double Click the current Level</strong> the User is
-                    on idicated by{" "}
+                    <strong>Click the current Level</strong> the User is on
+                    idicated by{" "}
                     <strong>
                       Rookie,Student,Intermediate,
                       <br />
@@ -94,8 +94,8 @@ class InstructionsModal extends Component {
                   <li>
                     <strong>Navigating to Different Articles</strong> - You can
                     move to other articles within your level range by just
-                    <strong> Double Clicking the Desired Level</strong> you want
-                    to read and the article <br />
+                    <strong>Clicking the Desired Level</strong> you want to read
+                    and the article <br />
                     appears.
                   </li>
                 </ul>

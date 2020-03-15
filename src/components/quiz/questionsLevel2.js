@@ -89,14 +89,14 @@ export const Quizdata2 = [
   {
     id: 7,
     question: "what should you do?",
-    options: ["dont enter", "lol", "all fine"],
+    options: ["dont enter", "quuuuiiiz2", "all fine"],
     answer: "lol",
     picture: ""
   },
   {
     id: 8,
     question: "what should you do?",
-    options: ["dont enter", "nothing", "all fine"],
+    options: ["dont enter", "quiz2", "all fine"],
     answer: "nothing",
     picture: ""
   },

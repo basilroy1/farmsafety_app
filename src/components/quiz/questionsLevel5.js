@@ -38,35 +38,35 @@ export const Quizdata5 = [
   {
     id: 5,
     question: "what should you do?",
-    options: ["dont enter", "43", "all fine"],
+    options: ["jackpoottt", "43", "all fine"],
     answer: "43",
     picture: ""
   },
   {
     id: 6,
     question: "what should you do?",
-    options: ["dont enter", "set", "all fine"],
+    options: ["jackpoottt", "set", "all fine"],
     answer: "set",
     picture: ""
   },
   {
     id: 7,
     question: "what should you do?",
-    options: ["dont enter", "lol", "all fine"],
+    options: ["jackpoottt", "lol", "all fine"],
     answer: "lol",
     picture: ""
   },
   {
     id: 8,
     question: "what should you do?",
-    options: ["dont enter", "nothing", "all fine"],
+    options: ["jackpoottt", "nothing", "all fine"],
     answer: "nothing",
     picture: ""
   },
   {
     id: 9,
     question: "what should you do?",
-    options: ["dont enter", "qqq", "all fine"],
+    options: ["jackpoottt", "qqq", "all fine"],
     answer: "qqq",
     picture: ""
   }

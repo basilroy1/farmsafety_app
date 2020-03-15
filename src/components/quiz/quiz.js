@@ -454,8 +454,6 @@ class Quiz extends Component {
             id="tryagain"
             variant="warning"
             onClick={() => {
-              this.props.tryAgain();
-              this.props.tryAgain2();
               this.props.stateHiddenQuiz(true);
             }}
           >

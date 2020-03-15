@@ -63,7 +63,6 @@ class App extends Component {
   changetoHome = () => {
     this.setState({
       viewHome: true
-      //  viewLogin: false
     });
   };
 

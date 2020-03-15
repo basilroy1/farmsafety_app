@@ -17,28 +17,28 @@ export const Quizdata3 = [
   {
     id: 2,
     question: "is this correct?",
-    options: ["dont enter", "nothing", "all fine"],
+    options: ["okokokokokoko", "nothing", "all fine"],
     answer: "nothing",
     picture: ""
   },
   {
     id: 3,
     question: "what should you do?",
-    options: ["dont enter", "easy", "all fine", "1"],
+    options: ["okokokokokoko", "easy", "all fine", "1"],
     answer: "easy",
     picture: ""
   },
   {
     id: 4,
     question: "what should you do?",
-    options: ["dont enter", "12", "all fine"],
+    options: ["okokokokokoko", "12", "all fine"],
     answer: "12",
     picture: ""
   },
   {
     id: 5,
     question: "what should you do?",
-    options: ["dont enter", "43", "all fine"],
+    options: ["okokokokokoko", "43", "all fine"],
     answer: "43",
     picture: ""
   },

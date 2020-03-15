@@ -54,61 +54,91 @@ class Welcome extends Component {
   }
 
   changeToquiz1 = () => {
-    this.setState({
-      level1: true,
-      level2: false,
-      level3: false,
-      level4: false,
-      level5: false,
-      disabled: false,
-      fakelevel: 0
-    });
+    this.setState(
+      {
+        level1: true,
+        level2: false,
+        level3: false,
+        level4: false,
+        level5: false,
+        disabled: false,
+        fakelevel: 0
+      },
+      () => {
+        this.articelState();
+        this.clickedrookie();
+      }
+    );
   };
 
   changeToquiz2 = () => {
-    this.setState({
-      level1: false,
-      level2: true,
-      level3: false,
-      level4: false,
-      level5: false,
-      disabled: false,
-      fakelevel: 1
-    });
+    this.setState(
+      {
+        level1: false,
+        level2: true,
+        level3: false,
+        level4: false,
+        level5: false,
+        disabled: false,
+        fakelevel: 1
+      },
+      () => {
+        this.articelState();
+        this.clickedstudent();
+      }
+    );
   };
 
   changeToquiz3 = () => {
-    this.setState({
-      level1: false,
-      level2: false,
-      level3: true,
-      level4: false,
-      level5: false,
-      disabled: false,
-      fakelevel: 2
-    });
+    this.setState(
+      {
+        level1: false,
+        level2: false,
+        level3: true,
+        level4: false,
+        level5: false,
+        disabled: false,
+        fakelevel: 2
+      },
+      () => {
+        this.articelState();
+        this.clickedinterm();
+      }
+    );
   };
   changeToquiz4 = () => {
-    this.setState({
-      level1: false,
-      level2: false,
-      level3: false,
-      level4: true,
-      level5: false,
-      disabled: false,
-      fakelevel: 3
-    });
+    this.setState(
+      {
+        level1: false,
+        level2: false,
+        level3: false,
+        level4: true,
+        level5: false,
+        disabled: false,
+        fakelevel: 3
+      },
+      () => {
+        this.articelState();
+        this.clickedexpert();
+      }
+    );
   };
   changeToquiz5 = () => {
-    this.setState({
-      level1: false,
-      level2: false,
-      level3: false,
-      level4: false,
-      level5: true,
-      disabled: false,
-      fakelevel: 4
-    });
+    this.setState(
+      {
+        level1: false,
+        level2: false,
+        level3: false,
+        level4: false,
+        level5: true,
+        disabled: false,
+        fakelevel: 4
+      },
+      () => {
+        this.articelState();
+        this.clickedmaster();
+      }
+    );
   };
   checkQuiznLevel = () => {
     if (
@@ -412,7 +442,7 @@ class Welcome extends Component {
         }
       );
     }
-    // console.log("quiz completed state entered", this.state);
+     console.log("quiz completed state entered", this.state);
     */
     console.log("current level " + this.state.level);
   };
@@ -475,9 +505,7 @@ class Welcome extends Component {
                   <Button
                     className="btnLevel"
                     onClick={() => {
-                      this.clickedrookie();
                       this.changeToquiz1();
-                      this.articelState();
                       this.checkQuiznLevel();
                     }}
                   >
@@ -487,8 +515,6 @@ class Welcome extends Component {
                     className="btnLevel"
                     disabled={this.state.level < STUDENT}
                     onClick={() => {
-                      this.clickedstudent();
-                      this.articelState();
                       this.changeToquiz2();
                       this.checkQuiznLevel();
                     }}
@@ -499,9 +525,7 @@ class Welcome extends Component {
                     className="btnLevel"
                     disabled={this.state.level < INTERM}
                     onClick={() => {
-                      this.clickedinterm();
                       this.changeToquiz3();
-                      this.articelState();
                       this.checkQuiznLevel();
                     }}
                   >
@@ -512,8 +536,6 @@ class Welcome extends Component {
                     disabled={this.state.level < EXPERT}
                     onClick={() => {
                       this.changeToquiz4();
-                      this.articelState();
-                      this.clickedexpert();
                       this.checkQuiznLevel();
                     }}
                   >
@@ -524,8 +546,6 @@ class Welcome extends Component {
                     disabled={this.state.level < MASTER}
                     onClick={() => {
                       this.changeToquiz5();
-                      this.clickedmaster();
-                      this.articelState();
                       this.checkQuiznLevel();
                     }}
                   >
@@ -639,8 +659,6 @@ class Welcome extends Component {
               hideQuiznDisplay={this.hideQuizDisplayArticle}
               time={this.state.date.toLocaleTimeString()}
               quizFinished={this.state.quizCompleted}
-              tryAgain={this.hideQuizButton}
-              tryAgain2={this.changetoQuiz}
               articelVal={this.articelState}
               rankValue={this.state.level}
               handleDisableValue={this.handleDisableValue}
