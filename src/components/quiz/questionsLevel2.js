@@ -82,21 +82,21 @@ export const Quizdata2 = [
   {
     id: 6,
     question: "what should you do?",
-    options: ["dont enter", "set", "all fine"],
+    options: ["dont enter", "we", "set", "all fine"],
     answer: "set",
     picture: ""
   },
   {
     id: 7,
     question: "what should you do?",
-    options: ["dont enter", "quuuuiiiz2", "all fine"],
+    options: ["dont enter", "we", "quuuuiiiz2", "all fine"],
     answer: "lol",
     picture: ""
   },
   {
     id: 8,
     question: "what should you do?",
-    options: ["dont enter", "quiz2", "all fine"],
+    options: ["dont enter", "we", "quiz2", "all fine"],
     answer: "nothing",
     picture: ""
   },
@@ -104,7 +104,7 @@ export const Quizdata2 = [
   {
     id: 9,
     question: "what should you do?",
-    options: ["dont enter", "qqq", "all fine"],
+    options: ["dont enter", "we", "qqq", "all fine"],
     answer: "qqq",
     picture: ""
   }

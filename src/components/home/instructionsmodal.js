@@ -5,9 +5,6 @@ import "./instructionsmodal.css";
 import { MdClose } from "react-icons/md";
 
 class InstructionsModal extends Component {
-  constructor(props) {
-    super(props);
-  }
   render() {
     return (
       <body>
@@ -83,7 +80,7 @@ class InstructionsModal extends Component {
                     <strong>Enabling "Take Quiz" Button</strong> - Once reading
                     the article is complete you have to{" "}
                     <strong>Click the current Level</strong> the User is on
-                    idicated by{" "}
+                    indicated by{" "}
                     <strong>
                       Rookie,Student,Intermediate,
                       <br />

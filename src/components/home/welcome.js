@@ -1,9 +1,14 @@
 import React, { Component } from "react";
 import "./welcome.css";
-import { MdPerson } from "react-icons/md";
 import { FiLogOut } from "react-icons/fi";
 import { FaBookOpen } from "react-icons/fa";
-import { Button, Nav, Navbar, ButtonToolbar } from "react-bootstrap";
+import {
+  Button,
+  Nav,
+  Navbar,
+  ButtonToolbar,
+  DropdownButton
+} from "react-bootstrap";
 import Tooltip from "@material-ui/core/Tooltip";
 import Zoom from "@material-ui/core/Zoom";
 import Quiz from "../quiz/quiz";
@@ -41,8 +46,6 @@ class Welcome extends Component {
       hideQuiz: true,
       viewProfile: false
     };
-    //    this.onSetSidebarOpen = this.onSetSidebarOpen.bind(this);
-    //this.modalInstruction = this.modalInstruction.bind(this);
   }
 
   changeToquiz1 = () => {
@@ -160,9 +163,6 @@ class Welcome extends Component {
       date: new Date()
     });
   }
-  // onSetSidebarOpen(open) {
-  // this.setState({ sidebarOpen: open });
-  //}
 
   authListener = () => {
     //checks if user is already logged in on browser
@@ -237,11 +237,6 @@ class Welcome extends Component {
   changetoProfile = () => {
     this.setState({
       viewProfile: true
-    });
-  };
-  closeProfile = data => {
-    this.setState({
-      viewProfile: data
     });
   };
 
@@ -469,7 +464,6 @@ class Welcome extends Component {
           {this.state.viewProfile ? (
             <UserProfile
               className="userProfile"
-              closeProf={this.closeProfile}
               levelRook={person.levelRook}
               levelStudent={person.levelStudent}
               levelIntermediate={person.levelIntermediate}
@@ -563,6 +557,23 @@ class Welcome extends Component {
               </ButtonToolbar>
               <Tooltip
                 TransitionComponent={Zoom}
+                title="View Profile info"
+                arrow
+              >
+                <DropdownButton
+                  onClick={this.changetoProfile}
+                  title={"Profile"}
+                >
+                  {this.state.viewProfile ? (
+                    <SideProfileDrawer
+                      people={this.state.people}
+                      viewprof={this.state.viewProfile}
+                    />
+                  ) : null}
+                </DropdownButton>
+              </Tooltip>
+              <Tooltip
+                TransitionComponent={Zoom}
                 title="Log out and go to Home"
                 arrow
               >
@@ -570,18 +581,6 @@ class Welcome extends Component {
                   <Nav>
                     Logout&ensp;
                     <FiLogOut size={20} />
-                  </Nav>
-                </Button>
-              </Tooltip>
-              <Tooltip
-                TransitionComponent={Zoom}
-                title="View Profile info"
-                arrow
-              >
-                <Button onClick={this.changetoProfile}>
-                  <Nav>
-                    Profile&ensp;
-                    <MdPerson size={20} />
                   </Nav>
                 </Button>
               </Tooltip>
@@ -606,6 +605,8 @@ class Welcome extends Component {
           */}
 
           {this.state.hideQuiz ? (
+            /* Here we check of the hideQuiz is true if its true we display the articles along with the Take Quiz button
+             */
             <div id="innerBorder">
               {this.state.article1 ? <Articles /> : null}
               {this.state.article2 ? <Articles2 /> : null}
@@ -638,14 +639,15 @@ class Welcome extends Component {
                   viewprof={this.state.viewProfile}
                 />
              ) : null}*/}
-              {this.state.viewProfile ? (
+              {/*{this.state.viewProfile ? (
                 <SideProfileDrawer
                   people={this.state.people}
                   viewprof={this.state.viewProfile}
                 />
-              ) : null}
+              ) : null}*/}
             </div>
           }
+
           {this.state.viewquiz ? (
             <Quiz
               stateHiddenQuiz={this.hideQuizButton}

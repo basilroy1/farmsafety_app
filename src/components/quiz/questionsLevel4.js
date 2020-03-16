@@ -10,14 +10,14 @@ export const Quizdata4 = [
   {
     id: 1,
     question: "what danger is shown?",
-    options: ["dont enter", "abcd", "all fine"],
+    options: ["dont enter", "we", "abcd", "all fine"],
     answer: "abcd",
     picture: ""
   },
   {
     id: 2,
     question: "is this correct?",
-    options: ["dont enter", "nothing", "all fine"],
+    options: ["dont enter", "we", "nothing", "all fine"],
     answer: "nothing",
     picture: ""
   },
@@ -31,42 +31,42 @@ export const Quizdata4 = [
   {
     id: 4,
     question: "what should you do?",
-    options: ["madeeeeittt", "12", "all fine"],
+    options: ["madeeeeittt", "we", "12", "all fine"],
     answer: "12",
     picture: ""
   },
   {
     id: 5,
     question: "what should you do?",
-    options: ["madeeeeittt", "43", "all fine"],
+    options: ["madeeeeittt", "we", "43", "all fine"],
     answer: "43",
     picture: ""
   },
   {
     id: 6,
     question: "what should you do?",
-    options: ["madeeeeittt", "set", "all fine"],
+    options: ["madeeeeittt", "we", "set", "all fine"],
     answer: "set",
     picture: ""
   },
   {
     id: 7,
     question: "what should you do?",
-    options: ["madeeeeittt", "lol", "all fine"],
+    options: ["madeeeeittt", "we", "lol", "all fine"],
     answer: "lol",
     picture: ""
   },
   {
     id: 8,
     question: "what should you do?",
-    options: ["dont enter", "nothing", "all fine"],
+    options: ["dont enter", "we", "nothing", "all fine"],
     answer: "nothing",
     picture: ""
   },
   {
     id: 9,
     question: "what should you do?",
-    options: ["dont enter", "qqq", "all fine"],
+    options: ["dont enter", "we", "qqq", "all fine"],
     answer: "qqq",
     picture: ""
   }

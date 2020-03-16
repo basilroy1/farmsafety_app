@@ -2,8 +2,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import React from "react";
 import Drawer from "@material-ui/core/Drawer";
 import UserProfile from "../quiz/userProfile";
-import { Button } from "react-bootstrap";
-
+import { Button, Nav } from "react-bootstrap";
+import { MdPerson } from "react-icons/md";
 import "./welcome.css";
 export default function TemporaryDrawer(props) {
   const useStyles = makeStyles({
@@ -12,7 +12,8 @@ export default function TemporaryDrawer(props) {
     },
     fullList: {
       width: "auto"
-    }
+    },
+    back: { backgroundColor: "yellow" }
   });
   const classes = useStyles();
   const [state, setState] = React.useState({
@@ -42,7 +43,7 @@ export default function TemporaryDrawer(props) {
     >
       {props.people.map((person, index) => {
         return (
-          <div id="userProfileComp">
+          <div id="userProfileComp" key={index}>
             {props.viewprof ? (
               <UserProfile
                 className="userProfile"
@@ -65,9 +66,17 @@ export default function TemporaryDrawer(props) {
 
   return (
     <div>
-      {props.viewprof ? sideList : null}
-      <Button onClick={toggleDrawer("right", true)}>Open Right</Button>
-
+      <Button
+        variant="info"
+        style={{ marginLeft: 5 }}
+        onClick={toggleDrawer("right", true)}
+      >
+        {" "}
+        <Nav>
+          View Profile&ensp;
+          <MdPerson size={20} />
+        </Nav>{" "}
+      </Button>
       <Drawer
         anchor="right"
         open={state.right}

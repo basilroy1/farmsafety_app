@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import { Card, Button } from "react-bootstrap";
-import { MdEmail, MdClose } from "react-icons/md";
+import { Card } from "react-bootstrap";
+import { MdEmail } from "react-icons/md";
 import { GiTrophy } from "react-icons/gi";
+import { FaRegClock } from "react-icons/fa";
 import { IoMdClipboard } from "react-icons/io";
 import ProfilePic from "../pictures/userprofilepic.jpg";
 import "./userProfile.css";
@@ -15,19 +16,7 @@ class UserProfile extends Component {
           border="warning"
           style={{ width: "44rem", marginLeft: 40 }}
         >
-          <Card.Header style={{ textAlign: "center" }}>
-            {" "}
-            Profile{" "}
-            <Button
-              variant="danger"
-              className="profileClosebtn"
-              onClick={() => {
-                this.props.closeProf(false);
-              }}
-            >
-              <MdClose size={20} />
-            </Button>
-          </Card.Header>
+          <Card.Header style={{ textAlign: "center" }}> Profile </Card.Header>
           <Card.Body>
             <Card.Title style={{ marginLeft: 230 }}>
               <img id="profilepic" alt="lol" src={ProfilePic} />
@@ -45,7 +34,7 @@ class UserProfile extends Component {
               {this.props.levelExpert ? "Expert" : null}
               {this.props.levelMaster ? "Master" : null}
               <Divider />
-              Last Logged in :&ensp;
+              <FaRegClock /> Last Logged in :&ensp;
               {this.props.time ? this.props.time : "no data"}
               <Divider />
             </Card.Text>

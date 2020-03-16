@@ -17,7 +17,7 @@ export const Quizdata3 = [
   {
     id: 2,
     question: "is this correct?",
-    options: ["okokokokokoko", "nothing", "all fine"],
+    options: ["okokokokokoko", "we", "nothing", "all fine"],
     answer: "nothing",
     picture: ""
   },
@@ -31,35 +31,35 @@ export const Quizdata3 = [
   {
     id: 4,
     question: "what should you do?",
-    options: ["okokokokokoko", "12", "all fine"],
+    options: ["okokokokokoko", "we", "12", "all fine"],
     answer: "12",
     picture: ""
   },
   {
     id: 5,
     question: "what should you do?",
-    options: ["okokokokokoko", "43", "all fine"],
+    options: ["okokokokokoko", "we", "43", "all fine"],
     answer: "43",
     picture: ""
   },
   {
     id: 6,
     question: "what should you do?",
-    options: ["dont enter", "set", "all fine"],
+    options: ["dont enter", "we", "set", "all fine"],
     answer: "set",
     picture: ""
   },
   {
     id: 7,
     question: "what should you do?",
-    options: ["dont enter", "lol", "all fine"],
+    options: ["dont enter", "we", "lol", "all fine"],
     answer: "lol",
     picture: ""
   },
   {
     id: 8,
     question: "what should you do?",
-    options: ["dont enter", "nothing", "all fine"],
+    options: ["dont enter", "we", "nothing", "all fine"],
     answer: "nothing",
     picture: ""
   },
@@ -67,7 +67,7 @@ export const Quizdata3 = [
   {
     id: 9,
     question: "what should you do?",
-    options: ["dont enter", "qqq", "all fine"],
+    options: ["dont enter", "we", "qqq", "all fine"],
     answer: "qqq",
     picture: ""
   }
