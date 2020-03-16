@@ -3,10 +3,8 @@ import "./welcome.css";
 import { MdPerson } from "react-icons/md";
 import { FiLogOut } from "react-icons/fi";
 import { FaBookOpen } from "react-icons/fa";
-//import Loader from "react-loader-spinner";
-import { Button, Nav, Navbar, ButtonToolbar, Modal } from "react-bootstrap";
+import { Button, Nav, Navbar, ButtonToolbar } from "react-bootstrap";
 import Tooltip from "@material-ui/core/Tooltip";
-import Drawer from "@material-ui/core/Drawer";
 import Zoom from "@material-ui/core/Zoom";
 import Quiz from "../quiz/quiz";
 import fire from "../../config/fire";
@@ -16,14 +14,8 @@ import Articles2 from "./articles2";
 import Articles3 from "./articles3";
 import Articles4 from "./articles4";
 import Articles5 from "./articles5";
-import { Alert } from "reactstrap";
 import InstructionsModal from "./instructionsmodal";
-import List from "@material-ui/core/List";
-import Divider from "@material-ui/core/Divider";
-import Sidebar from "react-sidebar";
-
 import SideProfileDrawer from "../home/sideProfileDrawer";
-import Test from "../quiz/test";
 class Welcome extends Component {
   constructor(props) {
     super(props);
@@ -49,7 +41,7 @@ class Welcome extends Component {
       hideQuiz: true,
       viewProfile: false
     };
-    this.onSetSidebarOpen = this.onSetSidebarOpen.bind(this);
+    //    this.onSetSidebarOpen = this.onSetSidebarOpen.bind(this);
     //this.modalInstruction = this.modalInstruction.bind(this);
   }
 
@@ -168,9 +160,10 @@ class Welcome extends Component {
       date: new Date()
     });
   }
-  onSetSidebarOpen(open) {
-    this.setState({ sidebarOpen: open });
-  }
+  // onSetSidebarOpen(open) {
+  // this.setState({ sidebarOpen: open });
+  //}
+
   authListener = () => {
     //checks if user is already logged in on browser
     fire.auth().onAuthStateChanged(user => {
@@ -638,13 +631,13 @@ class Welcome extends Component {
           ) : null}
           {
             <div>
-              {this.state.viewProfile ? renderData : null}
-              {this.state.viewProfile ? (
+              {/* {this.state.viewProfile ? renderData : null}*/}
+              {/* {this.state.viewProfile ? (
                 <Test
                   people={this.state.people}
                   viewprof={this.state.viewProfile}
                 />
-              ) : null}
+             ) : null}*/}
               {this.state.viewProfile ? (
                 <SideProfileDrawer
                   people={this.state.people}

@@ -55,7 +55,6 @@ class Quiz extends Component {
   };
   loadQuiz2 = () => {
     const { currentQuest } = this.state;
-    //  console.log(Questions[2].question);
     this.setState(() => {
       return {
         questions: Quizdata2[currentQuest].question,
@@ -68,7 +67,6 @@ class Quiz extends Component {
   };
   loadQuiz3 = () => {
     const { currentQuest } = this.state;
-    //  console.log(Questions[2].question);
     this.setState(() => {
       return {
         questions: Quizdata3[currentQuest].question,
@@ -82,7 +80,6 @@ class Quiz extends Component {
 
   loadQuiz4 = () => {
     const { currentQuest } = this.state;
-    //  console.log(Questions[2].question);
     this.setState(() => {
       return {
         questions: Quizdata4[currentQuest].question,
@@ -95,7 +92,6 @@ class Quiz extends Component {
   };
   loadQuiz5 = () => {
     const { currentQuest } = this.state;
-    //  console.log(Questions[2].question);
     this.setState(() => {
       return {
         questions: Quizdata5[currentQuest].question,
@@ -243,9 +239,6 @@ class Quiz extends Component {
       console.log("Correct");
     } else {
       console.log("wrong");
-
-      //  alert("Correct Answer is " + answer);
-      //);
     }
   };
 
@@ -281,16 +274,9 @@ class Quiz extends Component {
           console.log("scores " + this.state.scores);
         }
       );
-      //      console.log(this.state);
     } else {
       console.log("didnt enter");
     }
-    /* setTimeout(() => {
-        this.setState({
-          isEnd: false
-        });
-      }, 3500);      
-      */
     console.log("rank " + this.props.rankValue);
   };
 
@@ -537,7 +523,6 @@ class Quiz extends Component {
             <Button
               onClick={() => {
                 this.finishQuiz();
-                //this.props.stateHiddenQuiz(true);
                 this.props.handleDisableValue(
                   scores,
                   this.state.limitedQuestion

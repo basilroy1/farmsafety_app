@@ -1,20 +1,14 @@
 import { makeStyles } from "@material-ui/core/styles";
-import InstructionsModal from "./instructionsmodal";
-import List from "@material-ui/core/List";
-import Divider from "@material-ui/core/Divider";
-import React, { Component } from "react";
-import Tooltip from "@material-ui/core/Tooltip";
+import React from "react";
 import Drawer from "@material-ui/core/Drawer";
-import Zoom from "@material-ui/core/Zoom";
 import UserProfile from "../quiz/userProfile";
 import { Button } from "react-bootstrap";
-import { render } from "react-dom";
-import Test from "../quiz/test";
 
-export default function TemporaryDrawer() {
+import "./welcome.css";
+export default function TemporaryDrawer(props) {
   const useStyles = makeStyles({
     list: {
-      width: 680
+      width: 640
     },
     fullList: {
       width: "auto"
@@ -46,12 +40,32 @@ export default function TemporaryDrawer() {
       onClick={toggleDrawer(side, false)}
       onKeyDown={toggleDrawer(side, false)}
     >
-      <UserProfile />
+      {props.people.map((person, index) => {
+        return (
+          <div id="userProfileComp">
+            {props.viewprof ? (
+              <UserProfile
+                className="userProfile"
+                levelRook={person.levelRook}
+                levelStudent={person.levelStudent}
+                levelIntermediate={person.levelIntermediate}
+                levelExpert={person.levelExpert}
+                levelMaster={person.levelMaster}
+                score={person.Score}
+                question={person.Questions}
+                email={person.email}
+                time={person.lastLogin}
+              />
+            ) : null}
+          </div>
+        );
+      })}
     </div>
   );
 
   return (
     <div>
+      {props.viewprof ? sideList : null}
       <Button onClick={toggleDrawer("right", true)}>Open Right</Button>
 
       <Drawer

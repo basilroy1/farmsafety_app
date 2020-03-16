@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import "./welcome.css";
 import { MdCheckBox, MdExpandMore } from "react-icons/md";
 import { GiSwordsEmblem } from "react-icons/gi";
-import { FaChevronRight } from "react-icons/fa";
 import piechart from "../pictures/piechartMachinery.jpg";
 import ExpansionPanel from "@material-ui/core/ExpansionPanel";
 import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
