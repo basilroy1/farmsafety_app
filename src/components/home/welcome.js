@@ -16,7 +16,7 @@ import fire from "../../config/fire";
 import UserProfile from "../quiz/userProfile";
 import Articles from "./articles";
 import Articles2 from "./articles2";
-import Articles3 from "./articles3";
+import Articles3 from "./articles3"; //imported all the necessary components,Library,API's
 import Articles4 from "./articles4";
 import Articles5 from "./articles5";
 import InstructionsModal from "./instructionsmodal";
@@ -26,16 +26,12 @@ class Welcome extends Component {
     super(props);
     this.state = {
       viewquiz: false,
-      sidebarOpen: false,
-      value1: false,
-      value: 0,
       people: [],
-      dataHasLoaded: false,
       user: {},
       disabled: true,
       date: new Date(),
       quizCompleted: false,
-      level: 0,
+      level: 0, //Initialize all the state variables
       fakelevel: 0,
       article1: true,
       viewModal: false,
@@ -52,7 +48,7 @@ class Welcome extends Component {
     this.setState(
       {
         level1: true,
-        level2: false,
+        level2: false, //function make quiz1 true
         level3: false,
         level4: false,
         level5: false,
@@ -72,7 +68,7 @@ class Welcome extends Component {
         level1: false,
         level2: true,
         level3: false,
-        level4: false,
+        level4: false, //function make quiz2 true
         level5: false,
         disabled: false,
         fakelevel: 1
@@ -89,7 +85,7 @@ class Welcome extends Component {
       {
         level1: false,
         level2: false,
-        level3: true,
+        level3: true, //function make quiz3 true
         level4: false,
         level5: false,
         disabled: false,
@@ -107,7 +103,7 @@ class Welcome extends Component {
         level1: false,
         level2: false,
         level3: false,
-        level4: true,
+        level4: true, //function make quiz4 true
         level5: false,
         disabled: false,
         fakelevel: 3
@@ -123,7 +119,7 @@ class Welcome extends Component {
       {
         level1: false,
         level2: false,
-        level3: false,
+        level3: false, //function make quiz5 true
         level4: false,
         level5: true,
         disabled: false,
@@ -144,22 +140,23 @@ class Welcome extends Component {
       (this.state.viewquiz && this.state.level5)
     ) {
       this.setState({
-        viewquiz: false
+        viewquiz: false //checks if viewing quiz or any 5 levels are true then make view quiz false.
       });
     }
   };
   componentDidMount() {
     this.authListener();
     this.retrieveData();
-    this.timerID = setInterval(() => this.tick(), 1000);
+    this.timerID = setInterval(() => this.tick(), 1000); //retreival data from database and chekcks if any user is logged in already.
     console.log("Data mounted");
   }
   componentWillUnmount() {
-    clearInterval(this.timerID);
+    clearInterval(this.timerID); //to get the time for lastlogged in
   }
 
   tick() {
     this.setState({
+      //to get the time for lastlogged in
       date: new Date()
     });
   }
@@ -196,7 +193,7 @@ class Welcome extends Component {
           for (let i in currentUser) {
             currentState.push({
               email: currentUser[i].UserEmail,
-              UserAnswer: currentUser[i].UserAnswer,
+              UserAnswer: currentUser[i].UserAnswer, //looping through the data from the database and storing it in an array.
               Questions: currentUser[i].Question,
               id: currentUser[i].ID,
               Score: currentUser[i].Score,
@@ -209,13 +206,11 @@ class Welcome extends Component {
               lastLogin: currentUser[i].LastLogin
             });
           }
-          // currentState.push(user);
           console.log(currentState);
           this.rankData(); //setting rank value from DB
 
           this.setState({
-            people: currentState,
-            dataHasLoaded: true
+            people: currentState //pushes the data from database to an array so it can be accesed
           });
         });
       } else {
@@ -229,42 +224,44 @@ class Welcome extends Component {
       viewquiz: !this.state.viewquiz,
       article1: false,
       article2: false,
-      article3: false,
+      article3: false, //when the Quiz is viewed all 5 articels components are hidden
       article4: false,
       article5: false
     });
   };
   changetoProfile = () => {
     this.setState({
-      viewProfile: true
+      viewProfile: true //used for viewing profile info, the state is set to true when triggered
     });
   };
 
   logout = e => {
     e.preventDefault();
-    fire.auth().signOut();
+    fire.auth().signOut(); //logs user out from the browser to the home page
     console.log("Logged out");
   };
   hideQuizButton = data => {
     if (this.state.level === 0) {
       this.setState({
-        article1: data
+        article1: data //here we check if the rank is rookie then we display the rookie article ,for trying again the quiz after failing
       });
     } else if (this.state.level === 1) {
       this.setState({
+        //here we check if the rank is student then we display the student article,for trying again the quiz after failing
         article2: data
       });
     } else if (this.state.level === 2) {
       this.setState({
+        //here we check if the rank is intermediate then we display the intermediate article,for trying again the quiz after failing
         article3: data
       });
     } else if (this.state.level === 3) {
       this.setState({
-        article4: data
+        article4: data //here we check if the rank is expert then we display the expert article,for trying again the quiz after failing
       });
     } else if (this.state.level >= 4) {
       this.setState({
-        article5: data
+        article5: data //here we check if the rank is master or greater then we display the master article,for trying again the quiz after failing
       });
     }
 
@@ -276,21 +273,26 @@ class Welcome extends Component {
   hideQuizDisplayArticle = data => {
     if (this.state.level === 0) {
       this.setState({
+        //if level is rookie then view article1 if the user decides to stop taking the quiz ie: they close the quiz.
         article1: !data
       });
     } else if (this.state.level === 1) {
       this.setState({
+        //if level is student then view article2 if the user decides to stop taking the quiz ie: they close the quiz.
         article2: !data
       });
     } else if (this.state.level === 2) {
       this.setState({
+        //if level is intermediate then view article3 if the user decides to stop taking the quiz ie: they close the quiz.
         article3: !data
       });
     } else if (this.state.level === 3) {
+      //if level is expert then view article4 if the user decides to stop taking the quiz ie: they close the quiz.
       this.setState({
         article4: !data
       });
     } else if (this.state.level >= 4) {
+      //if level is master or greater then view article5 if the user decides to stop taking the quiz ie: they close the quiz.
       this.setState({
         article5: !data
       });
@@ -306,7 +308,7 @@ class Welcome extends Component {
       this.setState({
         article1: true,
         article2: false,
-        article3: false,
+        article3: false, // if level is rookie then view article1
         article4: false,
         article5: false
       });
@@ -315,14 +317,14 @@ class Welcome extends Component {
         article1: false,
         article2: true,
         article3: false,
-        article4: false,
+        article4: false, // if level is student then view article2
         article5: false
       });
     } else if (this.state.level3) {
       this.setState({
         article1: false,
         article2: false,
-        article3: true,
+        article3: true, // if level is intermediate then view article3
         article4: false,
         article5: false
       });
@@ -331,14 +333,14 @@ class Welcome extends Component {
         article1: false,
         article2: false,
         article3: false,
-        article4: true,
+        article4: true, // if level is expert then view article2
         article5: false
       });
     } else if (this.state.level5) {
       this.setState({
         article1: false,
         article2: false,
-        article3: false,
+        article3: false, // if level is master then view article5
         article4: false,
         article5: true
       });
@@ -353,7 +355,7 @@ class Welcome extends Component {
   };
   clickedinterm = () => {
     console.log("clicked interm and fake level is " + this.state.fakelevel);
-  };
+  }; //// loging the fakelevel value for testing for each level
   clickedexpert = () => {
     console.log("clicked expert and fake level is " + this.state.fakelevel);
   };
@@ -369,6 +371,7 @@ class Welcome extends Component {
           quizCompleted: true
         },
         () => {
+          //checking if the score is more than 50% and quiz level is master then the quiz is completed
           console.log("quiz completed state entered");
         }
       );
@@ -380,6 +383,8 @@ class Welcome extends Component {
         console.log("entered fakelevel " + Math.round(limitedQuestion * 0.5));
         this.setState({
           level: this.state.level
+          /*checking if scores is greater than 50% and fake level is less than level meaning the user is 
+           attemping on old level therefrore dont increase level if they have passed*/
         });
       } else if (
         scores >= Math.round(limitedQuestion * 0.5) &&
@@ -388,6 +393,7 @@ class Welcome extends Component {
         console.log("entered level up " + Math.round(limitedQuestion * 0.5));
 
         this.setState(
+          /*ckeck if the rank is less than or equal to master and the user passes the quiz then the level is incremented on to new level*/
           {
             level: this.state.level + 1
           },
@@ -438,7 +444,7 @@ class Welcome extends Component {
   rankData = () => {
     this.state.people.map(person => {
       this.setState({
-        level: person.rank
+        level: person.rank ///retrieves the rank from the database and assigns it to the current value
       });
       console.log("Rank " + this.state.level);
     });
@@ -446,7 +452,7 @@ class Welcome extends Component {
 
   modalInstruction = data => {
     this.setState({
-      viewModal: data,
+      viewModal: data, // used for viewing the instructions page, we hide the quiz and articles components when the instruction page is opened.
       hideQuiz: !data,
       viewquiz: false
     });
@@ -455,7 +461,7 @@ class Welcome extends Component {
   render() {
     const STUDENT = 1;
     const INTERM = 2;
-    const EXPERT = 3;
+    const EXPERT = 3; //these are the values used for level up logic for disabling n enabling the buttons for user.
     const MASTER = 4;
 
     let renderData = this.state.people.map((person, index) => {
@@ -467,7 +473,7 @@ class Welcome extends Component {
               levelRook={person.levelRook}
               levelStudent={person.levelStudent}
               levelIntermediate={person.levelIntermediate}
-              levelExpert={person.levelExpert}
+              levelExpert={person.levelExpert} //rendering the data from database and passing as props to the User Profile component, this is weher all the profile info is displayed when the user clicks the profile button
               levelMaster={person.levelMaster}
               score={person.Score}
               question={person.Questions}
@@ -478,8 +484,6 @@ class Welcome extends Component {
         </div>
       );
     });
-
-    // let loadingSpinner = <Loader id="loader" type="ThreeDots" color="red " />;
     return (
       <div>
         <body>
@@ -500,7 +504,7 @@ class Welcome extends Component {
                   </Button>{" "}
                   <Button
                     className="btnLevel"
-                    disabled={this.state.level < STUDENT}
+                    disabled={this.state.level < STUDENT} //here is where the disabling and enalbing of level system is done for Student using the rank level from database
                     onClick={() => {
                       this.changeToquiz2();
                       this.checkQuiznLevel();
@@ -510,7 +514,7 @@ class Welcome extends Component {
                   </Button>{" "}
                   <Button
                     className="btnLevel"
-                    disabled={this.state.level < INTERM}
+                    disabled={this.state.level < INTERM} //here is where the disabling and enalbing of level system is done for Intermediate using the rank level from database
                     onClick={() => {
                       this.changeToquiz3();
                       this.checkQuiznLevel();
@@ -520,7 +524,7 @@ class Welcome extends Component {
                   </Button>{" "}
                   <Button
                     className="btnLevel"
-                    disabled={this.state.level < EXPERT}
+                    disabled={this.state.level < EXPERT} //here is where the disabling and enalbing of level system is done for Expert using the rank level from database
                     onClick={() => {
                       this.changeToquiz4();
                       this.checkQuiznLevel();
@@ -530,7 +534,7 @@ class Welcome extends Component {
                   </Button>{" "}
                   <Button
                     className="btnLevel"
-                    disabled={this.state.level < MASTER}
+                    disabled={this.state.level < MASTER} //here is where the disabling and enalbing of level system is done for Master using the rank level from database
                     onClick={() => {
                       this.changeToquiz5();
                       this.checkQuiznLevel();
@@ -543,7 +547,7 @@ class Welcome extends Component {
               <ButtonToolbar>
                 {" "}
                 <Tooltip
-                  TransitionComponent={Zoom}
+                  TransitionComponent={Zoom} //button for instructions page with Tool tip for hover effect
                   title="Guide on how the Quiz works"
                   arrow
                 >
@@ -556,7 +560,7 @@ class Welcome extends Component {
                 </Tooltip>
               </ButtonToolbar>
               <Tooltip
-                TransitionComponent={Zoom}
+                TransitionComponent={Zoom} //button for Profile page with Tool tip for hover effect
                 title="View Profile info"
                 arrow
               >
@@ -573,7 +577,7 @@ class Welcome extends Component {
                 </DropdownButton>
               </Tooltip>
               <Tooltip
-                TransitionComponent={Zoom}
+                TransitionComponent={Zoom} //button for Logout page with Tool tip for hover effect
                 title="Log out and go to Home"
                 arrow
               >
@@ -586,24 +590,6 @@ class Welcome extends Component {
               </Tooltip>
             </Navbar>
           </div>
-
-          {/*    <div id="userProfileComp">
-          {this.state.viewProfile ? (
-            <UserProfile
-              className="userProfile"
-              levelRook={this.state.people[0].levelRook}
-              levelStudent={this.state.people[0].levelStudent}
-              levelIntermediate={this.state.people[0].levelIntermediate}
-              levelExpert={this.state.people[0].levelExpert}
-              levelMaster={this.state.people[0].levelMaster}
-              score={this.state.people[0].Score}
-              question={this.state.people[0].Questions}
-              email={this.state.people[0].email}
-            />
-          ) : null}
-        </div>
-          */}
-
           {this.state.hideQuiz ? (
             /* Here we check of the hideQuiz is true if its true we display the articles along with the Take Quiz button
              */
@@ -616,7 +602,7 @@ class Welcome extends Component {
 
               <Button
                 id="takeQuizbtn"
-                disabled={this.state.disabled}
+                disabled={this.state.disabled} //Take Quiz Button
                 onClick={() => {
                   this.changetoQuiz();
                   this.hideQuizButton();
@@ -628,25 +614,8 @@ class Welcome extends Component {
           ) : null}
 
           {this.state.viewModal ? (
-            <InstructionsModal view={this.modalInstruction} />
+            <InstructionsModal view={this.modalInstruction} /> //Instruction compoennt is called when the the state for viewModal is true from the earlier function above
           ) : null}
-          {
-            <div>
-              {/* {this.state.viewProfile ? renderData : null}*/}
-              {/* {this.state.viewProfile ? (
-                <Test
-                  people={this.state.people}
-                  viewprof={this.state.viewProfile}
-                />
-             ) : null}*/}
-              {/*{this.state.viewProfile ? (
-                <SideProfileDrawer
-                  people={this.state.people}
-                  viewprof={this.state.viewProfile}
-                />
-              ) : null}*/}
-            </div>
-          }
 
           {this.state.viewquiz ? (
             <Quiz
@@ -656,7 +625,7 @@ class Welcome extends Component {
               quizFinished={this.state.quizCompleted}
               articelVal={this.articelState}
               rankValue={this.state.level}
-              handleDisableValue={this.handleDisableValue}
+              handleDisableValue={this.handleDisableValue} //passing all the these values as props to the child component Quiz so i can use these states to compute things in that component
               userLevel1={this.state.level1}
               userLevel2={this.state.level2}
               userLevel3={this.state.level3}

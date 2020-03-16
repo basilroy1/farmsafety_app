@@ -28,7 +28,7 @@ class Quiz extends Component {
       userAns: null,
       options: [],
       disabled: false,
-      currentQuest: 0,
+      currentQuest: 0, //Intialize state variables
       isEnd: false,
       people: [],
       limitedQuestion: 4,
@@ -45,7 +45,7 @@ class Quiz extends Component {
     const { currentQuest } = this.state;
     this.setState(() => {
       return {
-        questions: Quizdata[currentQuest].question,
+        questions: Quizdata[currentQuest].question, ///loads the quiz quesions for rookie level
         options: Quizdata[currentQuest].options,
         answer: Quizdata[currentQuest].answer,
         pictures: Quizdata[currentQuest].picture
@@ -57,7 +57,7 @@ class Quiz extends Component {
     const { currentQuest } = this.state;
     this.setState(() => {
       return {
-        questions: Quizdata2[currentQuest].question,
+        questions: Quizdata2[currentQuest].question, ///loads the quiz quesions for student level
         options: Quizdata2[currentQuest].options,
         answer: Quizdata2[currentQuest].answer,
         pictures: Quizdata2[currentQuest].picture
@@ -70,7 +70,7 @@ class Quiz extends Component {
     this.setState(() => {
       return {
         questions: Quizdata3[currentQuest].question,
-        options: Quizdata3[currentQuest].options,
+        options: Quizdata3[currentQuest].options, ///loads the quiz quesions for intermediate level
         answer: Quizdata3[currentQuest].answer,
         pictures: Quizdata3[currentQuest].picture
       };
@@ -84,7 +84,7 @@ class Quiz extends Component {
       return {
         questions: Quizdata4[currentQuest].question,
         options: Quizdata4[currentQuest].options,
-        answer: Quizdata4[currentQuest].answer,
+        answer: Quizdata4[currentQuest].answer, ///loads the quiz quesions for expert level
         pictures: Quizdata4[currentQuest].picture
       };
     });
@@ -96,7 +96,7 @@ class Quiz extends Component {
       return {
         questions: Quizdata5[currentQuest].question,
         options: Quizdata5[currentQuest].options,
-        answer: Quizdata5[currentQuest].answer,
+        answer: Quizdata5[currentQuest].answer, ///loads the quiz quesions for master level
         pictures: Quizdata5[currentQuest].picture
       };
     });
@@ -105,18 +105,18 @@ class Quiz extends Component {
   componentDidMount() {
     if (this.props.userLevel1) {
       this.loadQuiz();
-      console.log("Quiz1 loaded"); //loads quiz 1 data in
+      console.log("Quiz1 loaded"); //if user level is roookie then loads quiz 1 data
     } else if (this.props.userLevel2) {
-      this.loadQuiz2(); //loads quiz 2 data in
+      this.loadQuiz2(); //if user level is student then loads quiz 2 data
       console.log("Quiz2 loaded");
     } else if (this.props.userLevel3) {
-      this.loadQuiz3(); //loads quiz3  data
+      this.loadQuiz3(); //if user level is intermediate then loads quiz3  data
       console.log("Quiz3 loaded");
     } else if (this.props.userLevel4) {
-      this.loadQuiz4(); //loads quiz4  data in
+      this.loadQuiz4(); // if user level is expert then loads quiz4  data
       console.log("Quiz4 loaded");
     } else if (this.props.userLevel5) {
-      this.loadQuiz5(); //loads quiz 5 data in
+      this.loadQuiz5(); //if user level is master then loads quiz 5 data
       console.log("Quiz5 loaded");
     } else {
       console.log("No user states changed");
@@ -131,7 +131,7 @@ class Quiz extends Component {
         this.setState({
           disabled: true,
           questions: Quizdata[currentQuest].question,
-          options: Quizdata[currentQuest].options,
+          options: Quizdata[currentQuest].options, //we check if the questions are the same as the previuos questions for each level
           answer: Quizdata[currentQuest].answer,
           pictures: Quizdata[currentQuest].picture
         });
@@ -143,7 +143,7 @@ class Quiz extends Component {
           questions: Quizdata2[currentQuest].question,
           options: Quizdata2[currentQuest].options,
           answer: Quizdata2[currentQuest].answer,
-          pictures: Quizdata2[currentQuest].picture
+          pictures: Quizdata2[currentQuest].picture //we check if the questions are the same as the previuos questions for each level
         });
       }
     } else if (this.props.userLevel3) {
@@ -154,7 +154,7 @@ class Quiz extends Component {
           options: Quizdata3[currentQuest].options,
           answer: Quizdata3[currentQuest].answer,
           pictures: Quizdata3[currentQuest].picture
-        });
+        }); //we check if the questions are the same as the previuos questions for each level
       }
     } else if (this.props.userLevel4) {
       if (this.state.currentQuest !== prevState.currentQuest) {
@@ -162,7 +162,7 @@ class Quiz extends Component {
           disabled: true,
           questions: Quizdata4[currentQuest].question,
           options: Quizdata4[currentQuest].options,
-          answer: Quizdata4[currentQuest].answer,
+          answer: Quizdata4[currentQuest].answer, //we check if the questions are the same as the previuos questions for each level
           pictures: Quizdata4[currentQuest].picture
         });
       }
@@ -170,7 +170,7 @@ class Quiz extends Component {
       if (this.state.currentQuest !== prevState.currentQuest) {
         this.setState({
           disabled: true,
-          questions: Quizdata5[currentQuest].question,
+          questions: Quizdata5[currentQuest].question, //we check if the questions are the same as the previuos questions for each level
           options: Quizdata5[currentQuest].options,
           answer: Quizdata5[currentQuest].answer,
           pictures: Quizdata5[currentQuest].picture
@@ -182,7 +182,7 @@ class Quiz extends Component {
   logout = e => {
     e.preventDefault();
     fire.auth().signOut();
-    console.log("Logged out");
+    console.log("Logged out"); //logout function
   };
 
   pushtoDB = () => {
@@ -191,7 +191,7 @@ class Quiz extends Component {
     const rookie = this.props.userLevel1;
     const student = this.props.userLevel2;
     const intermediate = this.props.userLevel3;
-    const expert = this.props.userLevel4;
+    const expert = this.props.userLevel4; //function to push the all the necessary data to the database
     const master = this.props.userLevel5;
     const rankVal = this.props.rankValue;
 
@@ -215,13 +215,14 @@ class Quiz extends Component {
   nextQuestion = () => {
     const { scores, answer, userAns } = this.state;
     if (userAns === null) {
+      //this function baiscally increments the counter for the next question for the quiz and does the score updation if answer is correct. Pushed the data to DB also
       alert("select an option");
       return;
     }
 
     if (this.state.currentQuest === this.state.limitedQuestion) {
       this.setState({
-        currentQuest: this.state.currentQuest
+        currentQuest: this.state.currentQuest //checks for the limted quiz length for faster quizes,flexibility of App
       });
     } else {
       this.setState(
@@ -243,17 +244,14 @@ class Quiz extends Component {
   };
 
   checkAns = answer => {
-    //userans and answer switched
     this.setState({
-      userAns: answer,
+      userAns: answer, //Assign the user slected answer which is used for checking if answer is correct.
       disabled: false
     });
-
-    //  alert("Correct answer is " + answer);
   };
 
   percentageCalculation = () => {
-    var x = Math.round(this.state.limitedQuestion * 0.5);
+    var x = Math.round(this.state.limitedQuestion * 0.5); //calcaulates the number of questions answered correctly to achieve 50%
     return x;
   };
   finishQuiz = () => {
@@ -263,7 +261,7 @@ class Quiz extends Component {
       }
       this.setState(
         {
-          isEnd: true,
+          isEnd: true, //on the last question in the quiz it does a seperate check for the answer due to out of bounds exception
           scores:
             this.state.userAns === this.state.answer
               ? this.state.scores + 1
@@ -286,7 +284,7 @@ class Quiz extends Component {
     if (
       scores >= this.percentageCalculation() &&
       this.props.quizFinished &&
-      isEnd
+      isEnd //if the user has completed the whole quiz level a message will be brought up saying  congratulations.
     ) {
       return (
         <div className="QuizCompleted">
@@ -344,6 +342,7 @@ class Quiz extends Component {
       );
     } else if (isEnd && scores >= this.percentageCalculation()) {
       return (
+        //if the user has passed the quiz a message shows the stats for that quiz and some tips to keep in mind.
         <div className="SummaryResultsPass">
           <h3>
             <Alert style={{ textAlign: "center" }} color="success">
@@ -395,6 +394,7 @@ class Quiz extends Component {
         </div>
       );
     } else if (isEnd && scores < this.percentageCalculation()) {
+      // if user fails the quiz a message will pop up saying to re-try the quiz.
       return (
         <div className="SummaryResultsFail">
           <h3>
@@ -452,7 +452,7 @@ class Quiz extends Component {
         <div className="quizForm">
           <div id="leaveQuiz">
             <Button
-              variant="danger"
+              variant="danger" //display of quiz is done here
               onClick={() => {
                 this.props.hideQuiznDisplay(false);
               }}
@@ -465,30 +465,34 @@ class Quiz extends Component {
           <div>
             <ProgressBar
               animated
-              now={this.state.currentQuest * (100 / this.state.limitedQuestion)}
+              now={this.state.currentQuest * (100 / this.state.limitedQuestion)} //progress bar shows the progress
             />
           </div>
-          {this.state.questions}
+          {this.state.questions} {/*displays the set of questions*/}
           <br></br>
           <p style={{ textAlign: "center" }}>Q{this.state.currentQuest + 1}</p>
           {this.state.pictures}
+          {/*displays the set of pictures*/}
           <br></br>
           {options.map((option, id) => (
             <Button
               key={id}
-              size="lg"
+              size="lg" /*displays the set of options*/
               block
               className={`ui floating message options
             ${userAns === option ? "selected" : null}
            `}
               onClick={() => {
-                this.checkAns(option);
+                this.checkAns(
+                  option
+                ); /*checks selected user answer and passes it to the checkAns function above*/
               }}
             >
               {option}
               {userAns === option &&
               this.state.userAns === this.state.answer ? (
                 <Alert color="success">
+                  {/*we do a realtime check of the selected answer to indacte the user if the answer is correct or wrong*/}
                   Correct <FaCheckCircle size={36} />
                 </Alert>
               ) : null}
@@ -506,11 +510,10 @@ class Quiz extends Component {
               ) : null}
             </Button>
           ))}
-
           <br></br>
           {currentQuest < this.state.limitedQuestion - 1 && (
             <Button
-              disabled={this.state.disabled}
+              disabled={this.state.disabled} //button for next Question
               onClick={() => {
                 this.nextQuestion();
               }}
@@ -522,7 +525,7 @@ class Quiz extends Component {
           {currentQuest === this.state.limitedQuestion - 1 && (
             <Button
               onClick={() => {
-                this.finishQuiz();
+                this.finishQuiz(); //button for Finish quiz is displayed once the last Question has been reached.
                 this.props.handleDisableValue(
                   scores,
                   this.state.limitedQuestion

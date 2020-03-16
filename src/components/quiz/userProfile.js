@@ -14,7 +14,7 @@ class UserProfile extends Component {
         <Card
           //bg="dark"
           border="warning"
-          style={{ width: "44rem", marginLeft: 40 }}
+          style={{ width: "44rem", marginLeft: 40 }} //the display of Email, score,Time,Level is displayed using the data from the Welcome component.
         >
           <Card.Header style={{ textAlign: "center" }}> Profile </Card.Header>
           <Card.Body>
