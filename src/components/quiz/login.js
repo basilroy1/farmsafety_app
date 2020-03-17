@@ -4,7 +4,7 @@ import { Button } from "react-bootstrap";
 import "./login.css";
 import { GiFarmTractor } from "react-icons/gi";
 import { MdMail, MdDone, MdPriorityHigh } from "react-icons/md";
-import { FaUserCircle } from "react-icons/fa";
+import { FaUserCircle, FaArrowCircleLeft } from "react-icons/fa";
 import { AiOutlineLock } from "react-icons/ai";
 import TextField from "@material-ui/core/TextField"; //imported all the neccessary libraries,API's,Components
 import Grid from "@material-ui/core/Grid";
@@ -86,6 +86,19 @@ class Login extends Component {
         <div>
           {/* here we are creating the login form with email and password input fields, also we do some checks for if password is the correct length etc.*/}
           <form className="loginForm">
+            {this.state.viewPasswordReset ? (
+              <div
+                onClick={() => {
+                  this.setState({
+                    hideForgotPass: true, //back arrow to go back to login page from the reset password page
+                    viewPasswordReset: false
+                  });
+                }}
+                id="leftArrow"
+              >
+                <FaArrowCircleLeft size={20} />
+              </div>
+            ) : null}
             <div className="emailpassdiv">
               <h1 className="loginHeader">Login</h1>
               <br />
@@ -160,7 +173,7 @@ class Login extends Component {
                 <Grid container spacing={1} alignItems="flex-end">
                   <Grid item>
                     <MdMail color={"navy"} size={20} />
-                  </Grid>
+                  </Grid>{" "}
                   <Grid item>
                     <TextField
                       required
@@ -176,7 +189,7 @@ class Login extends Component {
               ) : null}
               {this.state.hideForgotPass ? (
                 <a onClick={this.changeResetModal} href="#">
-                  Forgot Passsword ?
+                  Forgot Password ?
                 </a> //hides forgot password when the link is clicked
               ) : null}
             </div>
