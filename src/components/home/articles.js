@@ -8,7 +8,6 @@ import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
 import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
 import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
-//import { Button, Nav, Navbar, ButtonToolbar } from "react-bootstrap";
 class Articles extends Component {
   render() {
     return (

@@ -5,7 +5,7 @@ import { MdMail, MdDone, MdPriorityHigh, MdPersonAdd } from "react-icons/md";
 import { AiOutlineLock } from "react-icons/ai";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
-import { GiFarmTractor } from "react-icons/gi";
+import { GiFarmTractor } from "react-icons/gi"; //imported all the neccessary libraries,API's,Components
 import "./login.css";
 class Signup extends Component {
   constructor(props) {
@@ -14,14 +14,12 @@ class Signup extends Component {
     this.state = {
       email: "",
       password: "",
-      passwordConfirm: "",
-      clicked: "",
-      viewPasswordResetModal: false
+      passwordConfirm: "" //initialize the state variables
     };
   }
   handleChange = e => {
     const target = e.target;
-    const value = target.type === "checkbox" ? target.checked : target.value;
+    const value = target.type === "checkbox" ? target.checked : target.value; //this function looks out for an change in value then triggers
     const name = target.name;
 
     this.setState({
@@ -34,8 +32,9 @@ class Signup extends Component {
 
     const validEmail =
       this.state.email.endsWith("@gmail.com") ||
+      this.state.email.endsWith("@mu.ie") ||
       this.state.email.endsWith("@mumail.ie");
-    const validPass = this.state.password === this.state.passwordConfirm;
+    const validPass = this.state.password === this.state.passwordConfirm; //function for authenticating the signup with email and password
     if (!validEmail) {
       alert("Please enter a valid Email address");
       return;
@@ -43,12 +42,11 @@ class Signup extends Component {
       alert("Passwords Don't Match");
       return;
     }
-
     fire
       .auth()
       .createUserWithEmailAndPassword(this.state.email, this.state.password)
-      .then(u => {})
       .then(u => {
+        //email and password is cross checked with database to ensure an existing account already exists under same email
         console.log(u);
       })
       .catch(error => {
@@ -57,32 +55,6 @@ class Signup extends Component {
       });
   };
 
-  passwordReset = e => {
-    e.preventDefault();
-
-    const auth = fire.auth();
-    const email = this.state.email;
-    const validEmail =
-      email.endsWith("@mumail.ie") || email.endsWith("@gmail.com");
-
-    if (!validEmail) {
-      alert("Please enter a valid email");
-      return;
-    }
-
-    auth
-      .sendPasswordResetEmail(email)
-      .then(alert("An email has been sent to you to reset your password"));
-  };
-  extractUsername = email => {
-    var s = "";
-    for (var r in email) {
-      if (email.charAt(r) === "@") {
-        s += email.substring(0, r);
-      }
-    }
-    console.log(s);
-  };
   render() {
     return (
       <body>
@@ -90,6 +62,7 @@ class Signup extends Component {
           <form className="loginForm">
             <div className="emailpassdiv">
               <h1 className="signupHeader">Register</h1>
+              {/*Creating the signup form with email and password input field*/}
               <div className="profileicon">
                 <MdPersonAdd size={75} />
               </div>
@@ -112,6 +85,7 @@ class Signup extends Component {
                   </Grid>
                 </Grid>
                 {this.state.email.endsWith("@mumail.ie") ||
+                this.state.email.endsWith("@mu.ie") ||
                 this.state.email.endsWith("@gmail.com") ? (
                   <span style={{ color: "#00FF7F" }}>
                     That's a Valid Email!
@@ -161,7 +135,7 @@ class Signup extends Component {
                       label="Confirm Password"
                       type="password"
                       name="passwordConfirm"
-                      required
+                      required /*here we check for the confirm password matches the first password*/
                       value={this.state.passwordConfirm}
                       onChange={this.handleChange}
                     />
@@ -181,63 +155,12 @@ class Signup extends Component {
                   </span>
                 )}
               </div>
-              {/*} <div className="form-group col-md-9 ">
-                <label
-                  htmlFor="emailInput"
-                  style={{ color: "yellow", font: "bolder" }}
-                >
-                  Email Address
-                </label>
-                <input
-                  type="email"
-                  name="email"
-                  placeholder="Enter Email Address"
-                  className="form-control"
-                  value={this.state.email}
-                  onChange={this.handleChange}
-                />
-
-                {this.state.email ? (
-                  <span style={{ color: "#00FF7F" }}>That's Good!</span>
-                ) : (
-                  <span style={{ color: "yellow" }}></span>
-                )}
-                <br></br>
-              </div>
-                */}
-              {/* <div className="form-group col-md-9">
-                <label
-                  htmlFor="inputPassword"
-                  style={{ color: "yellow", font: "bolder" }}
-                >
-                  Password
-                </label>
-                <input
-                  type="password"
-                  name="password"
-                  placeholder="Enter Password"
-                  className="form-control"
-                  value={this.state.password}
-                  onChange={this.handleChange}
-                />
-
-                {this.state.password.length >= 6 ? (
-                  <span style={{ color: "#00FF7F" }}>
-                    Minimum 6 characters long
-                  </span>
-                ) : (
-                  <span style={{ color: "#FF0000" }}>
-                    Minumum 6 characters long
-                  </span>
-                )}
-              </div>
-                */}
             </div>
             <Button
               style={{ height: 50, width: 200, fontSize: 17, borderRadius: 30 }}
               className="signupbtn"
               variant="info"
-              onClick={this.signUp}
+              onClick={this.signUp} //signup button
             >
               Signup <GiFarmTractor size={22} />
             </Button>
