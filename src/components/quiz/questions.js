@@ -134,5 +134,6 @@ export const Quizdata = [
     picture: ""
   }
 ];
-shuffle(Quizdata);
+shuffle(Quizdata); //shuffling the set of questions randomly
 export default Quizdata;
+///here we have set of  10 Qs with options,picture for rookie level

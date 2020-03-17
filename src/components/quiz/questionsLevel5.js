@@ -1,5 +1,6 @@
 import Pic from "../pictures/saferty_gaurd.jpg";
 export const Quizdata5 = [
+  ///here we have set of  10 Qs with options,picture for master level
   {
     id: 0,
     question: "what does this sign mean?",
@@ -99,5 +100,5 @@ function shuffle(array) {
 
   return array;
 }
-shuffle(Quizdata5);
+shuffle(Quizdata5); //shuffling the set of questions randomly
 export default Quizdata5;

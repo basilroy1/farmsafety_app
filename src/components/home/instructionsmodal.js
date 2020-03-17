@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Button } from "reactstrap";
 import Divider from "@material-ui/core/Divider";
-import "./instructionsmodal.css";
+import "./instructionsmodal.css"; //importd icons, API's and files neccessary
 import { MdClose } from "react-icons/md";
 
 class InstructionsModal extends Component {
@@ -15,7 +15,7 @@ class InstructionsModal extends Component {
                 onClick={() => {
                   this.props.view(false);
                 }}
-                id="closebtn"
+                id="closebtn" // here we are creating a basic instrucitons outlining rules and tips on how to asnwer quiz and how the quiz system works
               >
                 <MdClose size={20} />
               </Button>

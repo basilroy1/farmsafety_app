@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./welcome.css";
 import { MdCheckBox, MdExpandMore } from "react-icons/md";
 import { GiSwordsEmblem } from "react-icons/gi";
-import piechart from "../pictures/piechartMachinery.jpg";
+import piechart from "../pictures/piechartMachinery.jpg"; //imported relevant API's and components
 import ExpansionPanel from "@material-ui/core/ExpansionPanel";
 import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
 import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
@@ -18,7 +18,7 @@ class Articles extends Component {
             <div className="Topic1">
               <ExpansionPanelSummary
                 expandIcon={<MdExpandMore />}
-                aria-controls="panel1a-content"
+                aria-controls="panel1a-content" // here are safety articles for student level
                 id="panel1a-header"
               >
                 <Typography>

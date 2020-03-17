@@ -5,6 +5,7 @@ import Pic3 from "../pictures/student3.png";
 import Pic4 from "../pictures/student4.png";
 import Pic5 from "../pictures/student5.png";
 export const Quizdata2 = [
+  ///here we have set of  10 Qs with options,picture for student level
   {
     id: 0,
     question: "Should the tractor be turned on or off when fitting this PTO?",
@@ -137,5 +138,5 @@ function shuffle(array) {
 
   return array;
 }
-shuffle(Quizdata2);
+shuffle(Quizdata2); //shuffling the set of questions randomly
 export default Quizdata2;

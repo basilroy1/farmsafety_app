@@ -6,7 +6,7 @@ import Pictures from "../pictures/new4.jpg";
 import Pictures1 from "../pictures/new5.jpg";
 import Pictures2 from "../pictures/new6.jpg";
 import Pictures4 from "../pictures/homepagelogo.png";
-import Pictures3 from "../pictures/new7.jpg";
+import Pictures3 from "../pictures/new7.jpg"; //imported all the neccessary libraries, componenets and API's
 import Divider from "@material-ui/core/Divider";
 class Home extends Component {
   render() {
@@ -45,6 +45,7 @@ class Home extends Component {
             <p className="viewMore">View More</p>
             <a href="#arrowDown">
               <div id="arrow-down">
+                {/*here i have a donw arrow to smoothly scroll down and pictures with text for user to read about facts*/}
                 <i>
                   <FaChevronDown />
                 </i>
@@ -121,6 +122,7 @@ class Home extends Component {
           </div>
           <div id="arrowDown"> </div>
           <p className="goToTop">Go Back Top</p>
+          {/* up arrow to scroll back to top smoothly*/}
 
           <a href="#top">
             <div id="arrow-up">

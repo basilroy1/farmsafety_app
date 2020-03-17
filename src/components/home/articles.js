@@ -5,7 +5,7 @@ import { GiSwordsEmblem } from "react-icons/gi";
 import piechart from "../pictures/piechartMachinery.jpg";
 import ExpansionPanel from "@material-ui/core/ExpansionPanel";
 import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
-import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
+import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails"; //imported relevant API's and components
 import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
 class Articles extends Component {
@@ -18,7 +18,7 @@ class Articles extends Component {
               <ExpansionPanelSummary
                 expandIcon={<MdExpandMore />}
                 aria-controls="panel1a-content"
-                id="panel1a-header"
+                id="panel1a-header" // here are safety articles for rookie level
               >
                 <Typography>
                   {" "}

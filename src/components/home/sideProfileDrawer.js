@@ -11,7 +11,7 @@ export default function TemporaryDrawer(props) {
       width: 640
     },
     fullList: {
-      width: "auto"
+      width: "auto" //some style info for the drawer
     },
     back: { backgroundColor: "yellow" }
   });
@@ -53,7 +53,7 @@ export default function TemporaryDrawer(props) {
                 levelExpert={person.levelExpert}
                 levelMaster={person.levelMaster}
                 score={person.Score}
-                question={person.Questions}
+                question={person.Questions} //processing the data on the drawer so when clicked on the button the side drawer with user profile info displays
                 email={person.email}
                 time={person.lastLogin}
               />
@@ -69,7 +69,7 @@ export default function TemporaryDrawer(props) {
       <Button
         variant="info"
         style={{ marginLeft: 5 }}
-        onClick={toggleDrawer("right", true)}
+        onClick={toggleDrawer("right", true)} //triggers the view drawer state to true to display the side drawer.
       >
         {" "}
         <Nav>
