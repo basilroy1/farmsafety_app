@@ -46,7 +46,7 @@ class Login extends Component {
         console.log("Logged in");
       })
       .catch(error => {
-        alert("Please enter a valid Maynooth email or password");
+        alert("Please enter a Valid Email Address or Password");
 
         console.log(error.message);
       });
@@ -61,7 +61,7 @@ class Login extends Component {
       this.state.emailReset.endsWith("@hotmail.com"); //if the user forget password they can reset the password using this function
 
     if (!validEmail) {
-      alert("Please enter a valid email");
+      alert("Please enter a Valid Email Address");
       return;
     }
 

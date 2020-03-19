@@ -16,7 +16,7 @@ import fire from "../../config/fire";
 import UserProfile from "../quiz/userProfile";
 import Articles from "./articles";
 import Articles2 from "./articles2";
-import Articles3 from "./articles3"; //imported all the necessary components,Library,API's
+import Articles3 from "./articles3"; //imported all the neccessary components,Library,API's
 import Articles4 from "./articles4";
 import Articles5 from "./articles5";
 import InstructionsModal from "./instructionsmodal";
@@ -559,23 +559,19 @@ class Welcome extends Component {
                   </Button>
                 </Tooltip>
               </ButtonToolbar>
-              <Tooltip
-                TransitionComponent={Zoom} //button for Profile page with Tool tip for hover effect
-                title="View Profile info"
-                arrow
+
+              <DropdownButton
+                onClick={this.changetoProfile}
+                title={"Profile"} //button for Profile page
               >
-                <DropdownButton
-                  onClick={this.changetoProfile}
-                  title={"Profile"}
-                >
-                  {this.state.viewProfile ? (
-                    <SideProfileDrawer
-                      people={this.state.people}
-                      viewprof={this.state.viewProfile}
-                    />
-                  ) : null}
-                </DropdownButton>
-              </Tooltip>
+                {this.state.viewProfile ? (
+                  <SideProfileDrawer
+                    people={this.state.people}
+                    viewprof={this.state.viewProfile}
+                  />
+                ) : null}
+              </DropdownButton>
+
               <Tooltip
                 TransitionComponent={Zoom} //button for Logout page with Tool tip for hover effect
                 title="Log out and go to Home"

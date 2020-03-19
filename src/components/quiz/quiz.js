@@ -42,6 +42,7 @@ class Quiz extends Component {
     };
   }
   loadQuiz = () => {
+    //   if (Quizdata.length <= 0) return;
     const { currentQuest } = this.state;
     this.setState(() => {
       return {
@@ -245,7 +246,7 @@ class Quiz extends Component {
 
   checkAns = answer => {
     this.setState({
-      userAns: answer, //Assign the user slected answer which is used for checking if answer is correct.
+      userAns: answer, //Assign the user selected answer which is used for checking if answer is correct.
       disabled: false
     });
   };
@@ -465,7 +466,10 @@ class Quiz extends Component {
           <div>
             <ProgressBar
               animated
-              now={this.state.currentQuest * (100 / this.state.limitedQuestion)} //progress bar shows the progress
+              now={
+                (this.state.currentQuest + 1) *
+                (100 / this.state.limitedQuestion)
+              } //progress bar shows the progress
             />
           </div>
           {this.state.questions} {/*displays the set of questions*/}

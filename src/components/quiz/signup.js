@@ -36,7 +36,7 @@ class Signup extends Component {
       this.state.email.endsWith("@mumail.ie");
     const validPass = this.state.password === this.state.passwordConfirm; //function for authenticating the signup with email and password
     if (!validEmail) {
-      alert("Please enter a valid Email address");
+      alert("Please enter a valid Email Address or Password");
       return;
     } else if (!validPass) {
       alert("Passwords Don't Match");
