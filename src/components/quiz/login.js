@@ -240,7 +240,7 @@ class Login extends Component {
                 <Spinner
                   as="div"
                   animation="border"
-                  size="bg"
+                  size="bg" //loading the signing in indicator
                   role="status"
                   aria-hidden="true"
                 />

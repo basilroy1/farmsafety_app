@@ -11,7 +11,6 @@ import "./login.css";
 class Signup extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       email: "",
       password: "",
@@ -174,11 +173,11 @@ class Signup extends Component {
 
             {this.state.isActive ? (
               <div className="loadingSpinner">
-                <span>Signing In</span>{" "}
+                <span>Signing Up</span>{" "}
                 <Spinner
                   as="div"
                   animation="border"
-                  size="bg"
+                  size="bg" //loading the signing in indicator
                   role="status"
                   aria-hidden="true"
                 />
