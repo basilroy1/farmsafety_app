@@ -4,6 +4,7 @@ import { Button } from "react-bootstrap";
 import { MdMail, MdDone, MdPriorityHigh, MdPersonAdd } from "react-icons/md";
 import { AiOutlineLock } from "react-icons/ai";
 import TextField from "@material-ui/core/TextField";
+import Spinner from "react-bootstrap/Spinner";
 import Grid from "@material-ui/core/Grid";
 import { GiFarmTractor } from "react-icons/gi"; //imported all the neccessary libraries,API's,Components
 import "./login.css";
@@ -14,6 +15,7 @@ class Signup extends Component {
     this.state = {
       email: "",
       password: "",
+      isActive: false,
       passwordConfirm: "" //initialize the state variables
     };
   }
@@ -27,8 +29,8 @@ class Signup extends Component {
     });
   };
 
-  signUp = e => {
-    e.preventDefault();
+  signUp = () => {
+    // e.preventDefault();
 
     const validEmail =
       this.state.email.endsWith("@gmail.com") ||
@@ -37,9 +39,11 @@ class Signup extends Component {
     const validPass = this.state.password === this.state.passwordConfirm; //function for authenticating the signup with email and password
     if (!validEmail) {
       alert("Please enter a valid Email Address or Password");
+      this.setState({ isActive: false });
       return;
     } else if (!validPass) {
       alert("Passwords Don't Match");
+      this.setState({ isActive: false });
       return;
     }
     fire
@@ -51,6 +55,7 @@ class Signup extends Component {
       })
       .catch(error => {
         console.log(error);
+        this.setState({ isActive: false });
         alert(error);
       });
   };
@@ -160,10 +165,25 @@ class Signup extends Component {
               style={{ height: 50, width: 200, fontSize: 17, borderRadius: 30 }}
               className="signupbtn"
               variant="info"
-              onClick={this.signUp} //signup button
+              onClick={() => {
+                this.signUp(this.setState({ isActive: true }));
+              }} //signup button
             >
               Signup <GiFarmTractor size={22} />
             </Button>
+
+            {this.state.isActive ? (
+              <div className="loadingSpinner">
+                <span>Signing In</span>{" "}
+                <Spinner
+                  as="div"
+                  animation="border"
+                  size="bg"
+                  role="status"
+                  aria-hidden="true"
+                />
+              </div>
+            ) : null}
           </form>
         </div>
       </body>

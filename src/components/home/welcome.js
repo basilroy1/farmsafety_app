@@ -406,6 +406,7 @@ class Welcome extends Component {
 
       console.log("end of else statement");
     }
+
     /*if (
       scores >= Math.round(limitedQuestion * 0.5) &&
       this.state.fakelevel < this.state.level /////here is a problem when at max level n when level goes to 5

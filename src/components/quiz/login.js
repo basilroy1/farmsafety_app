@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import fire from "../../config/fire";
 import { Button } from "react-bootstrap";
+import Spinner from "react-bootstrap/Spinner";
 import "./login.css";
 import { GiFarmTractor } from "react-icons/gi";
 import { MdMail, MdDone, MdPriorityHigh } from "react-icons/md";
@@ -8,7 +9,6 @@ import { FaUserCircle, FaArrowCircleLeft } from "react-icons/fa";
 import { AiOutlineLock } from "react-icons/ai";
 import TextField from "@material-ui/core/TextField"; //imported all the neccessary libraries,API's,Components
 import Grid from "@material-ui/core/Grid";
-import Welcome from "../home/welcome";
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -16,10 +16,11 @@ class Login extends Component {
     this.state = {
       email: "",
       emailReset: "",
+      isActive: false,
       viewPasswordReset: false,
       hideForgotPass: true,
       password: "",
-      viewWelcome: false, //initialize the state variables
+      //initialize the state variables
       viewLogin: true
     };
   }
@@ -39,13 +40,12 @@ class Login extends Component {
       .signInWithEmailAndPassword(this.state.email, this.state.password) //function for authenticating the login with email and password
       .then(u => {
         this.setState({
-          viewWelcome: true,
-
           viewLogin: false
         });
         console.log("Logged in");
       })
       .catch(error => {
+        this.setState({ isActive: false });
         alert("Please enter a Valid Email Address or Password");
 
         console.log(error.message);
@@ -80,11 +80,13 @@ class Login extends Component {
       hideForgotPass: false
     });
   };
+
   render() {
     return (
       <body>
         <div>
           {/* here we are creating the login form with email and password input fields, also we do some checks for if password is the correct length etc.*/}
+
           <form className="loginForm">
             {this.state.viewPasswordReset ? (
               <div
@@ -214,6 +216,7 @@ class Login extends Component {
                 Sent Recovery Email
               </Button>
             ) : null}
+
             {this.state.viewPasswordReset ? null : (
               <Button
                 style={{
@@ -225,15 +228,26 @@ class Login extends Component {
                 className="Loginbtn"
                 variant="info"
                 onClick={() => {
-                  this.login(); //login button
+                  this.login(this.setState({ isActive: true })); //login button
                 }}
               >
                 Login <GiFarmTractor size={22} />
               </Button>
             )}
+            {this.state.isActive ? (
+              <div className="loadingSpinner">
+                <span>Signing In</span>{" "}
+                <Spinner
+                  as="div"
+                  animation="border"
+                  size="bg"
+                  role="status"
+                  aria-hidden="true"
+                />
+              </div>
+            ) : null}
           </form>
         </div>
-        {this.state.viewWelcome ? <Welcome /> : null}
       </body>
     );
   }
