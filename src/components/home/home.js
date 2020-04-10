@@ -34,7 +34,7 @@ class Home extends Component {
                   style={{
                     width: 700,
                     height: 320,
-                    borderRadius: 50
+                    borderRadius: 50,
                   }}
                   alt="lol"
                 />
@@ -45,7 +45,7 @@ class Home extends Component {
             <p className="viewMore">View More</p>
             <a href="#arrowDown">
               <div id="arrow-down">
-                {/*here i have a donw arrow to smoothly scroll down and pictures with text for user to read about facts*/}
+                {/*here i have a down arrow to smoothly scroll down and pictures with text for user to read about facts*/}
                 <i>
                   <FaChevronDown />
                 </i>
